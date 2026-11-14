@@ -19,7 +19,10 @@
 
   function trackDetail(name, params) {
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
-    if (typeof window.clarity === 'function') window.clarity('event', name);
+    if (typeof window.clarity === 'function') {
+      const detail = params.section_id || params.percent || params.seconds;
+      window.clarity('event', detail ? name + '_' + detail : name);
+    }
   }
 
   if (config.googleAnalyticsId) {
