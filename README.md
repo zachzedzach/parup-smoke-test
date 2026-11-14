@@ -1,14 +1,13 @@
 # ParUp smoke-test site
 
-Static GitHub Pages landing page for the team's proposed local golfer-matching smoke test.
+Static GitHub Pages landing page for the team’s proposed local golfer-matching smoke test.
 
 ## Before publishing
 
-1. Create a Google Sheet named `ParUp Smoke Test Signups`. In the sheet, open **Extensions → Apps Script**, replace the starter code with `backend/Code.gs`, then in Apps Script **Project Settings**, turn on **Show "appsscript.json" manifest file in editor** and replace its contents with `backend/appsscript.json`. Save and run `setup` once to create the `Signups` tab and header row. This limits spreadsheet access to the Sheet containing the script. Review and authorize the script as the sheet owner.
-2. In Apps Script, choose **Deploy → New deployment → Web app**. Set **Execute as** to your account and access to **Anyone**. This allows visitors to submit without a Google sign-in; it also means anyone can add rows to the private sheet through the form endpoint. Copy the deployed web-app URL.
-3. Put the deployed web-app URL in `config.js` as `signupEndpoint`.
-4. Create GA4 and Microsoft Clarity properties, then put their IDs in `config.js`. Clarity masks inputs and dropdowns by default; the whole signup form is also explicitly marked for masking. Verify both before bringing in visitors.
-5. Run an end-to-end signup using a test address. Confirm the success message and matching row in the sheet, then remove the test row.
-6. Deploy to GitHub Pages and add the team's chosen domain when it is ready.
+1. The private `ParUp Smoke Test Signups` Sheet and bound Apps Script are already set up, and the `Signups` tab has its header row. The script can write only to the Sheet it is attached to.
+2. The public Apps Script web-app endpoint is deployed. It accepts anonymous form submissions and can add rows to the private Sheet; keep the Sheet itself restricted to the team.
+3. `config.js` already has the deployed endpoint as `signupEndpoint` and the Microsoft Clarity project ID. Create a GA4 property and add its measurement ID when available.
+4. Before recruiting visitors, verify the signup flow from the page through the success message to a matching row in the Sheet. Clarity masks fields by default; the whole form is explicitly marked for masking.
+5. Publish through GitHub Pages, then add a custom domain only after the team chooses it and the grant process is settled.
 
-Do not publish until the signup endpoint and analytics IDs are configured. The page describes ParUp as a concept under test and includes no fabricated golfer profiles or claims of existing matches.
+The page describes ParUp as a concept under test and includes no fabricated golfer profiles or claims of existing matches. The repository is currently private, so the page is not live.
