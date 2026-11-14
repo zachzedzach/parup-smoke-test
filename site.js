@@ -14,7 +14,7 @@
   if (config.googleAnalyticsId) {
     const ga = document.createElement('script');
     ga.async = true;
-    ga.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.googleAnalyticsId)}`;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(config.googleAnalyticsId);
     document.head.appendChild(ga);
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -31,6 +31,10 @@
   }
 
   if (!form || !submit || !status) return;
+  document.querySelectorAll('a[href="#early-access"]').forEach((link) => {
+    link.addEventListener('click', () => track('parup_early_access_cta_clicked'));
+  });
+
   if (endpoint) {
     form.action = endpoint;
     submit.disabled = false;
