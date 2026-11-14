@@ -5,9 +5,20 @@
   const submit = form?.querySelector('button[type="submit"]');
   const frame = document.getElementById('signup-response');
   const endpoint = String(config.signupEndpoint || '').trim();
+  const sourceField = document.getElementById('signup-source');
+  const ctaClickedKey = 'parup_download_cta_clicked';
+  const viewedSections = new Set();
+  const sentScrollDepths = new Set();
+  let lastEngagementMark = 0;
 
   function track(name) {
-    if (typeof window.gtag === 'function') window.gtag('event', name, { method: 'ParUp early access' });
+    const params = { method: 'ParUp smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' };
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    if (typeof window.clarity === 'function') window.clarity('event', name);
+  }
+
+  function trackDetail(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') window.clarity('event', name);
   }
 
@@ -31,9 +42,39 @@
   }
 
   if (!form || !submit || !status) return;
-  document.querySelectorAll('a[href="#early-access"]').forEach((link) => {
-    link.addEventListener('click', () => track('parup_early_access_cta_clicked'));
+  document.querySelectorAll('[data-download-cta]').forEach((link) => {
+    link.addEventListener('click', () => {
+      sessionStorage.setItem(ctaClickedKey, 'yes');
+      if (sourceField) sourceField.value = 'download_button_clicked';
+      track('parup_download_button_clicked');
+    });
   });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || viewedSections.has(entry.target.id)) return;
+      viewedSections.add(entry.target.id);
+      trackDetail('parup_section_viewed', { section_id: entry.target.id, section_name: entry.target.dataset.analyticsName || entry.target.id });
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('main > section[id]').forEach((section) => sectionObserver.observe(section));
+
+  window.addEventListener('scroll', () => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollable <= 0) return;
+    const depth = Math.min(100, Math.round((window.scrollY / scrollable) * 100));
+    [25, 50, 75, 90].forEach((threshold) => {
+      if (depth >= threshold && !sentScrollDepths.has(threshold)) {
+        sentScrollDepths.add(threshold);
+        trackDetail('parup_scroll_depth', { percent: threshold });
+      }
+    });
+  }, { passive: true });
+  window.setInterval(() => {
+    if (document.visibilityState !== 'visible') return;
+    lastEngagementMark += 1;
+    if ([10, 30, 60].includes(lastEngagementMark)) trackDetail('parup_engaged_time', { seconds: lastEngagementMark });
+  }, 1000);
 
   if (endpoint) {
     form.action = endpoint;
@@ -68,9 +109,11 @@
     } else if (event.data.status === 'duplicate') {
       submit.disabled = false;
       status.textContent = 'You’re already on the list. We’ll be in touch when ParUp is ready.';
+      track('parup_signup_duplicate');
     } else {
       submit.disabled = false;
       status.textContent = 'We could not save that signup. Please check your connection and try again.';
+      track('parup_signup_failed');
     }
   });
 })();
