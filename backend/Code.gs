@@ -27,7 +27,7 @@ function doPost(e) {
       const existing = sheet.getRange(2, 2, lastRow - 1, 1).getValues();
       if (existing.some(row => String(row[0]).trim().toLowerCase() === email)) return reply_('duplicate');
     }
-    sheet.appendRow([new Date(), email, clean_(values.location), clean_(values.availability), clean_(values.experience), clean_(values.round_style), 'yes', 'ParUp Pages']);
+    sheet.appendRow([new Date(), email, clean_(values.location), clean_(values.availability), clean_(values.experience), clean_(values.round_style), 'yes', clean_(values.source) || 'ParUp Pages']);
     return reply_('success');
   } catch (error) {
     console.error(error);
