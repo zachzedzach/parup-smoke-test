@@ -20,17 +20,17 @@
         <a href="#how">How it works</a>
         <a href="#fit">Find your fit</a>
       </nav>
-      <a class="header-cta" href="#early-access">Get early access <span aria-hidden="true">↗</span></a>
+      <a class="header-cta" href="#early-access" data-download-cta>Download the app <span aria-hidden="true">↗</span></a>
     </header>
 
     <main id="top">
-      <section class="hero wrap">
+      <section class="hero wrap" id="hero" data-analytics-name="Homepage">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="live-dot"></span> GOOD GOLF STARTS WITH GOOD COMPANY</p>
+          <p class="eyebrow"><span class="live-dot"></span> MEET YOUR NEXT GOLF GROUP</p>
           <h1>Find golfers<br />who play <em>your</em><br />kind of game.</h1>
-          <p class="hero-intro">We’re exploring ParUp, a golf-friend matching app for finding nearby golfers who fit your schedule, experience, pace, and preferred kind of round.</p>
-          <a class="button primary" href="#early-access">Join the early-access list <span aria-hidden="true">→</span></a>
-          <p class="quiet-note">For the next round you want to play.</p>
+          <p class="hero-intro">ParUp makes it easier to find nearby golfers who fit your schedule, experience, pace, and the kind of round you want to play.</p>
+          <a class="button primary" href="#early-access" data-download-cta>Download the app <span aria-hidden="true">→</span></a>
+          <p class="quiet-note">Your next round starts with the right people.</p>
         </div>
 
         <div class="hero-art" aria-label="Illustration of a golf course and a sample round preference card">
@@ -48,14 +48,14 @@
         </div>
       </section>
 
-      <section class="proof-strip wrap" id="fit">
+      <section class="proof-strip wrap" id="fit" data-analytics-name="Matching benefits">
         <div class="proof-label">A round that fits</div>
         <div><span class="proof-icon">⌖</span><b>Nearby</b><small>Play close to home</small></div>
         <div><span class="proof-icon">◷</span><b>Your schedule</b><small>Find a time that works</small></div>
         <div><span class="proof-icon">↗</span><b>Your style</b><small>Casual, social, or focused</small></div>
       </section>
 
-      <section class="how wrap" id="how">
+      <section class="how wrap" id="how" data-analytics-name="How it works">
         <div class="section-lead">
           <p class="eyebrow">LESS SEARCHING. MORE PLAYING.</p>
           <h2>Make room for<br /><em>one more good round.</em></h2>
@@ -67,17 +67,18 @@
         </div>
       </section>
 
-      <section class="early-access" id="early-access">
+      <section class="early-access" id="early-access" data-analytics-name="Early access signup">
         <div class="early-access-inner wrap">
           <div class="signup-copy">
-            <p class="eyebrow">BE FIRST ON THE TEE SHEET</p>
-            <h2>Find your next<br /><em>golf group.</em></h2>
-            <p>Join the ParUp early-access list and tell us what makes a group feel like the right fit.</p>
+            <p class="eyebrow">PARUP EARLY ACCESS</p>
+            <h2>Get ready for<br /><em>your next round.</em></h2>
+            <p>ParUp is preparing to launch. Leave your email and a few playing preferences to be among the first invited.</p>
+            <p class="launch-disclosure">ParUp is not available to download yet. This page is measuring interest before launch.</p>
             <div class="signup-promise"><span>✓</span> A few details, so we can find a better fit.</div>
           </div>
 
           <form id="signup-form" class="signup-form" method="post" target="signup-response" data-clarity-mask="true">
-            <div class="form-heading"><span class="step-label">EARLY ACCESS</span><span class="form-mark">P</span></div>
+            <div class="form-heading"><span class="step-label">GET PARUP</span><span class="form-mark">P</span></div>
             <label for="email">Email address <b>*</b></label>
             <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
             <label for="location">Where do you usually play?</label>
@@ -88,17 +89,18 @@
             </div>
             <label for="round-style">What kind of round sounds good?</label>
             <select id="round-style" name="round_style"><option value="">Choose one</option><option>Relaxed and social</option><option>Practice and improve</option><option>Friendly competition</option><option>Any of these</option></select>
+            <input type="hidden" name="source" id="signup-source" value="direct" />
             <label class="consent"><input type="checkbox" name="consent" value="yes" required /><span>I agree ParUp may email me about early access.</span></label>
             <label class="honeypot" aria-hidden="true">Leave this field empty<input name="website" tabindex="-1" autocomplete="off" /></label>
-            <button class="button primary submit-button" type="submit" disabled>Join the early-access list <span aria-hidden="true">→</span></button>
+            <button class="button primary submit-button" type="submit" disabled>Request early access <span aria-hidden="true">→</span></button>
             <p id="form-status" class="form-status" role="status" aria-live="polite">The signup form is being connected.</p>
-            <p class="privacy-note">Your details go to the ParUp team so we can contact you about early access. Visit analytics help us improve the page; form details are masked in session recordings.</p>
+            <p class="privacy-note">Your details go to the ParUp team so we can contact you about early access. We measure page sections viewed, download-button clicks, and signups. Session recordings mask this form. No app download is provided yet.</p>
           </form>
           <iframe name="signup-response" id="signup-response" class="response-frame" title="Signup response"></iframe>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer wrap"><a class="wordmark" href="#top"><span class="mark">P</span>ParUp<span class="period">.</span></a><span>Good golf. Good people.</span><a href="#early-access">Get early access ↑</a></footer>
+    <footer class="site-footer wrap"><a class="wordmark" href="#top"><span class="mark">P</span>ParUp<span class="period">.</span></a><span>Good golf. Good people.</span><a href="#early-access" data-download-cta>Download the app ↑</a></footer>
   </body>
 </html>
