@@ -7,17 +7,29 @@
   const endpoint = String(config.signupEndpoint || '').trim();
   const sourceField = document.getElementById('signup-source');
   const ctaClickedKey = 'parup_download_cta_clicked';
+  const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign'].reduce((params, key) => {
+    const value = new URLSearchParams(window.location.search).get(key);
+    if (value) params[key] = value.slice(0, 80);
+    return params;
+  }, {});
   const viewedSections = new Set();
   const sentScrollDepths = new Set();
-  let lastEngagementMark = 0;
+  let visibleSeconds = 0;
+
+  function signupSource() {
+    const source = sessionStorage.getItem(ctaClickedKey) === 'yes' ? 'download_button_clicked' : 'direct';
+    const campaign = Object.entries(campaignParams).map(([key, value]) => key + '=' + value);
+    return [source, ...campaign].join(';').slice(0, 180);
+  }
 
   function track(name) {
-    const params = { method: 'ParUp smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' };
+    const params = { method: 'ParUp smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes', ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') window.clarity('event', name);
   }
 
   function trackDetail(name, params) {
+    params = { ...params, ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') {
       const detail = params.section_id || params.percent || params.seconds;
@@ -42,14 +54,17 @@
       t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, 'clarity', 'script', config.clarityProjectId);
+    Object.entries(campaignParams).forEach(([key, value]) => window.clarity('set', key, value));
   }
 
   if (!form || !submit || !status) return;
+  if (sourceField) sourceField.value = signupSource();
   document.querySelectorAll('[data-download-cta]').forEach((link) => {
     link.addEventListener('click', () => {
+      const firstDownloadClick = sessionStorage.getItem(ctaClickedKey) !== 'yes';
       sessionStorage.setItem(ctaClickedKey, 'yes');
-      if (sourceField) sourceField.value = 'download_button_clicked';
-      track('parup_download_button_clicked');
+      if (sourceField) sourceField.value = signupSource();
+      if (firstDownloadClick) track('parup_download_button_clicked');
     });
   });
 
@@ -75,10 +90,9 @@
   }, { passive: true });
   window.setInterval(() => {
     if (document.visibilityState !== 'visible') return;
-    lastEngagementMark += 1;
-    if ([10, 30, 60].includes(lastEngagementMark)) trackDetail('parup_engaged_time', { seconds: lastEngagementMark });
+    visibleSeconds += 1;
+    if ([10, 30, 60].includes(visibleSeconds)) trackDetail('parup_visible_time', { seconds: visibleSeconds });
   }, 1000);
-
   if (endpoint) {
     form.action = endpoint;
     submit.disabled = false;
