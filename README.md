@@ -1,6 +1,6 @@
 # Roundfolk smoke-test site
 
-Static GitHub Pages landing page for the Roundfolk golfer-matching interest test. The source is rebranded locally; the public Pages deployment still serves the prior ParUp version.
+Static GitHub Pages landing page for the Roundfolk golfer-matching interest test. The Roundfolk source is published to GitHub Pages as of November 16, 2026.
 
 ## Current setup
 
@@ -9,7 +9,7 @@ Static GitHub Pages landing page for the Roundfolk golfer-matching interest test
 - Signup endpoint: Google Apps Script web app, configured in `index.html` so the form does not depend on a separate config script being loaded.
 - Signup destination: the team’s private Google Sheet (the existing sheet/project still uses the legacy ParUp name).
 - Microsoft Clarity is configured. The form is masked; email addresses are not sent to analytics. GA4 has no measurement ID configured yet.
-- The team has not verified a full signup end-to-end. GA4 has no measurement ID. Do not recruit visitors until tracking is configured and a test signup is confirmed in the private Sheet.
+- A synthetic `.invalid` test signup reached the private Sheet with `download_button_clicked` attribution; the test row was removed and confirmed absent. The live site’s form is connected. GA4 still has no measurement ID; finish GA4 setup before recruiting visitors.
 - The endpoint is public and accepts email submissions into the private Sheet; expect spam risk. Keep the Sheet private.
 
 ## Visitor flow
@@ -18,17 +18,18 @@ The landing page describes the Roundfolk concept and has Google Play and App Sto
 
 The page tracks section visibility, scroll depth, visible time, first store-link click per session, signup start, and signup outcome using Microsoft Clarity and, if configured, Google Analytics. Signup source and UTM campaign tags are stored with the signup. Tracking is by visit/session; it does not identify which named person read each section. Email is excluded from analytics.
 
-## Publish and launch blockers (checked November 15, 2026)
+## Publish status (checked November 16, 2026)
 
-- The nested Git checkout now has `origin` configured and a local Roundfolk commit ready to push (`7d27cf8`).
-- `gh auth status` reports that the saved `zachzedzach` GitHub token is invalid. Publishing needs a fresh GitHub authorization.
-- GA4 has no property ID, and no test signup has been verified in the private Sheet.
-- No custom domain has been selected or purchased. Use the free Pages URL for the test.
+- Roundfolk is published at `https://zachzedzach.github.io/parup-smoke-test/`; GitHub Actions Pages deployment succeeded.
+- The public HTML response reports the Roundfolk title, not-available dialog, and favicon. The page was not visually inspected in a browser.
+- The signup endpoint was tested with a synthetic `.invalid` address and wrote the expected `download_button_clicked` source to the private Sheet. That exact test row was removed and verified absent.
+- Microsoft Clarity is configured. GA4 still needs a measurement ID. No local golfers have been recruited.
+- No custom domain has been selected or purchased; the free Pages URL is sufficient for this test.
 
 ## Before recruiting
 
 1. Create/configure a GA4 property and add the measurement ID to the inline configuration in `index.html` (and `config.js` if maintaining a separate copy).
-2. Submit a test address through the live form and verify the success message and matching row in the team’s private Sheet. Remove only the disposable test row afterward.
+2. The endpoint write and cleanup were verified with a synthetic `.invalid` test address. Verify the live form’s browser success message when doing the next browser QA; do not create additional test rows unless needed.
 3. Confirm the page uses Roundfolk branding and the correct concept details before sending visitors.
 4. Use a custom domain only after the team chooses one and the grant process permits the cost.
 
