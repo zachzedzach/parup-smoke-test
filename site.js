@@ -1,5 +1,5 @@
 (() => {
-  const config = window.PARUP_CONFIG || {};
+  const config = window.ROUNDFOLK_CONFIG || window.PARUP_CONFIG || {};
   const form = document.getElementById('signup-form');
   const status = document.getElementById('form-status');
   const submit = form?.querySelector('button[type="submit"]');
@@ -8,7 +8,8 @@
   const emailField = document.getElementById('email');
   const endpoint = String(config.signupEndpoint || '').trim();
   const sourceField = document.getElementById('signup-source');
-  const ctaClickedKey = 'parup_download_cta_clicked';
+  const ctaClickedKey = 'roundfolk_download_cta_clicked';
+  const legacyCtaClickedKey = 'parup_download_cta_clicked';
   const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign'].reduce((params, key) => {
     const value = new URLSearchParams(window.location.search).get(key);
     if (value) params[key] = value.slice(0, 80);
@@ -17,35 +18,48 @@
   const viewedSections = new Set();
   const sentScrollDepths = new Set();
   let visibleSeconds = 0;
+
   function signupSource() {
-    const source = sessionStorage.getItem(ctaClickedKey) === 'yes' ? 'download_button_clicked' : 'direct';
-    const campaign = Object.entries(campaignParams).map(([key, value]) => key + '=' + value);
+    const source = sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes' ? 'download_button_clicked' : 'direct';
+    const campaign = Object.entries(campaignParams).map(([key, value]) => `${key}=${value}`);
     return [source, ...campaign].join(';').slice(0, 180);
   }
+
   function track(name) {
-    const params = { method: 'ParUp smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes', ...campaignParams };
+    const params = { method: 'Roundfolk smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes', ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') window.clarity('event', name);
   }
+
   function trackDetail(name, params) {
     params = { ...params, ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') {
       const detail = params.section_id || params.percent || params.seconds;
-      window.clarity('event', detail ? name + '_' + detail : name);
+      window.clarity('event', detail ? `${name}_${detail}` : name);
     }
   }
+
   if (config.googleAnalyticsId) {
-    const ga = document.createElement('script'); ga.async = true;
-    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(config.googleAnalyticsId);
-    document.head.appendChild(ga); window.dataLayer = window.dataLayer || [];
+    const ga = document.createElement('script');
+    ga.async = true;
+    ga.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.googleAnalyticsId)}`;
+    document.head.appendChild(ga);
+    window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ window.dataLayer.push(arguments); };
-    window.gtag('js', new Date()); window.gtag('config', config.googleAnalyticsId);
+    window.gtag('js', new Date());
+    window.gtag('config', config.googleAnalyticsId);
   }
+
   if (config.clarityProjectId) {
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,'clarity','script',config.clarityProjectId);
-    Object.entries(campaignParams).forEach(([key,value])=>window.clarity('set',key,value));
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, 'clarity', 'script', config.clarityProjectId);
+    Object.entries(campaignParams).forEach(([key, value]) => window.clarity('set', key, value));
   }
+
   if (!form || !submit || !status) return;
   if (sourceField) sourceField.value = signupSource();
   document.querySelectorAll('[data-download-cta]').forEach((link) => {
@@ -54,37 +68,80 @@
       if (holdDialog?.showModal) holdDialog.showModal();
       else if (holdDialog) holdDialog.setAttribute('open', '');
       window.setTimeout(() => emailField?.focus(), 80);
-      const firstDownloadClick = sessionStorage.getItem(ctaClickedKey) !== 'yes';
+      const firstDownloadClick = sessionStorage.getItem(ctaClickedKey) !== 'yes' && sessionStorage.getItem(legacyCtaClickedKey) !== 'yes';
       sessionStorage.setItem(ctaClickedKey, 'yes');
       if (sourceField) sourceField.value = signupSource();
-      if (firstDownloadClick) track('parup_download_button_clicked');
+      if (firstDownloadClick) track('roundfolk_download_button_clicked');
     });
   });
   holdDialog?.querySelector('.dialog-close')?.addEventListener('click', () => holdDialog.close());
-  holdDialog?.addEventListener('click', (event) => { if (event.target === holdDialog) holdDialog.close(); });
-  const sectionObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (!entry.isIntersecting || viewedSections.has(entry.target.id)) return;
-    viewedSections.add(entry.target.id);
-    trackDetail('parup_section_viewed', { section_id: entry.target.id, section_name: entry.target.dataset.analyticsName || entry.target.id });
-  }), { threshold: 0.5 });
+  holdDialog?.addEventListener('click', (event) => {
+    if (event.target === holdDialog) holdDialog.close();
+  });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting || viewedSections.has(entry.target.id)) return;
+      viewedSections.add(entry.target.id);
+      trackDetail('roundfolk_section_viewed', { section_id: entry.target.id, section_name: entry.target.dataset.analyticsName || entry.target.id });
+    });
+  }, { threshold: 0.5 });
   document.querySelectorAll('main > section[id]').forEach((section) => sectionObserver.observe(section));
+
   window.addEventListener('scroll', () => {
     const scrollable = document.documentElement.scrollHeight - window.innerHeight;
     if (scrollable <= 0) return;
     const depth = Math.min(100, Math.round((window.scrollY / scrollable) * 100));
-    [25,50,75,90].forEach((threshold) => { if (depth >= threshold && !sentScrollDepths.has(threshold)) { sentScrollDepths.add(threshold); trackDetail('parup_scroll_depth', { percent: threshold }); } });
+    [25, 50, 75, 90].forEach((threshold) => {
+      if (depth >= threshold && !sentScrollDepths.has(threshold)) {
+        sentScrollDepths.add(threshold);
+        trackDetail('roundfolk_scroll_depth', { percent: threshold });
+      }
+    });
   }, { passive: true });
-  window.setInterval(() => { if (document.visibilityState !== 'visible') return; visibleSeconds += 1; if ([10,30,60].includes(visibleSeconds)) trackDetail('parup_visible_time', { seconds: visibleSeconds }); }, 1000);
-  if (endpoint) { form.action = endpoint; submit.disabled = false; status.textContent = ''; } else { submit.disabled = true; }
+  window.setInterval(() => {
+    if (document.visibilityState !== 'visible') return;
+    visibleSeconds += 1;
+    if ([10, 30, 60].includes(visibleSeconds)) trackDetail('roundfolk_visible_time', { seconds: visibleSeconds });
+  }, 1000);
+  if (endpoint) {
+    form.action = endpoint;
+    submit.disabled = false;
+    status.textContent = '';
+  } else {
+    submit.disabled = true;
+  }
+
   form.addEventListener('submit', (event) => {
-    if (!endpoint) { event.preventDefault(); status.textContent = 'The signup form is being connected.'; return; }
-    if (!form.reportValidity()) { event.preventDefault(); return; }
-    submit.disabled = true; status.textContent = 'Sending your signup…'; track('parup_signup_started');
+    if (!endpoint) {
+      event.preventDefault();
+      status.textContent = 'The signup form is being connected.';
+      return;
+    }
+    if (!form.reportValidity()) {
+      event.preventDefault();
+      return;
+    }
+    submit.disabled = true;
+    status.textContent = 'Sending your signup…';
+    track('roundfolk_signup_started');
   });
+
   window.addEventListener('message', (event) => {
-    if (!frame || event.source !== frame.contentWindow || !['https://script.google.com','https://script.googleusercontent.com'].includes(event.origin) || event.data?.type !== 'parup-signup') return;
-    if (event.data.status === 'success') { form.reset(); submit.disabled = false; status.textContent = 'You’re on the list. We’ll be in touch when ParUp is ready.'; track('parup_signup_completed'); }
-    else if (event.data.status === 'duplicate') { submit.disabled = false; status.textContent = 'You’re already on the list. We’ll be in touch when ParUp is ready.'; track('parup_signup_duplicate'); }
-    else { submit.disabled = false; status.textContent = 'We could not save that signup. Please check your connection and try again.'; track('parup_signup_failed'); }
+    if (!frame || event.source !== frame.contentWindow || !['https://script.google.com', 'https://script.googleusercontent.com'].includes(event.origin) || !['parup-signup', 'roundfolk-signup'].includes(event.data?.type)) return;
+    if (event.data.status === 'success') {
+      form.reset();
+      submit.disabled = false;
+      status.textContent = 'You’re on the list. We’ll be in touch when Roundfolk is ready.';
+      track('roundfolk_signup_completed');
+    } else if (event.data.status === 'duplicate') {
+      submit.disabled = false;
+      status.textContent = 'You’re already on the list. We’ll be in touch when Roundfolk is ready.';
+      track('roundfolk_signup_duplicate');
+    } else {
+      submit.disabled = false;
+      status.textContent = 'We could not save that signup. Please check your connection and try again.';
+      track('roundfolk_signup_failed');
+    }
   });
 })();
