@@ -24,7 +24,7 @@ The current local redesign must not be published until Zach explicitly requests 
 
 The early-access call to action scrolls to the signup form. The form asks for an email address and says the team will send one update when Roundfolk is ready. It does not claim the app is available or that matching currently works.
 
-The page tracks section visibility, scroll depth, visible time, first store-link click per session, signup start, and signup outcome using Microsoft Clarity and, if configured, Google Analytics. Signup source and UTM campaign tags are stored with the signup. Tracking is by visit/session; it does not identify which named person read each section. Email is excluded from analytics.
+The page tracks section visibility, scroll depth, visible time, the first early-access CTA click per session, signup start, and signup outcome using Microsoft Clarity and, if configured, Google Analytics. Signup source and UTM campaign tags are stored with the signup. Tracking is by visit/session; it does not identify which named person read each section. Email is excluded from analytics.
 
 ## Publish status (checked November 17, 2026)
 
