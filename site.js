@@ -4,11 +4,10 @@
   const status = document.getElementById('form-status');
   const submit = form?.querySelector('button[type="submit"]');
   const frame = document.getElementById('signup-response');
-  const holdDialog = document.getElementById('download-hold');
-  const emailField = document.getElementById('email');
   const endpoint = String(config.signupEndpoint || '').trim();
   const sourceField = document.getElementById('signup-source');
-  const ctaClickedKey = 'roundfolk_download_cta_clicked';
+  const ctaClickedKey = 'roundfolk_early_access_cta_clicked';
+  const olderCtaClickedKey = 'roundfolk_download_cta_clicked';
   const legacyCtaClickedKey = 'parup_download_cta_clicked';
   const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign'].reduce((params, key) => {
     const value = new URLSearchParams(window.location.search).get(key);
@@ -20,13 +19,13 @@
   let visibleSeconds = 0;
 
   function signupSource() {
-    const source = sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes' ? 'download_button_clicked' : 'direct';
+    const source = sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(olderCtaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes' ? 'early_access_button_clicked' : 'direct';
     const campaign = Object.entries(campaignParams).map(([key, value]) => `${key}=${value}`);
     return [source, ...campaign].join(';').slice(0, 180);
   }
 
   function track(name) {
-    const params = { method: 'Roundfolk smoke test', download_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes', ...campaignParams };
+    const params = { method: 'Roundfolk smoke test', early_access_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(olderCtaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes', ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') window.clarity('event', name);
   }
@@ -39,25 +38,6 @@
       window.clarity('event', detail ? `${name}_${detail}` : name);
     }
   }
-
-  const styleDescriptions = {
-    Easygoing: 'Easygoing pace, good company.',
-    Social: 'A social round with good conversation.',
-    Competitive: 'A little friendly competition.'
-  };
-  document.querySelectorAll('[data-round-style]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const style = button.dataset.roundStyle;
-      document.querySelectorAll('[data-round-style]').forEach((option) => {
-        const selected = option === button;
-        option.classList.toggle('is-selected', selected);
-        option.setAttribute('aria-pressed', String(selected));
-      });
-      const statusMessage = document.querySelector('[data-round-style-status]');
-      if (statusMessage) statusMessage.textContent = styleDescriptions[style] || `${style} round.`;
-      trackDetail('roundfolk_round_style_selected', { round_style: style });
-    });
-  });
 
   if (config.googleAnalyticsId) {
     const ga = document.createElement('script');
@@ -81,21 +61,13 @@
 
   if (!form || !submit || !status) return;
   if (sourceField) sourceField.value = signupSource();
-  document.querySelectorAll('[data-download-cta]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (holdDialog?.showModal) holdDialog.showModal();
-      else if (holdDialog) holdDialog.setAttribute('open', '');
-      window.setTimeout(() => emailField?.focus(), 80);
-      const firstDownloadClick = sessionStorage.getItem(ctaClickedKey) !== 'yes' && sessionStorage.getItem(legacyCtaClickedKey) !== 'yes';
+  document.querySelectorAll('[data-early-access-cta]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const firstEarlyAccessClick = sessionStorage.getItem(ctaClickedKey) !== 'yes' && sessionStorage.getItem(olderCtaClickedKey) !== 'yes' && sessionStorage.getItem(legacyCtaClickedKey) !== 'yes';
       sessionStorage.setItem(ctaClickedKey, 'yes');
       if (sourceField) sourceField.value = signupSource();
-      if (firstDownloadClick) track('roundfolk_download_button_clicked');
+      if (firstEarlyAccessClick) track('roundfolk_early_access_cta_clicked');
     });
-  });
-  holdDialog?.querySelector('.dialog-close')?.addEventListener('click', () => holdDialog.close());
-  holdDialog?.addEventListener('click', (event) => {
-    if (event.target === holdDialog) holdDialog.close();
   });
 
   const sectionObserver = new IntersectionObserver((entries) => {
