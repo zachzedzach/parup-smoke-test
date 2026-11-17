@@ -18,7 +18,7 @@ The current local draft positions Roundfolk as a “better than random” improv
 
 The page has three benefit-led steps and one early-access email form. The old store badges and download dialog are no longer referenced by `index.html`. The active page styles are in `styles.css`; `badge-overrides.css` and `allo-style.css` remain in the folder but are not linked by the current page.
 
-The current local redesign must not be published until Zach explicitly requests it. GitHub Pages still serves the previous published design. The working tree contains a new product-story draft beyond commit `ea73d79`.
+The current local redesign must not be published until Zach explicitly requests it. GitHub Pages still serves the previous published design. The product-story draft is committed locally as `3d086b5`; do not push this commit before Zach approves publishing.
 
 ## Visitor flow
 
