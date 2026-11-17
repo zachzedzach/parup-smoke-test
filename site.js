@@ -40,6 +40,25 @@
     }
   }
 
+  const styleDescriptions = {
+    Easygoing: 'Easygoing pace, good company.',
+    Social: 'A social round with good conversation.',
+    Competitive: 'A little friendly competition.'
+  };
+  document.querySelectorAll('[data-round-style]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const style = button.dataset.roundStyle;
+      document.querySelectorAll('[data-round-style]').forEach((option) => {
+        const selected = option === button;
+        option.classList.toggle('is-selected', selected);
+        option.setAttribute('aria-pressed', String(selected));
+      });
+      const statusMessage = document.querySelector('[data-round-style-status]');
+      if (statusMessage) statusMessage.textContent = styleDescriptions[style] || `${style} round.`;
+      trackDetail('roundfolk_round_style_selected', { round_style: style });
+    });
+  });
+
   if (config.googleAnalyticsId) {
     const ga = document.createElement('script');
     ga.async = true;
