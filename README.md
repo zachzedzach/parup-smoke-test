@@ -52,4 +52,4 @@ The page tracks badge clicks by platform, gate display, section visibility, scro
 Official platform guidance: [Apple App Store Marketing Resources and Identity Guidelines](https://developer.apple.com/app-store/marketing/guidelines/) and [Google Play brand guidelines](https://developer.android.com/distribute/marketing-tools/brand-guidelines).
 
 
-On November 17, Zach requested removal of the visible photo credits. The hero, supporting photo gallery, and three-step image no longer display photo-credit text; the photographs themselves remain unchanged. Local Firefox confirmed the hero no longer shows a credit. Deployment is being verified.
+On November 17, Zach requested removal of the visible photo credits. The hero, supporting photo gallery, and three-step image no longer display photo-credit text. The sample card was narrowed and shifted so it no longer covers the hero golfer on desktop; on mobile, the same photo is zoomed and shifted inside its frame so the golfer is visible beside the card. Local Firefox confirmed the credit-free layout and visible golfer at desktop and mobile sizes. Deployment is being verified.
