@@ -1,0 +1,31 @@
+/* Display the two Figma mock badges from one combined PNG without resampling the artwork. */
+.download-badges {
+  width: 100%;
+}
+
+.store-badge {
+  width: calc((100% - 12px) / 2);
+}
+
+.badge-art {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3.11 / 1;
+  background-image: url('assets/store-badges-figma.png');
+  background-repeat: no-repeat;
+  background-size: 311% auto;
+}
+
+.badge-google {
+  background-position: 75% 50%;
+}
+
+.badge-apple {
+  background-position: 25% 50%;
+}
+
+@media (max-width: 650px) {
+  .store-badge {
+    width: min(190px, calc((100% - 9px) / 2));
+  }
+}

@@ -14,7 +14,7 @@ Static GitHub Pages landing page for the Roundfolk golfer-matching interest test
 
 ## Visitor flow
 
-The landing page describes the Roundfolk concept and has Google Play and App Store style store links. The artwork is custom, not an official badge or evidence that the app is listed. The official Apple badge is for apps available on the App Store, and Google directs app developers distributing through Play to its official badge resources. Because Roundfolk is not available in either store, these links open an honest “Hold on! We’re not there yet” dialog instead of linking to an unrelated app listing. The dialog asks for only an email address and says the app is not available yet.
+The landing page describes the Roundfolk concept and uses Figma mock artwork for the Google Play and App Store links from `assets/store-badges-figma.png`. The source is one combined image; `badge-overrides.css` displays each badge separately without altering the source artwork. They are mock assets and do not mean Roundfolk is listed in either store. Clicking either badge opens an honest “Hold on! We’re not there yet” dialog instead of linking to an unrelated app listing. The dialog asks for only an email address and says the app is not available yet.
 
 The page tracks section visibility, scroll depth, visible time, first store-link click per session, signup start, and signup outcome using Microsoft Clarity and, if configured, Google Analytics. Signup source and UTM campaign tags are stored with the signup. Tracking is by visit/session; it does not identify which named person read each section. Email is excluded from analytics.
 
