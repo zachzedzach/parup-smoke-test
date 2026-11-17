@@ -71,23 +71,33 @@
       </section>
 
       <section class="try-round section-pad" id="try-round" data-analytics-name="Try a sample round">
-        <div class="try-round-heading"><p class="eyebrow"><span class="mini-star">✳</span> TAKE A QUICK LOOK</p><h2>Pick a time.<br /><span>Meet your group.</span></h2><p>Choose a sample round and see how Roundfolk could help fill the open spots.</p></div>
+        <div class="try-round-heading"><p class="eyebrow"><span class="mini-star">✳</span> TAKE A QUICK LOOK</p><h2>Pick a time.<br /><span>Meet your group.</span></h2><p>Choose a sample round, then shape the group around the kind of golf you enjoy.</p></div>
         <div class="round-builder">
           <div class="round-picker" role="group" aria-label="Choose a sample tee time">
             <button type="button" class="time-choice is-selected" data-round-choice="saturday" aria-pressed="true"><span>THIS WEEKEND</span><b>Saturday morning</b><small>7:40 AM · Riverside</small></button>
             <button type="button" class="time-choice" data-round-choice="thursday" aria-pressed="false"><span>AFTER WORK</span><b>Thursday afternoon</b><small>4:20 PM · Riverside</small></button>
             <button type="button" class="time-choice" data-round-choice="sunday" aria-pressed="false"><span>TAKE IT EASY</span><b>Sunday late morning</b><small>10:10 AM · Riverside</small></button>
+            <div class="preference-panel" role="group" aria-label="Choose what matters in a round">
+              <p>WHAT MAKES A GOOD ROUND?</p>
+              <div class="preference-chips">
+                <button type="button" class="preference-chip" data-round-style="walking" aria-pressed="false">Walking <span aria-hidden="true">+</span></button>
+                <button type="button" class="preference-chip" data-round-style="easy" aria-pressed="false">Easy pace <span aria-hidden="true">+</span></button>
+                <button type="button" class="preference-chip" data-round-style="after-work" aria-pressed="false">After work <span aria-hidden="true">+</span></button>
+              </div>
+              <small>Pick one or more. Watch the example group adjust.</small>
+            </div>
           </div>
-          <div class="sample-group" aria-live="polite" aria-atomic="true">
+          <div class="sample-group">
             <div class="sample-group-top"><div><span class="sample-label">YOUR SAMPLE ROUND</span><h3 id="sample-round-title">Saturday morning</h3></div><span class="sample-course">RIVERSIDE · 7:40 AM</span></div>
             <p class="sample-caption" id="sample-round-caption">A relaxed start, with time to walk and catch up.</p>
+            <p class="sample-fit-summary" id="sample-fit-summary" role="status" aria-live="polite">A sample group with 2 golfers and 2 open spots.</p>
             <div class="sample-roster" id="sample-roster">
               <div class="sample-player"><span class="sample-avatar avatar-maya">M</span><span><b>Maya</b><small>Weekend rounds · easy pace</small></span><span class="sample-match">GOOD FIT</span></div>
               <div class="sample-player"><span class="sample-avatar avatar-jules">J</span><span><b>Jules</b><small>Walks when the weather’s good</small></span><span class="sample-match">GOOD FIT</span></div>
               <div class="sample-player open-slot"><span class="sample-avatar">+</span><span><b>Open spot</b><small>A place for your kind of golf</small></span><span class="sample-match">OPEN</span></div>
               <div class="sample-player open-slot"><span class="sample-avatar">+</span><span><b>Open spot</b><small>A place for your kind of golf</small></span><span class="sample-match">OPEN</span></div>
             </div>
-            <p class="sample-footnote"><span>✳</span> Sample golfers shown to illustrate the idea.</p>
+            <p class="sample-footnote"><span>✳</span> Example golfers only. This is a preview, not live availability.</p>
           </div>
         </div>
       </section>

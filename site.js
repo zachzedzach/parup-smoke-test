@@ -81,35 +81,44 @@
 
   const sampleRoundData = {
     saturday: {
-      title: 'Saturday morning', details: 'RIVERSIDE · 7:40 AM', caption: 'A relaxed start, with time to walk and catch up.',
+      title: 'Saturday morning', details: 'RIVERSIDE · 7:40 AM', caption: 'A relaxed start, with time to walk and catch up.', show: 2,
       players: [
-        ['M', 'Maya', 'Weekend rounds · easy pace', 'GOOD FIT', 'avatar-maya'],
-        ['J', 'Jules', 'Walks when the weather’s good', 'GOOD FIT', 'avatar-jules']
+        { initial: 'M', name: 'Maya', bio: 'Weekend rounds · easy pace', color: 'avatar-maya', styles: ['walking', 'easy'] },
+        { initial: 'J', name: 'Jules', bio: 'Walks when the weather’s good', color: 'avatar-jules', styles: ['walking'] },
+        { initial: 'S', name: 'Sam', bio: 'Likes a comfortable pace', color: 'avatar-rina', styles: ['easy'] }
       ]
     },
     thursday: {
-      title: 'Thursday afternoon', details: 'RIVERSIDE · 4:20 PM', caption: 'A quick nine after work, at a comfortable pace.',
+      title: 'Thursday afternoon', details: 'RIVERSIDE · 4:20 PM', caption: 'A quick nine after work, at a comfortable pace.', show: 3,
       players: [
-        ['A', 'Alex', 'After-work nine · relaxed', 'GOOD FIT', 'avatar-alex'],
-        ['R', 'Rina', 'Likes a steady, social round', 'GOOD FIT', 'avatar-rina'],
-        ['C', 'Cam', 'Free Thursday afternoons', 'GOOD FIT', 'avatar-cam']
+        { initial: 'A', name: 'Alex', bio: 'After-work nine · relaxed', color: 'avatar-alex', styles: ['after-work', 'easy'] },
+        { initial: 'R', name: 'Rina', bio: 'Likes a steady round', color: 'avatar-rina', styles: ['walking', 'easy'] },
+        { initial: 'C', name: 'Cam', bio: 'Free Thursday afternoons', color: 'avatar-cam', styles: ['after-work', 'walking'] },
+        { initial: 'M', name: 'Mei', bio: 'Enjoys an unhurried game', color: 'avatar-maya', styles: ['easy'] }
       ]
     },
     sunday: {
-      title: 'Sunday late morning', details: 'RIVERSIDE · 10:10 AM', caption: 'An unhurried round with room for one more.',
+      title: 'Sunday late morning', details: 'RIVERSIDE · 10:10 AM', caption: 'An unhurried round with room for one more.', show: 1,
       players: [
-        ['F', 'Frank', 'Sunday golf · fishing fan', 'GOOD FIT', 'avatar-frank']
+        { initial: 'F', name: 'Frank', bio: 'Sunday golf · fishing fan', color: 'avatar-frank', styles: ['easy'] },
+        { initial: 'M', name: 'Maya', bio: 'Weekend rounds · likes to walk', color: 'avatar-maya', styles: ['walking', 'easy'] },
+        { initial: 'J', name: 'Jules', bio: 'Walks when the weather’s good', color: 'avatar-jules', styles: ['walking'] }
       ]
     }
   };
   const choices = [...document.querySelectorAll('[data-round-choice]')];
+  const styleChoices = [...document.querySelectorAll('[data-round-style]')];
+  const selectedStyles = new Set();
   const roster = document.getElementById('sample-roster');
   const sampleTitle = document.getElementById('sample-round-title');
   const sampleDetails = document.querySelector('.sample-course');
   const sampleCaption = document.getElementById('sample-round-caption');
+  const sampleFitSummary = document.getElementById('sample-fit-summary');
+  let activeRoundKey = 'saturday';
   function renderSampleRound(key, shouldTrack = false) {
     const round = sampleRoundData[key];
     if (!round || !roster) return;
+    activeRoundKey = key;
     choices.forEach((choice) => {
       const selected = choice.dataset.roundChoice === key;
       choice.classList.toggle('is-selected', selected);
@@ -118,20 +127,32 @@
     sampleTitle.textContent = round.title;
     sampleDetails.textContent = round.details;
     sampleCaption.textContent = round.caption;
-    const openSpots = 4 - round.players.length;
-    roster.replaceChildren(...round.players.map(([initial, name, bio, fit, color]) => {
+    const matchedPlayers = round.players
+      .map((player, order) => ({ ...player, order, sharedStyles: player.styles.filter((style) => selectedStyles.has(style)).length }))
+      .sort((a, b) => b.sharedStyles - a.sharedStyles || a.order - b.order)
+      .slice(0, round.show);
+    const openSpots = 4 - matchedPlayers.length;
+    const golfersWithSharedStyles = matchedPlayers.filter((player) => player.sharedStyles > 0).length;
+    if (sampleFitSummary) {
+      sampleFitSummary.textContent = selectedStyles.size
+        ? `${golfersWithSharedStyles} of ${matchedPlayers.length} golfers share your selected style · ${openSpots} open ${openSpots === 1 ? 'spot' : 'spots'}.`
+        : `A sample group with ${matchedPlayers.length} ${matchedPlayers.length === 1 ? 'golfer' : 'golfers'} and ${openSpots} open ${openSpots === 1 ? 'spot' : 'spots'}.`;
+    }
+    roster.replaceChildren(...matchedPlayers.map((player) => {
       const row = document.createElement('div');
-      row.className = 'sample-player';
+      row.className = `sample-player${player.sharedStyles ? ' has-style-match' : ''}`;
       const avatar = document.createElement('span');
-      avatar.className = `sample-avatar ${color}`;
-      avatar.textContent = initial;
+      avatar.className = `sample-avatar ${player.color}`;
+      avatar.textContent = player.initial;
       const info = document.createElement('span');
       info.innerHTML = `<b></b><small></small>`;
-      info.querySelector('b').textContent = name;
-      info.querySelector('small').textContent = bio;
+      info.querySelector('b').textContent = player.name;
+      info.querySelector('small').textContent = player.bio;
       const status = document.createElement('span');
       status.className = 'sample-match';
-      status.textContent = fit;
+      status.textContent = selectedStyles.size
+        ? player.sharedStyles ? `${player.sharedStyles} ${player.sharedStyles === 1 ? 'THING' : 'THINGS'} IN COMMON` : 'NEW TO YOU'
+        : 'EXAMPLE';
       row.append(avatar, info, status);
       return row;
     }), ...Array.from({ length: openSpots }, () => {
@@ -143,6 +164,15 @@
     if (shouldTrack) track('roundfolk_sample_round_selected', { round_option: key, sample_golfer_count: round.players.length, open_spot_count: openSpots });
   }
   choices.forEach((choice) => choice.addEventListener('click', () => renderSampleRound(choice.dataset.roundChoice, true)));
+  styleChoices.forEach((choice) => choice.addEventListener('click', () => {
+    const style = choice.dataset.roundStyle;
+    if (selectedStyles.has(style)) selectedStyles.delete(style);
+    else selectedStyles.add(style);
+    choice.setAttribute('aria-pressed', String(selectedStyles.has(style)));
+    choice.querySelector('span').textContent = selectedStyles.has(style) ? '✓' : '+';
+    track('roundfolk_sample_style_selected', { round_style: style, selected: selectedStyles.has(style) });
+    renderSampleRound(activeRoundKey);
+  }));
   renderSampleRound('saturday');
 
   if (!form || !submit || !status) return;
