@@ -80,6 +80,8 @@
   storeGate?.querySelector('.gate-close')?.addEventListener('click', () => storeGate.close());
 
   const slotButtons = [...document.querySelectorAll('.tee-slot')];
+  const teeTapCue = document.getElementById('tee-tap-cue');
+  const touchPreviewNote = document.getElementById('touch-preview-note');
   const customTimeToggle = document.getElementById('toggle-custom-time');
   const customTimeIcon = document.getElementById('custom-time-icon');
   const customTimePicker = document.getElementById('custom-time-picker');
@@ -234,6 +236,8 @@
 
   function selectSlot(button, slot) {
     chosenSlot = slot;
+    if (teeTapCue) teeTapCue.hidden = true;
+    touchPreviewNote?.classList.add('is-dismissed');
     slotButtons.forEach((suggested) => {
       const selected = suggested === button;
       suggested.classList.toggle('is-selected', selected);
@@ -334,6 +338,8 @@
     bioTypingTimers.forEach((timer) => window.clearTimeout(timer));
     bioTypingTimers.length = 0;
     chosenSlot = null;
+    if (teeTapCue) teeTapCue.hidden = false;
+    touchPreviewNote?.classList.remove('is-dismissed');
     currentCartChoice = 'no_preference';
     roundWasPosted = false;
 
