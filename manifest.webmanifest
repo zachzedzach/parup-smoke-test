@@ -1,0 +1,19 @@
+{
+  "id": "./?homescreen=1",
+  "name": "The Fourth Club",
+  "short_name": "Fourth Club",
+  "description": "Find golfers who fit your pace, schedule, and idea of a great round.",
+  "start_url": "./?homescreen=1",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8f8fa",
+  "theme_color": "#fff9e9",
+  "icons": [
+    {
+      "src": "assets/the-fourth-club-icon.png?v=4-clubs-4",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

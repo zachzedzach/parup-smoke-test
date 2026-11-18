@@ -347,7 +347,7 @@
 @keyframes two-lines-weight-drift{0%,100%{font-weight:660;font-variation-settings:"ROND" 68,"opsz" 9}50%{font-weight:696;font-variation-settings:"ROND" 80,"opsz" 9}}
 .allo-bio{min-height:39px;margin:7px 0 0;color:#514a5d;font-size:12px;line-height:1.5;letter-spacing:-.015em;font-variation-settings:"ROND" 70,"opsz" 15}
 .allo-bio.is-typing{font-weight:450}.allo-glyph{display:inline-block;opacity:0;transform:translateY(5px) scaleX(.82);font-weight:var(--glyph-weight,500);font-variation-settings:"ROND" 78,"opsz" 15;transition:opacity .15s,transform .22s;font-size:1em}
-.allo-glyph.is-visible{opacity:1;transform:translateY(0) scaleX(1);animation:glyph-weight-bloom .52s ease both}
+.allo-glyph.is-visible{opacity:1;transform:translateY(0) scaleX(1);animation:glyph-weight-bloom .38s ease both}
 @keyframes glyph-weight-bloom{0%{font-weight:320;transform:translateY(5px) scaleX(.8)}48%{font-weight:820;transform:translateY(-1px) scaleX(1.06)}100%{font-weight:var(--glyph-weight,500);transform:translateY(0) scaleX(1)}}
 .round-photo-row{display:flex;align-items:center;gap:8px;margin-top:9px;padding-top:9px;border-top:1px solid #f0ebf2}
 .round-photo-thumb{position:relative;display:grid;place-items:center;flex:none;width:43px;height:43px;overflow:hidden;border:1.5px dashed #c9c1d0;border-radius:12px 15px 11px 14px;background:#f8f5fa;color:#8e8598;font-size:19px}
@@ -456,6 +456,31 @@
 @media(max-width:430px){.phone-frame-ui .round-form-title{margin-top:6px;font-size:22px;line-height:1.05}.phone-frame-ui .round-form-subtitle{margin:4px 0 5px}.phone-frame-ui .tee-tap-cue{min-height:30px;margin-bottom:4px;padding-block:3px}.phone-frame-ui .tee-slots{gap:5px}.phone-frame-ui .tee-slot{min-height:60px}.phone-frame-ui .select-your-own{margin-top:5px}.phone-frame-ui .cart-control{margin-top:7px;padding:7px}.phone-frame-ui .cart-control-heading{margin-bottom:5px}.phone-frame-ui .round-profile-card{margin-top:7px;padding:6px}.phone-frame-ui .round-photo-row{margin-top:6px;padding-top:6px}.phone-frame-ui .post-round-button{margin-top:6px}}
 @media(max-width:900px){.app-preview-intro{margin-bottom:24px}.app-preview-stage{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:16px}.preview-story-note{grid-column:1;grid-row:1;max-width:none;padding:12px 14px}.interactive-round{grid-column:1;grid-row:2;justify-self:center;width:min(100%,390px);rotate:0deg}.phone-preview{rotate:0deg}.app-preview-caption{grid-column:1;grid-row:3;max-width:none;margin-top:0}}
 @media(max-width:430px){.site-header{gap:4px;padding-inline:12px}.site-header nav{display:none}.site-header .wordmark{gap:6px;font-size:17px;letter-spacing:-.8px}.site-header .brand-ball{width:27px;height:27px}}
+
+/* Quiet Allo-style life across the app story without adding visual noise. */
+@property --copy-pulse-step{syntax:"<number>";inherits:false;initial-value:0}
+.app-preview-stage .allo-weight-pulse{font-weight:calc(var(--copy-weight-base, 500) + var(--copy-pulse-step));animation:app-copy-breathe 7.2s ease-in-out var(--copy-pulse-delay, 0s) infinite}
+@keyframes app-copy-breathe{0%,100%{--copy-pulse-step:-5}50%{--copy-pulse-step:9}}
+.app-preview-stage button:not(:disabled){transition:transform .16s cubic-bezier(.2,.8,.2,1),translate .16s cubic-bezier(.2,.8,.2,1),scale .16s cubic-bezier(.2,.8,.2,1),rotate .16s cubic-bezier(.2,.8,.2,1),box-shadow .16s ease,filter .16s ease,background-color .18s ease,border-color .18s ease,color .18s ease}
+@media(hover:hover){.app-preview-stage button:not(:disabled):hover{translate:0 -2px;rotate:-.45deg;filter:saturate(1.08)}}
+.app-preview-stage button:not(:disabled):active{translate:0 1px;scale:.97;rotate:0deg;filter:saturate(1.12)}
+@media(prefers-reduced-motion:reduce){.app-preview-stage .allo-weight-pulse{animation:none!important;font-weight:var(--copy-weight-base,500)}.app-preview-stage button:not(:disabled){transition:none}}
+
+/* A saved-to-home-screen launch opens the interactive demo as the whole app. */
+.homescreen-mode body{width:100%;height:100%;min-height:100%;max-width:none;overflow:hidden;background:#f8f8fa;background-image:none}
+.homescreen-mode body>:not(main),.homescreen-mode main>:not(#try-round){display:none!important}
+.homescreen-mode #try-round{display:block;width:100%;height:100dvh;min-height:0;margin:0;padding:0;overflow:hidden;background:#f8f8fa}
+.homescreen-mode .app-preview-intro,.homescreen-mode .touch-preview-note,.homescreen-mode .app-preview-caption{display:none!important}
+.homescreen-mode .app-preview-stage{display:block;width:100%;height:100%;max-width:none;margin:0;padding:0}
+.homescreen-mode .interactive-round.phone-preview{position:relative;display:block;width:100%;height:100%;max-width:none;aspect-ratio:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:none;overflow:hidden}
+.homescreen-mode .phone-frame-render{display:none}
+.homescreen-mode .phone-frame-ui{position:absolute;inset:0;border-radius:0}
+.homescreen-mode .phone-frame-ui .phone-status{display:block;flex:0 0 env(safe-area-inset-top);min-height:env(safe-area-inset-top);height:env(safe-area-inset-top);padding:0;background:#f8f8fa}
+.homescreen-mode .phone-status span{display:none}
+.homescreen-mode .phone-frame-ui .phone-appbar{flex:0 0 54px;min-height:54px;padding-inline:20px}
+.homescreen-mode .phone-frame-ui .phone-content{padding:18px 18px 10px}
+.homescreen-mode .phone-frame-ui .phone-tabbar{margin:8px -6.5% 0;padding:10px 5% max(10px,env(safe-area-inset-bottom));}
+.homescreen-mode .phone-frame-ui .phone-home-indicator{display:none}
 
 /* Keep the phone screens focused on the round, and pin its native-style tabs to the bottom. */
 .roster-mark{font-size:9px;letter-spacing:-.04em}

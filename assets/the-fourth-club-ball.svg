@@ -21,28 +21,40 @@
   <circle cx="64" cy="64" r="60" fill="url(#ball-shell)"/>
   <circle cx="64" cy="64" r="60" fill="url(#ball-dimples)" clip-path="url(#ball-clip)"/>
   <circle cx="64" cy="64" r="60" fill="url(#ball-shine)"/>
+
+  <!-- Four distinct club silhouettes fan out above the ball: three irons and a taller driver. -->
   <g stroke="#17141f" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Three white clubs and the taller pink one, with the heads facing left. -->
-    <g fill="none">
-      <path d="M39 62 25 123" stroke-width="12"/><path d="M39 62 25 123" stroke="#fffdf8" stroke-width="6"/>
-      <path d="M61 34 47 123" stroke-width="12"/><path d="M61 34 47 123" stroke="#fffdf8" stroke-width="6"/>
-      <path d="M82 66 69 123" stroke-width="12"/><path d="M82 66 69 123" stroke="#fffdf8" stroke-width="6"/>
-      <path d="M106 22 92 123" stroke-width="13"/><path d="M106 22 92 123" stroke="#ff5f87" stroke-width="7"/>
+    <g fill="none" stroke-width="12">
+      <path d="M39 59 25 123"/><path d="M61 35 47 123"/><path d="M83 62 69 123"/>
+      <path d="M105 26 92 123" stroke-width="13"/>
     </g>
-    <!-- Head fills are separate from the open contour strokes below, leaving each sole unoutlined. -->
+    <g fill="none" stroke="#fffdf8" stroke-width="6">
+      <path d="M39 59 25 123"/><path d="M61 35 47 123"/><path d="M83 62 69 123"/>
+    </g>
+    <path d="M105 26 92 123" fill="none" stroke="#ff5f87" stroke-width="7"/>
+
+    <!-- Iron faces point left. The lower sole edge is intentionally left open. -->
     <g fill="#fffdf8" stroke="none">
-      <path d="M7 57 C14 52 27 54 42 59 Q45 60 43 64 L20 73 C14 75 8 72 6 67 Q4 61 7 57Z"/>
-      <path d="M27 31 C27 23 34 18 45 17 C54 16 63 20 65 27 Q66 33 61 38 L48 44 L33 40 Q27 38 27 31Z"/>
-      <path d="M53 57 C61 51 75 51 86 57 Q91 60 87 65 L68 76 C61 79 54 75 52 69 Q50 62 53 57Z"/>
+      <path d="M8 52 Q9 44 18 43 L34 44 Q42 45 47 52 L44 59 Q37 66 22 65 L12 62 Q7 59 8 52Z"/>
+      <path d="M31 28 Q32 19 42 17 L57 18 Q66 19 70 26 L66 34 Q60 41 46 41 L36 38 Q30 35 31 28Z"/>
+      <path d="M53 56 Q55 48 64 47 L80 48 Q89 49 94 56 L90 63 Q83 70 68 69 L58 66 Q52 63 53 56Z"/>
     </g>
-    <g fill="none" stroke-width="4">
-      <path d="M8 57 C15 52 28 54 42 59"/>
-      <path d="M7 58 C3 62 5 70 13 73"/>
-      <path d="M27 31 C27 23 34 18 45 17 C54 16 63 20 65 27 Q66 33 61 38"/>
-      <path d="M53 57 C61 51 75 51 86 57 Q91 60 87 65"/>
-      <path d="M53 58 C49 62 51 72 61 77"/>
+    <g fill="none" stroke-width="3.5">
+      <path d="M8 52 Q9 44 18 43 L34 44 Q42 45 47 52"/>
+      <path d="M8 52 Q6 59 12 62"/>
+      <path d="M31 28 Q32 19 42 17 L57 18 Q66 19 70 26 L66 34"/>
+      <path d="M53 56 Q55 48 64 47 L80 48 Q89 49 94 56"/>
+      <path d="M53 56 Q51 63 58 66"/>
     </g>
-    <path d="M78 13 C77 5 85 0 96 0 C107 0 116 6 117 15 Q118 23 111 29 L96 36 L84 29 Q78 24 78 13Z" fill="#ff5f87" stroke="none"/>
-    <path d="M78 13 C77 5 85 0 96 0 C107 0 116 6 117 15 Q118 23 111 29 L96 36" fill="none" stroke="#17141f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Small face grooves help the irons read as clubs at larger sizes. -->
+    <g fill="none" stroke="#17141f" stroke-width="1.5" opacity=".7">
+      <path d="m12 49 11 2 M11 53l11 2 M11 57l10 2"/>
+      <path d="m35 25 10 1 M34 29l10 1 M34 33l9 1"/>
+      <path d="m57 53 11 2 M56 57l11 2 M56 61l10 2"/>
+    </g>
+
+    <!-- Driver: a single rounded, broad head with the shaft joining at its heel. -->
+    <path d="M79 12 C77 5 83 1 93 1 L105 2 C114 3 120 9 119 16 C118 23 112 28 103 30 L88 27 C82 25 79 20 79 12Z" fill="#ff5f87" stroke="none"/>
+    <path d="M79 12 C77 5 83 1 93 1 L105 2 C114 3 120 9 119 16 C118 23 112 28 103 30" fill="none" stroke="#17141f" stroke-width="4"/>
   </g>
 </svg>

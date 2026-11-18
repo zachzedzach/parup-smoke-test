@@ -19,6 +19,27 @@
   const sentScrollDepths = new Set();
   let visibleSeconds = 0;
 
+  // Give real copy in the app story a very small Allo weight pulse. Skip
+  // symbol-only labels and the letter-by-letter bio, which has its own motion.
+  const appStory = document.querySelector('.app-preview-stage');
+  if (appStory && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const textWalker = document.createTreeWalker(appStory, NodeFilter.SHOW_TEXT);
+    const copyNodes = [];
+    while (textWalker.nextNode()) {
+      const node = textWalker.currentNode;
+      const element = node.parentElement;
+      if (!element || !/[\p{L}\p{N}]/u.test(node.textContent) || element.closest('[aria-hidden="true"], .allo-bio, script, style')) continue;
+      if (!copyNodes.includes(element)) copyNodes.push(element);
+    }
+    copyNodes.forEach((element, index) => {
+      const baseWeight = Number.parseFloat(getComputedStyle(element).fontWeight);
+      if (!Number.isFinite(baseWeight)) return;
+      element.style.setProperty('--copy-weight-base', String(baseWeight));
+      element.style.setProperty('--copy-pulse-delay', `${-(index % 12) * 0.47}s`);
+      element.classList.add('allo-weight-pulse');
+    });
+  }
+
   function signupSource() {
     const platform = sessionStorage.getItem(storePlatformKey);
     const source = platform ? `store_badge_clicked_${platform}` : sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(olderCtaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes' ? 'early_access_button_clicked' : 'direct';
@@ -168,7 +189,7 @@
   let chosenSlot = null;
   let bioRevealTimer = 0;
   const bioTypingTimers = [];
-  let currentCartChoice = cartChoice?.dataset.choice || 'no_preference';
+  let currentCartChoice = cartChoice?.dataset.choice || 'rent_cart';
   let roundWasPosted = false;
   const exampleBioLines = [
     'I like early tee times and the occasional after-work nine.',
@@ -240,7 +261,7 @@
     [...bio.querySelectorAll('.allo-glyph')].forEach((glyph, index) => bioTypingTimers.push(window.setTimeout(() => {
       glyph.classList.add('is-visible');
       if (bioCount) bioCount.textContent = `${index + 1} / 120`;
-    }, index * 38)));
+    }, index * 27)));
   }
 
   if (bio) bio.dataset.typed = 'false';
@@ -367,7 +388,7 @@
     chosenSlot = null;
     if (teeTapCue) teeTapCue.hidden = false;
     touchPreviewNote?.classList.remove('is-dismissed');
-    currentCartChoice = 'no_preference';
+    currentCartChoice = 'rent_cart';
     roundWasPosted = false;
 
     slotButtons.forEach((button) => {
@@ -387,9 +408,9 @@
       button.classList.remove('is-selected');
       button.setAttribute('aria-pressed', 'false');
     });
-    if (cartChoice) cartChoice.dataset.choice = 'no_preference';
-    cartChoiceButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.cartChoice === 'no_preference')));
-    if (cartChoiceHint) cartChoiceHint.textContent = 'No preference';
+    if (cartChoice) cartChoice.dataset.choice = 'rent_cart';
+    cartChoiceButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.cartChoice === 'rent_cart')));
+    if (cartChoiceHint) cartChoiceHint.textContent = 'Rent a cart';
     updateGroupScreen();
     if (bio) {
       bio.dataset.typed = 'false';

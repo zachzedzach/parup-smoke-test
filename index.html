@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="The Fourth Club" />
     <meta name="theme-color" content="#fff9e9" />
     <meta name="description" content="Find golfers you’d actually enjoy playing with. The Fourth Club helps you find people who fit your pace, schedule, and idea of a great day on the course." />
     <meta property="og:type" content="website" />
@@ -11,14 +14,17 @@
     <meta name="twitter:card" content="summary" />
     <title>The Fourth Club — Better than random</title>
     <link rel="preload" href="assets/AlloVariable.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="icon" type="image/svg+xml" href="assets/the-fourth-club-ball.svg?v=4-clubs-3" />
-    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-3" />
+    <link rel="icon" type="image/svg+xml" href="assets/the-fourth-club-ball.svg?v=4-clubs-4" />
+    <link rel="apple-touch-icon" href="assets/the-fourth-club-icon.png?v=4-clubs-4" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <script>if (new URLSearchParams(location.search).get('homescreen') === '1') document.documentElement.classList.add('homescreen-mode');</script>
+    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-4" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261118-fourth-club-2"></script>
+    <script defer src="site.js?v=20261118-fourth-club-3"></script>
   </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-3" alt=""></span><span>the fourth club</span></a>
+      <a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-4" alt=""></span><span>the fourth club</span></a>
       <nav aria-label="Main navigation"><a href="#try-round">Try a round</a><a href="#download">Get the app</a></nav>
       <a class="header-cta" href="#try-round">Try a round <span aria-hidden="true">↓</span></a>
     </header>
@@ -62,8 +68,8 @@
           <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Tap a tee time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
           <article class="phone-preview interactive-round" aria-label="Interactive The Fourth Club app preview">
             <div class="phone-frame-ui">
-            <div class="phone-status" aria-hidden="true"></div>
-            <div class="phone-appbar"><span class="phone-app-logo"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-3" alt="" /></span><b>the fourth club</b><button class="phone-reset" id="reset-round" type="button" aria-label="Reset round preview"><span aria-hidden="true">↻</span><span>Reset</span></button></div>
+            <div class="phone-status" aria-hidden="true"><span>9:41</span><span class="phone-status-icons"><i></i><i></i><i></i><i></i><i></i></span></div>
+            <div class="phone-appbar"><span class="phone-app-logo"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-4" alt="" /></span><b>the fourth club</b><button class="phone-reset" id="reset-round" type="button" aria-label="Reset round preview"><span aria-hidden="true">↻</span><span>Reset</span></button></div>
             <div class="phone-content">
               <div class="phone-screen" data-screen="round">
               <div class="preview-topline"><span>ROUND BUILDER</span><span class="preview-tag">TRY IT</span></div>
@@ -87,12 +93,12 @@
                 </div>
               </div>
               <div class="cart-control">
-                <div class="cart-control-heading"><span class="cart-icon" aria-hidden="true">▰</span><span><b>Getting around</b><small id="cart-choice-hint">No preference</small></span></div>
-                <div class="cart-segmented" id="cart-choice" role="group" aria-label="How to get around the course" data-choice="no_preference">
+                <div class="cart-control-heading"><span class="cart-icon" aria-hidden="true">▰</span><span><b>Need a cart?</b><small id="cart-choice-hint">Rent a cart</small></span></div>
+                <div class="cart-segmented" id="cart-choice" role="group" aria-label="Choose whether to rent a cart" data-choice="rent_cart">
                   <span class="cart-slider-thumb" aria-hidden="true"></span>
-                  <button type="button" data-cart-choice="rent_cart" aria-pressed="false">Rent a cart</button>
+                  <button type="button" data-cart-choice="rent_cart" aria-pressed="true">Rent a cart</button>
                   <button type="button" data-cart-choice="walk" aria-pressed="false">Walk</button>
-                  <button type="button" data-cart-choice="no_preference" aria-pressed="true">No preference</button>
+                  <button type="button" data-cart-choice="no_preference" aria-pressed="false">No preference</button>
                 </div>
               </div>
               <div class="round-profile-card">
@@ -105,7 +111,7 @@
               </div>
               <button class="post-round-button" id="post-round" type="button" disabled>Put this round out there <span aria-hidden="true">↗</span></button>
               <div class="round-response" id="round-response" hidden aria-live="polite">
-                <div class="response-topline"><span class="notification-app-icon"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-3" alt="" /></span><span>ROUND UPDATE <small>JUST NOW</small></span><span class="notification-dot"></span></div>
+                <div class="response-topline"><span class="notification-app-icon"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-4" alt="" /></span><span>ROUND UPDATE <small>JUST NOW</small></span><span class="notification-dot"></span></div>
                 <p class="response-message" id="response-message">Another golfer picked this tee time too. Your plans line up. Want to play this round?</p>
                 <div class="response-actions" id="response-actions"><button type="button" id="round-yes">I’m in</button><button type="button" id="round-later">Maybe next time</button></div>
                 <p class="response-confirmation" id="response-confirmation" hidden></p>
@@ -122,14 +128,14 @@
                     <div class="group-roster-row"><span class="group-golfer-icon" aria-hidden="true">YOU</span><span><b>Your round</b><small id="people-round-pace">Easygoing pace</small></span><span class="group-row-status">READY</span></div>
                     <div class="group-roster-row"><span class="group-golfer-icon other" id="people-open-icon" aria-hidden="true">＋</span><span><b id="people-open-title">Open spots</b><small id="people-open-caption">Choose a time to get started</small></span><span class="group-row-status" id="people-open-status">OPEN</span></div>
                   </div>
-                  <div class="group-details"><div><span>TEE TIME</span><b id="people-time-value">Pick a time in Round</b></div><div><span>GETTING AROUND</span><b id="people-cart-value">No preference</b></div></div>
+                  <div class="group-details"><div><span>TEE TIME</span><b id="people-time-value">Pick a time in Round</b></div><div><span>GETTING AROUND</span><b id="people-cart-value">Rent a cart</b></div></div>
                   <p class="group-card-note">A quick yes from both sides. Then the course fills in the rest.</p>
                 </article>
               </div>
               <div class="phone-screen profile-screen" data-screen="profile" hidden>
                 <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your game</b></div>
                 <div class="profile-summary"><span class="profile-avatar" aria-hidden="true">✳</span><span><b>Your golf details</b><small>Choose what feels right for your game</small></span></div>
-                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Current tee time</span><b id="profile-time-value">Pick a time in Round</b></div><div><span>Getting around</span><b id="profile-cart-value">No preference</b></div></div>
+                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Current tee time</span><b id="profile-time-value">Pick a time in Round</b></div><div><span>Getting around</span><b id="profile-cart-value">Rent a cart</b></div></div>
                 <div class="game-note"><span aria-hidden="true">✳</span><b>Good golf starts with a group that feels right.</b><small>Your pace and plans help shape the day.</small></div>
               </div>
               <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>＋</span>Round</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>Group</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Game</button></nav>
@@ -148,7 +154,7 @@
       </section>
     </main>
 
-    <footer class="site-footer"><a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-3" alt=""></span><span>the fourth club</span></a><span>Good golf. Better company.</span><nav aria-label="Footer navigation"><a href="#try-round">Try a round</a><a href="#download">Get the app</a></nav><a href="#top">Back to the first tee ↑</a></footer>
+    <footer class="site-footer"><a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-ball.svg?v=4-clubs-4" alt=""></span><span>the fourth club</span></a><span>Good golf. Better company.</span><nav aria-label="Footer navigation"><a href="#try-round">Try a round</a><a href="#download">Get the app</a></nav><a href="#top">Back to the first tee ↑</a></footer>
 
     <dialog class="store-gate" id="store-gate" aria-labelledby="store-gate-title">
       <button class="gate-close" type="button" aria-label="Close">×</button>
