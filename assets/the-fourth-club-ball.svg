@@ -1,60 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 132 132" role="img" aria-label="Four golf clubs over a pink golf ball">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Four golf clubs over a pink golf ball">
   <defs>
-    <radialGradient id="ball-shell" cx="31%" cy="23%" r="83%">
-      <stop offset="0" stop-color="#ff9fbb"/>
-      <stop offset=".58" stop-color="#ff5f87"/>
-      <stop offset="1" stop-color="#df285f"/>
-    </radialGradient>
-    <radialGradient id="ball-shine" cx="28%" cy="18%" r="66%">
-      <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
-      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="ball-dimples" width="16" height="16" patternUnits="userSpaceOnUse">
-      <circle cx="4" cy="4" r="2.1" fill="#ad204f" opacity=".18"/>
-      <circle cx="12" cy="12" r="2.1" fill="#ad204f" opacity=".18"/>
-      <circle cx="4" cy="3.4" r="1.1" fill="#fff" opacity=".2"/>
-      <circle cx="12" cy="11.4" r="1.1" fill="#fff" opacity=".2"/>
-    </pattern>
-    <clipPath id="ball-clip"><circle cx="64" cy="64" r="60"/></clipPath>
+    <filter id="clubs-only" color-interpolation-filters="sRGB">
+      <feComponentTransfer>
+        <feFuncA type="gamma" amplitude="1" exponent="5" offset="0"/>
+      </feComponentTransfer>
+    </filter>
   </defs>
-  <circle cx="64" cy="64" r="61" fill="#d8285d"/>
-  <circle cx="64" cy="64" r="60" fill="url(#ball-shell)"/>
-  <circle cx="64" cy="64" r="60" fill="url(#ball-dimples)" clip-path="url(#ball-clip)"/>
-  <circle cx="64" cy="64" r="60" fill="url(#ball-shine)"/>
-
-  <!-- Four left-facing clubs: angular iron faces and a low-profile driver head. -->
-  <g stroke="#34212c" stroke-linecap="round" stroke-linejoin="round">
-    <!-- Shafts enter each head at the heel through a short, visible hosel. -->
-    <g fill="none" stroke-width="4">
-      <path d="M26 56 20 123"/><path d="M49 29 43 123"/><path d="M73 61 66 123"/>
-      <path d="M108 19 90 123" stroke-width="4.5"/>
-    </g>
-    <g fill="none" stroke="#fffdf8" stroke-width="3.2">
-      <path d="M26 56 20 123"/><path d="M49 29 43 123"/><path d="M73 61 66 123"/>
-    </g>
-    <path d="M108 19 90 123" fill="none" stroke="#ff2d70" stroke-width="3.2"/>
-
-    <!-- Iron heads are compact, angled blades; the striking face points left. -->
-    <g fill="#fffdf8" stroke="none">
-      <path d="M4 47 22 49 29 54 27 61 11 60 5 55Z"/>
-      <path d="M27 20 45 22 52 27 50 34 34 33 28 28Z"/>
-      <path d="M51 53 69 55 76 60 74 67 58 66 52 61Z"/>
-    </g>
-    <!-- Fine face and hosel lines define the club shape without a heavy border. -->
-    <g fill="none" stroke-width="1.7">
-      <path d="M4 47 22 49 27 53 M4 47 5 55 11 60"/>
-      <path d="M27 20 45 22 50 26 M27 20 28 28 34 33"/>
-      <path d="M51 53 69 55 74 59 M51 53 52 61 58 66"/>
-    </g>
-    <g fill="none" stroke="#8f6271" stroke-width="1" opacity=".9">
-      <path d="m8 50 9 1 M8 55l9 1"/>
-      <path d="m31 23 9 1 M31 28l9 1"/>
-      <path d="m55 56 9 1 M55 61l9 1"/>
-    </g>
-
-    <!-- The taller driver has a flat striking face, shallow crown, and hosel at its heel. -->
-    <path d="M78 9 101 10 Q115 11 119 17 L116 23 104 27 88 24 78 17Z" fill="#ff2d70" stroke="none"/>
-    <path d="M78 9 101 10 Q115 11 119 17 L116 23 104 27 M78 9 78 17 88 24" fill="none" stroke="#34212c" stroke-width="1.8"/>
-    <path d="m81 12 8 1 M81 16l8 1" fill="none" stroke="#fffdf8" stroke-width="1" opacity=".8"/>
-  </g>
+  <!-- Use the approved ball artwork untouched; the generated club illustration is a separate layer. -->
+  <image href="roundfolk-pink-golf-ball.png" width="128" height="128"/>
+  <image href="the-fourth-club-clubs.png" x="21.3" width="85.4" height="128" filter="url(#clubs-only)"/>
 </svg>
