@@ -76,7 +76,7 @@ The phone preview now has iPhone side buttons, a larger status and app frame, na
 
 ## Published iPhone frame update — November 17
 
-The interactive phone preview uses the supplied Photoshop PSD at `/Users/zachgardner/Downloads/iPhone bezels/Photoshop/iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Portrait.psd`. Its Hardware and Status Bar layers are composited into `assets/iphone-17-pro-cosmic-orange-frame.png`; the Screen placeholder layer is made transparent so the live HTML app remains interactive underneath. The status-bar time, signal, Wi-Fi, battery, and Dynamic Island are the PSD artwork itself. A blank HTML status spacer reserves the correct top inset. Keep the local preview open at `http://127.0.0.1:18766/`.
+The interactive phone preview uses the supplied Photoshop PSD at `/Users/zachgardner/Downloads/iPhone bezels/Photoshop/iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Portrait.psd`. Its Hardware and Status Bar layers are composited into `assets/iphone-17-pro-cosmic-orange-frame.png`; the Screen placeholder layer is made transparent so the live HTML app remains interactive underneath. The status-bar time, signal, Wi-Fi, battery, and Dynamic Island are the PSD artwork itself. A blank HTML status spacer reserves the correct top inset. Published and checked live in commit `baa8204`. Keep the local preview open at `http://127.0.0.1:18766/`.
 
 ## Local stress review — November 17
 
@@ -84,4 +84,4 @@ The local preview was exercised at eight viewport widths from 320px to 1440px, a
 
 Three issues found during stress review were fixed: Reset now returns the inner phone screen to the top; compact spacing at widths up to 430px keeps the main round button above the sticky tabs, including after the full example bio appears; and the phone preview stacks above its notes from 701px to 900px so the controls remain legible and fit. All checked browser console logs were clear. The preview was left in its clean Round state. These fixes are published in commit `c58470c`.
 
-The status bar now comes directly from the supplied Photoshop PSD layer, instead of HTML-drawn replacement symbols. The PSD render keeps its Hardware and Status Bar layers visible and removes only the Screen placeholder, leaving a transparent hole for interactive app content. Local browser review confirmed the real 9:41 artwork, Dynamic Island, system icons, and working tee-time controls.
+The status bar now comes directly from the supplied Photoshop PSD layer; the handmade HTML status marks have been removed. The PSD render keeps its Hardware and Status Bar layers visible and removes only the Screen placeholder, leaving a transparent opening for interactive app content. The published preview was checked live: it shows the PSD’s 9:41 artwork, Dynamic Island, signal, Wi-Fi, and battery while keeping the tee-time controls visible and tappable. Published in commit `baa8204`.
