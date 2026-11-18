@@ -79,75 +79,15 @@
   });
   storeGate?.querySelector('.gate-close')?.addEventListener('click', () => storeGate.close());
 
-  const availabilityChoices = [...document.querySelectorAll('[data-availability]')];
-  const selectedAvailability = new Set(['saturday']);
-  let lastSelectedAvailability = 'saturday';
-  const fitCopy = document.getElementById('fit-notice-copy');
-  const fitLabel = document.querySelector('.notice-label');
-  const fitPanel = document.getElementById('fit-notice');
-  const noticeHelper = document.getElementById('notice-helper');
-  const noticeToggle = document.getElementById('fit-notice-toggle');
-  const noticeAvatar = document.querySelector('.notice-avatar');
-  const noticeName = document.querySelector('.notice-golfer b');
-  const noticeBio = document.querySelector('.notice-golfer small');
-  const matches = {
-    saturday: { label: 'A GOLFER FITS YOUR SATURDAY', name: 'Maya', initial: 'M', bio: 'Weekend rounds · walking, easy pace', copy: 'Maya’s looking for a Saturday morning round at an easy pace.' },
-    thursday: { label: 'A GOLFER FITS YOUR THURSDAY', name: 'Alex', initial: 'A', bio: 'After-work nine · relaxed pace', copy: 'Alex is looking for a Thursday afternoon nine after work.' },
-    sunday: { label: 'A GOLFER FITS YOUR SUNDAY', name: 'Jules', initial: 'J', bio: 'Sunday rounds · happy to walk', copy: 'Jules is looking for a Sunday late-morning round.' }
-  };
-  function renderFitNotice() {
-    const key = selectedAvailability.has(lastSelectedAvailability)
-      ? lastSelectedAvailability
-      : ['saturday', 'thursday', 'sunday'].find((day) => selectedAvailability.has(day));
-    const match = key ? matches[key] : null;
-    if (fitLabel) fitLabel.innerHTML = `<span class="notice-dot"></span> ${match ? match.label : 'CHOOSE A TIME TO SEE A SAMPLE'}`;
-    if (noticeName) noticeName.textContent = match?.name || 'A golfer';
-    if (noticeAvatar) noticeAvatar.textContent = match?.initial || '•';
-    if (noticeBio) noticeBio.textContent = match?.bio || 'Your selected times will appear here';
-    if (fitCopy) fitCopy.textContent = match ? match.copy : 'Choose an available time to preview a sample fit notice.';
-    fitPanel?.classList.toggle('is-muted', !match || noticeToggle?.getAttribute('aria-checked') !== 'true');
-    if (noticeHelper) noticeHelper.textContent = noticeToggle?.getAttribute('aria-checked') === 'true'
-      ? 'A sample notice, based on the times you selected.'
-      : 'Turn on notices to preview when a golfer fits.';
-  }
-  availabilityChoices.forEach((choice) => choice.addEventListener('click', () => {
-    const key = choice.dataset.availability;
-    if (selectedAvailability.has(key)) selectedAvailability.delete(key);
-    else { selectedAvailability.add(key); lastSelectedAvailability = key; }
-    const selected = selectedAvailability.has(key);
-    choice.classList.toggle('is-selected', selected);
-    choice.setAttribute('aria-pressed', String(selected));
-    const check = choice.querySelector('.availability-check');
-    if (check) check.textContent = selected ? '✓' : '+';
-    track('roundfolk_availability_selected', { availability_option: key, selected });
-    renderFitNotice();
-  }));
-  const bio = document.getElementById('golfer-bio');
-  const bioCount = document.getElementById('bio-count');
-  if (bio && bioCount) bioCount.textContent = `${bio.value.length} / ${bio.maxLength}`;
-  bio?.addEventListener('input', () => { if (bioCount) bioCount.textContent = `${bio.value.length} / ${bio.maxLength}`; });
-  let photoUrl = null;
-  const photoInput = document.getElementById('golfer-photo');
-  const photoImage = document.getElementById('photo-preview-image');
-  const photoInitials = document.getElementById('photo-initials');
-  const photoButton = document.querySelector('.photo-add');
-  photoInput?.addEventListener('change', () => {
-    const file = photoInput.files?.[0];
-    if (!file || !file.type.startsWith('image/')) return;
-    if (photoUrl) URL.revokeObjectURL(photoUrl);
-    photoUrl = URL.createObjectURL(file);
-    if (photoImage) { photoImage.src = photoUrl; photoImage.hidden = false; }
-    if (photoInitials) photoInitials.hidden = true;
-    if (photoButton) photoButton.textContent = 'Change photo';
-    track('roundfolk_profile_photo_added');
+  const fitNoticeButton = document.getElementById('fit-notice-open');
+  const fitDetail = document.getElementById('fit-detail');
+  fitNoticeButton?.addEventListener('click', () => {
+    const isOpen = fitNoticeButton.getAttribute('aria-expanded') !== 'true';
+    fitNoticeButton.setAttribute('aria-expanded', String(isOpen));
+    fitDetail.hidden = !isOpen;
+    fitNoticeButton.innerHTML = isOpen ? 'Hide fit details <span aria-hidden="true">⌃</span>' : 'See why it fits <span aria-hidden="true">⌄</span>';
+    if (isOpen) track('roundfolk_fit_notice_opened');
   });
-  noticeToggle?.addEventListener('click', () => {
-    const enabled = noticeToggle.getAttribute('aria-checked') !== 'true';
-    noticeToggle.setAttribute('aria-checked', String(enabled));
-    track('roundfolk_fit_notice_toggled', { enabled });
-    renderFitNotice();
-  });
-  renderFitNotice();
 
   if (!form || !submit || !status) return;
   if (sourceField) sourceField.value = signupSource();

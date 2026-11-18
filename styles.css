@@ -236,3 +236,50 @@
 @media(max-width:520px){.try-round.section-pad{padding:50px 18px}.try-round-heading{margin-bottom:20px}.try-round-heading h2{font-size:clamp(39px,11vw,52px)}.try-round-heading>p:last-child{margin-top:12px;font-size:14px}.feature-demo{gap:14px}.profile-builder,.fit-notice-panel{padding:17px;border-radius:20px 16px 23px 18px}.profile-builder-heading{margin-bottom:15px}.availability-options{grid-template-columns:1fr;gap:7px}.availability-choice{min-height:58px;padding:9px 11px;display:grid;grid-template-columns:1fr 22px;align-items:center}.availability-choice>span:first-child{grid-row:1;grid-column:1}.availability-choice .availability-check{grid-row:1;grid-column:2}.availability-choice b{font-size:13px}.availability-choice small{margin-top:3px;font-size:10px}.bio-field{margin-top:14px}.photo-field{margin-top:14px}.photo-preview{width:56px;height:56px}.fit-notice-panel{min-height:270px}.fit-notice-panel h3{margin:18px 0 14px}.fit-notice{padding:14px}}
 @media(max-width:360px){.try-round.section-pad{padding-inline:15px}.availability-choice{min-height:55px}}
 @media(prefers-reduced-motion:reduce){.availability-choice,.notice-switch,.notice-switch>span,.fit-notice{transition:none}}
+
+/* One cohesive app moment: a golfer's profile followed by a useful fit notice. */
+.try-round{position:relative;overflow:hidden;background:#f2edff;padding:clamp(64px,8vw,106px) clamp(20px,6vw,90px)}
+.try-round:after{content:none}
+.app-preview-intro{position:relative;z-index:1;max-width:1120px;margin:0 auto 35px}
+.app-preview-intro .eyebrow{margin-bottom:16px}
+.app-preview-intro h2{max-width:700px;margin:0;font-size:clamp(46px,6.5vw,76px);line-height:.94;letter-spacing:-.06em;font-variation-settings:"ROND" 66,"opsz" 42}
+.app-preview-intro h2 span{color:var(--pink)}
+.app-preview-intro>p:last-child{max-width:490px;margin:16px 0 0;color:var(--muted);font-size:clamp(15px,1.6vw,18px);line-height:1.48}
+.app-preview-stage{position:relative;z-index:1;max-width:1120px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.95fr);grid-template-rows:auto 1fr;align-items:center;column-gap:clamp(24px,6vw,82px);row-gap:20px}
+.preview-note{grid-column:1;grid-row:1;display:flex;align-items:center;gap:13px;max-width:440px;padding:15px 17px;border:1.5px solid #ded5f4;border-radius:18px 14px 20px 16px;background:#fffdf8;box-shadow:0 5px 0 #2c1d4315;rotate:-1deg}
+.preview-note-star{display:grid;place-items:center;flex:none;width:42px;height:42px;border:2px solid var(--ink);border-radius:14px 11px 15px 12px;background:var(--yellow);color:var(--pink);font-size:24px;rotate:7deg}
+.preview-note>span:last-child{display:grid;gap:4px}.preview-note b{font-size:14px}.preview-note small{color:#766e7f;font-size:11px}
+.phone-preview{grid-column:2;grid-row:1 / span 2;justify-self:center;width:min(100%,390px);padding:7px;border:3px solid #211e28;border-radius:34px 34px 39px 39px;background:#211e28;box-shadow:0 12px 0 #211e2824,0 30px 55px #49366c2a;rotate:1deg}
+.phone-status{height:27px;padding:0 13px;display:flex;align-items:center;justify-content:space-between;color:#fff;font:650 9px/1 system-ui,sans-serif}
+.phone-appbar{height:48px;padding:0 13px;display:flex;align-items:center;gap:8px;border-radius:24px 24px 0 0;background:#fffdf8}
+.phone-app-logo,.notification-app-icon{display:grid;place-items:center;overflow:hidden;flex:none;border-radius:50%;background:var(--pink)}
+.phone-app-logo{width:25px;height:25px}.phone-app-logo img,.notification-app-icon img{width:100%;height:100%;object-fit:cover}
+.phone-appbar>b{font-size:15px;letter-spacing:-.5px}.phone-appbar>b span{color:var(--blue)}
+.phone-app-menu{margin-left:auto;color:#827a8d;font-size:14px;letter-spacing:2px}
+.phone-content{padding:20px 16px 9px;border-radius:0 0 25px 25px;background:#fffdf8}
+.phone-greeting{display:grid;gap:5px;margin:0 1px 14px}.phone-greeting>span,.phone-card-label{color:#777083;font-size:9px;font-weight:800;letter-spacing:.09em}
+.phone-greeting>b{font-size:21px;line-height:1.08;letter-spacing:-.035em}
+.phone-profile-card{display:grid;grid-template-columns:78px minmax(0,1fr) 20px;gap:10px;padding:10px;border:1.5px solid #e7e1ed;border-radius:17px 21px 16px 20px;background:#fff;box-shadow:0 4px 0 #211e280c}
+.phone-profile-photo{grid-column:1;grid-row:1 / span 2;width:78px;height:104px;overflow:hidden;border-radius:12px 15px 12px 15px;background:#e3f0e9}
+.phone-profile-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 35%;filter:saturate(.9)}
+.phone-profile-main{grid-column:2;align-self:center;display:grid;gap:5px;min-width:0}.phone-profile-main>b{font-size:13px;line-height:1.15}.phone-profile-main>small{color:#766e7f;font-size:10px;line-height:1.3}
+.profile-ready{grid-column:3;grid-row:1;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#d8f5e8;color:#188d64;font-size:12px;font-weight:800}
+.phone-profile-bio{grid-column:2 / 4;grid-row:2;align-self:end;display:grid;gap:4px;padding-top:7px;border-top:1px solid #f0ebf2}.phone-profile-bio>span{color:#777083;font-size:8px;font-weight:800;letter-spacing:.08em}.phone-profile-bio p{margin:0;color:#534d5e;font-size:10px;line-height:1.35}
+.phone-notification{margin-top:14px;padding:13px;border:1.5px solid #ded5f4;border-radius:16px 19px 15px 18px;background:#f7f3ff;box-shadow:0 4px 0 #241c3012}
+.notification-top{display:flex;align-items:center;gap:7px;color:#766e7f;font-size:8px;font-weight:800;letter-spacing:.08em}.notification-top small{margin-left:3px;color:#9c95a5;font-weight:600;letter-spacing:0}
+.notification-app-icon{width:21px;height:21px}.notification-dot{width:7px;height:7px;margin-left:auto;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px #d5f5e7}
+.notification-title{display:block;margin-top:11px;font-size:14px;line-height:1.2}.notification-summary{margin:5px 0 0;color:#6c6575;font-size:10px;line-height:1.4}
+.notification-open{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:11px;padding:9px 0 0;border:0;border-top:1px solid #e8e1f2;background:transparent;color:#4931a0;text-align:left;font-size:10px;font-weight:800;cursor:pointer}
+.notification-open:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:3px}
+.notification-open span{font-size:15px;transition:rotate .2s}.notification-open[aria-expanded=true] span{rotate:180deg}
+.fit-detail{padding-top:12px}.fit-person{display:flex;align-items:center;gap:10px}.fit-person img{width:54px;height:54px;flex:none;border:2px solid white;border-radius:13px 16px 12px 14px;object-fit:cover;object-position:50% 35%;box-shadow:0 2px 5px #211e281c}.fit-person>span{display:grid;gap:4px}.fit-person b{font-size:12px}.fit-person small{color:#766e7f;font-size:9px}
+.fit-detail>p{margin:11px 0;color:#5b5465;font-size:10px;line-height:1.4}
+.fit-reasons{display:flex;flex-wrap:wrap;gap:6px}.fit-reasons span{padding:5px 8px;border-radius:8px;background:#fff1bd;color:#5b4c22;font-size:8px;font-weight:750}.fit-reasons span+span{background:#dcf4e8;color:#2d7157}
+.sample-label-note{display:block;margin-top:9px;color:#9991a2;font-size:8px}
+.phone-home-indicator{width:84px;height:4px;margin:15px auto 0;border-radius:9px;background:#282431}
+.app-preview-caption{grid-column:1;grid-row:2;align-self:center;display:flex;align-items:flex-start;gap:13px;max-width:380px;margin-top:3px}
+.caption-line{flex:none;width:27px;height:4px;margin-top:8px;border-radius:4px;background:var(--pink);rotate:-7deg}.app-preview-caption p{margin:0;color:#5e596b;font-size:14px;line-height:1.5}
+.fit-detail[hidden]{display:none}
+@media(max-width:700px){.app-preview-intro{margin-bottom:24px}.app-preview-stage{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:16px}.preview-note{grid-column:1;grid-row:1;max-width:none;padding:12px 14px}.preview-note-star{width:37px;height:37px}.phone-preview{grid-column:1;grid-row:2;width:min(100%,390px)}.app-preview-caption{grid-column:1;grid-row:3;max-width:none;margin-top:0}.phone-preview{rotate:0deg}}
+@media(max-width:390px){.try-round{padding-inline:16px}.app-preview-intro h2{font-size:clamp(40px,11vw,52px)}.phone-preview{padding:6px;border-radius:29px}.phone-content{padding:17px 12px 8px}.phone-profile-card{grid-template-columns:68px minmax(0,1fr) 19px;gap:8px;padding:8px}.phone-profile-photo{width:68px;height:96px}.phone-profile-main>b{font-size:12px}.phone-profile-main>small{font-size:9px}.phone-profile-bio p{font-size:9px}.phone-notification{padding:11px}}
+@media(prefers-reduced-motion:reduce){.notification-open span{transition:none}}

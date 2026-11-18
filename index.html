@@ -12,9 +12,9 @@
     <title>Roundfolk — Better than random</title>
     <link rel="preload" href="assets/AlloVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="styles.css?v=20261117-four-feature-demo-2" />
+    <link rel="stylesheet" href="styles.css?v=20261117-app-preview" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261117-four-feature-demo-2"></script>
+    <script defer src="site.js?v=20261117-app-preview"></script>
   </head>
   <body>
     <header class="site-header">
@@ -52,37 +52,41 @@
 
       <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✳︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✷︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✳︎</b><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✷︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✳︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✷︎</b></div></div>
 
-      <section class="try-round section-pad" id="try-round" data-analytics-name="Roundfolk profile demo">
-        <div class="try-round-heading" id="good-round"><p class="eyebrow"><span class="mini-star">✳︎</span> BETTER THAN RANDOM</p><h2>Your kind of golf.<br /><span>Your kind of group.</span></h2><p>Set when you play, add a little about yourself, and hear when another golfer fits your round.</p></div>
-        <div class="feature-demo">
-          <section class="profile-builder" aria-labelledby="profile-demo-title">
-            <div class="profile-builder-heading"><span class="demo-kicker">YOUR ROUNDFOLK PROFILE</span><h3 id="profile-demo-title">A little about your golf.</h3></div>
-            <fieldset class="availability-field">
-              <legend>When are you usually free?</legend>
-              <div class="availability-options">
-                <button type="button" class="availability-choice is-selected" data-availability="saturday" aria-pressed="true"><span><b>Saturday morning</b><small>Weekend round</small></span><span class="availability-check" aria-hidden="true">✓</span></button>
-                <button type="button" class="availability-choice" data-availability="thursday" aria-pressed="false"><span><b>Thursday afternoon</b><small>After work</small></span><span class="availability-check" aria-hidden="true">+</span></button>
-                <button type="button" class="availability-choice" data-availability="sunday" aria-pressed="false"><span><b>Sunday late morning</b><small>Take it easy</small></span><span class="availability-check" aria-hidden="true">+</span></button>
+      <section class="try-round section-pad" id="try-round" data-analytics-name="Roundfolk app preview">
+        <div class="app-preview-intro" id="good-round">
+          <p class="eyebrow"><span class="mini-star">✳︎</span> A BETTER FIT FOR YOUR NEXT ROUND</p>
+          <h2>Same kind of golf.<br /><span>Better company.</span></h2>
+          <p>Roundfolk learns when and how you like to play. When a golfer fits your usual round, you get a heads-up.</p>
+        </div>
+        <div class="app-preview-stage">
+          <div class="preview-note"><span class="preview-note-star">✳︎</span><span><b>Good golf starts with a good fit.</b><small>A quick look at how Roundfolk feels.</small></span></div>
+          <article class="phone-preview" aria-label="Illustrative Roundfolk app screen">
+            <div class="phone-status"><span>9:41</span><span>●●●  ◔  ▰</span></div>
+            <div class="phone-appbar"><span class="phone-app-logo"><img src="assets/roundfolk-pink-golf-ball-logo.png" alt="" /></span><b>roundfolk<span>.</span></b><span class="phone-app-menu" aria-hidden="true">•••</span></div>
+            <div class="phone-content">
+              <div class="phone-greeting"><span>YOUR GOLF</span><b>A round that fits your week.</b></div>
+              <div class="phone-profile-card">
+                <div class="phone-profile-photo"><img src="assets/roundfolk-group.jpg" alt="Golfer on the course" /></div>
+                <div class="phone-profile-main"><span class="phone-card-label">YOUR PROFILE</span><b>Saturday mornings</b><small>Available most weeks</small></div>
+                <span class="profile-ready" aria-label="Profile ready">✓</span>
+                <div class="phone-profile-bio"><span>ABOUT YOUR GOLF</span><p>Early starts, an easy pace, and a good walk.</p></div>
               </div>
-              <small class="field-hint">Choose every time that could work for you.</small>
-            </fieldset>
-            <div class="bio-field" data-clarity-mask="true"><label for="golfer-bio">Your short bio</label><textarea id="golfer-bio" maxlength="120">Early tee times, an easy pace, and fishing when I'm not golfing.</textarea><span class="bio-count" id="bio-count">64 / 120</span></div>
-            <div class="photo-field">
-              <div class="photo-preview" id="photo-preview" aria-label="Your profile photo preview"><span id="photo-initials">RF</span><img id="photo-preview-image" alt="Your selected profile photo" hidden /></div>
-              <div class="photo-copy" data-clarity-mask="true"><b>One photo</b><small>Help golfers put a face to your name.</small><label class="photo-add" for="golfer-photo">Choose a photo</label><input class="visually-hidden" id="golfer-photo" type="file" accept="image/*" /></div>
+              <div class="phone-notification" aria-live="polite">
+                <div class="notification-top"><span class="notification-app-icon"><img src="assets/roundfolk-pink-golf-ball-logo.png" alt="" /></span><span>ROUNDFOLK <small>NOW</small></span><span class="notification-dot"></span></div>
+                <b class="notification-title">A golfer fits your Saturday round.</b>
+                <p class="notification-summary">There’s a golfer looking for a similar kind of round.</p>
+                <button class="notification-open" id="fit-notice-open" type="button" aria-expanded="false" aria-controls="fit-detail">See why it fits <span aria-hidden="true">⌄</span></button>
+                <div class="fit-detail" id="fit-detail" hidden>
+                  <div class="fit-person"><img src="assets/roundfolk-women-golfers.jpg" alt="Two golfers on the course" /><span><b>Maya</b><small>Saturday mornings · walking pace</small></span></div>
+                  <p>“I like an early start and an unhurried round. Usually walking.”</p>
+                  <div class="fit-reasons"><span>Same time of week</span><span>Similar pace</span></div>
+                  <small class="sample-label-note">Sample golfer and notice</small>
+                </div>
+              </div>
+              <div class="phone-home-indicator" aria-hidden="true"></div>
             </div>
-          </section>
-          <section class="fit-notice-panel" aria-labelledby="fit-notice-title">
-            <div class="notice-panel-top"><span class="demo-kicker">WHEN A GOLFER FITS</span><button class="notice-switch" id="fit-notice-toggle" type="button" role="switch" aria-checked="true" aria-label="Get a notice when a golfer fits"><span></span></button></div>
-            <h3 id="fit-notice-title">Get a note when a golfer fits your round.</h3>
-            <div class="fit-notice" id="fit-notice" aria-live="polite">
-              <span class="notice-label"><span class="notice-dot"></span> A GOLFER FITS YOUR SATURDAY</span>
-              <div class="notice-golfer"><span class="notice-avatar">M</span><span><b>Maya</b><small>Weekend rounds · walking, easy pace</small></span></div>
-              <p id="fit-notice-copy">Maya’s looking for a Saturday morning round at an easy pace.</p>
-              <span class="notice-action">SEE THE ROUND <span aria-hidden="true">↗</span></span>
-            </div>
-            <p class="notice-helper" id="notice-helper">A sample fit notice, based on the times you selected.</p>
-          </section>
+          </article>
+          <div class="app-preview-caption"><span class="caption-line"></span><p>Set your usual times. Add a photo and a few words. Get a heads-up when someone fits.</p></div>
         </div>
       </section>
 
