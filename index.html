@@ -12,7 +12,7 @@
     <title>Roundfolk — Better than random</title>
     <link rel="preload" href="assets/AlloVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="stylesheet" href="styles.css?v=20261117-ios-preview" />
+    <link rel="stylesheet" href="styles.css?v=20261117-seven-skill-levels" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
     <script defer src="site.js?v=20261117-tactile-demo"></script>
   </head>
@@ -116,7 +116,7 @@
                 <article class="people-card">
                   <img src="assets/roundfolk-group.jpg" alt="Example golfer Maya on the course" />
                   <div class="people-card-copy"><span class="fit-pill">GOOD FIT</span><h4>Maya, 32</h4><p>Easygoing golfer. Usually out early on weekends.</p></div>
-                  <div class="people-reasons"><span>✓ Saturday works for both</span><span>✓ Similar pace</span><span>✓ Same kind of round</span></div>
+                  <div class="people-reasons"><span>✓ Saturday works for both</span><span>✓ Similar pace</span><span id="fit-experience-reason">✓ Similar experience level</span></div>
                   <div class="people-actions"><button type="button" data-person-action="pass">Pass</button><button type="button" data-person-action="save">Save for later</button></div>
                   <p class="people-feedback" aria-live="polite" hidden></p>
                 </article>
@@ -125,7 +125,7 @@
               <div class="phone-screen profile-screen" data-screen="profile" hidden>
                 <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your golf style</b></div>
                 <div class="profile-summary"><span class="profile-avatar">Z</span><span><b>Your profile</b><small>Set the tone for a good round</small></span><span class="profile-edit-tag">SAMPLE</span></div>
-                <div class="preference-list"><div><span>Experience</span><b>Still learning</b></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Usual days</span><b>Saturday · Sunday</b></div><div><span>Getting around</span><b>No preference</b></div></div>
+                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Usual days</span><b>Saturday · Sunday</b></div><div><span>Getting around</span><b>No preference</b></div></div>
                 <p class="profile-footnote">People see the details that help everyone know what kind of round to expect.</p>
               </div>
               <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>＋</span>Round</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>People</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Profile</button></nav>

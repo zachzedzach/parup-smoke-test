@@ -99,6 +99,46 @@
   const responseMessage = document.getElementById('response-message');
   const screenTabs = [...document.querySelectorAll('.phone-tab[data-show-screen]')];
   const phoneScreens = [...document.querySelectorAll('.phone-screen[data-screen]')];
+  const skillLevels = [
+    { name: 'Beginner', score: 'Usually over 100', detail: 'Just learning contact, direction, and getting the ball airborne.' },
+    { name: 'Developing player', score: 'Around 90–100', detail: 'Building confidence, learning course flow, and avoiding the big numbers.' },
+    { name: 'Competent club player', score: 'Often in the 80s', detail: 'A steady recreational golfer with predictable shots and a growing short game.' },
+    { name: 'Advanced amateur', score: 'Single-digit handicap', detail: 'Consistent ball striking, thoughtful course choices, and a dependable short game.' },
+    { name: 'Scratch golfer', score: 'Around even par', detail: 'A highly skilled player who can regularly keep a round near par.' },
+    { name: 'Elite amateur', score: 'Often under par', detail: 'A competitive player who regularly scores below par in strong fields.' },
+    { name: 'Touring professional', score: 'Professional tour level', detail: 'A full-time professional competing at the highest levels of the game.' }
+  ];
+  const skillToggle = document.getElementById('skill-level-toggle');
+  const skillOptions = document.getElementById('skill-level-options');
+  const skillName = document.getElementById('selected-skill-name');
+  const skillDescription = document.getElementById('skill-level-description');
+  const fitExperienceReason = document.getElementById('fit-experience-reason');
+  let selectedSkillLevel = 1;
+  if (skillOptions) {
+    skillOptions.innerHTML = skillLevels.map((level, index) => `<button type="button" class="skill-level-option" data-skill-level="${index + 1}" aria-pressed="${index === 0}"><span class="skill-level-number">${index + 1}</span><span class="skill-level-copy"><b>${level.name}</b><small>${level.score}</small></span>${index === 0 ? '<span class="skill-level-check" aria-hidden="true">✓</span>' : ''}</button>`).join('');
+    skillOptions.addEventListener('click', event => {
+      const button = event.target.closest('[data-skill-level]');
+      if (!button) return;
+      selectedSkillLevel = Number(button.dataset.skillLevel);
+      const level = skillLevels[selectedSkillLevel - 1];
+      skillName.textContent = level.name;
+      skillDescription.textContent = level.detail;
+      skillOptions.querySelectorAll('[data-skill-level]').forEach(option => {
+        const selected = Number(option.dataset.skillLevel) === selectedSkillLevel;
+        option.setAttribute('aria-pressed', String(selected));
+        option.querySelector('.skill-level-check')?.remove();
+        if (selected) option.insertAdjacentHTML('beforeend', '<span class="skill-level-check" aria-hidden="true">✓</span>');
+      });
+      if (fitExperienceReason) fitExperienceReason.textContent = Math.abs(selectedSkillLevel - 2) <= 1 ? '✓ Similar experience level' : '✓ Different experience, same golf plans';
+      trackDetail('roundfolk_preview_skill_level_selected', { skill_level: selectedSkillLevel });
+    });
+  }
+  skillToggle?.addEventListener('click', () => {
+    const opening = skillToggle.getAttribute('aria-expanded') !== 'true';
+    skillToggle.setAttribute('aria-expanded', String(opening));
+    if (skillOptions) skillOptions.hidden = !opening;
+    trackDetail('roundfolk_preview_skill_levels_opened', { open: opening });
+  });
   const showPhoneScreen = (name) => {
     phoneScreens.forEach(screen => { screen.hidden = screen.dataset.screen !== name; });
     screenTabs.forEach(tab => {
