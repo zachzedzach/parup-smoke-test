@@ -99,6 +99,19 @@
   const postRoundButton = document.getElementById('post-round');
   const roundResponse = document.getElementById('round-response');
   const responseMessage = document.getElementById('response-message');
+  const peopleSlotLabel = document.getElementById('people-slot-label');
+  const peopleGroupCopy = document.getElementById('people-group-copy');
+  const peopleTimeValue = document.getElementById('people-time-value');
+  const peopleCartValue = document.getElementById('people-cart-value');
+  const peopleGroupStatus = document.getElementById('people-group-status');
+  const peopleGroupCapacity = document.getElementById('people-group-capacity');
+  const peopleGroupHeading = document.getElementById('people-group-heading');
+  const peopleOpenIcon = document.getElementById('people-open-icon');
+  const peopleOpenTitle = document.getElementById('people-open-title');
+  const peopleOpenCaption = document.getElementById('people-open-caption');
+  const peopleOpenStatus = document.getElementById('people-open-status');
+  const profileTimeValue = document.getElementById('profile-time-value');
+  const profileCartValue = document.getElementById('profile-cart-value');
   const screenTabs = [...document.querySelectorAll('.phone-tab[data-show-screen]')];
   const phoneScreens = [...document.querySelectorAll('.phone-screen[data-screen]')];
   const skillLevels = [
@@ -114,7 +127,6 @@
   const skillOptions = document.getElementById('skill-level-options');
   const skillName = document.getElementById('selected-skill-name');
   const skillDescription = document.getElementById('skill-level-description');
-  const fitExperienceReason = document.getElementById('fit-experience-reason');
   let selectedSkillLevel = 1;
   if (skillOptions) {
     skillOptions.innerHTML = skillLevels.map((level, index) => `<button type="button" class="skill-level-option" data-skill-level="${index + 1}" aria-pressed="${index === 0}"><span class="skill-level-number">${index + 1}</span><span class="skill-level-copy"><b>${level.name}</b><small>${level.score}</small></span>${index === 0 ? '<span class="skill-level-check" aria-hidden="true">✓</span>' : ''}</button>`).join('');
@@ -131,7 +143,6 @@
         option.querySelector('.skill-level-check')?.remove();
         if (selected) option.insertAdjacentHTML('beforeend', '<span class="skill-level-check" aria-hidden="true">✓</span>');
       });
-      if (fitExperienceReason) fitExperienceReason.textContent = Math.abs(selectedSkillLevel - 2) <= 1 ? '✓ Similar experience level' : '✓ Different experience, same golf plans';
       trackDetail('roundfolk_preview_skill_level_selected', { skill_level: selectedSkillLevel });
     });
   }
@@ -152,15 +163,6 @@
     trackDetail('roundfolk_preview_screen_opened', { screen: name });
   };
   document.querySelectorAll('[data-show-screen]').forEach(button => button.addEventListener('click', () => showPhoneScreen(button.dataset.showScreen)));
-  document.querySelectorAll('[data-person-action]').forEach(button => button.addEventListener('click', () => {
-    const card = button.closest('.people-card');
-    const feedback = card?.querySelector('.people-feedback');
-    if (!feedback) return;
-    feedback.hidden = false;
-    feedback.textContent = button.dataset.personAction === 'save' ? 'Saved for later. You can come back to this round.' : 'Passed quietly. Maya won’t get a notification.';
-    card.querySelectorAll('[data-person-action]').forEach(action => { action.disabled = true; });
-    trackDetail('roundfolk_preview_person_action', { action: button.dataset.personAction });
-  }));
   const responseActions = document.getElementById('response-actions');
   const responseConfirmation = document.getElementById('response-confirmation');
   let chosenSlot = null;
@@ -169,15 +171,36 @@
   let currentCartChoice = cartChoice?.dataset.choice || 'no_preference';
   let roundWasPosted = false;
   const exampleBioLines = [
-    'I’m up for an early round or a quick nine after work.',
-    'I like a relaxed pace and some friendly competition.'
+    'I like early tee times and the occasional after-work nine.',
+    'Easy pace, ready to play a few holes.'
   ];
+
+  function updateGroupScreen() {
+    const [day, time] = (chosenSlot || '').split(' · ');
+    if (peopleSlotLabel) peopleSlotLabel.textContent = chosenSlot ? `TEE TIME · ${day.slice(0, 3).toUpperCase()} · ${time}` : 'YOUR NEXT ROUND';
+    if (peopleTimeValue) peopleTimeValue.textContent = chosenSlot ? `${day} · ${time}` : 'Pick a time in Round';
+    if (profileTimeValue) profileTimeValue.textContent = chosenSlot ? `${day} · ${time}` : 'Pick a time in Round';
+    if (peopleGroupStatus) peopleGroupStatus.textContent = chosenSlot ? 'ROUND TAKING SHAPE' : 'START WITH A TIME';
+    if (peopleGroupCapacity) peopleGroupCapacity.textContent = chosenSlot ? '2 OF 4' : '1 OF 4';
+    if (peopleGroupHeading) peopleGroupHeading.textContent = chosenSlot ? 'Same time. Similar pace.' : 'Start with a time that works.';
+    if (peopleGroupCopy) peopleGroupCopy.textContent = chosenSlot
+      ? `Two golfers have ${day} at ${time} in mind. Each golfer decides before the round is set.`
+      : 'Pick a tee time on the Round tab to see how a group comes together.';
+    if (peopleOpenIcon) peopleOpenIcon.textContent = chosenSlot ? '+1' : '＋';
+    if (peopleOpenTitle) peopleOpenTitle.textContent = chosenSlot ? 'Another golfer' : 'Open spots';
+    if (peopleOpenCaption) peopleOpenCaption.textContent = chosenSlot ? 'Same tee time' : 'Choose a time to get started';
+    if (peopleOpenStatus) peopleOpenStatus.textContent = chosenSlot ? 'OPEN' : 'WAITING';
+    const cartLabel = { rent_cart: 'Rent a cart', walk: 'Walk', no_preference: 'No preference' }[currentCartChoice];
+    if (peopleCartValue) peopleCartValue.textContent = cartLabel;
+    if (profileCartValue) profileCartValue.textContent = cartLabel;
+  }
+  updateGroupScreen();
 
   function updateRoundMessage() {
     if (!responseMessage) return;
     if (!chosenSlot) return;
     const [day, time] = chosenSlot.split(' · ');
-    responseMessage.textContent = `Maya picked ${day} at ${time} too. She’s up for a round. Are you?`;
+    responseMessage.textContent = `Another golfer picked ${day} at ${time} too. Your plans line up. Want to play this round?`;
   }
 
   function typeBio() {
@@ -202,7 +225,7 @@
         const glyph = document.createElement('span');
         glyph.className = 'allo-glyph';
         glyph.textContent = character === ' ' ? '\u00a0' : character;
-        const wordWeight = /^(early|nine|conversation|golf\.)$/.test(word.trim()) ? 780 : /^(quick|after|easy|kind)$/.test(word.trim()) ? 340 : 500;
+        const wordWeight = /^(early|nine|round\.)$/.test(word.trim()) ? 780 : /^(after|easy|pace)$/.test(word.trim()) ? 340 : 500;
         const wave = [0, 70, 150, 30, 110][charIndex % 5];
         glyph.style.setProperty('--glyph-weight', String(Math.max(280, Math.min(850, wordWeight + wave - 65))));
         bio.append(glyph);
@@ -248,6 +271,7 @@
       timeButton.classList.toggle('is-selected', selected);
       timeButton.setAttribute('aria-pressed', String(selected));
     });
+    updateGroupScreen();
     if (postRoundButton) postRoundButton.disabled = false;
     if (roundWasPosted && responseActions && responseConfirmation) {
       responseActions.hidden = false;
@@ -293,6 +317,7 @@
     if (cartChoice) cartChoice.dataset.choice = currentCartChoice;
     cartChoiceButtons.forEach((choiceButton) => choiceButton.setAttribute('aria-pressed', String(choiceButton === button)));
     if (cartChoiceHint) cartChoiceHint.textContent = { rent_cart: 'Rent a cart', walk: 'Walk', no_preference: 'No preference' }[currentCartChoice];
+    updateGroupScreen();
     track('roundfolk_preview_cart_choice', { cart_choice: currentCartChoice });
   }));
 
@@ -321,7 +346,7 @@
     if (!roundWasPosted || !responseConfirmation) return;
     responseActions.hidden = true;
     responseConfirmation.hidden = false;
-    responseConfirmation.textContent = `Maya’s in too. ${chosenSlot.replace(' · ', ' at ')}. See you there!`;
+    responseConfirmation.textContent = `You’re both in for ${chosenSlot.replace(' · ', ' at ')}. The course fills in the rest.`;
     track('roundfolk_preview_round_accepted');
   });
 
@@ -365,10 +390,11 @@
     if (cartChoice) cartChoice.dataset.choice = 'no_preference';
     cartChoiceButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.cartChoice === 'no_preference')));
     if (cartChoiceHint) cartChoiceHint.textContent = 'No preference';
+    updateGroupScreen();
     if (bio) {
       bio.dataset.typed = 'false';
       bio.classList.remove('is-typing');
-      bio.textContent = 'Pick a tee time to see an example.';
+      bio.textContent = 'Pick a time to add a little about your game.';
     }
     if (bioCount) {
       bioCount.hidden = true;

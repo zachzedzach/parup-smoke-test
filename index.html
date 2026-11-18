@@ -12,9 +12,9 @@
     <title>The Fourth Club — Better than random</title>
     <link rel="preload" href="assets/AlloVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="assets/the-fourth-club-ball.svg" />
-    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-1" />
+    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-2" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261118-fourth-club-1"></script>
+    <script defer src="site.js?v=20261118-fourth-club-2"></script>
   </head>
   <body>
     <header class="site-header">
@@ -39,12 +39,12 @@
           <div class="sun-sticker" aria-hidden="true">✳︎</div>
           <div class="tee-ticket">
             <div class="ticket-top"><span>YOUR NEXT ROUND</span><span class="ticket-mark">R</span></div>
-            <div class="ticket-time"><span>TEE</span><b>7:40</b><span>AM</span></div>
+            <div class="ticket-time"><span>TEE</span><b>7:30</b><span>AM</span></div>
             <div class="ticket-rule"></div>
             <p class="ticket-caption">A group that fits your kind of golf.</p>
-            <div class="ticket-roster"><div class="roster-mark">M</div><span><b>Maya</b><small>Weekend rounds · easy pace</small></span><span class="roster-check">GOLF</span></div>
-            <div class="interest-row"><span>Walking</span><span>Casual</span><span>Golf</span></div>
-            <p class="ticket-bottom"><span>✳︎</span> Start with something in common.</p>
+            <div class="ticket-roster"><div class="roster-mark">2/4</div><span><b>Two golfers, one time</b><small>Room for two more</small></span><span class="roster-check">OPEN</span></div>
+            <div class="interest-row"><span>Easy pace</span><span>Weekend</span><span>Walk</span></div>
+            <p class="ticket-bottom"><span>✳︎</span> A better fit from the first tee.</p>
           </div>
           <div class="better-sticker"><span>GOOD</span><br />GOLF<br /><b>COMPANY</b></div>
         </div>
@@ -56,7 +56,7 @@
         <div class="app-preview-intro" id="good-round">
           <p class="eyebrow"><span class="mini-star">✳︎</span> PICK A TIME. FIND YOUR PEOPLE.</p>
           <h2>Put a round out there.<br /><span>See who’s in.</span></h2>
-          <p>Choose a tee time, show a little of your golf personality, and add a photo. When another golfer picks the same slot, you both decide if it’s a go.</p>
+          <p>Pick a time, say how you like to play, and add a golf photo. If another golfer wants the same round, you each decide whether to play.</p>
         </div>
         <div class="app-preview-stage">
           <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Tap a tee time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
@@ -96,8 +96,8 @@
                 </div>
               </div>
               <div class="round-profile-card">
-                <div class="round-profile-head"><span class="two-lines-label">YOUR TWO LINES</span><span class="char-count" hidden>0 / 120</span></div>
-                <p class="allo-bio" id="allo-bio" aria-label="Example short golf bio" aria-live="polite">Pick a tee time to see an example.</p>
+                <div class="round-profile-head"><span class="two-lines-label">A NOTE ABOUT YOUR GAME</span><span class="char-count" hidden>0 / 120</span></div>
+                <p class="allo-bio" id="allo-bio" aria-label="A note about your golf game" aria-live="polite">Pick a time to add a little about your game.</p>
                 <div class="round-photo-row">
                   <div class="round-photo-thumb" id="round-photo-thumb" hidden></div>
                   <button class="photo-snap-button" id="photo-snap" type="button"><span aria-hidden="true">＋</span> Add photo</button>
@@ -106,31 +106,33 @@
               <button class="post-round-button" id="post-round" type="button" disabled>Put this round out there <span aria-hidden="true">↗</span></button>
               <div class="round-response" id="round-response" hidden aria-live="polite">
                 <div class="response-topline"><span class="notification-app-icon"><img src="assets/the-fourth-club-ball.svg" alt="" /></span><span>ROUND UPDATE <small>JUST NOW</small></span><span class="notification-dot"></span></div>
-                <p class="response-message" id="response-message">Maya picked Saturday at 7:30 too. Want to play this round together?</p>
+                <p class="response-message" id="response-message">Another golfer picked this tee time too. Your plans line up. Want to play this round?</p>
                 <div class="response-actions" id="response-actions"><button type="button" id="round-yes">I’m in</button><button type="button" id="round-later">Maybe next time</button></div>
                 <p class="response-confirmation" id="response-confirmation" hidden></p>
-                <small class="sample-label-note">Example round preview</small>
               </div>
               </div>
               <div class="phone-screen people-screen" data-screen="people" hidden>
-                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>People for your round</b></div>
-                <p class="ios-screen-kicker">A GOOD FIT FOR SATURDAY</p>
-                <article class="people-card">
-                  <img src="assets/roundfolk-group.jpg" alt="Example golfer Maya on the course" />
-                  <div class="people-card-copy"><span class="fit-pill">GOOD FIT</span><h4>Maya, 32</h4><p>Easygoing golfer. Usually out early on weekends.</p></div>
-                  <div class="people-reasons"><span>✓ Saturday works for both</span><span>✓ Similar pace</span><span id="fit-experience-reason">✓ Similar experience level</span></div>
-                  <div class="people-actions"><button type="button" data-person-action="pass">Pass</button><button type="button" data-person-action="save">Save for later</button></div>
-                  <p class="people-feedback" aria-live="polite" hidden></p>
+                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your group</b></div>
+                <p class="ios-screen-kicker" id="people-slot-label">YOUR NEXT ROUND</p>
+                <article class="round-group-card">
+                  <div class="group-card-top"><span class="group-status-dot" aria-hidden="true"></span><span id="people-group-status">START WITH A TIME</span><span class="group-capacity" id="people-group-capacity">1 OF 4</span></div>
+                  <h4 id="people-group-heading">Start with a time that works.</h4>
+                  <p id="people-group-copy">Pick a tee time on the Round tab to see how a group comes together.</p>
+                  <div class="group-roster">
+                    <div class="group-roster-row"><span class="group-golfer-icon" aria-hidden="true">YOU</span><span><b>Your round</b><small id="people-round-pace">Easygoing pace</small></span><span class="group-row-status">READY</span></div>
+                    <div class="group-roster-row"><span class="group-golfer-icon other" id="people-open-icon" aria-hidden="true">＋</span><span><b id="people-open-title">Open spots</b><small id="people-open-caption">Choose a time to get started</small></span><span class="group-row-status" id="people-open-status">OPEN</span></div>
+                  </div>
+                  <div class="group-details"><div><span>TEE TIME</span><b id="people-time-value">Pick a time in Round</b></div><div><span>GETTING AROUND</span><b id="people-cart-value">No preference</b></div></div>
+                  <p class="group-card-note">A quick yes from both sides. Then the course fills in the rest.</p>
                 </article>
-                <p class="privacy-note">Your choices stay private. Only show interest when you’re ready.</p>
               </div>
               <div class="phone-screen profile-screen" data-screen="profile" hidden>
-                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your golf style</b></div>
-                <div class="profile-summary"><span class="profile-avatar">Z</span><span><b>Your profile</b><small>Set the tone for a good round</small></span><span class="profile-edit-tag">SAMPLE</span></div>
-                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Usual days</span><b>Saturday · Sunday</b></div><div><span>Getting around</span><b>No preference</b></div></div>
-                <p class="profile-footnote">People see the details that help everyone know what kind of round to expect.</p>
+                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your game</b></div>
+                <div class="profile-summary"><span class="profile-avatar" aria-hidden="true">✳</span><span><b>Your golf details</b><small>Choose what feels right for your game</small></span></div>
+                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Current tee time</span><b id="profile-time-value">Pick a time in Round</b></div><div><span>Getting around</span><b id="profile-cart-value">No preference</b></div></div>
+                <div class="game-note"><span aria-hidden="true">✳</span><b>Good golf starts with a group that feels right.</b><small>Your pace and plans help shape the day.</small></div>
               </div>
-              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>＋</span>Round</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>People</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Profile</button></nav>
+              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>＋</span>Round</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>Group</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Game</button></nav>
               <div class="phone-home-indicator" aria-hidden="true"></div>
             </div>
             </div>
