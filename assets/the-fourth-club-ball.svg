@@ -1,25 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="The Fourth Club pink golf ball">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Four golf clubs over a pink golf ball">
   <defs>
-    <radialGradient id="shell" cx="31%" cy="23%" r="83%">
+    <radialGradient id="ball-shell" cx="31%" cy="23%" r="83%">
       <stop offset="0" stop-color="#ff9fbb"/>
       <stop offset=".58" stop-color="#ff5f87"/>
       <stop offset="1" stop-color="#df285f"/>
     </radialGradient>
-    <radialGradient id="shine" cx="28%" cy="18%" r="66%">
-      <stop offset="0" stop-color="#fff" stop-opacity=".43"/>
+    <radialGradient id="ball-shine" cx="28%" cy="18%" r="66%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".4"/>
       <stop offset="1" stop-color="#fff" stop-opacity="0"/>
     </radialGradient>
-    <pattern id="dimples" width="16" height="16" patternUnits="userSpaceOnUse">
+    <pattern id="ball-dimples" width="16" height="16" patternUnits="userSpaceOnUse">
       <circle cx="4" cy="4" r="2.1" fill="#ad204f" opacity=".18"/>
       <circle cx="12" cy="12" r="2.1" fill="#ad204f" opacity=".18"/>
-      <circle cx="4" cy="3.4" r="1.1" fill="#fff" opacity=".18"/>
-      <circle cx="12" cy="11.4" r="1.1" fill="#fff" opacity=".18"/>
+      <circle cx="4" cy="3.4" r="1.1" fill="#fff" opacity=".2"/>
+      <circle cx="12" cy="11.4" r="1.1" fill="#fff" opacity=".2"/>
     </pattern>
-    <clipPath id="ballClip"><circle cx="64" cy="64" r="60"/></clipPath>
+    <clipPath id="ball-clip"><circle cx="64" cy="64" r="60"/></clipPath>
   </defs>
   <circle cx="64" cy="64" r="61" fill="#d8285d"/>
-  <circle cx="64" cy="64" r="60" fill="url(#shell)"/>
-  <circle cx="64" cy="64" r="60" fill="url(#dimples)" clip-path="url(#ballClip)"/>
-  <circle cx="64" cy="64" r="60" fill="url(#shine)"/>
-  <text x="64" y="84" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="59" font-weight="700" letter-spacing="-3">4</text>
+  <circle cx="64" cy="64" r="60" fill="url(#ball-shell)"/>
+  <circle cx="64" cy="64" r="60" fill="url(#ball-dimples)" clip-path="url(#ball-clip)"/>
+  <circle cx="64" cy="64" r="60" fill="url(#ball-shine)"/>
+  <g stroke="#17141f" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Three white clubs and the taller pink one, with the heads facing left. -->
+    <g fill="none">
+      <path d="M32 66 22 116" stroke-width="12"/><path d="M32 66 22 116" stroke="#fffdf8" stroke-width="6"/>
+      <path d="M56 41 43 116" stroke-width="12"/><path d="M56 41 43 116" stroke="#fffdf8" stroke-width="6"/>
+      <path d="M80 64 65 116" stroke-width="12"/><path d="M80 64 65 116" stroke="#fffdf8" stroke-width="6"/>
+      <path d="M103 23 88 116" stroke-width="13"/><path d="M103 23 88 116" stroke="#ff5f87" stroke-width="7"/>
+    </g>
+    <g fill="#fffdf8" stroke-width="4">
+      <path d="m7 58 24-5q5-1 7 4l3 8q1 4-4 5l-23 5q-5 1-7-3l-3-7q-2-5 3-7Z"/>
+      <path d="m31 32 24-6q5-1 7 4l3 8q1 4-4 5l-23 6q-5 1-7-3l-3-7q-2-5 3-7Z"/>
+      <path d="m55 56 24-7q5-2 7 3l4 7q2 4-3 6l-23 7q-5 1-7-3l-4-6q-2-5 2-7Z"/>
+    </g>
+    <path d="m79 14 24-8q5-2 8 3l4 7q2 5-3 7l-24 8q-5 1-8-3l-4-7q-2-5 3-7Z" fill="#ff5f87" stroke-width="4"/>
+  </g>
 </svg>
