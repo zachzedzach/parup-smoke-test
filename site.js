@@ -334,6 +334,8 @@
   });
 
   resetRoundButton?.addEventListener('click', () => {
+    const phoneContent = document.querySelector('.phone-content');
+    if (phoneContent) phoneContent.scrollTop = 0;
     window.clearTimeout(bioRevealTimer);
     bioTypingTimers.forEach((timer) => window.clearTimeout(timer));
     bioTypingTimers.length = 0;

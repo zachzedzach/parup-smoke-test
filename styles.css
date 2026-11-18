@@ -437,3 +437,28 @@
 @media(max-width:390px){.touch-preview-note{gap:10px}.touch-preview-note b{font-size:15px}.touch-preview-note small{font-size:11px}.touch-note-mark{width:39px;height:39px}.phone-preview{padding:7px;border-radius:35px}.phone-content{padding:13px 11px 8px}.round-form-title{font-size:24px}.tee-slot{min-height:70px}.tee-slot span{font-size:19px}}
 @media(prefers-reduced-motion:reduce){.tee-tap-hand,.tee-tap-arrow,.tee-slot[data-slot^="Saturday"]:not(.is-selected){animation:none!important}}
 .touch-preview-note>span:nth-child(2),.touch-note-copy{display:grid;gap:4px;min-width:0}.touch-preview-note.is-dismissed{display:none}
+
+/* Use Zach's supplied iPhone 17 Pro render as a transparent hardware bezel. */
+.interactive-round.phone-preview{width:min(100%,390px);aspect-ratio:1350/2760;height:auto;box-sizing:border-box;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;filter:drop-shadow(0 18px 20px #251b362b);rotate:0deg;overflow:visible}
+.interactive-round.phone-preview::before,.interactive-round.phone-preview::after{content:none;display:none}
+.phone-frame-ui{position:absolute;z-index:1;inset:1.9% 3.5%;display:flex;flex-direction:column;min-height:0;overflow:hidden;border-radius:11%/5.5%;background:#f8f8fa}
+.phone-frame-render{position:absolute;z-index:3;inset:0;width:100%;height:100%;object-fit:fill;pointer-events:none}
+.phone-frame-ui .phone-status{flex:0 0 6.7%;min-height:42px;height:auto;padding:0 7%;grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr);color:#17171b;font:650 12px/1 system-ui,-apple-system,sans-serif;font-variant-numeric:tabular-nums}
+.phone-frame-ui .ios-time{justify-self:start;letter-spacing:-.25px}
+.phone-frame-ui .ios-dynamic-island{visibility:hidden}
+.phone-frame-ui .ios-status-icons{justify-self:end;display:flex;align-items:center;gap:4px;height:14px;color:#17171b}
+.phone-frame-ui .ios-status-icons svg{display:block;flex:none;color:inherit}
+.phone-frame-ui .ios-status-icons .status-signal{width:14px;height:12px;fill:currentColor}
+.phone-frame-ui .ios-status-icons .status-wifi{width:14px;height:12px}
+.phone-frame-ui .ios-status-icons .status-battery{width:25px;height:13px;overflow:visible}
+.phone-frame-ui .ios-status-icons .status-battery rect:nth-child(2),.phone-frame-ui .ios-status-icons .status-battery path{fill:currentColor}
+.phone-frame-ui .phone-appbar{flex:0 0 6.2%;min-height:46px;height:auto;border-radius:0;padding-inline:7%;}
+.phone-frame-ui .phone-content{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;padding:12px 6% 8px;border-radius:0}
+.phone-frame-ui .phone-content::-webkit-scrollbar{display:none}
+.phone-frame-ui .phone-tabbar{position:sticky;z-index:2;bottom:0;flex:0 0 auto;margin:10px -6.5% 0;padding:7px 4% 2px;background:#f8f8fa}
+.phone-frame-ui .phone-home-indicator{position:sticky;z-index:2;bottom:0;flex:0 0 4px;width:84px;margin:8px auto 5px;background:#17171b}
+.phone-frame-ui .phone-screen{padding-bottom:2px}
+@media(max-width:700px){.interactive-round.phone-preview{width:min(100%,390px)}.phone-frame-ui .phone-content{padding:12px 5.5% 8px}}
+@media(max-width:390px){.interactive-round.phone-preview{padding:0;border-radius:0}.phone-frame-ui{inset:1.9% 3.5%}.phone-frame-ui .phone-status{min-height:39px;font-size:11px;grid-template-columns:minmax(0,1fr) 62px minmax(0,1fr)}.phone-frame-ui .ios-status-icons{gap:3px}.phone-frame-ui .ios-status-icons .status-battery{width:23px}.phone-frame-ui .phone-appbar{min-height:43px}.phone-frame-ui .phone-content{padding:10px 5% 8px}}
+@media(max-width:430px){.phone-frame-ui .round-form-title{margin-top:6px;font-size:22px;line-height:1.05}.phone-frame-ui .round-form-subtitle{margin:4px 0 5px}.phone-frame-ui .tee-tap-cue{min-height:30px;margin-bottom:4px;padding-block:3px}.phone-frame-ui .tee-slots{gap:5px}.phone-frame-ui .tee-slot{min-height:60px}.phone-frame-ui .select-your-own{margin-top:5px}.phone-frame-ui .cart-control{margin-top:7px;padding:7px}.phone-frame-ui .cart-control-heading{margin-bottom:5px}.phone-frame-ui .round-profile-card{margin-top:7px;padding:6px}.phone-frame-ui .round-photo-row{margin-top:6px;padding-top:6px}.phone-frame-ui .post-round-button{margin-top:6px}}
+@media(max-width:900px){.app-preview-intro{margin-bottom:24px}.app-preview-stage{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:16px}.preview-story-note{grid-column:1;grid-row:1;max-width:none;padding:12px 14px}.interactive-round{grid-column:1;grid-row:2;justify-self:center;width:min(100%,390px);rotate:0deg}.phone-preview{rotate:0deg}.app-preview-caption{grid-column:1;grid-row:3;max-width:none;margin-top:0}}
