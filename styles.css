@@ -76,6 +76,7 @@
 .spark-dot,.mini-star,.footnote-star,.ticket-bottom>span,.ticker-track>b,.headline-sticker:after,.try-round:after,.how-heading h2:after,.art-sun,.round-photo-pair figcaption span,.concept-note span{color:var(--pink)}
 .spark-dot{background:var(--yellow)}
 .sun-sticker{color:var(--pink)}
+.confetti-b{color:var(--pink)}
 .round-photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:22px;max-width:560px}
 .round-photo-pair figure{position:relative;margin:0;min-width:0;rotate:-1deg}
 .round-photo-pair figure+figure{rotate:1.5deg;translate:0 10px}

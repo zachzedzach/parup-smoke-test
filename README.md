@@ -55,3 +55,6 @@ Official platform guidance: [Apple App Store Marketing Resources and Identity Gu
 
 
 On November 17, Zach requested removal of the visible photo credits. The hero, supporting photo gallery, and three-step image no longer display photo-credit text. The sample card was narrowed and shifted so it no longer covers the hero golfer on desktop; on mobile, the same photo is zoomed and shifted inside its frame so the golfer is visible beside the card. Local Firefox confirmed the credit-free layout and visible golfer at desktop and mobile sizes. Commit `48959e9` deployed successfully; GitHub Pages completed and Firefox confirmed the credit-free page and visible golfer at desktop and mobile sizes.
+
+
+A follow-up mobile review on November 17 found one remaining green decorative star on the sample golfer board; it now uses the pink text-style star used elsewhere. Firefox review also covered the complete mobile page and 1440px desktop hero.
