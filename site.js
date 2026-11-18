@@ -81,6 +81,7 @@
 
   const availabilityChoices = [...document.querySelectorAll('[data-availability]')];
   const selectedAvailability = new Set(['saturday']);
+  let lastSelectedAvailability = 'saturday';
   const fitCopy = document.getElementById('fit-notice-copy');
   const fitLabel = document.querySelector('.notice-label');
   const fitPanel = document.getElementById('fit-notice');
@@ -95,7 +96,9 @@
     sunday: { label: 'A GOLFER FITS YOUR SUNDAY', name: 'Jules', initial: 'J', bio: 'Sunday rounds · happy to walk', copy: 'Jules is looking for a Sunday late-morning round.' }
   };
   function renderFitNotice() {
-    const key = ['saturday', 'thursday', 'sunday'].find((day) => selectedAvailability.has(day));
+    const key = selectedAvailability.has(lastSelectedAvailability)
+      ? lastSelectedAvailability
+      : ['saturday', 'thursday', 'sunday'].find((day) => selectedAvailability.has(day));
     const match = key ? matches[key] : null;
     if (fitLabel) fitLabel.innerHTML = `<span class="notice-dot"></span> ${match ? match.label : 'CHOOSE A TIME TO SEE A SAMPLE'}`;
     if (noticeName) noticeName.textContent = match?.name || 'A golfer';
@@ -110,7 +113,7 @@
   availabilityChoices.forEach((choice) => choice.addEventListener('click', () => {
     const key = choice.dataset.availability;
     if (selectedAvailability.has(key)) selectedAvailability.delete(key);
-    else selectedAvailability.add(key);
+    else { selectedAvailability.add(key); lastSelectedAvailability = key; }
     const selected = selectedAvailability.has(key);
     choice.classList.toggle('is-selected', selected);
     choice.setAttribute('aria-pressed', String(selected));
