@@ -79,101 +79,72 @@
   });
   storeGate?.querySelector('.gate-close')?.addEventListener('click', () => storeGate.close());
 
-  const sampleRoundData = {
-    saturday: {
-      title: 'Saturday morning', details: 'RIVERSIDE · 7:40 AM', caption: 'A relaxed start, with time to walk and catch up.', show: 2,
-      players: [
-        { initial: 'M', name: 'Maya', bio: 'Weekend rounds · easy pace', color: 'avatar-maya', styles: ['walking', 'easy'] },
-        { initial: 'J', name: 'Jules', bio: 'Walks when the weather’s good', color: 'avatar-jules', styles: ['walking'] },
-        { initial: 'S', name: 'Sam', bio: 'Likes a comfortable pace', color: 'avatar-rina', styles: ['easy'] }
-      ]
-    },
-    thursday: {
-      title: 'Thursday afternoon', details: 'RIVERSIDE · 4:20 PM', caption: 'A quick nine after work, at a comfortable pace.', show: 3,
-      players: [
-        { initial: 'A', name: 'Alex', bio: 'After-work nine · relaxed', color: 'avatar-alex', styles: ['after-work', 'easy'] },
-        { initial: 'R', name: 'Rina', bio: 'Likes a steady round', color: 'avatar-rina', styles: ['walking', 'easy'] },
-        { initial: 'C', name: 'Cam', bio: 'Free Thursday afternoons', color: 'avatar-cam', styles: ['after-work', 'walking'] },
-        { initial: 'M', name: 'Mei', bio: 'Enjoys an unhurried game', color: 'avatar-maya', styles: ['easy'] }
-      ]
-    },
-    sunday: {
-      title: 'Sunday late morning', details: 'RIVERSIDE · 10:10 AM', caption: 'An unhurried round with room for one more.', show: 1,
-      players: [
-        { initial: 'F', name: 'Frank', bio: 'Sunday golf · fishing fan', color: 'avatar-frank', styles: ['easy'] },
-        { initial: 'M', name: 'Maya', bio: 'Weekend rounds · likes to walk', color: 'avatar-maya', styles: ['walking', 'easy'] },
-        { initial: 'J', name: 'Jules', bio: 'Walks when the weather’s good', color: 'avatar-jules', styles: ['walking'] }
-      ]
-    }
+  const availabilityChoices = [...document.querySelectorAll('[data-availability]')];
+  const selectedAvailability = new Set(['saturday']);
+  const fitCopy = document.getElementById('fit-notice-copy');
+  const fitLabel = document.querySelector('.notice-label');
+  const fitPanel = document.getElementById('fit-notice');
+  const noticeHelper = document.getElementById('notice-helper');
+  const noticeToggle = document.getElementById('fit-notice-toggle');
+  const noticeAvatar = document.querySelector('.notice-avatar');
+  const noticeName = document.querySelector('.notice-golfer b');
+  const noticeBio = document.querySelector('.notice-golfer small');
+  const matches = {
+    saturday: { label: 'A GOLFER FITS YOUR SATURDAY', name: 'Maya', initial: 'M', bio: 'Weekend rounds · walking, easy pace', copy: 'Maya’s looking for a Saturday morning round at an easy pace.' },
+    thursday: { label: 'A GOLFER FITS YOUR THURSDAY', name: 'Alex', initial: 'A', bio: 'After-work nine · relaxed pace', copy: 'Alex is looking for a Thursday afternoon nine after work.' },
+    sunday: { label: 'A GOLFER FITS YOUR SUNDAY', name: 'Jules', initial: 'J', bio: 'Sunday rounds · happy to walk', copy: 'Jules is looking for a Sunday late-morning round.' }
   };
-  const choices = [...document.querySelectorAll('[data-round-choice]')];
-  const styleChoices = [...document.querySelectorAll('[data-round-style]')];
-  const selectedStyles = new Set();
-  const roster = document.getElementById('sample-roster');
-  const sampleTitle = document.getElementById('sample-round-title');
-  const sampleDetails = document.querySelector('.sample-course');
-  const sampleCaption = document.getElementById('sample-round-caption');
-  const sampleFitSummary = document.getElementById('sample-fit-summary');
-  let activeRoundKey = 'saturday';
-  function renderSampleRound(key, shouldTrack = false) {
-    const round = sampleRoundData[key];
-    if (!round || !roster) return;
-    activeRoundKey = key;
-    choices.forEach((choice) => {
-      const selected = choice.dataset.roundChoice === key;
-      choice.classList.toggle('is-selected', selected);
-      choice.setAttribute('aria-pressed', String(selected));
-    });
-    sampleTitle.textContent = round.title;
-    sampleDetails.textContent = round.details;
-    sampleCaption.textContent = round.caption;
-    const matchedPlayers = round.players
-      .map((player, order) => ({ ...player, order, sharedStyles: player.styles.filter((style) => selectedStyles.has(style)).length }))
-      .sort((a, b) => b.sharedStyles - a.sharedStyles || a.order - b.order)
-      .slice(0, round.show);
-    const openSpots = 4 - matchedPlayers.length;
-    const golfersWithSharedStyles = matchedPlayers.filter((player) => player.sharedStyles > 0).length;
-    if (sampleFitSummary) {
-      sampleFitSummary.textContent = selectedStyles.size
-        ? `${golfersWithSharedStyles} of ${matchedPlayers.length} golfers share your selected style · ${openSpots} open ${openSpots === 1 ? 'spot' : 'spots'}.`
-        : `A sample group with ${matchedPlayers.length} ${matchedPlayers.length === 1 ? 'golfer' : 'golfers'} and ${openSpots} open ${openSpots === 1 ? 'spot' : 'spots'}.`;
-    }
-    roster.replaceChildren(...matchedPlayers.map((player) => {
-      const row = document.createElement('div');
-      row.className = `sample-player${player.sharedStyles ? ' has-style-match' : ''}`;
-      const avatar = document.createElement('span');
-      avatar.className = `sample-avatar ${player.color}`;
-      avatar.textContent = player.initial;
-      const info = document.createElement('span');
-      info.innerHTML = `<b></b><small></small>`;
-      info.querySelector('b').textContent = player.name;
-      info.querySelector('small').textContent = player.bio;
-      const status = document.createElement('span');
-      status.className = 'sample-match';
-      status.textContent = selectedStyles.size
-        ? player.sharedStyles ? `${player.sharedStyles} ${player.sharedStyles === 1 ? 'THING' : 'THINGS'} IN COMMON` : 'NEW TO YOU'
-        : 'EXAMPLE';
-      row.append(avatar, info, status);
-      return row;
-    }), ...Array.from({ length: openSpots }, () => {
-      const row = document.createElement('div');
-      row.className = 'sample-player open-slot';
-      row.innerHTML = '<span class="sample-avatar">+</span><span><b>Open spot</b><small>A place for your kind of golf</small></span><span class="sample-match">OPEN</span>';
-      return row;
-    }));
-    if (shouldTrack) track('roundfolk_sample_round_selected', { round_option: key, sample_golfer_count: round.players.length, open_spot_count: openSpots });
+  function renderFitNotice() {
+    const key = ['saturday', 'thursday', 'sunday'].find((day) => selectedAvailability.has(day));
+    const match = key ? matches[key] : null;
+    if (fitLabel) fitLabel.innerHTML = `<span class="notice-dot"></span> ${match ? match.label : 'CHOOSE A TIME TO SEE A SAMPLE'}`;
+    if (noticeName) noticeName.textContent = match?.name || 'A golfer';
+    if (noticeAvatar) noticeAvatar.textContent = match?.initial || '•';
+    if (noticeBio) noticeBio.textContent = match?.bio || 'Your selected times will appear here';
+    if (fitCopy) fitCopy.textContent = match ? match.copy : 'Choose an available time to preview a sample fit notice.';
+    fitPanel?.classList.toggle('is-muted', !match || noticeToggle?.getAttribute('aria-checked') !== 'true');
+    if (noticeHelper) noticeHelper.textContent = noticeToggle?.getAttribute('aria-checked') === 'true'
+      ? 'A sample notice, based on the times you selected.'
+      : 'Turn on notices to preview when a golfer fits.';
   }
-  choices.forEach((choice) => choice.addEventListener('click', () => renderSampleRound(choice.dataset.roundChoice, true)));
-  styleChoices.forEach((choice) => choice.addEventListener('click', () => {
-    const style = choice.dataset.roundStyle;
-    if (selectedStyles.has(style)) selectedStyles.delete(style);
-    else selectedStyles.add(style);
-    choice.setAttribute('aria-pressed', String(selectedStyles.has(style)));
-    choice.querySelector('span').textContent = selectedStyles.has(style) ? '✓' : '+';
-    track('roundfolk_sample_style_selected', { round_style: style, selected: selectedStyles.has(style) });
-    renderSampleRound(activeRoundKey);
+  availabilityChoices.forEach((choice) => choice.addEventListener('click', () => {
+    const key = choice.dataset.availability;
+    if (selectedAvailability.has(key)) selectedAvailability.delete(key);
+    else selectedAvailability.add(key);
+    const selected = selectedAvailability.has(key);
+    choice.classList.toggle('is-selected', selected);
+    choice.setAttribute('aria-pressed', String(selected));
+    const check = choice.querySelector('.availability-check');
+    if (check) check.textContent = selected ? '✓' : '+';
+    track('roundfolk_availability_selected', { availability_option: key, selected });
+    renderFitNotice();
   }));
-  renderSampleRound('saturday');
+  const bio = document.getElementById('golfer-bio');
+  const bioCount = document.getElementById('bio-count');
+  if (bio && bioCount) bioCount.textContent = `${bio.value.length} / ${bio.maxLength}`;
+  bio?.addEventListener('input', () => { if (bioCount) bioCount.textContent = `${bio.value.length} / ${bio.maxLength}`; });
+  let photoUrl = null;
+  const photoInput = document.getElementById('golfer-photo');
+  const photoImage = document.getElementById('photo-preview-image');
+  const photoInitials = document.getElementById('photo-initials');
+  const photoButton = document.querySelector('.photo-add');
+  photoInput?.addEventListener('change', () => {
+    const file = photoInput.files?.[0];
+    if (!file || !file.type.startsWith('image/')) return;
+    if (photoUrl) URL.revokeObjectURL(photoUrl);
+    photoUrl = URL.createObjectURL(file);
+    if (photoImage) { photoImage.src = photoUrl; photoImage.hidden = false; }
+    if (photoInitials) photoInitials.hidden = true;
+    if (photoButton) photoButton.textContent = 'Change photo';
+    track('roundfolk_profile_photo_added');
+  });
+  noticeToggle?.addEventListener('click', () => {
+    const enabled = noticeToggle.getAttribute('aria-checked') !== 'true';
+    noticeToggle.setAttribute('aria-checked', String(enabled));
+    track('roundfolk_fit_notice_toggled', { enabled });
+    renderFitNotice();
+  });
+  renderFitNotice();
 
   if (!form || !submit || !status) return;
   if (sourceField) sourceField.value = signupSource();

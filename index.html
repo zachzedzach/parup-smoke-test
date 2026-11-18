@@ -52,35 +52,37 @@
 
       <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✳︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✷︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✳︎</b><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✷︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✳︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✷︎</b></div></div>
 
-      <section class="try-round section-pad" id="try-round" data-analytics-name="Try a sample round">
-        <div class="try-round-heading" id="good-round"><p class="eyebrow"><span class="mini-star">✳︎</span> BETTER THAN RANDOM</p><h2>Pick a time.<br /><span>See your group.</span></h2><p>Choose the kind of round you enjoy. See how your pace, schedule, and interests shape a group you’ll feel better about joining.</p></div>
-        <div class="round-builder">
-          <div class="round-picker" role="group" aria-label="Choose a sample tee time">
-            <button type="button" class="time-choice is-selected" data-round-choice="saturday" aria-pressed="true"><span>THIS WEEKEND</span><b>Saturday morning</b><small>7:40 AM · Riverside</small></button>
-            <button type="button" class="time-choice" data-round-choice="thursday" aria-pressed="false"><span>AFTER WORK</span><b>Thursday afternoon</b><small>4:20 PM · Riverside</small></button>
-            <button type="button" class="time-choice" data-round-choice="sunday" aria-pressed="false"><span>TAKE IT EASY</span><b>Sunday late morning</b><small>10:10 AM · Riverside</small></button>
-            <div class="preference-panel" role="group" aria-label="Choose what matters in a round">
-              <p>WHAT MAKES A GOOD ROUND?</p>
-              <div class="preference-chips">
-                <button type="button" class="preference-chip" data-round-style="walking" aria-pressed="false">Walking <span aria-hidden="true">+</span></button>
-                <button type="button" class="preference-chip" data-round-style="easy" aria-pressed="false">Easy pace <span aria-hidden="true">+</span></button>
-                <button type="button" class="preference-chip" data-round-style="after-work" aria-pressed="false">After work <span aria-hidden="true">+</span></button>
+      <section class="try-round section-pad" id="try-round" data-analytics-name="Roundfolk profile demo">
+        <div class="try-round-heading" id="good-round"><p class="eyebrow"><span class="mini-star">✳︎</span> BETTER THAN RANDOM</p><h2>Your kind of golf.<br /><span>Your kind of group.</span></h2><p>Set when you play, add a little about yourself, and hear when another golfer fits your round.</p></div>
+        <div class="feature-demo">
+          <section class="profile-builder" aria-labelledby="profile-demo-title">
+            <div class="profile-builder-heading"><span class="demo-kicker">YOUR ROUNDFOLK PROFILE</span><h3 id="profile-demo-title">A little about your golf.</h3></div>
+            <fieldset class="availability-field">
+              <legend>When are you usually free?</legend>
+              <div class="availability-options">
+                <button type="button" class="availability-choice is-selected" data-availability="saturday" aria-pressed="true"><span><b>Saturday morning</b><small>Weekend round</small></span><span class="availability-check" aria-hidden="true">✓</span></button>
+                <button type="button" class="availability-choice" data-availability="thursday" aria-pressed="false"><span><b>Thursday afternoon</b><small>After work</small></span><span class="availability-check" aria-hidden="true">+</span></button>
+                <button type="button" class="availability-choice" data-availability="sunday" aria-pressed="false"><span><b>Sunday late morning</b><small>Take it easy</small></span><span class="availability-check" aria-hidden="true">+</span></button>
               </div>
-              <small>Pick one or more. Watch the example group adjust.</small>
+              <small class="field-hint">Choose every time that could work for you.</small>
+            </fieldset>
+            <div class="bio-field" data-clarity-mask="true"><label for="golfer-bio">Your short bio</label><textarea id="golfer-bio" maxlength="120">Early tee times, an easy pace, and fishing when I'm not golfing.</textarea><span class="bio-count" id="bio-count">64 / 120</span></div>
+            <div class="photo-field">
+              <div class="photo-preview" id="photo-preview" aria-label="Your profile photo preview"><span id="photo-initials">RF</span><img id="photo-preview-image" alt="Your selected profile photo" hidden /></div>
+              <div class="photo-copy" data-clarity-mask="true"><b>One photo</b><small>Help golfers put a face to your name.</small><label class="photo-add" for="golfer-photo">Choose a photo</label><input class="visually-hidden" id="golfer-photo" type="file" accept="image/*" /></div>
             </div>
-          </div>
-          <div class="sample-group">
-            <div class="sample-group-top"><div><span class="sample-label">YOUR SAMPLE ROUND</span><h3 id="sample-round-title">Saturday morning</h3></div><span class="sample-course">RIVERSIDE · 7:40 AM</span></div>
-            <p class="sample-caption" id="sample-round-caption">A relaxed start, with time to walk and catch up.</p>
-            <p class="sample-fit-summary" id="sample-fit-summary" role="status" aria-live="polite">A sample group with 2 golfers and 2 open spots.</p>
-            <div class="sample-roster" id="sample-roster">
-              <div class="sample-player"><span class="sample-avatar avatar-maya">M</span><span><b>Maya</b><small>Weekend rounds · easy pace</small></span><span class="sample-match">GOOD FIT</span></div>
-              <div class="sample-player"><span class="sample-avatar avatar-jules">J</span><span><b>Jules</b><small>Walks when the weather’s good</small></span><span class="sample-match">GOOD FIT</span></div>
-              <div class="sample-player open-slot"><span class="sample-avatar">+</span><span><b>Open spot</b><small>A place for your kind of golf</small></span><span class="sample-match">OPEN</span></div>
-              <div class="sample-player open-slot"><span class="sample-avatar">+</span><span><b>Open spot</b><small>A place for your kind of golf</small></span><span class="sample-match">OPEN</span></div>
+          </section>
+          <section class="fit-notice-panel" aria-labelledby="fit-notice-title">
+            <div class="notice-panel-top"><span class="demo-kicker">WHEN A GOLFER FITS</span><button class="notice-switch" id="fit-notice-toggle" type="button" role="switch" aria-checked="true" aria-label="Get a notice when a golfer fits"><span></span></button></div>
+            <h3 id="fit-notice-title">Get a note when a golfer fits your round.</h3>
+            <div class="fit-notice" id="fit-notice" aria-live="polite">
+              <span class="notice-label"><span class="notice-dot"></span> A GOLFER FITS YOUR SATURDAY</span>
+              <div class="notice-golfer"><span class="notice-avatar">M</span><span><b>Maya</b><small>Weekend rounds · walking, easy pace</small></span></div>
+              <p id="fit-notice-copy">Maya’s looking for a Saturday morning round at an easy pace.</p>
+              <span class="notice-action">SEE THE ROUND <span aria-hidden="true">↗</span></span>
             </div>
-            <p class="sample-footnote"><span>✳︎</span> Example golfers only. This is a preview, not live availability.</p>
-          </div>
+            <p class="notice-helper" id="notice-helper">A sample fit notice, based on the times you selected.</p>
+          </section>
         </div>
       </section>
 
