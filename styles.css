@@ -343,7 +343,8 @@
 .switch-track i{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #1b15202a;transition:transform .2s}
 #cart-switch:checked+.switch-track{background:var(--green)}#cart-switch:checked+.switch-track i{transform:translateX(14px)}#cart-switch:focus-visible+.switch-track{outline:3px solid var(--blue);outline-offset:3px}
 .round-profile-card{margin-top:10px;padding:11px;border:1.5px solid #e7e1ed;border-radius:16px 19px 15px 18px;background:#fff;box-shadow:0 3px 0 #211e280c}
-.round-profile-head{font-size:7px}.char-count{color:#a39baa;font-size:7px;font-weight:650;letter-spacing:0}
+.round-profile-head{font-size:7px}.two-lines-label{display:inline-block;font-weight:660;font-variation-settings:"ROND" 68,"opsz" 9;animation:two-lines-weight-drift 3.6s ease-in-out infinite}.char-count{color:#a39baa;font-size:7px;font-weight:650;letter-spacing:0}
+@keyframes two-lines-weight-drift{0%,100%{font-weight:660;font-variation-settings:"ROND" 68,"opsz" 9}50%{font-weight:696;font-variation-settings:"ROND" 80,"opsz" 9}}
 .allo-bio{min-height:39px;margin:7px 0 0;color:#514a5d;font-size:12px;line-height:1.5;letter-spacing:-.015em;font-variation-settings:"ROND" 70,"opsz" 15}
 .allo-bio.is-typing{font-weight:450}.allo-glyph{display:inline-block;opacity:0;transform:translateY(5px) scaleX(.82);font-weight:var(--glyph-weight,500);font-variation-settings:"ROND" 78,"opsz" 15;transition:opacity .15s,transform .22s;font-size:1em}
 .allo-glyph.is-visible{opacity:1;transform:translateY(0) scaleX(1);animation:glyph-weight-bloom .52s ease both}
