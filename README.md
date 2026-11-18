@@ -76,7 +76,7 @@ The phone preview now has iPhone side buttons, a larger status and app frame, na
 
 ## Published iPhone frame update — November 17
 
-The interactive phone preview now uses Zach’s supplied, unmodified portrait render at `assets/iphone-17-pro-cosmic-orange-frame.png`. Its transparent screen area layers over the live HTML interface, preserving the tappable tee-time choices and app controls. The frame is responsive and fits the mobile column; status icons are dark for contrast. Local visual review confirmed that selecting a time works and Reset restores the initial prompts. Published to the live page in commit `c58470c`. Keep the local preview open at `http://127.0.0.1:18766/`.
+The interactive phone preview uses the supplied Photoshop PSD at `/Users/zachgardner/Downloads/iPhone bezels/Photoshop/iPhone 17 Pro/iPhone 17 Pro - Cosmic Orange - Portrait.psd`. Its Hardware and Status Bar layers are composited into `assets/iphone-17-pro-cosmic-orange-frame.png`; the Screen placeholder layer is made transparent so the live HTML app remains interactive underneath. The status-bar time, signal, Wi-Fi, battery, and Dynamic Island are the PSD artwork itself. A blank HTML status spacer reserves the correct top inset. Keep the local preview open at `http://127.0.0.1:18766/`.
 
 ## Local stress review — November 17
 
@@ -84,4 +84,4 @@ The local preview was exercised at eight viewport widths from 320px to 1440px, a
 
 Three issues found during stress review were fixed: Reset now returns the inner phone screen to the top; compact spacing at widths up to 430px keeps the main round button above the sticky tabs, including after the full example bio appears; and the phone preview stacks above its notes from 701px to 900px so the controls remain legible and fit. All checked browser console logs were clear. The preview was left in its clean Round state. These fixes are published in commit `c58470c`.
 
-The status bar was refined on November 17 after review against the supplied iPhone 17 Pro bezel. The time and system marks now use a clearer iOS-style layout: time at left, the physical Dynamic Island centered, and cellular, Wi-Fi, and battery symbols at right. The custom symbols are inline vectors and scale with the preview. Published in commit `c58470c`; the GitHub Pages deployment completed successfully and the live preview was checked.
+The status bar now comes directly from the supplied Photoshop PSD layer, instead of HTML-drawn replacement symbols. The PSD render keeps its Hardware and Status Bar layers visible and removes only the Screen placeholder, leaving a transparent hole for interactive app content. Local browser review confirmed the real 9:41 artwork, Dynamic Island, system icons, and working tee-time controls.
