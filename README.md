@@ -1,10 +1,11 @@
-# Roundfolk smoke-test site
+# The Fourth Club smoke-test site
 
-Static GitHub Pages landing page for the Roundfolk golfer-matching interest test. The Roundfolk source is published to GitHub Pages as of November 16, 2026.
+Static GitHub Pages landing page for The Fourth Club golfer-matching interest test. The site is published to GitHub Pages; the brand name is The Fourth Club.
 
 ## Current setup
 
 - Site: `https://zachzedzach.github.io/parup-smoke-test/`
+- Custom domain setup (November 17, 2026): GitHub Pages is configured for `www.thefourth.club`. Namecheap’s `www` CNAME points to `zachzedzach.github.io`, and the root domain has a permanent HTTPS redirect to `https://www.thefourth.club/`. The CNAME is visible on Namecheap’s authoritative DNS, while public resolvers may still return the previous parked record during propagation. GitHub HTTPS enforcement is off pending certificate issuance; recheck the public DNS and certificate before directing visitors to the custom domain. The GitHub Pages address remains the fallback.
 - GitHub repository: `https://github.com/zachzedzach/parup-smoke-test`
 - Signup endpoint: Google Apps Script web app, configured in `index.html` so the form does not depend on a separate config script being loaded.
 - Signup destination: the team’s private Google Sheet (the existing sheet/project still uses the legacy ParUp name).
@@ -13,6 +14,8 @@ Static GitHub Pages landing page for the Roundfolk golfer-matching interest test
 - The endpoint is public and accepts email submissions into the private Sheet; expect spam risk. Keep the Sheet private.
 
 ## Current published smoke test
+
+**Brand update — November 18, 2026:** The public-facing brand is **The Fourth Club**, matching `thefourth.club`. The header, footer, page title, social title, app preview, store-button labels, signup dialog, confirmation copy, and favicon use the new brand. The pink golf-ball mark now carries a white “4.” The existing signup endpoint, private Google Sheet, Clarity project, and analytics event names/local-storage compatibility keys remain in place. This is a visual and copy rebrand; it does not change the demo or signup behavior.
 
 The page sells the app outcome: golfers find people who fit their pace, experience, schedule, interests, and preferred kind of round. The promise applies across genders, ages, experience levels, and schedules; Frank is one example, not the default customer. The published app preview shows an interactive example round: choose one of three suggested tee times or choose a weekday and time, choose “Rent a cart,” “Walk,” or “No preference” on the Getting around switch, starting with “No preference” selected. The phone app bar has a circle-arrow “Reset” button that restores the demo to this starting state. Wait one second after a time tap for a conversational two-line bio to type in with changing Allo weights. The time picker has a small “Try me” cue, a full-width pink “Add photo” button triggers a camera-flash effect and example photo, and the round-post button uses bright yellow when ready, pale lilac while disabled, and mint after posting. The button does not open a file picker or request camera access. Put the round out there and a same-time golfer appears in an example update; the visitor can accept or pass, and acceptance shows both golfers are in. The controls work locally; the three Getting around choices update the selection and preview analytics, nothing is saved, no photo is captured from the device, and no real golfer is matched or contacted. A small “Preview” label and “Example round preview” note identify the sample. The page uses normal scroll with no wheel/touch lock or forced pacing. The updated flow was published on November 17, 2026, in commit `0cf5cfa`.
 
@@ -32,20 +35,21 @@ The page tracks badge clicks by platform, gate display, section visibility, scro
 
 ## Publish status (checked November 17, 2026)
 
+- Custom-domain setup is in progress: GitHub Pages has `www.thefourth.club` as its custom domain. Namecheap’s saved `www` CNAME points to `zachzedzach.github.io`; a permanent root redirect points `thefourth.club` to `https://www.thefourth.club/`. At the last check, Namecheap’s authoritative DNS returned the GitHub CNAME, but public DNS resolvers still returned the previous parking record. GitHub HTTPS enforcement remains off until its certificate is issued. Recheck DNS and Pages HTTPS before directing visitors to the custom domain.
 - Roundfolk is published at `https://zachzedzach.github.io/parup-smoke-test/`; GitHub Actions Pages deployment succeeded.
 - The live site now reflects the current Roundfolk redesign. Zach explicitly requested publication on November 17 and confirmed GitHub use is allowed. The page includes the Dave Garcia Pexels hero photo, a single app screen with the golfer profile and expandable fit notice, and the one-email download notice after the store-style button click. The user rejected the older golf picker and requested an overhaul; commit `d8cd17e` deployed successfully. Firefox confirmed the live notice expands and the picker is absent. The earlier commit `1b94e3a` removed the standalone explanatory section and kept `#good-round` as a direct link to the app demo.
 - On November 17, 2026, the page received hover feedback, Allo variable-font tuning, keyboard focus visibility, reduced-motion support, and navigation informed by Josh Puckett’s project sites. The first sample-round picker and roster were superseded by the four-feature app screen after Zach said the concept demo itself needed an overhaul. The live design goal is to show how a profile leads to a useful fit notice, without asking visitors to configure a made-up round. Zach clarified Roundfolk should appeal to any golfer seeking people they would enjoy playing with, including women golfing together; the story covers different schedules, experience, and pace instead of centering Saturday golf or Frank. Pexels imagery supports the story, led by the selected Dave Garcia hero photo. Zach selected Dave Garcia’s black-and-white golfer image (`assets/roundfolk-hero-dave.jpg`) for the hero; its crop is shifted down to retain the golfer in frame. Visible photo-credit labels have been removed. Avoid words with sexual connotations.
 - November 17: after review of the CSS dimple treatment and a photo-based version, Zach selected the exact generated logo image `assets/roundfolk-pink-golf-ball-logo.png`. The image is used as-is, with the existing -12-degree mark tilt and a circular crop; no extra letter, recoloring layer, or texture is added. Firefox visual review confirmed it in the mobile header. The exact-image revision was published in commit `5c91dd2`; GitHub Pages succeeded and Firefox confirmed the live logo. On November 17, the cream wash over the Apple Notes paper tile was reduced after Zach could not see the texture; Firefox confirmed the paper grain is now visible behind the hero and ticker.
 - The signup endpoint was tested with a synthetic `.invalid` address and wrote the expected `download_button_clicked` source to the private Sheet. That exact test row was removed and verified absent.
 - Microsoft Clarity is configured. GA4 still needs a measurement ID. No local golfers have been recruited.
-- No custom domain has been selected or purchased; the free Pages URL is sufficient for this test.
+- The custom domain has been selected and purchased; follow the setup status above before using it in outreach.
 
 ## Before recruiting
 
 1. Create/configure a GA4 property and add the measurement ID to the inline configuration in `index.html` (and `config.js` if maintaining a separate copy).
 2. The endpoint write and cleanup were verified with a synthetic `.invalid` test address. Verify the live form’s browser success message when doing the next browser QA; do not create additional test rows unless needed.
 3. Confirm the page uses Roundfolk branding and the correct concept details before sending visitors. Do not imply the concept mock screens are a live product.
-4. Use a custom domain only after the team chooses one and the grant process permits the cost.
+4. Recheck custom-domain DNS and enable GitHub Pages HTTPS after the certificate is issued.
 
 ## Implementation notes
 

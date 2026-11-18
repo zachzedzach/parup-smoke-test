@@ -27,7 +27,7 @@
   }
 
   function track(name, details = {}) {
-    const params = { method: 'Roundfolk smoke test', early_access_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(olderCtaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes', ...details, ...campaignParams };
+    const params = { method: 'The Fourth Club smoke test', early_access_cta_clicked: sessionStorage.getItem(ctaClickedKey) === 'yes' || sessionStorage.getItem(olderCtaClickedKey) === 'yes' || sessionStorage.getItem(legacyCtaClickedKey) === 'yes', ...details, ...campaignParams };
     if (typeof window.gtag === 'function') window.gtag('event', name, params);
     if (typeof window.clarity === 'function') window.clarity('event', name);
   }
@@ -458,11 +458,11 @@
     if (event.data.status === 'success') {
       form.reset();
       submit.disabled = false;
-      status.textContent = 'You’re on the list. We’ll be in touch when Roundfolk is ready.';
+      status.textContent = 'You’re on the list. We’ll be in touch when The Fourth Club is ready.';
       track('roundfolk_signup_completed');
     } else if (event.data.status === 'duplicate') {
       submit.disabled = false;
-      status.textContent = 'You’re already on the list. We’ll be in touch when Roundfolk is ready.';
+      status.textContent = 'You’re already on the list. We’ll be in touch when The Fourth Club is ready.';
       track('roundfolk_signup_duplicate');
     } else {
       submit.disabled = false;
