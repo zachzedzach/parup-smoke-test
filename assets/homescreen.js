@@ -12,7 +12,7 @@
  const root=document.createElement('section');root.id='preferences-app';root.setAttribute('data-clarity-mask','true');document.body.append(root);
  const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const save=()=>{}; // Demo entries live only until the page reloads.
- const chips=(field,values)=>`<div class="pref-chips">${values.map(v=>`<button type="button" data-field="${field}" data-value="${esc(v)}" aria-pressed="${state[field].includes(v)}">${esc(v)}</button>`).join('')}</div>`;
+ const chips=(field,values)=>`<div class="pref-chips">${values.map(v=>`<button type="button" data-field="${field}" data-value="${esc(v)}" aria-label="${esc(v)}" aria-pressed="${state[field].includes(v)}">${esc(field==='days'?v.slice(0,3):v)}</button>`).join('')}</div>`;
  const single=(field,values)=>`<div class="pref-chips">${values.map(v=>`<button type="button" data-single="${field}" data-value="${esc(v)}" aria-pressed="${state[field]===v}">${esc(v)}</button>`).join('')}</div>`;
  const field=(label,name,extra='')=>`<label class="pref-field">${label}<input data-input="${name}" value="${esc(state[name])}" ${extra}></label>`;
  function courseRows(q=''){return courses.filter(c=>c.access!=='private'&&`${c.name} ${c.city}`.toLowerCase().includes(q.toLowerCase())).map(c=>`<button type="button" class="course-wheel-row" data-course="${esc(c.name)}" aria-pressed="${state.courses.includes(c.name)}"><span><b>${esc(c.name)}</b><small>${esc(c.city)} · ${c.access==='public'?'Public / municipal':'Public access'}</small></span><span class="course-check">${state.courses.includes(c.name)?'✓':'+'}</span></button>`).join('')||'<p>No courses found. Try a nearby city.</p>'}
