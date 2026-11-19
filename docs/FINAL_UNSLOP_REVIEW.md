@@ -26,7 +26,7 @@ Heuristic total: 7 → 6. No decorative numbering is actually rendered: the thre
 | Rule | Before | After | Kept |
 |---|---:|---:|---:|
 | U3 | 15 | 0 | 0 |
-| U4 | 6 | 0 | 0 |
+| U4 | 7 | 0 | 0 |
 | U7 | 5 | 0 | 0 |
 | U8 | 14 | 0 | 0 |
 | U11 | 7 | 0 | 0 |
