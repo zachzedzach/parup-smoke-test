@@ -343,3 +343,9 @@
 @media(prefers-reduced-motion:reduce){#preferences-app button{transition:none!important;transform:none!important}}
 
 #preferences-app.embedded-app{position:relative}
+
+/* Keep story indicators compact; their large tap targets do not change visual size. */
+#preferences-app .story-pagination{width:max-content;max-width:100%;margin-inline:auto;flex:none;gap:8px;justify-content:center}
+#preferences-app .story-pagination button{flex:0 0 32px;width:32px;min-width:32px;max-width:32px;height:32px;min-height:32px;padding:0;transform:none!important}
+#preferences-app .story-pagination button:before{display:block;width:7px;height:7px;min-width:7px;max-width:7px;transform:none!important}
+#preferences-app .story-pagination button[aria-current=step]:before{width:20px;max-width:20px;min-width:20px}
