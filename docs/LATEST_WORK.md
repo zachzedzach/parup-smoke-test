@@ -2,9 +2,9 @@
 
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
-## Current revision — November 19, 2026
+## Published revision — November 19, 2026
 
-Added an optional handicap-index field to the profile and the completion summary. Rebuilt the seven-level golf experience choices as short, numbered, single-line descriptions with a clear 1-to-7 explanation. All seven fit together on a phone screen without scrolling. Local browser review confirmed the profile field and complete scale. 48 automated checks pass; JavaScript syntax and diff checks pass. This revision is ready to publish.
+Added an optional handicap-index field to the profile and the completion summary. Rebuilt the seven-level golf experience choices as short, numbered, single-line descriptions with a clear 1-to-7 explanation. All seven fit together on a phone screen without scrolling. Local browser review confirmed the profile field and complete scale. 48 automated checks pass; JavaScript syntax and diff checks pass. Published in commit `3b9d145`; GitHub Pages run [44615859081](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44615859081) succeeded. The live installed-app route was opened; its seven numbered choices all appear in the phone viewport with no internal scrolling. The optional handicap field and value retention were verified in the local walkthrough.
 
 ## Previous published onboarding revision — November 19, 2026
 
