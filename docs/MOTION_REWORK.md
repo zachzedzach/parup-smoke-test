@@ -15,3 +15,10 @@ Switching the three welcome stories used to reset the rendered-view marker. That
 ## November 19: Setup direction
 
 The progress fill and setup page now share one explicit direction. On Continue, the fill grows left to right while the next page enters from the right and settles left; the previous page moves 12px left underneath it. Back mirrors that motion. The entering page now travels 28px so the connection reads clearly without a large sweep. A regression check asserts the entering and exiting positions, progress-fill direction and mirrored Back behavior.
+
+
+## November 19: Allo variable-weight wave
+
+The Allo variable-font wave now appears on the marketing hero lines, welcome story phrases, and key onboarding, ready, and results headings. The first and last glyph remain at weight 650; interior glyphs travel through a sine wave over 5.8 seconds with weight amplitude 120. Each SVG text line has a measured `textLength` and spacing adjustment, so weight variation does not reflow or change line width. Text remains accessible as one label. Reduced-motion users see static text. Setup inputs are deliberately not animated.
+
+Browser check: first-name entry rendered `Zach` once. The app listener stores the field value without inserting or rewriting characters. This did not reproduce duplicated input in the app; repeated characters in the chat composer are outside the site code. Automated checks cover stationary endpoints, stable line lengths, and one typed value through navigation.

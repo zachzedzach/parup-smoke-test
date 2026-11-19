@@ -119,8 +119,8 @@
 
 /* Fixed phrase measure; SVG redistributes interior spacing as glyph widths change. */
 .welcome-living-type{display:inline-block;max-width:100%;vertical-align:baseline;line-height:1;animation:none}
-.headline-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
-.headline-wave-svg tspan{animation:none;transition:none}
+.allo-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
+.allo-wave-svg tspan{animation:none;transition:none}
 .round-journey{padding:16px 16px 16px 32px;background:white;border-radius:14px;font-size:14px;line-height:1.8;color:#514958}.booking-next{margin-top:16px;padding:16px;background:#f1f6f3;border-radius:12px}.booking-next b{font-size:14px;color:#286248}.booking-next p{font-size:13px;line-height:1.5}.booking-next>button{min-height:44px;border:1px solid #a7c7b5;background:white;border-radius:10px;padding:10px;color:#286248}.booking-next small{display:block;line-height:1.5;margin-top:12px}.booking-next .pref-primary{font-size:14px}
 
 /* Shared app: one product in the supplied hardware frame and the installed view. */
@@ -287,8 +287,8 @@
 @media(max-height:700px){#preferences-app[data-view=welcome] .story-visual{height:170px;margin-bottom:18px}#preferences-app[data-view=welcome] h1{font-size:31px}#preferences-app[data-view=welcome] .pref-intro{font-size:15px;margin-bottom:10px}#preferences-app[data-view=welcome] .preferences-header{min-height:56px}#preferences-app .ready-arrival{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){#preferences-app .preferences-content{scroll-behavior:auto}#preferences-app *,#preferences-app *:before,#preferences-app *:after{animation:none!important;transition:none!important}}
 /* Display lettering is filled type, never part of the line-icon system. */
-#preferences-app .headline-wave-svg{height:auto;fill:currentColor;stroke:none;stroke-width:0;flex:initial}
-#preferences-app .headline-wave-svg text,#preferences-app .headline-wave-svg tspan{fill:currentColor;stroke:none}
+#preferences-app .allo-wave-svg{height:auto;fill:currentColor;stroke:none;stroke-width:0;flex:initial}
+#preferences-app .allo-wave-svg text,#preferences-app .allo-wave-svg tspan{fill:currentColor;stroke:none}
 .homescreen-mode body>#preferences-app{background:#f5f5f3;color:#20241f}
 #preferences-app .availability-dial{touch-action:pan-y}
 #preferences-app[data-editing=true] .setup-progress{display:none}

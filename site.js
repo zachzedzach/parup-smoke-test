@@ -8,6 +8,9 @@
     }
   }
 
+  const heroCopy = document.querySelector('.hero-copy');
+  if (heroCopy && window.startAlloWave) window.startAlloWave(heroCopy, '.hero-wave-line');
+
   const config = window.ROUNDFOLK_CONFIG || window.PARUP_CONFIG || {};
   const form = document.getElementById('signup-form');
   const status = document.getElementById('form-status');

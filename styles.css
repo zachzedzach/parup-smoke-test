@@ -645,3 +645,8 @@
 @media(max-width:700px){.invite-section .store-badge{width:166px;max-width:100%}.invite-section .store-actions{gap:12px}.invite-section .invite-copy h2{font-size:48px}.invite-section .invite-copy p{font-size:17px}}
 .app-preview-stage>.interactive-round{grid-column:2;grid-row:1;align-self:center;justify-self:center}
 @media(max-width:700px){.app-preview-stage>.interactive-round{grid-column:auto;grid-row:auto}}
+
+/* Allo's per-letter weight wave keeps each line's measured width fixed. */
+.allo-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor}
+.allo-wave-svg text,.allo-wave-svg tspan{fill:currentColor;stroke:none}
+.hero-wave-line{display:inline-block;vertical-align:baseline;line-height:1.03}
