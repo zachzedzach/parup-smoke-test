@@ -2,11 +2,11 @@
 
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
-## Review and copy revision — November 19, 2026
+## Published review and copy revision — November 19, 2026
 
 Applied the remaining phone-screen annotations: shortened the seven numbered game descriptions; kept the sample-photo step and starting tees out; made the results say plainly that the golfers want to play around the same time and that playing together is optional, with both people deciding before a booking; and added the chosen game description and bio to the completion summary. Course selection remains stable in place.
 
-Captured and inspected local browser screenshots for the welcome, profile, game scale, course list before and after selection, availability, round details, completion, results, fit explanation, saved plans, waiting response, and accepted response. Expanded fit content and all example actions remained legible above the app navigation. All 51 stress checks, syntax checks, and `git diff --check` pass. Changes are not published yet.
+Captured and inspected browser screenshots for the welcome, profile, all seven game choices, course list before and after selection, availability with separate weekday times, round details, completion, results, fit explanation, saved plans, waiting response, and accepted response. Expanded fit content and example actions remained legible above app navigation. The live course row did not move when selected. All 51 stress checks, syntax checks, and `git diff --check` pass. Published in commit `1fdd6c4`; GitHub Pages run [44633502731](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44633502731) succeeded. The published `/?homescreen=1&release=1fdd6c4` was opened and the full setup and golf-plan flow was checked live. Physical iPhone gesture, keyboard, and frame-rate behavior remain device checks.
 
 ## Published revision — November 19, 2026
 
