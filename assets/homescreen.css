@@ -460,6 +460,10 @@
 #preferences-app[data-view=ready] .ready-plan>small{color:#707a70;font-size:10px;font-weight:700;letter-spacing:.08em}
 #preferences-app[data-view=ready] .ready-plan>b{font-size:17px;line-height:1.3}
 #preferences-app[data-view=ready] .ready-plan>p{margin:2px 0 0;color:#59645b;font-size:13px}
+#preferences-app[data-view=ready] .ready-plan .ready-skill{display:flex;align-items:flex-start;gap:9px;margin:0;color:#263d29;font-size:13px;line-height:1.35}
+#preferences-app[data-view=ready] .ready-plan .ready-skill b{display:grid;place-items:center;flex:none;width:24px;height:24px;border-radius:50%;background:#e4edf9;color:#3479ed;font-size:12px}
+#preferences-app[data-view=ready] .ready-plan .ready-skill span{padding-top:3px}
+#preferences-app[data-view=ready] .ready-plan .ready-bio{margin:0;color:#59645b;font-size:13px;line-height:1.45}
 #preferences-app[data-view=ready] .ready-times{gap:6px}
 #preferences-app[data-view=ready] .ready-times>span{min-width:78px;padding:8px 9px;border-radius:9px;background:#fff;font-size:12px}
 #preferences-app[data-view=ready] .ready-explainer{color:#536057;font-size:14px;line-height:1.5}

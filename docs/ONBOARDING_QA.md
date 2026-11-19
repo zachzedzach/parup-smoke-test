@@ -1,12 +1,15 @@
 # Onboarding QA — November 19, 2026
 
-## Latest revision
+## Latest revision — November 19, 2026
 
-The profile now accepts an optional handicap index and carries it into the completion summary. Golf experience is presented as seven concise numbered descriptions; the complete scale fits in a single phone screen without scrolling. The labels retain the experience progression without rank titles.
+The profile accepts an optional handicap index and carries the selected numbered game description and short bio into the completion summary. All seven concise descriptions fit in one phone screen, use no rank titles, and retain the experience progression. Results now state that golfers want to play around the visitor’s usual times, that choosing a plan is optional, and that both people decide before anyone books.
 
 ## Latest verification — November 19
 
-The current suite has 51 passing checks. It covers the six-step setup, all seven short numbered game descriptions, per-day times, area/A–Z course search and home-city clustering, stable course selection without list reflow, full county-name search, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. The November 19 setup revision removes the sample-photo button and redundant skip-introduction shortcut, eliminates the cramped course locator and nested course scroll, reveals one native time input per chosen weekday, and summarizes each weekday’s start on completion. A phone-width browser walkthrough inspected the welcome, profile and handicap field, skill scale, course list, availability, round choices, and completion screen. On-screen taps of multiple nearby courses kept the count, selection rail, first row, and scroll offset fixed. Switching to A–Z reordered rows without changing the screen position; removing selections updated the same list in place. Automated layout checks cover 320px and 390px widths. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
+All 51 automated stress checks pass. In a local phone-width browser view, I captured and reviewed the first-run welcome, profile, all seven game choices, Utah course search and selection, weekly availability, round details, profile summary, results, expanded “Why this round?” explanation, saved plan, waiting-for-reply state, and accepted example. The course row, selected count, and chosen-course rail stayed fixed when selecting a course. The results identify day/time/course first, then show open places, golfer photo and description, and the optional “Tell [name] I’m in” action. Both waiting and accepted states clearly say they are examples and that no real golfer is contacted. Setup copy carries each selected day and time into the summary; different weekdays remain independent.
+
+The full suite covers the six-step setup, seven numbered descriptions, independent weekday starts, area/A–Z search and home-city clustering, stable course selection, plan filters/recovery, save/skip/request/accept flows, booking boundaries, reduced motion, difficult names, responsive width checks, and forward/back direction. JavaScript syntax and whitespace checks pass. The visual captures were made in the local preview before publication. Physical-iPhone keyboard, safe-area, gesture, and frame-pacing checks remain hardware-only.
+
 
 ## Intended experience
 
