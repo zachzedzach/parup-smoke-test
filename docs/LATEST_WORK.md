@@ -13,3 +13,5 @@ The homepage phone and homescreen use one app, assets/homescreen.js and .css. Le
 Recovery: revert the shared-app design commit if necessary and redeploy Pages. Publishing allowlist remains index.html, styles.css, site.js, manifest.webmanifest, CNAME and assets only. Docs, tests and backend source must remain unavailable publicly.
 
 Deployment correction: GitHub Pages was still configured with build_type=legacy, causing a competing branch-root build alongside the allowlisted custom workflow. Changed Pages build_type to workflow through the GitHub API, preserving www.thefourth.club and HTTPS enforcement. The legacy run finished before cancellation could take effect; a new allowlisted deployment was issued after changing the setting. Subsequent pushes must produce only the custom deploy. Verify docs/backend 404 after deployment.
+
+Installed-app polish: white theme/launch surface, visual-viewport height handling for keyboard resize, and 192/512px manifest icons exported from the approved ball/club layers. The Apple touch icon remains the existing 180px artwork. Physical-device keyboard behavior remains unverified.
