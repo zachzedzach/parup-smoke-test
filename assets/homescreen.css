@@ -123,3 +123,199 @@
 .headline-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
 .headline-wave-svg tspan{animation:none;transition:none}
 .round-journey{padding:16px 16px 16px 32px;background:white;border-radius:14px;font-size:14px;line-height:1.8;color:#514958}.booking-next{margin-top:16px;padding:16px;background:#f1f6f3;border-radius:12px}.booking-next b{font-size:14px;color:#286248}.booking-next p{font-size:13px;line-height:1.5}.booking-next>button{min-height:44px;border:1px solid #a7c7b5;background:white;border-radius:10px;padding:10px;color:#286248}.booking-next small{display:block;line-height:1.5;margin-top:12px}.booking-next .pref-primary{font-size:14px}
+
+/* Shared app: one product in the supplied hardware frame and the installed view. */
+#preferences-app{display:flex;flex-direction:column;min-height:0;min-width:0;height:100%;overflow:hidden;background:#f5f5f3;color:#20241f;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;font-variation-settings:normal;--app-blue:#176b50;--app-muted:#62685f;--app-line:#dedfd9;--app-tint:#edf2e9;--app-pink:#d63869}
+#preferences-app *{box-sizing:border-box}
+#preferences-app svg{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#preferences-app button,#preferences-app input,#preferences-app textarea{font-family:inherit;touch-action:manipulation}
+#preferences-app button{cursor:pointer;letter-spacing:normal}
+#preferences-app button:focus-visible,#preferences-app a:focus-visible,#preferences-app summary:focus-visible{outline:3px solid #176b50;outline-offset:3px}
+#preferences-app h1:focus{outline:0}
+#preferences-app ::selection{background:#f7c5d5;color:#24251f}
+#preferences-app .preferences-header{padding:calc(env(safe-area-inset-top) + 12px) 20px 12px;min-height:66px;background:#ffffffed;gap:8px;border-bottom:1px solid #e8e9e3}
+#preferences-app .preferences-header b{font-family:Allo,sans-serif;font-size:19px;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
+#preferences-app .preferences-header>span{font-size:11px;color:#62685f;line-height:1.3;max-width:65px}
+#preferences-app .preferences-header img{height:30px;width:30px}
+#preferences-app .app-reset{width:44px;min-height:44px;display:grid;place-items:center;border:0;background:transparent;color:#62685f;padding:8px}
+#preferences-app .preferences-content{width:100%;max-width:560px;padding:26px 22px 32px;overscroll-behavior-y:auto;scrollbar-width:thin;scrollbar-color:#c4c9be transparent;scroll-behavior:smooth}
+#preferences-app .pref-intro{color:#62685f;font-size:16px;line-height:1.5}
+#preferences-app h1{font-weight:700;letter-spacing:-.03em;line-height:1.12;font-size:32px;text-wrap:balance}
+#preferences-app h2{letter-spacing:-.025em}
+#preferences-app .pref-footnote{font-size:13px;line-height:1.5;color:#62685f}
+#preferences-app .pref-primary{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border:0;border-radius:14px;background:#176b50;color:white;text-decoration:none;font-size:16px;font-weight:600;line-height:1.3;padding:14px 16px;box-shadow:none}
+#preferences-app .pref-primary:disabled{background:#e4ede2;color:#335d43;opacity:1;cursor:default}
+#preferences-app .pref-primary:active:not(:disabled){transform:scale(.98);filter:brightness(.94)}
+#preferences-app .setup-actions{background:#fff;padding:12px 22px max(18px,env(safe-area-inset-bottom));max-width:560px}
+#preferences-app .setup-actions .pref-primary{background:#176b50;font-family:inherit;font-size:17px}
+#preferences-app .welcome-shortcuts{display:flex;justify-content:space-between;gap:8px}
+#preferences-app .story-skip{font-size:13px;min-height:44px;padding:5px 0;color:#5b6357}
+#preferences-app[data-view=welcome] .preferences-content{max-width:500px;padding:18px 22px 10px}
+#preferences-app[data-view=welcome] h1{font-size:clamp(32px,8vw,42px);letter-spacing:-.035em;line-height:1.08}
+#preferences-app[data-view=welcome] .pref-intro{min-height:0;margin-bottom:18px}
+#preferences-app .story-visual{height:clamp(180px,31dvh,290px);margin:0 0 24px;border-radius:18px;background:#e5ebdf}
+#preferences-app .story-visual>img{border-radius:18px;transform:none}
+#preferences-app .story-tag{bottom:14px;left:14px;max-width:calc(100% - 28px);font-size:12px;background:#fffdf3f2;color:#3f493b;box-shadow:none;border-radius:8px;padding:9px 11px}
+#preferences-app .story-visual:has(.story-times)>img{filter:brightness(.75)}
+#preferences-app .story-visual:has(.story-times)>.story-tag{display:none}
+.story-times{position:absolute;inset:auto 14px 14px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#preferences-app .story-times button{border:0;background:#fffffff0;color:#3d483c;border-radius:12px;min-height:64px;padding:10px 14px;text-align:left;font-size:12px;transition:background-color 140ms,color 140ms,transform 100ms}
+#preferences-app .story-times button b{display:block;font-size:23px;letter-spacing:-.025em;margin-top:2px;font-variant-numeric:tabular-nums}
+#preferences-app .story-times button[aria-pressed=true]{background:#fff0b2;color:#3d4226}
+.story-overlap{grid-column:1/-1;color:white;text-align:center;font-size:12px;padding-top:5px}
+.story-agreement{position:absolute;bottom:14px;left:14px;right:14px;display:flex;gap:8px}
+.story-agreement span{background:#fffdf3f0;border-radius:10px;flex:1;display:flex;align-items:center;justify-content:center;gap:5px;min-height:48px;color:#315b40;font-size:12px}
+#preferences-app .story-agreement svg{width:18px}
+#preferences-app .story-visual:has(.story-agreement)>.story-tag{display:none}
+#preferences-app .story-pagination{gap:4px;margin:0;min-height:34px;align-items:center}
+#preferences-app .story-pagination button{width:32px;height:32px;background:transparent;border-radius:0;display:grid;place-items:center;transition:none}
+#preferences-app .story-pagination button:before{position:static;content:'';width:7px;height:7px;background:#c6cdc0;border-radius:8px;transition:transform 180ms,background-color 180ms}
+#preferences-app .story-pagination [aria-current=step]:before{background:#d63869;transform:scaleX(2)}
+#preferences-app[data-view=setup] .preferences-content{max-width:560px;padding:16px 22px 28px}
+#preferences-app[data-view=setup] .preferences-header{padding-inline:20px}
+#preferences-app[data-view=setup] .ios-nav-back{color:#176b50}
+#preferences-app[data-view=setup] .preferences-header b{font-family:Allo,sans-serif;font-size:17px}
+#preferences-app[data-view=setup] .preferences-header>span{font-size:11px;color:#62685f}
+#preferences-app[data-view=setup] .app-reset{display:none}
+#preferences-app[data-view=setup] h1{margin-top:24px;letter-spacing:-.025em;font-size:32px}
+#preferences-app[data-view=setup] .pref-intro{font-size:16px;color:#62685f;margin-bottom:24px}
+#preferences-app .setup-progress{height:3px;background:#e7eadf}
+#preferences-app .setup-progress span{background:#176b50}
+#preferences-app[data-view=setup] .pref-field,#preferences-app[data-view=setup] h3{color:#51594d;font-size:14px;letter-spacing:0}
+#preferences-app[data-view=setup] input,#preferences-app[data-view=setup] textarea{caret-color:#176b50;background:#f1f3ed;color:#20241f;font-size:17px}
+#preferences-app[data-view=setup] input::placeholder,#preferences-app[data-view=setup] textarea::placeholder{color:#697064;opacity:1}
+#preferences-app[data-view=setup] .pref-chips,#preferences-app[data-view=setup] .skill-choices,#preferences-app[data-view=setup] .course-wheel,#preferences-app[data-view=setup] .course-wheel-row{background:#f1f3ed}
+#preferences-app[data-view=setup] .pref-chips [aria-pressed=true]:after,#preferences-app[data-view=setup] .skill-choices button>span:last-child,#preferences-app[data-view=setup] .course-check{color:#176b50}
+#preferences-app[data-view=setup] .skill-choices [aria-pressed=true],#preferences-app[data-view=setup] .course-wheel-row[aria-pressed=true]{background:#e0ecdc;color:#203d27}
+#preferences-app[data-view=setup] .skill-choices small,#preferences-app[data-view=setup] .course-wheel-row small,#preferences-app[data-view=setup] .course-count{color:#62685f}
+#preferences-app[data-view=setup] .pref-chips [data-field=days]{background:#f1f3ed}
+#preferences-app[data-view=setup] .pref-chips [data-field=days][aria-pressed=true]{background:#176b50}
+#preferences-app[data-view=setup] .photo-example{background:#fbe3eb;color:#9e2850;min-height:56px;border-radius:12px;font-weight:500;overflow:hidden}
+#preferences-app .photo-example img{height:80px;width:80px;object-fit:cover;border-radius:8px;margin-right:12px}
+#preferences-app .day-schedules{background:#f1f3ed}
+#preferences-app .availability-dial{border-color:#e8ecdf;background:#fbfcf9;box-shadow:inset 0 0 0 1px #d8dece;width:214px;height:214px;margin-block:24px 12px}
+#preferences-app .dial-hand{will-change:auto}
+#preferences-app .dial-label small,#preferences-app .dial-slider-label,#preferences-app .dial-endpoints{color:#62685f}
+#preferences-app .dial-slider-label{font-size:12px;margin-bottom:4px}
+#preferences-app #usual-time{accent-color:#176b50;min-height:40px}
+.tolerance-control{display:block;margin:26px 0 4px;padding-top:20px;border-top:1px solid #dedfd9}
+.tolerance-control>span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:14px;color:#51594d}
+.tolerance-control b{font-weight:600;color:#176b50}
+#preferences-app #time-tolerance{padding:0;min-height:44px;width:100%;accent-color:#176b50;background:transparent}
+.tolerance-control small{font-size:12px;line-height:1.5;color:#62685f}
+#preferences-app .preferences-tabs{position:relative;flex:none;width:100%;max-width:560px;margin:0 auto;bottom:auto;display:flex;padding:10px 18px max(14px,env(safe-area-inset-bottom));gap:0;background:#ffffffed;border-top:1px solid #e1e4db;backdrop-filter:blur(16px)}
+#preferences-app .preferences-tabs button{min-height:50px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:0;background:transparent;font-family:inherit;font-size:11px;font-weight:500;color:#616a5a;border-radius:12px;padding:4px;flex:1}
+#preferences-app .preferences-tabs [aria-current=page]{background:#edf2e9;color:#176b50}
+#preferences-app .clubhouse-title h1{margin:2px 0 12px;font-size:32px;max-width:340px}
+#preferences-app .clubhouse-title .pref-intro{font-size:15px;margin-bottom:22px}
+.availability-summary{display:flex;align-items:center;gap:12px;width:100%;padding:16px 0;border:0;border-block:1px solid #d9dfd2;background:transparent;text-align:left;color:#244530}
+.availability-summary>span{display:grid;gap:5px;flex:1;min-width:0}
+#preferences-app .availability-summary b{font-size:14px;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.availability-summary small{font-size:12px;color:#62685f}
+.plan-day-filter{display:flex;flex-wrap:wrap;gap:6px;padding:18px 0}
+#preferences-app .plan-day-filter button{min-height:40px;padding:10px 14px;border:1px solid #d7dece;border-radius:20px;color:#4f5d48;background:transparent;font:500 13px -apple-system,sans-serif}
+#preferences-app .plan-day-filter [aria-pressed=true]{background:#2c4833;color:#fff;border-color:#2c4833}
+.result-count{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:#5b6655;line-height:1.4}
+.result-count>span{display:flex;gap:5px;align-items:center;font-size:11px}
+#preferences-app .result-count svg{width:16px;height:16px}
+#preferences-app .partner-card{border:0;box-shadow:0 4px 20px #263b2110;border-radius:16px;margin:18px 0 24px;background:#fff}
+#preferences-app .partner-card>div{padding:20px}
+.plan-topline{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px;color:#516148}
+.plan-topline>span:first-child{font-weight:600}
+.plan-window{background:#edf3e7;color:#48643a;padding:5px 8px;border-radius:6px;font-size:11px}
+#preferences-app .golf-plan-card h2{font-size:25px;font-weight:650;line-height:1.15;margin:12px 0 9px;font-variant-numeric:tabular-nums;letter-spacing:-.025em}
+#preferences-app .golf-plan-card .plan-course{font-size:16px;font-weight:600;color:#2b3526;margin:0 0 8px}
+#preferences-app .golf-plan-card .plan-reason{font-size:12px!important;color:#62685f;margin:0}
+.group-seats{display:flex;gap:5px;align-items:center;margin:17px 0 20px;padding-bottom:20px;border-bottom:1px solid #eaeee4}
+.group-seats>span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;overflow:hidden;flex:none}
+.group-seats img{height:100%;width:100%;object-fit:cover}
+.seat-filled{background:#e4ecd9;color:#5f774d}.seat-open{border:1px dashed #b9c8aa;color:#76905f;font-size:19px}
+#preferences-app .group-seats small{margin-left:auto;font-size:11px;color:#62685f}
+#preferences-app .plan-golfer{margin:0 0 14px;gap:10px}
+#preferences-app .plan-golfer img{width:50px;height:50px;border-radius:10px}
+#preferences-app .plan-golfer b{font-size:16px;color:#283122}
+#preferences-app .plan-golfer small{font-size:12px;color:#62685f}
+#preferences-app .golfer-description{font-size:15px;line-height:1.6;color:#41493b;margin:0 0 16px}
+.plan-facts{display:flex;flex-wrap:wrap;gap:6px;font-size:11px;color:#55654a}
+.plan-facts span{padding:6px 8px;background:#f3f5ef;border-radius:6px}
+#preferences-app summary{list-style:none;cursor:pointer}
+#preferences-app summary::-webkit-details-marker{display:none}
+#preferences-app .plan-fit{margin-top:17px;border-top:1px solid #eaeee4}
+#preferences-app .plan-fit summary{display:flex;align-items:center;justify-content:space-between;min-height:44px;font-size:13px;color:#42643a}
+#preferences-app .plan-fit summary svg{width:16px;height:16px;transition:transform 160ms}
+#preferences-app details[open]>summary svg{transform:rotate(90deg)}
+#preferences-app .plan-fit p{font-size:13px;color:#62685f;margin:0 0 8px}
+#preferences-app .plan-fit small{font-size:11px;color:#62685f;display:block;margin-bottom:12px}
+#preferences-app .partner-actions{gap:8px;margin:10px 0 10px}
+#preferences-app .partner-actions button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:#f3f5ef;color:#4b5d40;font:500 12px -apple-system,sans-serif;border-radius:10px}
+#preferences-app .partner-actions svg{width:16px;height:16px}
+#preferences-app .partner-actions [aria-pressed=true]{background:#fce4ed;color:#9c3155}
+#preferences-app .booking-next{margin-top:16px;background:#eef4e9;border-radius:12px;padding:16px}
+.request-state{display:flex;gap:8px;align-items:center;color:#315c3e}
+#preferences-app .request-state svg{width:20px;height:20px}
+#preferences-app .request-state b{font-size:13px;line-height:1.4}
+#preferences-app .booking-next p,#preferences-app .booking-next small{font-size:12px;color:#4d6245;line-height:1.5}
+#preferences-app .booking-next>button{display:flex;align-items:center;gap:8px;background:white;border:0;color:#315c3e;font-size:12px;padding:12px;border-radius:8px}
+.booking-explainer{margin:24px 0 14px;font-size:13px;color:#52634a}
+.booking-explainer summary{display:flex;justify-content:space-between;align-items:center;min-height:44px}
+#preferences-app .booking-explainer svg{width:16px;height:16px}
+.booking-explainer ol{padding-left:20px;line-height:1.9}
+.booking-explainer p{line-height:1.5;font-size:12px}
+.direct-booking{display:flex;justify-content:space-between;align-items:center;min-height:48px;padding-block:10px;border-block:1px solid #d9dfd2;font-size:13px;color:#315c3e;text-decoration:none}
+#preferences-app .direct-booking svg{width:18px;height:18px}
+#preferences-app .empty-partners{text-align:center;padding:30px 12px;color:#53624b}
+#preferences-app .empty-partners>svg{height:36px;width:36px;color:#6c845e}
+#preferences-app .empty-partners h2{font-size:24px;margin:18px 0 12px;color:#2f3e27}
+#preferences-app .empty-partners p{font-size:14px;line-height:1.6}
+#preferences-app .empty-partners button{display:inline-flex;gap:8px;align-items:center;border:0;background:#e6ecdd;border-radius:12px;min-height:46px;padding:12px 16px;color:#315c3e;font-size:14px}
+#preferences-app .your-profile{display:flex;gap:14px;align-items:center;padding:20px 0 26px}
+.your-profile>span{height:60px;width:60px;display:grid;place-items:center;overflow:hidden;background:#e1ead7;color:#526c3e;border-radius:50%;font-size:25px;font-weight:600}
+.your-profile img{height:100%;width:100%;object-fit:cover}
+.your-profile b{display:block;font-size:22px;overflow-wrap:anywhere}.your-profile small{display:block;font-size:13px;color:#62685f;margin-top:5px}
+.preference-sections{background:white;border-radius:14px;overflow:hidden}
+#preferences-app .preference-sections button{display:flex;align-items:center;gap:12px;width:100%;padding:17px 18px;background:none;border:0;border-bottom:1px solid #e5e9dd;text-align:left;min-height:80px}
+#preferences-app .preference-sections button:last-child{border:0}
+.preference-sections button>span{flex:1;min-width:0;display:grid;gap:6px}
+.preference-sections b{font-size:16px;font-weight:600;color:#2e3c26}.preference-sections small{font-size:12px;line-height:1.5;color:#62685f;overflow-wrap:anywhere}
+#preferences-app .preference-sections svg{width:18px;height:18px;color:#79856f}
+#preferences-app .ready-arrival{margin:22px auto;max-width:440px}
+#preferences-app .ready-arrival h1{font-family:Allo,sans-serif;font-size:36px;letter-spacing:-.03em;color:#2b4025}
+#preferences-app .ready-check{background:#e7f0de;color:#496f35;width:64px;height:64px;margin-bottom:26px}
+#preferences-app .ready-check svg{width:34px;height:34px;stroke-width:2}
+#preferences-app .ready-plan{background:#f0f4e9;border-radius:14px;box-shadow:none;padding:20px;margin:24px 0}
+#preferences-app .ready-plan span{color:#52634a}
+#preferences-app.embedded-app{position:relative;background:#f5f5f3;height:100%;max-height:100%;font-size:15px}
+#preferences-app.embedded-app .preferences-header{padding:4px 16px;min-height:53px}
+#preferences-app.embedded-app .preferences-header b{font-size:16px}
+#preferences-app.embedded-app .preferences-header>span{display:none}
+#preferences-app.embedded-app .app-reset{margin-left:auto}
+#preferences-app.embedded-app .preferences-content{padding:18px 18px 26px}
+#preferences-app.embedded-app[data-view=welcome] .story-visual{height:208px;margin-bottom:22px}
+#preferences-app.embedded-app[data-view=welcome] h1{font-size:34px}
+#preferences-app.embedded-app .setup-actions{padding:10px 18px 14px}
+#preferences-app.embedded-app .preferences-tabs{padding:8px 12px 12px}
+#preferences-app.embedded-app .preferences-content{overscroll-behavior:auto}
+@media(max-width:360px){#preferences-app .preferences-header{padding-inline:14px}#preferences-app .preferences-header>span{display:none}#preferences-app .app-reset{margin-left:auto}#preferences-app .preferences-content,#preferences-app[data-view=setup] .preferences-content{padding-inline:16px}#preferences-app .partner-card>div{padding:16px}#preferences-app .golf-plan-card h2{font-size:23px}#preferences-app .result-count{flex-wrap:wrap}#preferences-app.embedded-app[data-view=welcome] .story-visual{height:160px}#preferences-app.embedded-app[data-view=welcome] h1{font-size:29px}#preferences-app.embedded-app .pref-intro{font-size:14px}#preferences-app .availability-dial{width:190px;height:190px}}
+@media(max-height:700px){#preferences-app[data-view=welcome] .story-visual{height:170px;margin-bottom:18px}#preferences-app[data-view=welcome] h1{font-size:31px}#preferences-app[data-view=welcome] .pref-intro{font-size:15px;margin-bottom:10px}#preferences-app[data-view=welcome] .preferences-header{min-height:56px}#preferences-app .ready-arrival{margin-top:8px}}
+@media(prefers-reduced-motion:reduce){#preferences-app .preferences-content{scroll-behavior:auto}#preferences-app *,#preferences-app *:before,#preferences-app *:after{animation:none!important;transition:none!important}}
+/* Display lettering is filled type, never part of the line-icon system. */
+#preferences-app .headline-wave-svg{height:auto;fill:currentColor;stroke:none;stroke-width:0;flex:initial}
+#preferences-app .headline-wave-svg text,#preferences-app .headline-wave-svg tspan{fill:currentColor;stroke:none}
+.homescreen-mode body>#preferences-app{background:#f5f5f3;color:#20241f}
+#preferences-app .availability-dial{touch-action:pan-y}
+#preferences-app[data-editing=true] .setup-progress{display:none}
+/* Frequently compared options sit together, with selection visible on touch-down. */
+#preferences-app[data-view=setup] .pref-chips:has([data-single]){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:4px;background:#edf0e6;border-radius:12px}
+#preferences-app[data-view=setup] .pref-chips:has([data-single=party]){grid-template-columns:repeat(2,minmax(0,1fr))}
+#preferences-app[data-view=setup] .pref-chips [data-single]{justify-content:center;text-align:center;min-height:48px;border:0;padding:9px 6px;font-size:13px;line-height:1.3;border-radius:9px;color:#53604c;background:transparent}
+#preferences-app[data-view=setup] .pref-chips [data-single]:after{display:none}
+#preferences-app[data-view=setup] .pref-chips [data-single][aria-pressed=true]{background:#fff;color:#284b32;box-shadow:0 2px 6px #263b2112;font-weight:600}
+#preferences-app[data-view=setup] .pref-chips:has([data-field=vibes]),#preferences-app[data-view=setup] .pref-chips:has([data-field=interests]),#preferences-app[data-view=setup] .pref-chips:has([data-field=playWith]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;overflow:visible;background:transparent}
+#preferences-app[data-view=setup] .pref-chips [data-field=vibes],#preferences-app[data-view=setup] .pref-chips [data-field=interests],#preferences-app[data-view=setup] .pref-chips [data-field=playWith]{min-height:48px;font-size:14px;line-height:1.3;padding:12px;border:1px solid #dce2d2;border-radius:10px;background:#fff;gap:4px}
+#preferences-app[data-view=setup] .pref-chips [data-field][aria-pressed=true]:not([data-field=days]){background:#e5eedb;border-color:#bed0ac;color:#2e4f25}
+#preferences-app[data-view=setup] .pref-chips [data-field]:after{width:15px;font-size:16px;flex:none}
+#preferences-app .empty-partners .empty-style{display:flex;margin:10px auto;background:transparent;color:#53624b;font-size:12px}
+#preferences-app[data-view=setup] .pref-chips:has([data-active-day]){display:flex;gap:6px;background:transparent;overflow:visible}
+#preferences-app[data-view=setup] [data-active-day]{flex:1;justify-content:center;min-height:44px;border:1px solid #dce2d2;border-radius:10px;font-size:14px;padding:10px 6px}
+#preferences-app[data-view=setup] [data-active-day]:after{display:none}
+#preferences-app[data-view=setup] [data-active-day][aria-pressed=true]{background:#e5eedb;color:#2e4f25;border-color:#bed0ac}

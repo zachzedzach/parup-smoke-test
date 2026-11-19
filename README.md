@@ -2,6 +2,14 @@
 
 Static GitHub Pages landing page for The Fourth Club golfer-matching interest test. The site is published to GitHub Pages; the brand name is The Fourth Club.
 
+## Current shared app — November 19, 2026
+
+The homepage phone and `/?homescreen=1` now run the same application. Start with [PRODUCT.md](PRODUCT.md), [DESIGN.md](DESIGN.md), and [docs/LATEST_WORK.md](docs/LATEST_WORK.md). Research and decisions are recorded in [docs/NIGHT_DESIGN_RESEARCH.md](docs/NIGHT_DESIGN_RESEARCH.md). Historical implementation notes below are superseded where they describe separate phone and homescreen flows.
+
+The shared app has a manually advanced introduction, a quick example shortcut, six-step preferences setup, seven skill levels, searchable Utah courses, independent weekday starts, adjustable time tolerance, holes and party size, atmosphere and private partner choices. Golf-plan examples show capacity, photos, descriptions and concrete differences. Preferences edit directly by section. Saved and skipped plans remain available. Requests, simulated acceptance and course booking are separate actions. Nothing reserves a tee time or contacts a real person.
+
+`site.js` now handles site signup/analytics only. `assets/homescreen.js` mounts the shared app either in `#embedded-app-mount` or as the standalone screen. The supplied iPhone frame is served as a smaller pixel-exact lossless WebP; the original PNG is preserved. Current answers reset on reload. Input regions remain Clarity-masked. Two static, nonpersonal Clarity events were added for app-preview start and request preview, plus setup-completion. Names, descriptions and partner choices are not event payloads.
+
 ## Current setup
 
 - Site: `https://zachzedzach.github.io/parup-smoke-test/`
