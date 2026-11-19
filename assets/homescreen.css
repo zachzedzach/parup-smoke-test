@@ -373,3 +373,28 @@
 #preferences-app[data-view=home]{background:#eef1eb}
 #preferences-app[data-view=home] .preferences-content{background:#eef1eb}
 @media(min-width:700px){.homescreen-mode body>#preferences-app{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px #e4e6df,0 16px 60px #18231820}.homescreen-mode body{background:#e9ece6}}
+
+/* Seven clear, numbered choices; descriptions carry the meaning, numbers aid reference. */
+#preferences-app[data-view=setup] .skill-choices button{display:grid;grid-template-columns:24px minmax(0,1fr) 20px;align-items:start}
+#preferences-app[data-view=setup] .skill-choices button>div{min-width:0}
+#preferences-app[data-view=setup] .skill-choices b{display:block}
+/* The time inputs stay visible in the normal document scroll; no dial can trap the page. */
+#preferences-app .day-schedules{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:8px;padding:0;background:transparent}
+#preferences-app .day-schedules label{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:8px 10px;background:#f1f3ed;border-radius:10px;font-size:13px}
+#preferences-app .day-schedules input{width:100px;min-height:40px;padding:6px 8px;font-size:15px}
+#preferences-app .step-4 .availability-dial,#preferences-app .step-4 #usual-time,#preferences-app .step-4 .dial-slider-label,#preferences-app .step-4 .dial-endpoints{display:none}
+#preferences-app .step-4 .tolerance-control{margin-top:16px}
+#preferences-app .tee-preference,#preferences-app .extra-interests{margin:16px 0;padding:12px 14px;background:#fff;border:1px solid #dce2d2;border-radius:12px}
+#preferences-app .tee-preference summary,#preferences-app .extra-interests summary{min-height:30px;color:#176b50;font-weight:600;cursor:pointer}
+#preferences-app .step-4 h3,#preferences-app .step-5 h3{margin:15px 0 8px;font-size:14px;color:#364b32}
+#preferences-app .step-5 .pref-chips:has([data-field=vibes]){grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+#preferences-app .step-5 .pref-chips [data-field=vibes]{min-height:42px;padding:8px 10px;font-size:13px}
+#preferences-app .step-5 .pref-chips:has([data-field=playWith]){grid-template-columns:repeat(3,minmax(0,1fr))}
+#preferences-app .ready-times{display:flex;flex-wrap:wrap;gap:8px}
+#preferences-app .ready-times>span{display:grid;gap:3px;min-width:92px;padding:10px 12px;border-radius:12px;background:#f1f3ed;font-size:13px;color:#263d29}
+#preferences-app .ready-times>span b{font-size:11px;color:#176b50;letter-spacing:.04em}
+#preferences-app[data-view=ready] .ready-plan{padding:22px;background:linear-gradient(135deg,#fff7e8,#fbe5eb);border:0;border-top:4px solid #ed5480;box-shadow:0 8px 24px #263d2910}
+#preferences-app[data-view=ready] .ready-plan> b{font-size:22px;color:#20241f}
+#preferences-app[data-view=ready] .ready-arrival .pref-footnote{max-width:42ch}
+#preferences-app[data-view=home] .preferences-content{background:#edf1eb}
+#preferences-app[data-view=home] .availability-summary{background:#fff;border:1px solid #dce2d2;border-radius:14px;padding:14px}
