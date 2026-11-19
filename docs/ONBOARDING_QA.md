@@ -2,7 +2,7 @@
 
 ## Latest verification — November 19
 
-The current suite has 39 passing checks. It covers the six-step setup, all seven game descriptions, per-day times, course search/order and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. Firefox headless inspection of the published 390×844 first-run welcome confirms the current image, copy, fixed pagination, and clear actions render without the hidden marketing page. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
+The current suite has 45 passing checks. It covers the six-step setup, all seven short numbered game descriptions, per-day times, area/A–Z course search and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. The November 19 setup revision removes the sample-photo button and redundant skip-introduction shortcut, eliminates the cramped course locator and nested course scroll, reveals one native time input per chosen weekday, and summarizes each weekday’s start on completion. A phone-width browser walkthrough inspected the welcome, profile, skill scale, course list, availability, round choices, and completion screen. Automated layout checks cover 320px and 390px widths. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
 
 ## Intended experience
 

@@ -364,12 +364,10 @@
 #preferences-app .time-adjust .availability-dial{width:min(52vw,210px);height:min(52vw,210px);margin:12px auto}
 #preferences-app .step-4 .dial-slider-label{display:block}
 #preferences-app .preferences-content{scrollbar-gutter:stable}
-#preferences-app[data-view=ready] .ready-plan{border-left:4px solid #ed5480;background:#fff7e8;gap:10px}
 #preferences-app[data-view=ready] .ready-arrival{max-width:520px}
 #preferences-app[data-view=ready] .ready-arrival h1{color:#263d29}
 #preferences-app[data-view=setup] .course-browser{align-items:stretch}
 #preferences-app[data-view=setup] .course-wheel{height:min(40dvh,360px)}
-#preferences-app[data-view=setup] .course-wheel-row[aria-pressed=true]{border-left:4px solid #ed5480}
 #preferences-app[data-view=home]{background:#eef1eb}
 #preferences-app[data-view=home] .preferences-content{background:#eef1eb}
 @media(min-width:700px){.homescreen-mode body>#preferences-app{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px #e4e6df,0 16px 60px #18231820}.homescreen-mode body{background:#e9ece6}}
@@ -393,8 +391,80 @@
 #preferences-app .ready-times{display:flex;flex-wrap:wrap;gap:8px}
 #preferences-app .ready-times>span{display:grid;gap:3px;min-width:92px;padding:10px 12px;border-radius:12px;background:#f1f3ed;font-size:13px;color:#263d29}
 #preferences-app .ready-times>span b{font-size:11px;color:#176b50;letter-spacing:.04em}
-#preferences-app[data-view=ready] .ready-plan{padding:22px;background:linear-gradient(135deg,#fff7e8,#fbe5eb);border:0;border-top:4px solid #ed5480;box-shadow:0 8px 24px #263d2910}
+#preferences-app[data-view=ready] .ready-plan{padding:22px;background:linear-gradient(135deg,#fff7e8,#fbe5eb);border:0;border-top:0;box-shadow:0 8px 24px #263d2910}
 #preferences-app[data-view=ready] .ready-plan> b{font-size:22px;color:#20241f}
 #preferences-app[data-view=ready] .ready-arrival .pref-footnote{max-width:42ch}
 #preferences-app[data-view=home] .preferences-content{background:#edf1eb}
 #preferences-app[data-view=home] .availability-summary{background:#fff;border:1px solid #dce2d2;border-radius:14px;padding:14px}
+
+/* First-run setup: compact choices, open page scrolling, and a clear footer. */
+#preferences-app[data-view=welcome] .preferences-content{justify-content:flex-start;max-width:480px;padding:20px 24px 8px}
+#preferences-app[data-view=welcome] .story-visual{height:clamp(150px,24dvh,220px);margin:0 0 22px;border-radius:20px}
+#preferences-app[data-view=welcome] .story-visual>img{border-radius:20px;object-position:center 42%}
+#preferences-app[data-view=welcome] .eyebrow{margin:0;color:#176b50;font-size:11px;font-weight:700;letter-spacing:.1em}
+#preferences-app[data-view=welcome] .welcome-copy h1{margin:8px 0 12px}
+#preferences-app[data-view=welcome] .pref-intro{min-height:0;margin:0;font-size:16px;line-height:1.45;color:#62685f}
+#preferences-app[data-view=welcome] .setup-actions{flex-direction:column;align-items:stretch;gap:4px;margin:0;padding:8px 24px max(8px,env(safe-area-inset-bottom))}
+#preferences-app[data-view=welcome] .setup-actions .pref-primary{background:#176b50}
+#preferences-app[data-view=welcome] .story-skip{align-self:center;min-height:40px}
+#preferences-app[data-view=setup] .preferences-content{padding:8px 20px 14px;scroll-padding-block:12px}
+#preferences-app[data-view=setup] .setup-progress{margin:0 0 16px}
+#preferences-app[data-view=setup] .setup-page h1{margin:0 0 8px;font-size:30px;line-height:1.08;letter-spacing:-.5px}
+#preferences-app[data-view=setup] .setup-page>.pref-intro{margin:0 0 14px;font-size:15px;line-height:1.38}
+#preferences-app[data-view=setup] .step-0 .pref-field{margin:12px 0;font-size:13px}
+#preferences-app[data-view=setup] .step-0 textarea{min-height:84px}
+#preferences-app[data-view=setup] .step-0 .pref-footnote{text-align:left;margin:8px 0 2px}
+#preferences-app[data-view=setup] .setup-page h3{margin:16px 0 7px;font-size:14px;color:#344b2f;font-weight:600}
+#preferences-app[data-view=setup] .setup-page h3:first-of-type{margin-top:10px}
+#preferences-app[data-view=setup] .step-1 .setup-page,.step-1 .skill-choices{min-width:0}
+#preferences-app[data-view=setup] .skill-choices{display:grid;gap:6px;overflow:visible;background:transparent}
+#preferences-app[data-view=setup] .skill-choices button{grid-template-columns:26px minmax(0,1fr) 18px;gap:8px;min-height:0;padding:10px 12px;border:1px solid #dfe3de;border-radius:12px;background:linear-gradient(90deg,hsl(var(--skill-hue) 64% 94%),#fff 42%)}
+#preferences-app[data-view=setup] .skill-choices button[aria-pressed=true]{border-color:hsl(var(--skill-hue) 48% 62%);background:linear-gradient(90deg,hsl(var(--skill-hue) 64% 88%),#fff 58%)}
+#preferences-app[data-view=setup] .skill-choices button>span:first-child{width:auto;flex:none;padding:0;color:hsl(var(--skill-hue) 62% 38%);font-size:15px;font-weight:700}
+#preferences-app[data-view=setup] .skill-choices b{font-size:14px;line-height:1.3;font-weight:450;letter-spacing:0}
+#preferences-app[data-view=setup] .skill-choices button>span:last-child{width:auto;font-size:17px;color:#176b50}
+#preferences-app[data-view=setup] .course-sort{margin-top:10px}
+#preferences-app[data-view=setup] .course-browser{display:block;min-width:0}
+#preferences-app[data-view=setup] .course-locator{display:none!important}
+#preferences-app[data-view=setup] .course-wheel{height:auto;min-height:0;max-height:none;overflow:visible;border-radius:14px;mask-image:none;scroll-snap-type:none}
+#preferences-app[data-view=setup] .course-wheel-row{min-height:64px;padding:10px 12px;background:#fff}
+#preferences-app[data-view=setup] .course-wheel-row b{font-size:14px;font-weight:550;line-height:1.25}
+#preferences-app[data-view=setup] .course-wheel-row small{font-size:11px;line-height:1.25}
+#preferences-app[data-view=setup] .course-count{margin:10px 0 4px;color:#344b2f;font-weight:600}
+#preferences-app[data-view=setup] .pref-footnote{margin:10px 0;color:#737970;text-align:left}
+#preferences-app[data-view=setup] .pref-chips:has([data-field=days]){grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0;background:transparent;overflow:visible}
+#preferences-app[data-view=setup] .pref-chips [data-field=days]{justify-content:center;min-height:44px;padding:8px 3px;border:1px solid #d9dfd7;border-radius:11px;background:#fff;color:#28312a;font-size:14px}
+#preferences-app[data-view=setup] .pref-chips [data-field=days][aria-pressed=true]{background:#176b50;border-color:#176b50;color:#fff}
+#preferences-app[data-view=setup] .pref-chips [data-field=days]:after{display:none}
+#preferences-app[data-view=setup] .day-schedules{display:grid;gap:6px;border-radius:0;background:transparent;overflow:visible}
+#preferences-app[data-view=setup] .day-schedules{grid-template-columns:1fr}
+#preferences-app[data-view=setup] .day-schedules input{width:148px;max-width:52%;}
+#preferences-app[data-view=setup] .day-schedules label{min-height:48px;padding:6px 10px;border:1px solid #e0e4df;border-radius:10px;background:#fff;color:#344b2f;font-size:14px;font-weight:550}
+#preferences-app[data-view=setup] .day-schedules input{width:128px;min-height:38px;padding:4px 8px;border-radius:8px;background:#f2f4f1;font-size:16px}
+#preferences-app[data-view=setup] .tolerance-control{margin:14px 0;padding:12px;border-radius:12px;background:#f2f4f1}
+#preferences-app[data-view=setup] .day-time-prompt{margin:10px 0;padding:12px 14px;border-radius:11px;background:#f2f4f1;color:#59645b;font-size:13px;line-height:1.4}
+#preferences-app[data-view=setup] .step-4 .pref-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;overflow:visible;background:transparent}
+#preferences-app[data-view=setup] .step-4 .pref-chips button{min-height:44px;padding:9px 10px;border:1px solid #dfe3de;border-radius:10px;background:#fff;font-size:14px}
+#preferences-app[data-view=setup] .step-4 .pref-chips [aria-pressed=true]{background:#e5eedb;border-color:#a9c19c;color:#244b35}
+#preferences-app[data-view=setup] .step-5 .pref-chips:has([data-field=vibes]),#preferences-app[data-view=setup] .step-5 .pref-chips:has([data-field=interests]){grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+#preferences-app[data-view=setup] .step-5 .pref-chips [data-field=vibes],#preferences-app[data-view=setup] .step-5 .pref-chips [data-field=interests]{min-height:42px;padding:8px 10px;font-size:13px}
+#preferences-app[data-view=setup] .step-5 .pref-chips:has([data-field=playWith]){grid-template-columns:repeat(3,minmax(0,1fr))}
+#preferences-app[data-view=setup] .step-5 .pref-chips [data-field=playWith]{justify-content:center;text-align:center;padding-inline:5px;font-size:12px}
+#preferences-app[data-view=setup] .setup-actions{gap:0;margin:0;padding:12px 20px max(20px,env(safe-area-inset-bottom));border-top:1px solid #eceeeb}
+#preferences-app[data-view=setup] .setup-actions .pref-primary{min-height:48px;border-radius:12px;background:#176b50;font-size:16px}
+#preferences-app[data-view=ready] .preferences-content{padding:20px 20px 12px}
+#preferences-app[data-view=ready] .ready-arrival{max-width:480px;margin:8px auto}
+#preferences-app[data-view=ready] .ready-arrival .eyebrow{margin:4px 0 8px;color:#176b50;font-size:11px;font-weight:700;letter-spacing:.1em}
+#preferences-app[data-view=ready] .ready-arrival h1{margin:0 0 16px;font-size:32px;line-height:1.08}
+#preferences-app[data-view=ready] .ready-plan{display:grid;gap:8px;margin:0 0 14px;padding:16px;border:1px solid #dfe4dc;border-radius:14px;background:#f2f5ef;box-shadow:none}
+#preferences-app[data-view=ready] .ready-plan>small{color:#707a70;font-size:10px;font-weight:700;letter-spacing:.08em}
+#preferences-app[data-view=ready] .ready-plan>b{font-size:17px;line-height:1.3}
+#preferences-app[data-view=ready] .ready-plan>p{margin:2px 0 0;color:#59645b;font-size:13px}
+#preferences-app[data-view=ready] .ready-times{gap:6px}
+#preferences-app[data-view=ready] .ready-times>span{min-width:78px;padding:8px 9px;border-radius:9px;background:#fff;font-size:12px}
+#preferences-app[data-view=ready] .ready-explainer{color:#536057;font-size:14px;line-height:1.5}
+#preferences-app[data-view=ready] .setup-actions{margin:0;padding:12px 20px max(20px,env(safe-area-inset-bottom));border-top:1px solid #eceeeb}
+#preferences-app[data-view=ready] .setup-actions .pref-primary{min-height:48px;justify-content:center;background:#176b50}
+#preferences-app .setup-actions .story-skip{margin:0}
+@media(max-width:360px){#preferences-app[data-view=setup] .preferences-content{padding-inline:16px}#preferences-app[data-view=setup] .setup-page h1{font-size:27px}#preferences-app[data-view=setup] .skill-choices b{font-size:13px}#preferences-app[data-view=setup] .day-schedules input{width:118px}#preferences-app[data-view=setup] .setup-actions{padding-inline:16px}}
+@media(prefers-reduced-motion:reduce){#preferences-app .skill-choices button{transition:none}}

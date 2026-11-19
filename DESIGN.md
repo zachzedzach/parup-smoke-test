@@ -6,7 +6,9 @@ Preserve the chosen identity: exact original pink golf ball under the separate c
 
 - Homepage: Persuade. Warm cream paper, plum text, a pink headline and forest-green action. One hero statement and one route into the app. The exact golfer photograph remains visible at mobile sizes.
 - Shared app: Operate. System typography, white/stone surfaces, forest-green actions, inset groups, restrained separators, native input behavior and persistent navigation. Allo only in identity and expressive welcome/completion headings.
-- Welcome: brief, optional, manually advanced. Real golf photos establish place; interactive sample windows teach same-time play. A direct sample shortcut avoids mandatory six-step setup for visitors exploring the concept.
+- Welcome: one concise value statement, a clear profile-setup action, and one optional route to an example. Avoid extra intro pages and photo-upload prompts.
+- Setup: six focused steps. Use compact numbered descriptions for golf experience, a full-width searchable course list, individual native start-time fields per selected day, and restrained selected states. Keep the time fields in normal page scrolling; do not trap them in an internal wheel or dial.
+- Completion: summarize selected courses and every selected day/time, then explain that shown golfers want to play around those times and both decide before booking.
 
 ## Tokens and behavior
 
@@ -18,4 +20,4 @@ Welcome Allo wave is deliberate display treatment: fixed phrase width, static en
 
 ## Composition rules
 
-Golf plans lead with day/time/course, holes/capacity, then compact golfer photo and description. Show differences as well as fit. Save, skip and request have distinct effects. Saved/skipped plans can always be recovered. Preferences has direct section editing, not an onboarding replay. Bottom navigation stays outside scrolling content. In the embedded preview, inner scrolling hands off to the outer page at boundaries. No oversized emoji/stickers, dating metaphors, fake live status, invented testimonials, or artificial loading.
+Golf plans lead with day/time/course, holes/capacity, then compact golfer photo and description. Show differences as well as fit. Save, skip and the mutual-yes preview have distinct effects. Saved/skipped plans can always be recovered. Preferences has direct section editing, not an onboarding replay. Bottom navigation stays outside scrolling content. Use normal page scrolling for setup lists and time fields. In the embedded preview, inner scrolling hands off to the outer page at boundaries. No oversized emoji/stickers, dating metaphors, fake live status, invented testimonials, or artificial loading.
