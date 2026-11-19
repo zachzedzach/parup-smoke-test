@@ -124,3 +124,7 @@ Three issues found during stress review were fixed: Reset now returns the inner 
 The status bar now comes directly from the supplied Photoshop PSD layer; the handmade HTML status marks have been removed. The PSD render keeps its Hardware and Status Bar layers visible and removes only the Screen placeholder, leaving a transparent opening for interactive app content. The published preview was checked live: it shows the PSD’s 9:41 artwork, Dynamic Island, signal, Wi-Fi, and battery while keeping the tee-time controls visible and tappable. Published in commit `baa8204`.
 
 The “YOUR TWO LINES” label uses a restrained Allo variable-font animation: weight moves between 660 and 696 while roundness shifts between 68 and 80, over 3.6 seconds. It changes no size or position, and the site-wide reduced-motion preference disables the animation.
+
+## Standalone home-screen view — November 18
+
+The manifest launches directly to `/?homescreen=1`. This route hides the marketing page and phone bezel, then fills the viewport with the interactive app preview. Its layout reserves the iOS top and bottom safe areas, gives the app header and tabs comfortable touch targets, and lets the current screen scroll behind the bottom navigation. The installed iOS app supplies its native status and home-indicator UI. The query route and manifest launch behavior were checked locally at 390×844 and 320×640 in Firefox; at the shorter height, the app content scrolls while all three tabs remain available. The main marketing layout is unaffected.
