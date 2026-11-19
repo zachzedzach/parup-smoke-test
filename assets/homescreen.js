@@ -1,6 +1,6 @@
 (() => {
  if (!document.documentElement.classList.contains('homescreen-mode')) return;
- 
+
  const defaults={name:'',bio:'',city:'',skill:0,courses:[],days:[],times:[],vibes:[],playWith:[],pace:'Ready golf',tees:'No preference',cart:'Rent a cart',photo:false,complete:false,saved:[],passed:[],requests:[]};
  // Each demo launch is a fresh first-run experience; navigation retains this session's entries.
  let state=structuredClone(defaults);
