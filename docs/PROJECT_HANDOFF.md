@@ -36,4 +36,4 @@ Follow-through: the marketing hero photo now loads only on the marketing page; t
 
 ## Current published status — November 19, 2026
 
-Commit `863d459` is live. The welcome-story motion no longer replays the upward transition on each choice. City-based course clustering and standalone suppression of the hidden marketing hero photo are published. GitHub Pages run 44602876099 succeeded. Live page and versioned app assets return HTTP 200. Firefox screenshots were reviewed at 390×844 (standalone) and 1440×1000 (homepage). Thirty-eight stress checks and syntax/diff checks pass. Physical iPhone behavior remains unmeasured.
+Commit `f1b0a5b` is live. Continue and Back transitions now match the direction of the setup progress fill. City-based course clustering and standalone suppression of the hidden marketing hero photo remain live. GitHub Pages run 44604061947 succeeded. The live page and app v31 return HTTP 200. Thirty-nine stress checks and syntax/diff checks pass. Firefox screenshots were reviewed at 390×844 (standalone) and 1440×1000 (homepage). Physical iPhone behavior remains unmeasured.
