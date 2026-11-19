@@ -20,9 +20,9 @@
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; if (homeScreenQuery || homeScreenApp) {document.documentElement.classList.add('homescreen-mode'); document.querySelector('meta[name="theme-color"]').setAttribute('content','#ffffff');}</script>
     <link rel="stylesheet" href="styles.css?v=20261119-night-1" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261119-night-1"></script>
+    <script defer src="site.js?v=20261119-night-2"></script>
     <script defer src="assets/utah-courses.js?v=2"></script>
-    <script defer src="assets/homescreen.js?v=29"></script>
+    <script defer src="assets/homescreen.js?v=30"></script>
     <link rel="stylesheet" href="assets/homescreen.css?v=29" />
   </head>
   <body>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="hero-visual">
-          <div class="hero-photo-frame"><img class="golf-photo" src="assets/roundfolk-hero-dave.webp" alt="A golfer taking a shot on a tree-lined course" fetchpriority="high" /></div>
+          <div class="hero-photo-frame"><img class="golf-photo" data-src="assets/roundfolk-hero-dave.webp" alt="A golfer taking a shot on a tree-lined course" /></div>
         </div>
       </section>
 

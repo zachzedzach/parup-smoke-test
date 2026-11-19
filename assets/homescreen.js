@@ -35,7 +35,19 @@
  const chips=(field,values)=>`<div class="pref-chips">${values.map(v=>`<button type="button" data-field="${field}" data-value="${esc(v)}" aria-label="${esc(v)}" aria-pressed="${state[field].includes(v)}">${esc(field==='days'?v.slice(0,3):v)}</button>`).join('')}</div>`;
  const single=(field,values)=>`<div class="pref-chips">${values.map(v=>`<button type="button" data-single="${field}" data-value="${esc(v)}" aria-pressed="${state[field]===v}">${esc(field==='pace'?paceLabel(v):field==='tees'?teeLabels[v]:v)}</button>`).join('')}</div>`;
  const field=(label,name,extra='')=>`<label class="pref-field">${label}<input data-input="${name}" value="${esc(state[name])}" ${extra}></label>`;
- function visibleCourses(q=courseQuery){const selected=courses.filter(c=>state.courses.includes(c.name));const anchor=selected.length?selected.reduce((m,c)=>({latitude:m.latitude+c.latitude/selected.length,longitude:m.longitude+c.longitude/selected.length}),{latitude:0,longitude:0}):null;const counties=new Set(selected.map(c=>c.county));return courses.filter(c=>c.access!=='private'&&`${c.name} ${c.city} ${c.county}`.toLowerCase().includes(q.trim().toLowerCase())).sort(courseSort==='north'?(a,b)=>{if(anchor){const ca=counties.has(a.county)?0:1,cb=counties.has(b.county)?0:1;if(ca!==cb)return ca-cb;const da=(a.latitude-anchor.latitude)**2+(a.longitude-anchor.longitude)**2,db=(b.latitude-anchor.latitude)**2+(b.longitude-anchor.longitude)**2;if(Math.abs(da-db)>.000001)return da-db;}return b.latitude-a.latitude||a.name.localeCompare(b.name)}:(a,b)=>a.name.localeCompare(b.name));}
+ function visibleCourses(q=courseQuery){
+  const available=courses.filter(c=>c.access!=='private');
+  const selected=available.filter(c=>state.courses.includes(c.name));
+  const city=state.city.trim().toLocaleLowerCase();
+  const local=city?available.filter(c=>c.city.toLocaleLowerCase()===city):[];
+  const anchorGroup=selected.length?selected:local;
+  const anchor=anchorGroup.length?anchorGroup.reduce((m,c)=>({latitude:m.latitude+c.latitude/anchorGroup.length,longitude:m.longitude+c.longitude/anchorGroup.length}),{latitude:0,longitude:0}):null;
+  const counties=new Set(anchorGroup.map(c=>c.county));
+  return available.filter(c=>`${c.name} ${c.city} ${c.county}`.toLocaleLowerCase().includes(q.trim().toLocaleLowerCase())).sort(courseSort==='north'?(a,b)=>{
+   if(anchor){const ca=counties.has(a.county)?0:1,cb=counties.has(b.county)?0:1;if(ca!==cb)return ca-cb;const da=(a.latitude-anchor.latitude)**2+(a.longitude-anchor.longitude)**2,db=(b.latitude-anchor.latitude)**2+(b.longitude-anchor.longitude)**2;if(Math.abs(da-db)>.000001)return da-db;}
+   return b.latitude-a.latitude||a.name.localeCompare(b.name);
+  }:(a,b)=>a.name.localeCompare(b.name));
+ }
  function courseRows(q=courseQuery){return visibleCourses(q).map(c=>`<button type="button" class="course-wheel-row" data-course="${esc(c.name)}" data-latitude="${c.latitude}" data-county="${esc(c.county)}" aria-pressed="${state.courses.includes(c.name)}"><span><b>${esc(c.name)}</b><small>${esc(c.city)} · ${esc(c.county)} County</small><small>${c.access==='public'?'Public / municipal':'Public access'}</small></span><span class="course-check">${state.courses.includes(c.name)?'✓':'+'}</span></button>`).join('')||'<p>No courses found. Try a course, city or county.</p>'}
  const mapX=longitude=>8+(longitude+114.1)/5.2*84;
  const mapY=latitude=>8+(42.1-latitude)/5.2*116;

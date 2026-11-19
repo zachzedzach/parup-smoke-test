@@ -1,4 +1,13 @@
 (() => {
+  // The installed preview hides the marketing page, so don't download its hero photo there.
+  if (!document.documentElement.classList.contains('homescreen-mode')) {
+    const heroPhoto = document.querySelector('.golf-photo[data-src]');
+    if (heroPhoto) {
+      heroPhoto.src = heroPhoto.dataset.src;
+      heroPhoto.fetchPriority = 'high';
+    }
+  }
+
   const config = window.ROUNDFOLK_CONFIG || window.PARUP_CONFIG || {};
   const form = document.getElementById('signup-form');
   const status = document.getElementById('form-status');

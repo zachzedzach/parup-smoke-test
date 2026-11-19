@@ -1,5 +1,9 @@
 # Homescreen clarity and stress checks — November 19, 2026
 
+## Latest verification — November 19
+
+The current suite has 38 passing checks. It covers the six-step setup, all seven game descriptions, per-day times, course search/order and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, and the separate homepage/standalone hero-image behavior. Firefox headless inspection of the published 390×844 first-run welcome confirms the current image, copy, fixed pagination, and clear actions render without the hidden marketing page. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
+
 ## Intended experience
 
 Preferences describe golf, not social interest in a person. Each chosen weekday has its own start time. The dial edits the explicitly chosen weekday. Results lead with day/time/course and explain that the example golfer wants to play that round. Requesting a round means asking to golf; the other golfer can accept or decline. No real golfer is contacted, no reservation is made, and generated example plans are labeled as examples based on preferences.
