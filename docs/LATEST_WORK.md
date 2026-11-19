@@ -1,9 +1,11 @@
 # Latest work
 
-Mobile signup field sizing — November 18, 2026: the marketing signup email
+Mobile and motion review — November 18, 2026: the marketing signup email
 field now uses 16px text to prevent iPhone Safari from zooming when it receives
-focus. The stylesheet URL was versioned to refresh deployed CSS. The source
-change is recorded; deployment and physical iPhone verification are pending.
+focus. Hover effects are scoped to mouse/trackpad inputs; touch controls keep
+their pressed feedback. The stylesheet URL was versioned to refresh deployed
+CSS. The source change is recorded; deployment and physical iPhone verification
+are pending.
 
 Active project: The Fourth Club tee-time and group-preview smoke-test site in this directory.
 
