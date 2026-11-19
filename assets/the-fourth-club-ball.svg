@@ -8,5 +8,5 @@
   </defs>
   <!-- Use the approved ball artwork untouched; the generated club illustration is a separate layer. -->
   <image href="roundfolk-pink-golf-ball.png" width="128" height="128"/>
-  <image href="the-fourth-club-clubs.png" x="21.3" width="85.4" height="128" filter="url(#clubs-only)"/>
+  <image href="the-fourth-club-clubs-plum.png" x="21.3" width="85.4" height="128" filter="url(#clubs-only)"/>
 </svg>
