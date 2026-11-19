@@ -18,6 +18,22 @@
   const viewedSections = new Set();
   const sentScrollDepths = new Set();
   let visibleSeconds = 0;
+  const phoneContent = document.querySelector('.phone-content');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function scrollPhoneTo(element, block = 'nearest') {
+    if (!phoneContent || !element) return;
+    const viewport = phoneContent.getBoundingClientRect();
+    const target = element.getBoundingClientRect();
+    const style = getComputedStyle(phoneContent);
+    const top = viewport.top + phoneContent.clientTop + (Number.parseFloat(style.paddingTop) || 0);
+    const bottom = viewport.bottom - (Number.parseFloat(style.paddingBottom) || 0);
+    let nextTop = phoneContent.scrollTop;
+    if (block === 'start') nextTop += target.top - top - 8;
+    else if (target.top < top) nextTop += target.top - top - 8;
+    else if (target.bottom > bottom) nextTop += target.bottom - bottom + 8;
+    phoneContent.scrollTo({ top: Math.max(0, nextTop), behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+  }
 
   function signupSource() {
     const platform = sessionStorage.getItem(storePlatformKey);
@@ -204,7 +220,7 @@
     const booking = courseLinks[courseSelect?.value || 'any'];
     if (courseLink) { courseLink.textContent = `${booking[0]} ↗`; courseLink.href = booking[1]; }
     track('roundfolk_group_search', { course_area: courseSelect?.value || 'any', date: dateSelect?.value, golfers: playerSelect?.value, tee_time: timeSelect?.value || '7:30 AM', match_window_minutes: range?.value ?? 30 });
-    document.querySelector('.candidate-card')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+    scrollPhoneTo(document.querySelector('.candidate-card'), 'start');
   });
   courseSelect?.addEventListener('change', () => {
     const booking = courseLinks[courseSelect.value];
@@ -281,7 +297,7 @@
     const name = button.dataset.showScreen;
     screens.forEach(screen => { screen.hidden = screen.dataset.screen !== name; });
     tabs.forEach(tab => { const active = tab.dataset.showScreen === name; tab.classList.toggle('is-active', active); if (active) tab.setAttribute('aria-current', 'page'); else tab.removeAttribute('aria-current'); });
-    document.querySelector('.phone-content')?.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    phoneContent?.scrollTo({ top: 0, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     track('roundfolk_preview_screen_opened', { screen: name });
   }));
   document.getElementById('reset-round')?.addEventListener('click', () => {
