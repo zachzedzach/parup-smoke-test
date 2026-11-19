@@ -43,3 +43,18 @@
 #preferences-app[data-view=setup] .course-count{color:#8e8e93;font-size:13px}
 @media(max-height:700px){#preferences-app[data-view=setup] h1{margin-top:18px;font-size:30px}#preferences-app[data-view=setup] .pref-intro{margin-bottom:20px}#preferences-app .setup-actions{padding-top:8px}}
 .homescreen-mode body>#preferences-app[data-view=setup]{background:#fff}
+/* Standard iOS navigation and multiple-selection rows. */
+#preferences-app[data-view=setup] .ios-nav-back{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;margin-left:-12px;border:0;background:transparent;color:#007aff;font:300 42px/1 -apple-system,BlinkMacSystemFont,sans-serif}
+#preferences-app[data-view=setup] .preferences-header{gap:8px}
+#preferences-app[data-view=setup] .preferences-header img{width:24px;height:24px}
+#preferences-app[data-view=setup] .preferences-header>span{font-variant-numeric:tabular-nums}
+#preferences-app[data-view=setup] .pref-chips{display:grid;grid-template-columns:1fr;gap:0;background:#f2f2f7;border-radius:12px;overflow:hidden}
+#preferences-app[data-view=setup] .pref-chips button{display:flex;align-items:center;justify-content:space-between;min-height:48px;padding:12px 16px;text-align:left;border-radius:0;border-bottom:1px solid #d1d1d6;background:transparent;font-size:17px;color:#000}
+#preferences-app[data-view=setup] .pref-chips button:last-child{border-bottom:0}
+#preferences-app[data-view=setup] .pref-chips button:after{content:'';width:22px;flex:none}
+#preferences-app[data-view=setup] .pref-chips [aria-pressed=true]{background:transparent;color:#000}
+#preferences-app[data-view=setup] .pref-chips [aria-pressed=true]:after{content:'✓';color:#007aff;font-size:20px}
+#preferences-app[data-view=setup] .course-wheel{mask-image:linear-gradient(transparent,#000 14px,#000 calc(100% - 14px),transparent)}
+#preferences-app[data-view=setup] #course-search{padding-left:38px;background-color:#efeff0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%238e8e93' stroke-width='2'%3E%3Ccircle cx='10' cy='10' r='6'/%3E%3Cpath d='m15 15 6 6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:12px center;appearance:auto}
+#preferences-app[data-view=setup] .pref-back{display:none}
+#preferences-app[data-view=setup] .setup-actions{border-top:1px solid #f2f2f7;padding-bottom:max(20px,env(safe-area-inset-bottom))}
