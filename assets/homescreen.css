@@ -117,3 +117,8 @@
 #preferences-app[data-view=setup] .pref-chips [data-field=days][aria-pressed=true]{background:#007aff;color:#fff}
 .day-schedules{display:grid;gap:0;border-radius:12px;background:#f2f2f7;overflow:hidden}.day-schedules label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #ddd;min-width:0}.day-schedules label:last-child{border:0}#preferences-app[data-view=setup] .day-schedules input{width:130px;min-width:0;margin:0;padding:5px;font-size:16px;background:#e5e5eb}
 .golf-plan-card h2{font:600 23px/1.2 -apple-system,sans-serif;overflow-wrap:anywhere}.golf-plan-card .plan-course{font-size:17px;font-weight:600;color:#26212d}.plan-reason{font-size:13px!important;color:#6d6077}.plan-golfer{display:flex;align-items:center;gap:12px;margin:20px 0;min-width:0}.plan-golfer img{width:62px;height:62px;border-radius:12px;object-fit:cover;flex-shrink:0}.plan-golfer>div{min-width:0}.plan-golfer b,.plan-golfer small{display:block;overflow-wrap:anywhere}.plan-golfer small{margin-top:4px}.golf-plan-card{overflow-wrap:anywhere}.golf-plan-card .partner-actions button{min-width:0}.preferences-header b{min-width:0}.preferences-summary small{overflow-wrap:anywhere}
+
+/* Fixed phrase measure; SVG redistributes interior spacing as glyph widths change. */
+.welcome-living-type{display:inline-block;max-width:100%;vertical-align:baseline;line-height:1;animation:none}
+.headline-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
+.headline-wave-svg tspan{animation:none;transition:none}
