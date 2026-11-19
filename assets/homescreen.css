@@ -42,3 +42,4 @@
 #preferences-app[data-view=setup] .course-check{color:#007aff;font-weight:400}
 #preferences-app[data-view=setup] .course-count{color:#8e8e93;font-size:13px}
 @media(max-height:700px){#preferences-app[data-view=setup] h1{margin-top:18px;font-size:30px}#preferences-app[data-view=setup] .pref-intro{margin-bottom:20px}#preferences-app .setup-actions{padding-top:8px}}
+.homescreen-mode body>#preferences-app[data-view=setup]{background:#fff}
