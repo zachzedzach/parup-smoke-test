@@ -468,3 +468,6 @@
 #preferences-app .setup-actions .story-skip{margin:0}
 @media(max-width:360px){#preferences-app[data-view=setup] .preferences-content{padding-inline:16px}#preferences-app[data-view=setup] .setup-page h1{font-size:27px}#preferences-app[data-view=setup] .skill-choices b{font-size:13px}#preferences-app[data-view=setup] .day-schedules input{width:118px}#preferences-app[data-view=setup] .setup-actions{padding-inline:16px}}
 @media(prefers-reduced-motion:reduce){#preferences-app .skill-choices button{transition:none}}
+/* Keep every course in the page scroll; the inner list must not be a clipped wheel. */
+#preferences-app[data-view=setup] .course-browser .course-wheel{height:auto;min-height:0;max-height:none;overflow:visible;scroll-snap-type:none}
+#preferences-app[data-view=setup] .course-browser .course-wheel-row{min-height:68px;padding:10px 12px}
