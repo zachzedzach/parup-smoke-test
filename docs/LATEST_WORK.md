@@ -4,7 +4,7 @@ Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/)
 
 ## Published revision — November 19, 2026
 
-Added an optional handicap-index field to the profile and the completion summary. Rebuilt the seven-level golf experience choices as short, numbered, single-line descriptions with a clear 1-to-7 explanation. All seven fit together on a phone screen without scrolling. Local browser review confirmed the profile field and complete scale. 48 automated checks pass; JavaScript syntax and diff checks pass. Published in commit `3b9d145`; GitHub Pages run [44615859081](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44615859081) succeeded. The live installed-app route was opened; its seven numbered choices all appear in the phone viewport with no internal scrolling. The optional handicap field and value retention were verified in the local walkthrough.
+Commit `46a7ed3` is live; GitHub Pages run [44620003589](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44620003589) succeeded. Course selections now update in place: nearby ordering stays anchored to the home city, selected courses do not reorder the results, and a fixed-height selection rail prevents the list moving when choices are added or removed. Full county names shown beside courses work in search; switching to A–Z preserves scroll. The optional handicap field and numbered seven-description scale are included; all seven choices fit on one phone screen. Local and live phone-width browser review confirmed stable row positions after taps. The suite passes all 51 checks; syntax and diff checks pass. Physical iPhone gesture and keyboard behavior still need device review.
 
 ## Previous published onboarding revision — November 19, 2026
 
