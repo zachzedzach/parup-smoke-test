@@ -1,0 +1,9 @@
+# Motion and game descriptions — November 19, 2026
+
+Applied the installed motion-design skill. Completion criteria: short directional transitions without scroll jumps; fixed header/actions; immediate local choice feedback; reduced-motion support; seven numbered, descriptive game choices; shared embedded/standalone behavior; passing regression checks and browser review before deployment.
+
+Motion intent is calm, responsive progress. Signature easing is cubic-bezier(.2,0,0,1), with 140ms feedback, 240ms navigation, and 320ms introductory arrivals. Setup content travels 20px as one group; the progress bar, header and footer remain stationary. Outgoing content travels 12px over 140ms and retains its previous scroll offset. Its inert, hidden-from-accessibility overlay is clipped and positioned relative to the app, including inside the supplied phone. Rapid actions remove old overlays. Completion scaling is reduced from .96 to .99. Press release is .985 to 1 over 140ms. Welcome text retains the requested anchored-endpoint wave. Reduced-motion users receive static changes.
+
+Seven numbered descriptions adapt Rosanna’s prototype LEVELS, preserving contact/course flow/predictability/course management/near-par/regional competition/tour competition distinctions. Removed rank titles and social-status claims. Corrected the source’s apparent 16-hole wording by referring to a round. Profile summaries and example golfer details use the same numbered descriptions; newer-golfer filtering uses numeric levels independently of partner gender.
+
+Validation: 32 automated checks including retained skill selection, outgoing scroll, stationary controls and existing reduced-motion coverage. Mobile in-app browser checked setup, course selection, availability, completion and golf-request feedback without captured warnings/errors. Automated animation mocks do not establish physical-device frame rate. No claim of real-iPhone motion testing.
