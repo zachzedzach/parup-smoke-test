@@ -33,3 +33,5 @@ Added party-size and hole preferences; clearer recurring schedule copy; weekly/n
 ## Remaining integration work
 
 The demo generates illustrative golfer plans from entered preferences. Real search must separately track exact date, live inventory, price/cart inclusion, party capacity, course restrictions, booking horizon and inventory expiry. Mutual group acceptance cannot hold a slot without a vendor-supported hold. Decide who books the combined party and how confirmation, cancellation and refunds propagate before enabling real bookings. No account was created and no tee time reserved during this review.
+
+Live verification: completed the six-step setup on www.thefourth.club/?homescreen=1, selected Saturday, verified holes/party/cart controls, requested an example round, previewed acceptance, and confirmed the Utah course-directory handoff. No real request or booking was made. All 14 automated checks pass.
