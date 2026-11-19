@@ -122,3 +122,4 @@
 .welcome-living-type{display:inline-block;max-width:100%;vertical-align:baseline;line-height:1;animation:none}
 .headline-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
 .headline-wave-svg tspan{animation:none;transition:none}
+.round-journey{padding:16px 16px 16px 32px;background:white;border-radius:14px;font-size:14px;line-height:1.8;color:#514958}.booking-next{margin-top:16px;padding:16px;background:#f1f6f3;border-radius:12px}.booking-next b{font-size:14px;color:#286248}.booking-next p{font-size:13px;line-height:1.5}.booking-next>button{min-height:44px;border:1px solid #a7c7b5;background:white;border-radius:10px;padding:10px;color:#286248}.booking-next small{display:block;line-height:1.5;margin-top:12px}.booking-next .pref-primary{font-size:14px}
