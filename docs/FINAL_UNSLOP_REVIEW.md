@@ -85,3 +85,5 @@ Every rewritten visible string is listed below. Deletions are in the source diff
 ## Verification
 
 24 existing stress checks passed after the edits. JS syntax and whitespace checks passed. Local in-app browser inspected homepage, welcome stories, sample results, setup field labels, seven-level selection and course search at mobile widths. Final live verification is recorded in LATEST_WORK.md. No email, real request or reservation was submitted.
+
+Live verification: deployment 327e6ba succeeded. Public HTML serves v19. At 320px, sample results fit without horizontal overflow; saving changes the label to Saved with no icon reinserted; About you opens directly; Add a sample photo changes to Remove sample photo and removes it correctly. No captured warnings/errors. Temporary viewport override reset.
