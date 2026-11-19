@@ -3,9 +3,9 @@
 Mobile and motion review — November 18, 2026: the marketing signup email
 field now uses 16px text to prevent iPhone Safari from zooming when it receives
 focus. Hover effects are scoped to mouse/trackpad inputs; touch controls keep
-their pressed feedback. The stylesheet URL was versioned to refresh deployed
-CSS. The source change is recorded; deployment and physical iPhone verification
-are pending.
+their pressed feedback. Published in commit `ec29398`. The live homepage and
+versioned stylesheet both returned HTTP 200, and the served CSS contains the
+16px field and fine-pointer hover rules. A physical iPhone check remains open.
 
 Active project: The Fourth Club tee-time and group-preview smoke-test site in this directory.
 
