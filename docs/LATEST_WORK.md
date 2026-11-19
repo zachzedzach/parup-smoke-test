@@ -1,5 +1,10 @@
 # Latest work
 
+Mobile signup field sizing — November 18, 2026: the marketing signup email
+field now uses 16px text to prevent iPhone Safari from zooming when it receives
+focus. The stylesheet URL was versioned to refresh deployed CSS. The source
+change is recorded; deployment and physical iPhone verification are pending.
+
 Active project: The Fourth Club tee-time and group-preview smoke-test site in this directory.
 
 The current product definition, partner-prototype contributions, Utah County booking-system scan, honest demo boundary, and integration steps are in [PRODUCT_FOUNDATION.md](PRODUCT_FOUNDATION.md). The page centers a course/time search, two sample golfer groups at different start times, independent join/pass choices, a configurable nearby-time wait example, and the usual course-booking fallback. Rosanna’s seven skill levels and profile/comfort controls are represented in the app preview. The sample does not use live availability, real golfers, persistent profiles, or actual bookings.
@@ -27,3 +32,5 @@ Live check completed in the Codex in-app browser: sample photo, all seven skill 
 November 18 iOS onboarding refinement: standalone setup uses the system font, iOS blue actions, grouped inset selection rows, neutral native-style fields, and a fixed bottom Continue/Back area outside the scrolling content. Removed the arrow from Continue and separated the action footer from form scrolling. Existing preference persistence and seven-level/course data remain.
 
 Live iOS-style check: setup uses system typography and a blue Continue button outside the scrolling form. Continue reaches the seven grouped skill choices with the saved selection preserved. Corrected setup background specificity after the screenshot showed insufficient field/background separation. Mobile hardware keyboard behavior still needs a physical-device check; this is a native-pattern recreation, not an exact copy of a named reference app.
+
+Pexels library: downloaded 18 additional golf photos to `assets/pexels-golf/` with source links and dimensions in `sources.json`. All 18 files decoded successfully and were reviewed together as a contact sheet. Optimized WebP collection totals 2,569,882 bytes (about 2.45 MiB), max 1400px. These are available assets, not automatically inserted into the page or preloaded. Photos include men and women swinging, walking, putting, riding, and playing in groups. No existing profile photo was replaced.
