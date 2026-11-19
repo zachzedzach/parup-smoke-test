@@ -479,3 +479,23 @@
 #preferences-app[data-view=setup] .step-0 .handicap-note{margin:-12px 0 4px}
 #preferences-app[data-view=ready] .ready-handicap{margin:0!important;color:#536057;font-size:13px}
 @media(max-width:360px){#preferences-app[data-view=setup] .step-1 .skill-choices b{font-size:12px}}
+/* A fixed selection rail prevents the course list jumping when choices are added or removed. */
+#preferences-app[data-view=setup] .chosen-courses{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;height:48px;min-height:48px;max-height:48px;margin:8px 0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scrollbar-width:none}
+#preferences-app[data-view=setup] .chosen-courses::-webkit-scrollbar{display:none}
+#preferences-app[data-view=setup] .chosen-courses button{flex:0 0 auto;max-width:210px;min-height:36px;padding:7px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#preferences-app[data-view=setup] .chosen-courses-empty{color:#737970;font-size:12px;white-space:nowrap}
+#preferences-app[data-view=setup] .course-check{display:inline-flex;align-items:center;justify-content:center;flex:0 0 24px;width:24px;height:24px;text-align:center}
+/* Course checks communicate state without scaling the whole row or moving nearby rows. */
+#preferences-app[data-view=setup] .course-wheel-row:active{transform:none}
+#preferences-app[data-view=setup] .course-wheel-row{transform:none!important}
+#preferences-app[data-view=setup] .course-count{min-height:16px}
+#preferences-app[data-view=setup] .chosen-courses-empty{display:inline-flex;align-items:center;height:36px;padding:0 10px;border:1px dashed #d7ddd4;border-radius:9px;background:#fff;color:#667168}
+/* The experience choices are descriptions, not rank titles, and remain a compact single screen. */
+#preferences-app[data-view=setup] .optional-label{color:#7b8179;font-size:.9em;font-weight:400}
+#preferences-app[data-view=setup] .step-1 .setup-page h1{margin-top:6px;margin-bottom:8px}
+#preferences-app[data-view=setup] .step-1 .pref-intro{margin:0 0 12px;font-size:14px;line-height:1.35}
+#preferences-app[data-view=setup] .step-1 .skill-choices{gap:4px}
+#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:44px;padding:6px 10px;gap:10px}
+#preferences-app[data-view=setup] .step-1 .skill-choices button>div{min-width:0}
+#preferences-app[data-view=setup] .step-1 .skill-choices b{font-size:clamp(12px,3.3vw,14px);line-height:1.16;white-space:normal}
+@media(max-height:700px){#preferences-app[data-view=setup] .preferences-content{padding-top:14px;padding-bottom:12px}#preferences-app[data-view=setup] .step-1 .setup-page h1{font-size:28px;margin:0 0 6px}#preferences-app[data-view=setup] .step-1 .pref-intro{margin-bottom:8px;font-size:13px}#preferences-app[data-view=setup] .step-1 .skill-choices{gap:3px}#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:41px;padding-block:5px}}
