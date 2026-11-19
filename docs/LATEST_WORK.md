@@ -56,3 +56,5 @@ November 19 annotated-reference pass: user's preferred examples emphasize value 
 Live reference-pass verification: all three intro pages advance with the corresponding photo/headline/button; final Make it yours opens setup; continued through profile, skill and course into availability; time slider accepts 14.5 (2:30 PM). Screenshot checked at 699×1075. Actual 390px physical-iPhone behavior remains unverified. Deployment ebf3b9c succeeded.
 
 November 19 letter-wave refinement: welcome headline emphasis now renders individual aria-hidden letter spans with 160ms phase offsets in a 5.8s Allo weight cycle (610–710). The phrase retains its full accessible label and ordinary inline spacing. Reduced-motion keeps letters at static 650 weight. Only expressive welcome headlines use the effect. JS syntax and diff checks passed.
+
+Motion improvement pass in progress: installed user-level LottieFiles motion-design skill, implemented pointer-driven availability dial with spring detents, in-place skill/save feedback, scroll preservation on same-screen updates, and personalized completion arrival. Source checks passed. Browser and gesture validation pending deployment.
