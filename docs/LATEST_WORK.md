@@ -2,7 +2,11 @@
 
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
-## Published onboarding revision — November 19, 2026
+## Current revision — November 19, 2026
+
+Added an optional handicap-index field to the profile and the completion summary. Rebuilt the seven-level golf experience choices as short, numbered, single-line descriptions with a clear 1-to-7 explanation. All seven fit together on a phone screen without scrolling. Local browser review confirmed the profile field and complete scale. 48 automated checks pass; JavaScript syntax and diff checks pass. This revision is ready to publish.
+
+## Previous published onboarding revision — November 19, 2026
 
 Reworked the shared app’s first-run and preference setup after Zach’s nine inline comments. The welcome now has one main setup action and one optional example route. The profile step no longer asks for a sample photo. Seven experience descriptions are shorter and numbered on a quiet blue-to-pink scale. The course picker is full width and shares ordinary page scrolling without a clipped inner list; it clusters around a typed city or selected courses and sorts by area or A–Z. Weekly availability reveals one native start-time field per selected day. Removed starting-tee and unused score-history questions. The completion screen summarizes courses and day-specific starts and explains that sample golfers want to play around those times, both people decide, then the course booking happens. Footer spacing and selected states were tightened.
 

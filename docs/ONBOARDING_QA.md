@@ -1,8 +1,12 @@
-# Homescreen clarity and stress checks — November 19, 2026
+# Onboarding QA — November 19, 2026
+
+## Latest revision
+
+The profile now accepts an optional handicap index and carries it into the completion summary. Golf experience is presented as seven concise numbered descriptions; the complete scale fits in a single phone screen without scrolling. The labels retain the experience progression without rank titles.
 
 ## Latest verification — November 19
 
-The current suite has 46 passing checks. It covers the six-step setup, all seven short numbered game descriptions, per-day times, area/A–Z course search and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. The November 19 setup revision removes the sample-photo button and redundant skip-introduction shortcut, eliminates the cramped course locator and nested course scroll, reveals one native time input per chosen weekday, and summarizes each weekday’s start on completion. A phone-width browser walkthrough inspected the welcome, profile, skill scale, course list, availability, round choices, and completion screen. Automated layout checks cover 320px and 390px widths. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
+The current suite has 48 passing checks. It covers the six-step setup, all seven short numbered game descriptions, per-day times, area/A–Z course search and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. The November 19 setup revision removes the sample-photo button and redundant skip-introduction shortcut, eliminates the cramped course locator and nested course scroll, reveals one native time input per chosen weekday, and summarizes each weekday’s start on completion. A phone-width browser walkthrough inspected the welcome, profile, skill scale, course list, availability, round choices, and completion screen. Automated layout checks cover 320px and 390px widths. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
 
 ## Intended experience
 
