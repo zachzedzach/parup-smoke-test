@@ -39,3 +39,16 @@ Unified both app surfaces and removed the separate booking-demo markup/handlers.
 Corrected two issues found visually: line-icon styling accidentally reached the animated SVG lettering, and an older tablet grid rule put the phone in the wrong column. Both were fixed and rechecked. Removed competing parent/child entrance animations; welcome choreography ends within 300ms, setup movement is 280ms, request feedback 220ms. Reduced-motion uses no WAAPI transitions in the test suite.
 
 The supplied frame is also available as a pixel-exact lossless WebP (322,282 bytes vs approximately 489 KB PNG). Original PNG and PSD source are untouched. Font subsetting was not applied: the local font tool lacked its WOFF2 decoder dependency, so the full original variable font remains.
+
+## Motion review
+
+| Before | After | Why |
+|---|---|---|
+| Parent entrance plus child travel | One coordinated entrance per surface | Avoid doubled distance and soft, delayed arrivals |
+| Long staged welcome | 240ms pieces, 20ms offsets; 300ms overall | Explain the scene without making the visitor wait |
+| Request feedback appeared abruptly | 220ms local arrival and inner-only scroll reveal | Keep the response attached to the plan and the course action visible |
+| Pagination changed width | Fixed touch targets; transform on the visible mark | Stable hit areas, no layout animation |
+| Permanent dial will-change | Removed | Avoid holding an unnecessary compositing layer |
+| Continuous display updates offscreen | Glyph writes skipped offscreen/hidden; reduced motion static | Keep the pinned Allo effect without moving ordinary copy |
+
+Verdict: approve for this frontend demo after the documented browser/stress checks. No physical-device frame-rate measurement is claimed.
