@@ -11,3 +11,7 @@ Validation: 32 automated checks including retained skill selection, outgoing scr
 ## November 19: Welcome story switching
 
 Switching the three welcome stories used to reset the rendered-view marker. That made each tap replay the whole-screen exit and staggered 12px upward entrance. Story changes now remain in the same view, retain scroll position, and skip the outgoing overlay. The selected story content gets one 150ms opacity-only crossfade on the Allo-style ease-out curve (`cubic-bezier(.23,1,.32,1)`). The pagination stays fixed. Reduced-motion users get an immediate change. Automated checks assert no translated screen layers, only the short opacity fade, and no WAAPI motion under reduced motion. Physical iPhone frame pacing remains unverified.
+
+## November 19: Setup direction
+
+The progress fill and setup page now share one explicit direction. On Continue, the fill grows left to right while the next page enters from the right and settles left; the previous page moves 12px left underneath it. Back mirrors that motion. The entering page now travels 28px so the connection reads clearly without a large sweep. A regression check asserts the entering and exiting positions, progress-fill direction and mirrored Back behavior.

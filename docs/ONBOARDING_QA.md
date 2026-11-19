@@ -2,7 +2,7 @@
 
 ## Latest verification — November 19
 
-The current suite has 38 passing checks. It covers the six-step setup, all seven game descriptions, per-day times, course search/order and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, and the separate homepage/standalone hero-image behavior. Firefox headless inspection of the published 390×844 first-run welcome confirms the current image, copy, fixed pagination, and clear actions render without the hidden marketing page. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
+The current suite has 39 passing checks. It covers the six-step setup, all seven game descriptions, per-day times, course search/order and city-based clustering, plan filtering/recovery, action and booking boundaries, reduced motion, awkward names, separate homepage/standalone hero-image behavior, and matched forward/back transition direction. Firefox headless inspection of the published 390×844 first-run welcome confirms the current image, copy, fixed pagination, and clear actions render without the hidden marketing page. Full physical-iPhone touch/keyboard/frame-pacing verification remains outstanding.
 
 ## Intended experience
 
