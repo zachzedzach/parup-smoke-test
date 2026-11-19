@@ -14,6 +14,7 @@ The shared app has a manually advanced introduction, a quick example shortcut, s
 
 - Site: `https://zachzedzach.github.io/parup-smoke-test/`
 - Custom domain (verified November 18, 2026): `www.thefourth.club` serves the live site over a valid Let’s Encrypt certificate, and GitHub Pages HTTPS enforcement is on. The Namecheap URL redirect was removed; apex A/AAAA records point to GitHub Pages, and public DNS resolvers see the complete record set. `https://thefourth.club/` redirects to `https://www.thefourth.club/`. The previous GitHub Pages URL remains available as a fallback.
+- Publishing mode: GitHub Pages `build_type=workflow`, using the allowlisted `.github/workflows/pages.yml`. Do not switch back to branch-root publishing; that starts a competing build and may publish internal project files.
 - GitHub repository: `https://github.com/zachzedzach/parup-smoke-test`
 - Signup endpoint: Google Apps Script web app, configured in `index.html` so the form does not depend on a separate config script being loaded.
 - Signup destination: the team’s private Google Sheet (the existing sheet/project still uses the legacy ParUp name).
