@@ -349,3 +349,27 @@
 #preferences-app .story-pagination button{flex:0 0 32px;width:32px;min-width:32px;max-width:32px;height:32px;min-height:32px;padding:0;transform:none!important}
 #preferences-app .story-pagination button:before{display:block;width:7px;height:7px;min-width:7px;max-width:7px;transform:none!important}
 #preferences-app .story-pagination button[aria-current=step]:before{width:20px;max-width:20px;min-width:20px}
+
+/* Clear hierarchy and less crowded preference steps. */
+#preferences-app[data-view=setup] .skill-choices{background:transparent;display:grid;gap:8px;overflow:visible}
+#preferences-app[data-view=setup] .skill-choices button{border:1px solid #dce2d2;border-radius:13px;background:#fff;padding:13px 15px;min-height:58px}
+#preferences-app[data-view=setup] .skill-choices button[aria-pressed=true]{background:#e5eedb;border-color:#91ad7f}
+#preferences-app[data-view=setup] .skill-choices button>span:first-child{font-weight:700;color:#176b50}
+#preferences-app[data-view=setup] .step-4 h3,#preferences-app[data-view=setup] .step-5 h3{margin-top:18px;color:#344b2f}
+#preferences-app[data-view=setup] .step-4 h3:first-of-type,#preferences-app[data-view=setup] .step-5 h3:first-of-type{margin-top:12px}
+#preferences-app[data-view=setup] .step-4 .choice-explanation,#preferences-app[data-view=setup] .step-5 .choice-explanation{margin-block:4px 8px}
+#preferences-app .day-time-controls{display:grid;grid-template-columns:1fr;gap:12px}
+#preferences-app .time-adjust{border:1px solid #dce2d2;border-radius:12px;padding:10px 14px;background:#fff}
+#preferences-app .time-adjust summary{color:#176b50;font-weight:600;min-height:32px;cursor:pointer}
+#preferences-app .time-adjust .availability-dial{width:min(52vw,210px);height:min(52vw,210px);margin:12px auto}
+#preferences-app .step-4 .dial-slider-label{display:block}
+#preferences-app .preferences-content{scrollbar-gutter:stable}
+#preferences-app[data-view=ready] .ready-plan{border-left:4px solid #ed5480;background:#fff7e8;gap:10px}
+#preferences-app[data-view=ready] .ready-arrival{max-width:520px}
+#preferences-app[data-view=ready] .ready-arrival h1{color:#263d29}
+#preferences-app[data-view=setup] .course-browser{align-items:stretch}
+#preferences-app[data-view=setup] .course-wheel{height:min(40dvh,360px)}
+#preferences-app[data-view=setup] .course-wheel-row[aria-pressed=true]{border-left:4px solid #ed5480}
+#preferences-app[data-view=home]{background:#eef1eb}
+#preferences-app[data-view=home] .preferences-content{background:#eef1eb}
+@media(min-width:700px){.homescreen-mode body>#preferences-app{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px #e4e6df,0 16px 60px #18231820}.homescreen-mode body{background:#e9ece6}}
