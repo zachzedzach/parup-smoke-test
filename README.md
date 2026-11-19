@@ -25,6 +25,8 @@ The hero uses an optimized WebP copy of the same Dave Garcia photograph; the ori
 
 The visual audit keeps the Fourth Club identity and Allo type, but makes the main path concrete. Mobile removes the overlapping hero card so the golfer is visible, the three-step sequence has no numbered pills, and the step strip fits without horizontal scrolling. The app copy has a restrained variable-weight pulse; buttons have brief state feedback; reduced-motion preferences are respected. See `docs/PRODUCT_FOUNDATION.md` for market research and integration requirements.
 
+**Design refinement — November 19, 2026:** Simplified the hero to one product promise, a short explanation, and one link into the app. Removed the hero stickers, redundant pitch copy, photo wash, caption, and oversized decorative stars. The app section now starts with “Pick a time,” and its navigation uses matching line icons. The app header carries the exact green `✳` mark; other star-shaped decorations are removed. The Allo font, paper texture, pink headline, golf photos, and interactive round flow remain. Review notes and limits are in `docs/LATEST_WORK.md` and `docs/SKILL_RESEARCH.md`.
+
 **Previous preview details (superseded November 18, 2026):**
 
 **Brand update — November 18, 2026:** The public-facing brand is **The Fourth Club**, matching `thefourth.club`. The header, footer, page title, social title, app preview, store-button labels, signup dialog, confirmation copy, and favicon use the new brand. The logo is a pink dimpled golf ball behind four left-facing clubs: three white iron-style clubs and a taller pink driver at the right. Clubheads have open soles without a bottom outline, and the shafts extend beyond the ball. The existing signup endpoint, private Google Sheet, Clarity project, and analytics event names/local-storage compatibility keys remain in place.
@@ -94,7 +96,7 @@ Official platform guidance: [Apple App Store Marketing Resources and Identity Gu
 On November 17, Zach requested removal of the visible photo credits. The hero, supporting photo gallery, and three-step image no longer display photo-credit text. The sample card was narrowed and shifted so it no longer covers the hero golfer on desktop; on mobile, the same photo is zoomed and shifted inside its frame so the golfer is visible beside the card. Local Firefox confirmed the credit-free layout and visible golfer at desktop and mobile sizes. Commit `48959e9` deployed successfully; GitHub Pages completed and Firefox confirmed the credit-free page and visible golfer at desktop and mobile sizes.
 
 
-A follow-up mobile review on November 17 found one remaining green decorative star on the sample golfer board; it now uses the pink text-style star used elsewhere. Firefox review also covered the complete mobile page and 1440px desktop hero.
+A follow-up mobile review on November 17 found one remaining green decorative star on the sample golfer board; it now uses the pink text-style star used elsewhere. Firefox review also covered the complete mobile page and 1440px desktop hero. On November 19 the oversized decorative stars were removed, and the one retained app-header symbol uses green `✳`.
 
 
 On November 17, Zach said the numbered process cards, standalone explanation, and sample golf picker felt disconnected from the actual app. Those earlier versions were removed or superseded. The current app screen presents the four recorded features together and lets a visitor open one sample fit notice. The old `#good-round` link still lands on the demo heading.

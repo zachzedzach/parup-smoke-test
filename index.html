@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="assets/the-fourth-club-icon.png?v=4-clubs-8" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; if (homeScreenQuery || homeScreenApp) document.documentElement.classList.add('homescreen-mode');</script>
-    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-12" />
+    <link rel="stylesheet" href="styles.css?v=20261119-roundfolk-refine-1" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
     <script defer src="site.js?v=20261118-fourth-club-7"></script>
   </head>
@@ -32,33 +32,20 @@
     <main id="top">
       <section class="hero" id="hero" data-analytics-name="Homepage">
         <div class="hero-copy">
-          <h1>Find a tee time.<br /><span class="headline-sticker">See who’s playing.</span></h1>
-          <p class="hero-intro">Compare nearby course times, preview golfers’ photos and descriptions, and decide together. If no group fits, book the course’s usual way.</p>
-          <a class="hero-demo-cta" href="#try-round">Search tee times <span aria-hidden="true">↓</span></a>
+          <h1>Know your group<br /><span>before you book.</span></h1>
+          <p class="hero-intro">See who may join your tee time, get a feel for their pace, and decide together. If it isn’t your group, book through the course as usual.</p>
+          <a class="hero-demo-cta" href="#try-round">Choose a time <span aria-hidden="true">↓</span></a>
         </div>
 
         <div class="hero-visual">
-          <div class="hero-photo-frame"><img class="golf-photo" src="assets/roundfolk-hero-dave.webp" alt="A golfer taking a shot on a tree-lined course" fetchpriority="high" />
-          <div class="photo-wash" aria-hidden="true"></div></div>
-          <div class="sun-sticker" aria-hidden="true">✳︎</div>
-          <div class="tee-ticket">
-            <div class="ticket-top"><span>EXAMPLE SEARCH</span><span class="ticket-mark">R</span></div>
-            <div class="ticket-time"><span>TEE</span><b>7:30</b><span>AM</span></div>
-            <div class="ticket-rule"></div>
-            <p class="ticket-caption">A group that fits your kind of golf.</p>
-            <div class="ticket-roster"><div class="roster-mark">2/4</div><span><b>Example group</b><small>Preview golfers before you decide</small></span><span class="roster-check">SAMPLE</span></div>
-            <div class="interest-row"><span>Easy pace</span><span>Weekend</span><span>Walk</span></div>
-          </div>
-          <div class="better-sticker"><span>GOOD</span><br />GOLF<br /><b>COMPANY</b></div>
+          <div class="hero-photo-frame"><img class="golf-photo" src="assets/roundfolk-hero-dave.webp" alt="A golfer taking a shot on a tree-lined course" fetchpriority="high" /></div>
         </div>
       </section>
 
-      <div class="booking-steps" aria-label="How The Fourth Club works"><span>Find a time</span><span>Preview the group</span><span>Both say yes, then book</span></div>
-
       <section class="try-round section-pad" id="try-round" data-analytics-name="The Fourth Club app preview">
         <div class="app-preview-intro" id="good-round">
-          <h2>Pick a time.<br /><span>Meet your group.</span></h2>
-          <p>Search local courses, see a sample group with profiles, and choose whether you’d play together. Both people decide before the course booking.</p>
+          <h2>Pick a time</h2>
+          <p>Choose a course and time. Then look over an example group before deciding whether you’d play together.</p>
         </div>
         <div class="app-preview-stage">
           <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Pick a day and time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
@@ -121,23 +108,21 @@
                 <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Novice / Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Choose the level that feels like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><fieldset class="comfort-preferences" data-clarity-mask="true"><legend>I’m comfortable playing with</legend><label><input type="checkbox" name="play-with" value="women" checked> Women golfers</label><label><input type="checkbox" name="play-with" value="men" checked> Men golfers</label><label><input type="checkbox" name="play-with" value="nonbinary" checked> Non-binary golfers</label><label><input type="checkbox" name="play-with" value="prefer-not-to-say" checked> Prefer not to say</label></fieldset><div class="comfort-row"><label for="profile-visibility">Profile visibility</label><select id="profile-visibility" class="comfort-choice"><option>Visible when I join</option><option>Paused</option></select></div></div>
                 <p class="profile-privacy">You choose whether to join, what to share, and who you play with.</p>
               </div>
-              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>⌕</span>Search</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>How it works</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Profile</button></nav>
+              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>Search</button><button type="button" class="phone-tab" data-show-screen="people"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h9"/></svg>How it works</button><button type="button" class="phone-tab" data-show-screen="profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c.7-3.5 3.1-5.3 7-5.3s6.3 1.8 7 5.3"/></svg>Profile</button></nav>
               <div class="phone-home-indicator" aria-hidden="true"></div>
             </div>
             </div>
             <img class="phone-frame-render" src="assets/iphone-17-pro-cosmic-orange-frame.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </article>
-          <div class="app-preview-caption"><span class="caption-line"></span><p>Preview who’s playing. Both golfers decide. Book with the course when you’re ready.</p></div>
         </div>
       </section>
 
       <section class="invite-section" id="download" data-analytics-name="Get The Fourth Club">
-        <div class="invite-decoration invite-star" aria-hidden="true">✳︎</div><div class="invite-decoration invite-ball" aria-hidden="true">4</div>
         <div class="invite-inner download-inner"><div class="invite-copy"><h2>Better golf<br />starts with<br /><span>your group.</span></h2><p>Find golfers who share your pace, interests, and idea of a great day on the course.</p></div><div class="download-actions"><p>Get the app</p><div class="store-actions"><button class="store-badge" type="button" data-store-platform="app_store" aria-label="Download The Fourth Club on the App Store"><span class="store-badge-art app-store-art"><img src="assets/store-badges-figma.png" alt="" /></span></button><button class="store-badge" type="button" data-store-platform="google_play" aria-label="Get The Fourth Club on Google Play"><span class="store-badge-art google-play-art"><img src="assets/store-badges-figma.png" alt="" /></span></button></div></div></div>
       </section>
     </main>
 
-    <footer class="site-footer"><a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-icon.png?v=4-clubs-8" alt=""></span><span>the fourth club</span></a><span>Good golf. Better company.</span><nav aria-label="Footer navigation"><a href="#try-round">Try a round</a><a href="#download">Get the app</a></nav><a href="#top">Back to the first tee ↑</a></footer>
+    <footer class="site-footer"><a class="wordmark" href="#top" aria-label="The Fourth Club home"><span class="brand-ball" aria-hidden="true"><img src="assets/the-fourth-club-icon.png?v=4-clubs-8" alt=""></span><span>the fourth club</span></a><nav aria-label="Footer navigation"><a href="#try-round">Try a round</a><a href="#download">Get the app</a></nav><a href="#top">Back to the first tee ↑</a></footer>
 
     <dialog class="store-gate" id="store-gate" aria-labelledby="store-gate-title">
       <button class="gate-close" type="button" aria-label="Close">×</button>
