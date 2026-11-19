@@ -99,3 +99,9 @@
 .dial-slider-label{display:block;text-align:center;font-size:13px;color:#8e8e93;margin-bottom:14px}#preferences-app #usual-time{width:100%;accent-color:#ed5480;min-height:44px;padding:0;background:transparent;border:0}.dial-endpoints{display:flex;justify-content:space-between;font-size:12px;color:#8e8e93}
 @media(max-height:700px){.story-visual{height:180px;margin-bottom:20px}#preferences-app[data-view=welcome] .pref-intro{min-height:60px;font-size:16px}.availability-dial{width:200px;height:200px}}
 @media(prefers-reduced-motion:reduce){.story-pagination button{transition:none}}
+
+/* A phase offset carries the Allo weight wave through individual letters. */
+.welcome-living-type{animation:none;font-weight:650}
+.wave-letter{font-weight:650;animation:letter-weight-wave 5.8s ease-in-out var(--wave-delay,0s) infinite}
+@keyframes letter-weight-wave{0%,100%{font-weight:610}50%{font-weight:710}}
+@media(prefers-reduced-motion:reduce){.wave-letter{animation:none;font-weight:650}}
