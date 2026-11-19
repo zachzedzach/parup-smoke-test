@@ -70,3 +70,16 @@
 #preferences-app .pref-primary:active{transform:scale(.975);filter:brightness(.93)}
 #preferences-app .preferences-content{isolation:isolate}
 @media(prefers-reduced-motion:reduce){#preferences-app .departing-screen{display:none}#preferences-app button,#preferences-app button:after{transition:none!important}}
+/* The welcome earns one expressive moment; setup controls retain native typography. */
+#preferences-app[data-view=welcome] .preferences-content{padding-top:20px}
+.welcome-scene{position:relative;height:210px;max-width:360px;margin:0 auto 24px}
+.welcome-scene-photo{position:absolute;top:8px;width:54%;height:176px;object-fit:cover;border:5px solid white;border-radius:18px;box-shadow:0 8px 24px #251d291a}
+.scene-left{left:2%;rotate:-8deg;object-position:50% 40%}.scene-right{right:2%;rotate:7deg;object-position:50% 35%}
+.welcome-scene-note{position:absolute;bottom:0;left:50%;translate:-50% 0;white-space:nowrap;background:#fff1aa;color:#514329;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:600;rotate:-2deg;box-shadow:0 3px 8px #34240d0d}
+#preferences-app[data-view=welcome] .welcome-mark{display:none}
+#preferences-app[data-view=welcome] h1{font-family:Allo,-apple-system,sans-serif;font-size:clamp(32px,8.8vw,42px);font-weight:650;letter-spacing:-.045em;line-height:1.04;margin:20px 0 14px;font-variation-settings:'ROND' 65}
+.welcome-living-type{color:#d63869;font-weight:620;animation:welcome-weight 5.8s ease-in-out 400ms infinite}
+@keyframes welcome-weight{0%,100%{font-weight:620}50%{font-weight:690}}
+.welcome-map{margin:24px 0;gap:18px}
+@media(max-height:740px){.welcome-scene{height:160px;margin-bottom:18px}.welcome-scene-photo{height:134px}.welcome-map{gap:14px;margin:20px 0}}
+@media(prefers-reduced-motion:reduce){.welcome-living-type{animation:none;font-weight:650}}
