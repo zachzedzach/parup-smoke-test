@@ -18,9 +18,9 @@
     <link rel="apple-touch-icon" href="assets/the-fourth-club-icon.png?v=4-clubs-8" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; if (homeScreenQuery || homeScreenApp) document.documentElement.classList.add('homescreen-mode');</script>
-    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-6" />
+    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-8" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261118-fourth-club-3"></script>
+    <script defer src="site.js?v=20261118-fourth-club-5"></script>
   </head>
   <body>
     <header class="site-header">
@@ -32,33 +32,33 @@
     <main id="top">
       <section class="hero" id="hero" data-analytics-name="Homepage">
         <div class="hero-copy">
-          <h1>Find your kind<br /><span class="headline-sticker">of golf group.</span></h1>
-          <p class="hero-intro">Early tee time or after-work nine. Weekend regular or occasional golfer. Find people who enjoy the same pace and kind of day you do, so you can look forward to the group, not just the course.</p>
-          <a class="hero-demo-cta" href="#try-round">See how a round comes together <span aria-hidden="true">↓</span></a>
+          <h1>Find a tee time.<br /><span class="headline-sticker">See who’s playing.</span></h1>
+          <p class="hero-intro">Compare nearby course times, preview golfers’ photos and descriptions, and decide together. If no group fits, book the course’s usual way.</p>
+          <a class="hero-demo-cta" href="#try-round">Search tee times <span aria-hidden="true">↓</span></a>
         </div>
 
         <div class="hero-visual">
-          <div class="hero-photo-frame"><img class="golf-photo" src="assets/roundfolk-hero-dave.jpg" alt="A golfer taking a shot on a tree-lined course" fetchpriority="high" />
+          <div class="hero-photo-frame"><img class="golf-photo" src="assets/roundfolk-hero-dave.webp" alt="A golfer taking a shot on a tree-lined course" fetchpriority="high" />
           <div class="photo-wash" aria-hidden="true"></div></div>
           <div class="sun-sticker" aria-hidden="true">✳︎</div>
           <div class="tee-ticket">
-            <div class="ticket-top"><span>YOUR NEXT ROUND</span><span class="ticket-mark">R</span></div>
+            <div class="ticket-top"><span>EXAMPLE SEARCH</span><span class="ticket-mark">R</span></div>
             <div class="ticket-time"><span>TEE</span><b>7:30</b><span>AM</span></div>
             <div class="ticket-rule"></div>
             <p class="ticket-caption">A group that fits your kind of golf.</p>
-            <div class="ticket-roster"><div class="roster-mark">2/4</div><span><b>Two golfers, one time</b><small>Room for two more</small></span><span class="roster-check">OPEN</span></div>
+            <div class="ticket-roster"><div class="roster-mark">2/4</div><span><b>Example group</b><small>Preview golfers before you decide</small></span><span class="roster-check">SAMPLE</span></div>
             <div class="interest-row"><span>Easy pace</span><span>Weekend</span><span>Walk</span></div>
           </div>
           <div class="better-sticker"><span>GOOD</span><br />GOLF<br /><b>COMPANY</b></div>
         </div>
       </section>
 
-      <div class="ticker" aria-hidden="true"><div class="ticker-track"><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✳︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✷︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✳︎</b><span>YOUR PACE. YOUR KIND OF ROUND.</span><b>✷︎</b><span>GOLF WITH PEOPLE YOU ENJOY</span><b>✳︎</b><span>GOOD GOLF STARTS WITH GOOD COMPANY</span><b>✷︎</b></div></div>
+      <div class="booking-steps" aria-label="How The Fourth Club works"><span>Find a time</span><span>Preview the group</span><span>Both say yes, then book</span></div>
 
       <section class="try-round section-pad" id="try-round" data-analytics-name="The Fourth Club app preview">
         <div class="app-preview-intro" id="good-round">
-          <h2>Put a round out there.<br /><span>See who’s in.</span></h2>
-          <p>Pick a time, say how you like to play, and add a golf photo. If another golfer wants the same round, you each decide whether to play.</p>
+          <h2>Pick a time.<br /><span>Meet your group.</span></h2>
+          <p>Search local courses, see a sample group with profiles, and choose whether you’d play together. Both people decide before the course booking.</p>
         </div>
         <div class="app-preview-stage">
           <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Tap a tee time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
@@ -68,78 +68,58 @@
             <div class="phone-appbar"><span class="phone-app-logo"><img src="assets/the-fourth-club-icon.png?v=4-clubs-8" alt="" /></span><b>the fourth club</b><button class="phone-reset" id="reset-round" type="button" aria-label="Reset round preview"><span aria-hidden="true">↻</span><span>Reset</span></button></div>
             <div class="phone-content">
               <div class="phone-screen" data-screen="round">
-              <h3 class="round-form-title">When can you play?</h3>
-              <p class="round-form-subtitle">Pick a time that works for you.</p>
-              <div class="tee-tap-cue" id="tee-tap-cue"><span class="tee-tap-hand" aria-hidden="true">👆</span><b>Tap any time</b><span class="tee-tap-arrow" aria-hidden="true">↓</span></div>
-              <div class="tee-slots" role="group" aria-label="Choose a tee time">
-                <button class="tee-slot" type="button" aria-pressed="false" data-slot="Thursday · 4:10 PM"><b>THU</b><span>4:10</span><small>PM</small></button>
-                <button class="tee-slot" type="button" aria-pressed="false" data-slot="Saturday · 7:30 AM"><b>SAT</b><span>7:30</span><small>AM</small></button>
-                <button class="tee-slot" type="button" aria-pressed="false" data-slot="Sunday · 9:20 AM"><b>SUN</b><span>9:20</span><small>AM</small></button>
-              </div>
-              <button class="select-your-own" id="toggle-custom-time" type="button" aria-expanded="false" aria-controls="custom-time-picker"><span>Select your own</span><span id="custom-time-icon" aria-hidden="true">＋</span></button>
-              <div class="custom-time-picker" id="custom-time-picker" hidden>
-                <span class="custom-time-label">Pick a day</span>
-                <div class="weekday-choices" role="group" aria-label="Choose a weekday">
-                  <button type="button" aria-label="Monday" aria-pressed="false" data-custom-day="Monday">M</button><button type="button" aria-label="Tuesday" aria-pressed="false" data-custom-day="Tuesday">T</button><button type="button" aria-label="Wednesday" aria-pressed="false" data-custom-day="Wednesday">W</button><button type="button" aria-label="Thursday" aria-pressed="false" data-custom-day="Thursday">T</button><button type="button" aria-label="Friday" aria-pressed="false" data-custom-day="Friday">F</button><button type="button" aria-label="Saturday" aria-pressed="false" data-custom-day="Saturday">S</button><button type="button" aria-label="Sunday" aria-pressed="false" data-custom-day="Sunday">S</button>
-                </div>
-                <div class="custom-time-options" id="custom-time-options" role="group" aria-label="Choose a time" hidden>
-                  <span class="custom-time-label">Then pick a time</span>
-                  <button type="button" aria-pressed="false" data-custom-time="7:00 AM">7:00 AM</button><button type="button" aria-pressed="false" data-custom-time="10:00 AM">10:00 AM</button><button type="button" aria-pressed="false" data-custom-time="2:00 PM">2:00 PM</button><button type="button" aria-pressed="false" data-custom-time="4:00 PM">4:00 PM</button>
-                </div>
-              </div>
-              <div class="cart-control">
-                <div class="cart-control-heading"><span class="cart-icon" aria-hidden="true">▰</span><span><b>Need a cart?</b><small id="cart-choice-hint">Rent a cart</small></span></div>
-                <div class="cart-segmented" id="cart-choice" role="group" aria-label="Choose whether to rent a cart" data-choice="rent_cart">
-                  <span class="cart-slider-thumb" aria-hidden="true"></span>
-                  <button type="button" data-cart-choice="rent_cart" aria-pressed="true">Rent a cart</button>
-                  <button type="button" data-cart-choice="walk" aria-pressed="false">Walk</button>
-                  <button type="button" data-cart-choice="no_preference" aria-pressed="false">No preference</button>
-                </div>
-              </div>
-              <div class="round-profile-card">
-                <div class="round-profile-head"><span class="two-lines-label">A NOTE ABOUT YOUR GAME</span><span class="char-count" hidden>0 / 120</span></div>
-                <p class="allo-bio" id="allo-bio" aria-label="A note about your golf game" aria-live="polite">Pick a time to add a little about your game.</p>
-                <div class="round-photo-row">
-                  <div class="round-photo-thumb" id="round-photo-thumb" hidden></div>
-                  <button class="photo-snap-button" id="photo-snap" type="button"><span aria-hidden="true">＋</span> Add photo</button>
-                </div>
-              </div>
-              <button class="post-round-button" id="post-round" type="button" disabled>Put this round out there <span aria-hidden="true">↗</span></button>
-              <div class="round-response" id="round-response" hidden aria-live="polite">
-                <div class="response-topline"><span class="notification-app-icon"><img src="assets/the-fourth-club-icon.png?v=4-clubs-8" alt="" /></span><span>ROUND UPDATE <small>JUST NOW</small></span><span class="notification-dot"></span></div>
-                <p class="response-message" id="response-message">Another golfer picked this tee time too. Your plans line up. Want to play this round?</p>
-                <div class="response-actions" id="response-actions"><button type="button" id="round-yes">I’m in</button><button type="button" id="round-later">Maybe next time</button></div>
-                <p class="response-confirmation" id="response-confirmation" hidden></p>
-              </div>
+                <div class="ios-screen-nav"><b>Find a tee time</b></div>
+                <p class="sample-disclosure">Sample search · example group</p>
+                <label class="search-field-label" for="course-select">Near</label>
+                <select class="search-select" id="course-select"><option value="any">Utah County</option><option value="fox">Fox Hollow</option><option value="cedar">Cedar Hills</option><option value="hobble">Hobble Creek</option><option value="talons">TalonsCove</option><option value="oaks">The Oaks at Spanish Fork</option></select>
+                <div class="search-filter-row"><label>Date<select id="date-select"><option>Saturday, Nov 21</option><option>Sunday, Nov 22</option><option>Thursday, Nov 19</option></select></label><label>Players<select id="players-select"><option>1 golfer</option><option>2 golfers</option></select></label></div>
+                <label class="search-field-label" for="time-select">Tee time</label>
+                <select class="search-select" id="time-select"><option>7:30 AM</option><option>8:10 AM</option><option>9:20 AM</option><option>4:10 PM</option></select>
+                <button class="find-groups-button" id="find-groups" type="button">Find groups <span aria-hidden="true">→</span></button>
+                <div class="match-window"><label for="match-window-range">Show groups within <b id="match-window-value">30 min</b></label><input id="match-window-range" type="range" min="0" max="60" step="15" value="30"><div><span>Same time</span><span>1 hour</span></div></div>
+                <section class="match-results" id="match-results" hidden aria-live="polite">
+                  <div class="results-heading"><b>Groups near your time</b><span id="results-time">7:30 AM</span></div>
+                  <article class="candidate-card" data-group-card="one">
+                    <div class="candidate-course"><b id="candidate-course-name">Nearby courses</b><span><span id="candidate-time">7:45 AM</span> · 18 holes</span></div>
+                    <div class="candidate-person"><img src="assets/roundfolk-women-golfers.webp" alt="Example golfer profile" loading="lazy" /><div><b>Jordan</b><span>Skill 4 · steady pace</span></div><span class="candidate-count">2 / 4</span></div>
+                    <p class="candidate-bio">“Usually play weekends. I keep it relaxed and like to walk when the course is good for it.”</p>
+                    <div class="candidate-tags"><span>Walks</span><span>Weekend golfer</span></div>
+                    <div class="candidate-actions"><button class="group-decision" type="button" data-group="one" data-decision="pass">Pass</button><button class="group-decision accept-group" type="button" data-group="one" data-decision="join">Join this group</button></div>
+                    <p class="match-feedback" id="match-feedback-one" hidden aria-live="polite"></p>
+                  </article>
+                  <article class="candidate-card" data-group-card="two">
+                    <div class="candidate-course"><b id="candidate-course-name-two">Cedar Hills</b><span><span id="candidate-time-two">8:00 AM</span> · 18 holes</span></div>
+                    <div class="candidate-person"><img src="assets/roundfolk-group.webp" alt="Example golfer profile" loading="lazy" /><div><b>Alex</b><span>Skill 3 · easy pace</span></div><span class="candidate-count">3 / 4</span></div>
+                    <p class="candidate-bio">“I’m usually out early. Happy to walk when the course works for it.”</p>
+                    <div class="candidate-tags"><span>Easy pace</span><span>Early start</span></div>
+                    <div class="candidate-actions"><button class="group-decision" type="button" data-group="two" data-decision="pass">Pass</button><button class="group-decision accept-group" type="button" data-group="two" data-decision="join">Join this group</button></div>
+                    <p class="match-feedback" id="match-feedback-two" hidden aria-live="polite"></p>
+                  </article>
+                  <div class="wait-card"><b>No good fit yet?</b><p>In the full app, wait for a group within <span id="wait-window-value">30 minutes</span> of your time.</p><button id="wait-toggle" type="button" aria-pressed="false">Try the wait option</button><small class="wait-feedback" id="wait-feedback" hidden>This example shows where a match alert would appear.</small></div>
+                  <a class="course-booking-link" id="course-booking-link" href="https://app.membersports.com/tee-times/15396/18907/0/0/0" target="_blank" rel="noopener">Book at this course <span aria-hidden="true">↗</span></a>
+                  <p class="inventory-note">Tee times are completed on the course’s booking site. Availability can change.</p>
+                </section>
+                <div class="search-empty" id="search-empty"><b>Compare times and groups.</b><span>Choose your area and time, then see who might fit your round.</span></div>
               </div>
               <div class="phone-screen people-screen" data-screen="people" hidden>
-                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your group</b></div>
-                <p class="ios-screen-kicker" id="people-slot-label">YOUR NEXT ROUND</p>
-                <article class="round-group-card">
-                  <div class="group-card-top"><span class="group-status-dot" aria-hidden="true"></span><span id="people-group-status">START WITH A TIME</span><span class="group-capacity" id="people-group-capacity">1 OF 4</span></div>
-                  <h4 id="people-group-heading">Start with a time that works.</h4>
-                  <p id="people-group-copy">Pick a tee time on the Round tab to see how a group comes together.</p>
-                  <div class="group-roster">
-                    <div class="group-roster-row"><span class="group-golfer-icon" aria-hidden="true">YOU</span><span><b>Your round</b><small id="people-round-pace">Easygoing pace</small></span><span class="group-row-status">READY</span></div>
-                    <div class="group-roster-row"><span class="group-golfer-icon other" id="people-open-icon" aria-hidden="true">＋</span><span><b id="people-open-title">Open spots</b><small id="people-open-caption">Choose a time to get started</small></span><span class="group-row-status" id="people-open-status">OPEN</span></div>
-                  </div>
-                  <div class="group-details"><div><span>TEE TIME</span><b id="people-time-value">Pick a time in Round</b></div><div><span>GETTING AROUND</span><b id="people-cart-value">Rent a cart</b></div></div>
-                  <p class="group-card-note">A quick yes from both sides. Then the course fills in the rest.</p>
-                </article>
+                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to search">‹</button><b>How it works</b></div>
+                <ol class="flow-list"><li><b>Choose a course and time</b><span>Compare available tee times nearby.</span></li><li><b>Preview the group</b><span>See golfers’ photos, descriptions and self-chosen skill levels.</span></li><li><b>Both say yes</b><span>Then finish your booking with the course.</span></li></ol>
+                <div class="fallback-card"><b>Rather book as usual?</b><p>Go straight to the course at any point.</p><button type="button" data-show-screen="round">Back to tee times</button></div>
               </div>
               <div class="phone-screen profile-screen" data-screen="profile" hidden>
-                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to round">‹</button><b>Your game</b></div>
-                <div class="profile-summary"><span><b>Your golf details</b><small>Choose what feels right for your game</small></span></div>
-                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Pick the level that feels most like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><div><span>Current tee time</span><b id="profile-time-value">Pick a time in Round</b></div><div><span>Getting around</span><b id="profile-cart-value">Rent a cart</b></div></div>
-                <div class="game-note"><b>Good golf starts with a group that feels right.</b><small>Your pace and plans help shape the day.</small></div>
+                <div class="ios-screen-nav"><button type="button" class="ios-back" data-show-screen="round" aria-label="Back to search">‹</button><b>Your profile</b></div>
+                <div class="example-profile"><img src="assets/roundfolk-group.webp" alt="Example profile photo" loading="lazy"/><div><b>Profile photo</b><span>Help golfers recognize who may join their round.</span></div></div>
+                <label class="profile-description-label" for="profile-description">A little about your game</label><textarea id="profile-description" maxlength="120" rows="3" data-clarity-mask="true">I like an easy pace and getting out for a round when I can.</textarea>
+                <div class="preference-list"><div class="preference-row"><span>Golf experience</span><button type="button" class="skill-level-toggle" id="skill-level-toggle" aria-expanded="false" aria-controls="skill-level-options"><b id="selected-skill-name">Novice / Beginner</b><span aria-hidden="true">⌄</span></button></div><div class="skill-level-guide"><p>Choose the level that feels like your usual game.</p><div class="skill-level-options" id="skill-level-options" role="group" aria-label="Choose your golf experience level" hidden></div><p class="skill-level-description" id="skill-level-description" aria-live="polite">Just learning contact, direction, and getting the ball airborne.</p></div><div><span>Playing pace</span><b>Easygoing</b></div><fieldset class="comfort-preferences" data-clarity-mask="true"><legend>I’m comfortable playing with</legend><label><input type="checkbox" name="play-with" value="women" checked> Women golfers</label><label><input type="checkbox" name="play-with" value="men" checked> Men golfers</label><label><input type="checkbox" name="play-with" value="nonbinary" checked> Non-binary golfers</label><label><input type="checkbox" name="play-with" value="prefer-not-to-say" checked> Prefer not to say</label></fieldset><div class="comfort-row"><label for="profile-visibility">Profile visibility</label><select id="profile-visibility" class="comfort-choice"><option>Visible when I join</option><option>Paused</option></select></div></div>
+                <p class="profile-privacy">You choose whether to join, what to share, and who you play with.</p>
               </div>
-              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>＋</span>Round</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>Group</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Game</button></nav>
+              <nav class="phone-tabbar" aria-label="App preview screens"><button type="button" class="phone-tab is-active" data-show-screen="round" aria-current="page"><span>⌕</span>Search</button><button type="button" class="phone-tab" data-show-screen="people"><span>♧</span>How it works</button><button type="button" class="phone-tab" data-show-screen="profile"><span>◉</span>Profile</button></nav>
               <div class="phone-home-indicator" aria-hidden="true"></div>
             </div>
             </div>
-            <img class="phone-frame-render" src="assets/iphone-17-pro-cosmic-orange-frame.png" alt="" aria-hidden="true" />
+            <img class="phone-frame-render" src="assets/iphone-17-pro-cosmic-orange-frame.png" alt="" aria-hidden="true" loading="lazy" decoding="async" />
           </article>
-          <div class="app-preview-caption"><span class="caption-line"></span><p>A time that works. A little about you. A quick yes from both sides.</p></div>
+          <div class="app-preview-caption"><span class="caption-line"></span><p>Preview who’s playing. Both golfers decide. Book with the course when you’re ready.</p></div>
         </div>
       </section>
 

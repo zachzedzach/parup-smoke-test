@@ -15,6 +15,18 @@ Static GitHub Pages landing page for The Fourth Club golfer-matching interest te
 
 ## Current published smoke test
 
+The current product direction and next implementation boundary are documented in [docs/PRODUCT_FOUNDATION.md](docs/PRODUCT_FOUNDATION.md). That document supersedes earlier “post a round” examples below.
+
+The public page introduces a tee-time search that lets golfers preview groups before booking. The mobile-first sample flow has course/date/party-size/time filters, an adjustable 0–60-minute match window, two example groups at different start times with photos and descriptions, separate join/pass actions, a wait-option example, and a direct booking handoff. The second group appears when the window includes its later start time. The profile screen represents the partner prototype with its seven self-selected golf levels, an editable game description, pace, playing-comfort preferences, and a pauseable visibility setting.
+
+The search results, golfers, match choices, and wait action are illustrative. The site does not show live inventory, real profiles, working notifications, persisted preferences, or actual reservations. The course handoff points to a public course booking page or, when no course is selected, a local tee-time directory. Email signup, Clarity, and GitHub Pages behavior remain as described below.
+
+The hero uses an optimized WebP copy of the same Dave Garcia photograph; the original JPEG remains untouched. The WebP is 1200px wide and about 260 KB, down from the original 2.1 MB. The two below-fold profile photos also use compressed, lazy-loaded WebP copies. The original source photos remain in `assets/`.
+
+The visual audit keeps the Fourth Club identity and Allo type, but makes the main path concrete. Mobile removes the overlapping hero card so the golfer is visible, the three-step sequence has no numbered pills, and the step strip fits without horizontal scrolling. The app copy has a restrained variable-weight pulse; buttons have brief state feedback; reduced-motion preferences are respected. See `docs/PRODUCT_FOUNDATION.md` for market research and integration requirements.
+
+**Previous preview details (superseded November 18, 2026):**
+
 **Brand update — November 18, 2026:** The public-facing brand is **The Fourth Club**, matching `thefourth.club`. The header, footer, page title, social title, app preview, store-button labels, signup dialog, confirmation copy, and favicon use the new brand. The logo is a pink dimpled golf ball behind four left-facing clubs: three white iron-style clubs and a taller pink driver at the right. Clubheads have open soles without a bottom outline, and the shafts extend beyond the ball. The existing signup endpoint, private Google Sheet, Clarity project, and analytics event names/local-storage compatibility keys remain in place.
 
 **Published logo refinement — November 18, 2026:** The four heads use flatter, angled iron blades with simple face grooves, plus a low-profile pink driver at the high right. This keeps the clubheads from reading as rounded caps at small sizes. The lower soles stay open, the shafts extend beyond the ball, and fine warm-dark outlines keep the clubs distinct without heavy borders. The SVG supplies the header, phone, and favicon; a matching 180px PNG supplies the Apple home-screen icon. Image references use cache version `4-clubs-6`.
