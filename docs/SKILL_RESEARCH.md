@@ -1,0 +1,43 @@
+# Design and motion skill research — November 18, 2026
+
+## Scope
+
+The user asked to install the design and motion resources in the supplied lists and try them against The Fourth Club. Fifty project-local skills were installed with `npx skills@latest add`; exact source, version commit and skill path are recorded in the root `skills-lock.json` while the checkout is active. `.agents/skills/` and `skills-lock.json` are git-ignored so local agent tooling does not enter the GitHub Pages output or add 141 MB of skill material to the site repository. Skills are review-time tools; none are website runtime dependencies. No website code was changed or published in this pass.
+
+## Skills installed
+
+- **UI and design review:** Uizze UI, Impeccable, Taste (`design-taste-frontend`), Vercel Web Design Guidelines, Anthropic Frontend Design, Hallmark, Huashu Design, Logo Design, Nothing Design, Architecture Diagram, PixelFX, and Stitch skills (`design-md`, `site-md`, `taste-design`, `enhance-prompt`, `stitch-loop`, code/design extraction, design generation and management, React components, React Native, and upload).
+- **Motion and interaction:** Emil Kowalski (`animate`, `apple-design`, `emil-design-eng`, `review-animations`, `improve-animations`, `find-animation-opportunities`), LottieFiles `motion-design`, all eight GSAP skills (`core`, `frameworks`, `performance`, `plugins`, `react`, `scrolltrigger`, `timeline`, `utils`), Garden `oil-motion`, and PixelFX.
+- **Other creative workflows in the submitted list:** Garden `beautiful-article`, `gpt-image-2`, `kb-retriever`, `motion-showreel`, `web-design-engineer`, `web-video-presentation`; Huashu/Anything2Explainer; and Stitch's Remotion and shadcn-ui helpers. These are installed as references but are not all appropriate to invoke on a static marketing site.
+
+## Checks actually run
+
+- **Impeccable detector:** scanned `index.html`; 117 findings: 22 contrast, 75 undersized UI text, 4 tiny body text, 4 cramped padding, 6 hard-offset shadows, and one each for nested cards, cream palette, marquee, dark glow, repeating gradient stripes, and side-tab accent.
+- **Taste copy linter:** `node .agents/skills/design-taste-frontend/scripts/copy-lint.mjs index.html --kind software`; 0 failures and 2 warnings. It flags two paired-fragment headings and a strip of times/numbers. These are recognizably a repeated headline device and actual interactive tee-time values, so they are not automatic copy errors.
+- **Vercel Web Interface Guidelines:** fetched the current rules and reviewed `index.html`, `styles.css`, and `site.js`. The visible page has semantic buttons and links, labeled controls, alt text, live result feedback, reduced-motion handling, and responsive overflow clipping. The page has no skip link; the meaningful images do not declare intrinsic `width`/`height`; this is worth addressing in a future accessibility/performance pass. The custom fake iPhone's decorative status UI is correctly hidden from assistive technology.
+- **Emil motion principles:** reviewed keyframes, transitions, and reduced-motion overrides in `styles.css` and `site.js`. Most button feedback is brief and the motion system accounts for reduced motion. Review points: the older `ticker` keyframe is still detected by the static detector but no ticker is present in current `index.html` (stale CSS); some legacy visual loops remain in CSS and should be checked for whether they still match the published composition; the Allo weight pulse is deliberately slow and text-only, but should be re-evaluated on a real phone for reading comfort.
+- **Mobile-native guidance:** viewport fit, scroll chaining, touch feedback, safe areas, and tap targets were reviewed against the prior physical-device screenshots and current source. The standalone view and normal page scroll behavior are documented in the earlier latest-work notes; a physical iPhone remains the decisive check for Safari safe areas and rubber-banding.
+
+## Public deployment exposure check
+
+Read-only checks on `https://www.thefourth.club/` verified HTTP 200 with a valid TLS chain. Common key patterns were absent from the live HTML and JavaScript. The public Apps Script URL and Clarity project identifier appear in the shipped HTML; they are client-visible identifiers, not private keys. The Apps Script endpoint accepts anonymous submissions and has a honeypot plus duplicate-email check, but no strong rate limit; treat it as a spam target and monitor the private Sheet.
+
+The live Pages artifact also exposed `README.md`, `docs/PRODUCT_FOUNDATION.md`, and `backend/Code.gs` because the workflow uploaded the repository root. No private key was found there, but the backend source and operational documentation do not belong in the public site artifact. The workflow now copies only `index.html`, `styles.css`, `site.js`, `manifest.webmanifest`, `CNAME`, and `assets/` to `_site/` before upload. Its staged bundle was checked: all local HTML/CSS references resolve and only the intended site files and assets are included. Live verification after deployment confirmed the page and core assets return 200 while `/README.md`, `/docs/PRODUCT_FOUNDATION.md`, `/backend/Code.gs`, and `/.env` return 404.
+
+The current GitHub Pages response does not include Content-Security-Policy, X-Content-Type-Options, Referrer-Policy, or Permissions-Policy headers. GitHub Pages manages HTTPS/HSTS at the platform layer. Since this site is a small static smoke test with external Clarity and Google Apps Script integrations, review a compatible CSP before adding one; don't deploy an untested restrictive policy that breaks the signup dialog or tracking.
+
+## Reading the automated findings
+
+The detector treats the site's exact cream/paper ground as a generic beige anti-pattern and flags it despite being a deliberate, user-approved part of the visual identity. It also sees the phone-preview text at its source CSS size rather than its scaled rendered size; treat those mock-only text findings separately from ordinary page copy. The low-contrast hits are not all false positives: pink text on yellow/paper and white text on light surfaces can be hard to read and deserve a focused color audit. The marquee result appears stale because the matching element is absent from the current page. Do not blindly remove the paper palette, candy colors, or phone mockup to satisfy generic lint rules.
+
+## Installation risk and limits
+
+The skill installer reported these risk summaries: Impeccable and Taste were marked Critical by Snyk, LottieFiles motion-design was also marked Critical, some Stitch/Garden entries were marked Medium, and the remainder ranged Low to Medium. These scores are installer assessments, not proof of malicious behavior. Skills contain instructions and sometimes scripts; review a skill before invoking its scripts. The Taste visual-browser checker requires headless Chrome, which is not installed in this environment, so its full responsive/visual gate was not run. Firefox is available. Impeccable's installed launcher supports `detect` but not the `critique` verb described in its own skill file, so only the deterministic detector was run. Stitch workflows that depend on Google's hosted Stitch service and animation tools requiring a framework, GPU, or extra runtime were not run against the site.
+
+## What the different tools are
+
+The list also includes resources that are not installable Codex skills: ScrollTide and SnapBlocks are component/example libraries; ScrollShaders is a visual-effects resource; Three.js, React Three Fiber/Rapier/postprocessing/quarks, Tweakpane, GSAP, Remotion, Lottie, Manim, FFmpeg, Librosa, and WhisperX are software libraries or executables; Openverse is an asset API; Blender MCP and Unity MCP are integrations; OpenDesign is a full design workspace. They are not included as website dependencies. No web video, shader, 3D engine, sound, or animation dependency was added to the public site.
+
+## Recommended use for this project
+
+For ordinary site work, start with the established brand/product foundation, then use Vercel Web Design Guidelines for accessibility and implementation checks, Impeccable for critique or refinement, Emil's `review-animations` for motion diffs, `mobile-native` for phone behavior, and Taste for occasional exploratory audit. Use Hallmark, Huashu, Stitch, logo, video, or 3D skills only when their specific workflow is called for; their preset directions can conflict with the site's intentional identity or require services this static page does not use. Keep the paper texture, Allo type, pink/green stars, golf-ball mark, and the product truth unless a future brief explicitly changes them.
