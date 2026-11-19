@@ -29,7 +29,7 @@ Heuristic total: 7 → 6. No decorative numbering is actually rendered: the thre
 | U4 | 6 | 0 | 0 |
 | U7 | 5 | 0 | 0 |
 | U8 | 14 | 0 | 0 |
-| U11 | 5 | 0 | 0 |
+| U11 | 7 | 0 | 0 |
 | U14 | 1 | 0 | 0 |
 | unslop 27 | 1 | 0 | 0 |
 | unslop 32 | 1 | 0 | 0 |
@@ -67,6 +67,9 @@ Every rewritten visible string is listed below. Deletions are in the source diff
 - “A little more room?” → “No rounds fit yet.” (unslop 27)
 - “Saved and skipped plans stay here. Nothing is lost when you pass.” → “Skipped rounds stay here too.” (U4)
 - “Interactive preview · sample golfers” → “Sample golfers” (U7)
+
+- “Use another example” → “Remove sample photo” (U4; the existing action removes the sample)
+- “＋ Add a sample photo” → “Add a sample photo” (U11)
 
 ## Kept on purpose
 

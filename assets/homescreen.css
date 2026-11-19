@@ -208,8 +208,8 @@
 #preferences-app .plan-day-filter button{min-height:40px;padding:10px 14px;border:1px solid #d7dece;border-radius:20px;color:#4f5d48;background:transparent;font:500 13px -apple-system,sans-serif}
 #preferences-app .plan-day-filter [aria-pressed=true]{background:#2c4833;color:#fff;border-color:#2c4833}
 .result-count{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:12px;color:#5b6655;line-height:1.4}
-.result-count>span{display:flex;gap:5px;align-items:center;font-size:11px}
-#preferences-app .result-count svg{width:16px;height:16px}
+
+
 #preferences-app .partner-card{border:0;box-shadow:0 4px 20px #263b2110;border-radius:16px;margin:18px 0 24px;background:#fff}
 #preferences-app .partner-card>div{padding:20px}
 .plan-window{background:#edf3e7;color:#48643a;padding:5px 8px;border-radius:6px;font-size:11px}
@@ -238,7 +238,7 @@
 #preferences-app .plan-fit small{font-size:11px;color:#62685f;display:block;margin-bottom:12px}
 #preferences-app .partner-actions{gap:8px;margin:10px 0 10px}
 #preferences-app .partner-actions button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:#f3f5ef;color:#4b5d40;font:500 12px -apple-system,sans-serif;border-radius:10px}
-#preferences-app .partner-actions svg{width:16px;height:16px}
+
 #preferences-app .partner-actions [aria-pressed=true]{background:#fce4ed;color:#9c3155}
 #preferences-app .booking-next{margin-top:16px;background:#eef4e9;border-radius:12px;padding:16px}
 .request-state{display:flex;gap:8px;align-items:center;color:#315c3e}
