@@ -9,13 +9,13 @@
  let step=0,view='welcome',welcomeIndex=0,editing=false,resultDay='all',courseSort='north',courseQuery='';
  state.usualTime=8;state.dayTimes={};state.activeDay='';
  const levels=[
- ['1','Learning contact, direction, and distance; still working on getting the ball airborne consistently.'],
- ['2','Gaining confidence through a round; working on avoiding trouble and learning the flow of the course.'],
- ['3','Developing predictable shots and a reliable short game.'],
- ['4','Playing consistent shots with disciplined course decisions, controlled wedges, and solid long putts.'],
- ['5','Usually playing near par; knowing my shot patterns and avoiding double bogeys.'],
- ['6','Competing in regional events or developmental tours, often scoring below par under pressure.'],
- ['7','Competing professionally at tour level, with precise routines and a consistent approach under pressure.']];
+ 'Learning contact, direction, and distance; still working on getting the ball airborne consistently.',
+ 'Gaining confidence through a round; working on avoiding trouble and learning the flow of the course.',
+ 'Developing predictable shots and a reliable short game.',
+ 'Playing consistent shots with disciplined course decisions, controlled wedges, and solid long putts.',
+ 'Usually playing near par; knowing my shot patterns and avoiding double bogeys.',
+ 'Competing in regional events or developmental tours, often scoring below par under pressure.',
+ 'Competing professionally at tour level, with precise routines and a consistent approach under pressure.'];
  const courses=window.FOURTH_COURSES||[];
  const weekdays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
  const paceLabels={'Relaxed, keeping up':'Relaxed','Ready golf':'Steady','Quick round':'Fast'};
