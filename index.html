@@ -18,9 +18,9 @@
     <link rel="apple-touch-icon" href="assets/the-fourth-club-icon.png?v=4-clubs-8" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; if (homeScreenQuery || homeScreenApp) document.documentElement.classList.add('homescreen-mode');</script>
-    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-9" />
+    <link rel="stylesheet" href="styles.css?v=20261118-fourth-club-10" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
-    <script defer src="site.js?v=20261118-fourth-club-5"></script>
+    <script defer src="site.js?v=20261118-fourth-club-6"></script>
   </head>
   <body>
     <header class="site-header">
@@ -61,24 +61,32 @@
           <p>Search local courses, see a sample group with profiles, and choose whether you’d play together. Both people decide before the course booking.</p>
         </div>
         <div class="app-preview-stage">
-          <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Tap a tee time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
+          <div class="preview-story-note touch-preview-note" id="touch-preview-note"><span class="preview-note-star" aria-hidden="true">↘</span><span class="touch-note-copy"><b>Try the app</b><small>Pick a day and time in the phone.</small></span><span class="touch-note-mark" aria-hidden="true">TAP</span></div>
           <article class="phone-preview interactive-round" aria-label="Interactive The Fourth Club app preview">
             <div class="phone-frame-ui">
             <div class="phone-status" aria-hidden="true"><span>9:41</span><span class="phone-status-icons"><i></i><i></i><i></i><i></i><i></i></span></div>
             <div class="phone-appbar"><span class="phone-app-logo"><img src="assets/the-fourth-club-icon.png?v=4-clubs-8" alt="" /></span><b>the fourth club</b><button class="phone-reset" id="reset-round" type="button" aria-label="Reset round preview"><span aria-hidden="true">↻</span><span>Reset</span></button></div>
             <div class="phone-content">
               <div class="phone-screen" data-screen="round">
-                <div class="ios-screen-nav"><b>Find a tee time</b></div>
-                <p class="sample-disclosure">Sample search · example group</p>
-                <label class="search-field-label" for="course-select">Near</label>
+                <div class="ios-screen-nav"><b>Let’s make a round</b><span class="round-sparkle" aria-hidden="true">✳</span></div>
+                <p class="sample-disclosure"><span aria-hidden="true">●</span> YOUR NEXT ROUND · SAMPLE</p>
+                <div class="appointment-track" id="appointment-track" data-stage="round" aria-label="Round planning progress: Your round"><span data-stage-label="round">Your round</span><i></i><span data-stage-label="group">Your group</span><i></i><span data-stage-label="agree">Next up</span></div>
+                <label class="search-field-label" for="course-select">Where sounds good?</label>
                 <select class="search-select" id="course-select"><option value="any">Utah County</option><option value="fox">Fox Hollow</option><option value="cedar">Cedar Hills</option><option value="hobble">Hobble Creek</option><option value="talons">TalonsCove</option><option value="oaks">The Oaks at Spanish Fork</option></select>
-                <div class="search-filter-row"><label>Date<select id="date-select"><option>Saturday, Nov 21</option><option>Sunday, Nov 22</option><option>Thursday, Nov 19</option></select></label><label>Players<select id="players-select"><option>1 golfer</option><option>2 golfers</option></select></label></div>
-                <label class="search-field-label" for="time-select">Tee time</label>
-                <select class="search-select" id="time-select"><option>7:30 AM</option><option>8:10 AM</option><option>9:20 AM</option><option>4:10 PM</option></select>
-                <button class="find-groups-button" id="find-groups" type="button">Find groups <span aria-hidden="true">→</span></button>
+                <label class="search-field-label">Pick a day</label>
+                <div class="choice-rail date-choices" role="group" aria-label="Choose a day"><button type="button" data-date="Thursday, Nov 19" aria-pressed="false"><small>THU</small><b>19</b></button><button type="button" data-date="Saturday, Nov 21" aria-pressed="true"><small>SAT</small><b>21</b></button><button type="button" data-date="Sunday, Nov 22" aria-pressed="false"><small>SUN</small><b>22</b></button></div>
+                <select class="visually-hidden" id="date-select" aria-label="Choose a day"><option>Saturday, Nov 21</option><option>Sunday, Nov 22</option><option>Thursday, Nov 19</option></select>
+                <label class="search-field-label">What time works?</label>
+                <div class="choice-rail time-choices" role="group" aria-label="Suggested tee times"><button type="button" data-time="7:30 AM" aria-pressed="true"><b>7:30</b><small>AM</small></button><button type="button" data-time="8:10 AM" aria-pressed="false"><b>8:10</b><small>AM</small></button><button type="button" data-time="9:20 AM" aria-pressed="false"><b>9:20</b><small>AM</small></button></div>
+                <label class="more-time-label" for="more-time-select">A different time? <select id="more-time-select"><option value="">Choose a time</option><option value="6:50 AM">6:50 AM</option><option value="7:50 AM">7:50 AM</option><option value="10:40 AM">10:40 AM</option><option value="12:10 PM">12:10 PM</option><option value="4:10 PM">4:10 PM</option></select></label>
+                <select class="visually-hidden" id="time-select" aria-label="Selected tee time"><option>7:30 AM</option><option>8:10 AM</option><option>9:20 AM</option><option>6:50 AM</option><option>7:50 AM</option><option>10:40 AM</option><option>12:10 PM</option><option>4:10 PM</option></select>
+                <div class="round-setup-row"><span>How many playing?</span><div class="player-stepper"><button type="button" id="players-minus" aria-label="Set to one golfer">−</button><b id="players-count">1 golfer</b><button type="button" id="players-plus" aria-label="Set to two golfers">+</button></div><select class="visually-hidden" id="players-select" aria-label="Number of golfers"><option>1 golfer</option><option>2 golfers</option></select></div>
+                <div class="cart-choice"><span>Need a cart?</span><div role="group" aria-label="Getting around"><button type="button" data-cart-choice="cart" aria-pressed="true">Rent a cart</button><button type="button" data-cart-choice="walk" aria-pressed="false">Walk</button><button type="button" data-cart-choice="any" aria-pressed="false">No preference</button></div></div>
+                <button class="find-groups-button" id="find-groups" type="button"><span>Show me the groups</span><span aria-hidden="true">→</span></button>
                 <div class="match-window"><label for="match-window-range">Show groups within <b id="match-window-value">30 min</b></label><input id="match-window-range" type="range" min="0" max="60" step="15" value="30"><div><span>Same time</span><span>1 hour</span></div></div>
                 <section class="match-results" id="match-results" hidden aria-live="polite">
-                  <div class="results-heading"><b>Groups near your time</b><span id="results-time">7:30 AM</span></div>
+                  <div class="results-heading"><b>Possible playing partners</b><span id="results-time">7:30 AM</span></div>
+                  <p class="round-summary" id="round-summary">Saturday · 7:30 AM · 1 golfer · Rent a cart</p>
                   <article class="candidate-card" data-group-card="one">
                     <div class="candidate-course"><b id="candidate-course-name">Nearby courses</b><span><span id="candidate-time">7:45 AM</span> · 18 holes</span></div>
                     <div class="candidate-person"><img src="assets/roundfolk-women-golfers.webp" alt="Example golfer profile" loading="lazy" /><div><b>Jordan</b><span>Skill 4 · steady pace</span></div><span class="candidate-count">2 / 4</span></div>

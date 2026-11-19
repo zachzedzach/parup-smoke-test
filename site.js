@@ -85,6 +85,71 @@
   const resultTime = document.getElementById('results-time');
   const dateSelect = document.getElementById('date-select');
   const playerSelect = document.getElementById('players-select');
+  const playersCount = document.getElementById('players-count');
+  const roundSummary = document.getElementById('round-summary');
+  const appointmentTrack = document.getElementById('appointment-track');
+  const cartButtons = [...document.querySelectorAll('[data-cart-choice]')];
+  let gettingAround = 'cart';
+  function setAppointmentStage(stage) {
+    appointmentTrack?.setAttribute('data-stage', stage);
+    const stepName = stage === 'round' ? 'Your round' : stage === 'group' ? 'Your group' : 'Next up';
+    appointmentTrack?.setAttribute('aria-label', `Round planning progress: ${stepName}`);
+  }
+  function updateRoundSummary() {
+    if (!roundSummary) return;
+    const day = (dateSelect?.value || 'Saturday, Nov 21').replace(', Nov ', ' · Nov ');
+    const place = courseSelect?.options[courseSelect.selectedIndex]?.text || 'Utah County';
+    roundSummary.textContent = `${place} · ${day} · ${timeSelect?.value || '7:30 AM'} · ${playerSelect?.value || '1 golfer'} · ${gettingAround === 'cart' ? 'Rent a cart' : gettingAround === 'walk' ? 'Walk' : 'No preference'}`;
+  }
+  document.querySelectorAll('[data-date]').forEach(button => button.addEventListener('click', () => {
+    if (dateSelect) dateSelect.value = button.dataset.date;
+    document.querySelectorAll('[data-date]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    updateRoundSummary();
+    track('roundfolk_date_selected', { date: button.dataset.date });
+  }));
+  dateSelect?.addEventListener('change', () => {
+    document.querySelectorAll('[data-date]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.date === dateSelect.value)));
+    updateRoundSummary();
+  });
+  document.querySelectorAll('[data-time]').forEach(button => button.addEventListener('click', () => {
+    if (timeSelect) timeSelect.value = button.dataset.time;
+    document.querySelectorAll('[data-time]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    const moreTime = document.getElementById('more-time-select');
+    if (moreTime) moreTime.value = '';
+    if (resultTime) resultTime.textContent = timeSelect?.value || '7:30 AM';
+    updateCandidateTime();
+    updateRoundSummary();
+    track('roundfolk_time_selected', { tee_time: button.dataset.time });
+  }));
+  document.getElementById('more-time-select')?.addEventListener('change', event => {
+    if (!event.currentTarget.value) return;
+    if (timeSelect) timeSelect.value = event.currentTarget.value;
+    document.querySelectorAll('[data-time]').forEach(item => item.setAttribute('aria-pressed', String(item.dataset.time === event.currentTarget.value)));
+    if (resultTime) resultTime.textContent = event.currentTarget.value;
+    updateCandidateTime();
+    updateRoundSummary();
+    track('roundfolk_time_selected', { tee_time: event.currentTarget.value, custom_time: true });
+  });
+  function updatePlayerCount(count) {
+    if (playerSelect) playerSelect.value = `${count} golfer${count === 1 ? '' : 's'}`;
+    if (playersCount) playersCount.textContent = playerSelect?.value || `${count} golfer${count === 1 ? '' : 's'}`;
+    const minus = document.getElementById('players-minus');
+    const plus = document.getElementById('players-plus');
+    minus?.setAttribute('aria-label', 'Set to one golfer');
+    plus?.setAttribute('aria-label', 'Set to two golfers');
+    updateCandidateTime();
+    updateRoundSummary();
+  }
+  playerSelect?.addEventListener('change', () => updatePlayerCount(playerSelect.value === '2 golfers' ? 2 : 1));
+  document.getElementById('players-minus')?.addEventListener('click', () => updatePlayerCount(1));
+  document.getElementById('players-plus')?.addEventListener('click', () => updatePlayerCount(2));
+  cartButtons.forEach(button => button.addEventListener('click', () => {
+    gettingAround = button.dataset.cartChoice;
+    cartButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    updateRoundSummary();
+    track('roundfolk_getting_around_selected', { preference: gettingAround });
+  }));
+  courseSelect?.addEventListener('change', updateRoundSummary);
   const courseLinks = {
     any: ['Browse local tee times', 'https://www.readygolfer.co/provo-tee-times'],
     fox: ['Book at Fox Hollow', 'https://app.membersports.com/tee-times/15396/18907/0/0/0'],
@@ -119,12 +184,13 @@
       const secondHour = Math.floor(secondTotal / 60);
       candidateTimeTwo.textContent = `${secondHour % 12 || 12}:${String(secondTotal % 60).padStart(2, '0')} ${secondHour >= 12 ? 'PM' : 'AM'}`;
     }
-    if (secondCandidate) secondCandidate.hidden = Number(range?.value ?? 30) < 30;
+    if (secondCandidate) secondCandidate.hidden = Number(range?.value ?? 30) < 30 || playerSelect?.value === '2 golfers';
   }
   range?.addEventListener('input', updateRange);
   document.getElementById('find-groups')?.addEventListener('click', () => {
     if (empty) empty.hidden = true;
     if (results) results.hidden = false;
+    setAppointmentStage('group');
     document.querySelectorAll('.match-feedback').forEach(note => { note.hidden = true; });
     if (waitToggle) { waitToggle.setAttribute('aria-pressed', 'false'); waitToggle.textContent = 'Try the wait option'; }
     const waitFeedback = document.getElementById('wait-feedback');
@@ -133,6 +199,7 @@
     if (courseName) courseName.textContent = label;
     if (courseNameTwo) courseNameTwo.textContent = courseSelect?.value === 'any' ? 'Cedar Hills' : label;
     if (resultTime) resultTime.textContent = timeSelect?.value || '7:30 AM';
+    updateRoundSummary();
     updateCandidateTime();
     const booking = courseLinks[courseSelect?.value || 'any'];
     if (courseLink) { courseLink.textContent = `${booking[0]} ↗`; courseLink.href = booking[1]; }
@@ -143,7 +210,15 @@
     const booking = courseLinks[courseSelect.value];
     if (courseLink && booking) { courseLink.textContent = `${booking[0]} ↗`; courseLink.href = booking[1]; }
   });
-  timeSelect?.addEventListener('change', () => { if (resultTime) resultTime.textContent = timeSelect.value; updateCandidateTime(); });
+  timeSelect?.addEventListener('change', () => {
+    const isSuggested = [...document.querySelectorAll('[data-time]')].some(button => button.dataset.time === timeSelect.value);
+    document.querySelectorAll('[data-time]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.time === timeSelect.value)));
+    const moreTime = document.getElementById('more-time-select');
+    if (moreTime) moreTime.value = isSuggested ? '' : timeSelect.value;
+    if (resultTime) resultTime.textContent = timeSelect.value;
+    updateCandidateTime();
+    updateRoundSummary();
+  });
   document.querySelector('.match-results')?.addEventListener('click', event => {
     const button = event.target.closest('[data-group][data-decision]');
     if (!button) return;
@@ -151,8 +226,9 @@
     if (!note) return;
     note.hidden = false;
     note.textContent = button.dataset.decision === 'join'
-      ? 'You’re interested. In a real round, they decide too before you book together.'
-      : 'Passed. Your search stays open for another group.';
+      ? 'Your yes is on the card. Their yes matters too. If you both agree, finish booking with the course.'
+      : 'No worries. Your search stays open, or book this tee time as usual.';
+    if (button.dataset.decision === 'join') setAppointmentStage('agree');
     track('roundfolk_group_interest', { group_option: button.dataset.group, decision: button.dataset.decision });
   });
   const waitToggle = document.getElementById('wait-toggle');
@@ -212,6 +288,17 @@
     document.querySelector('[data-show-screen="round"]')?.click();
     if (courseSelect) courseSelect.value = 'any';
     if (timeSelect) timeSelect.selectedIndex = 0;
+    if (dateSelect) dateSelect.value = 'Saturday, Nov 21';
+    document.querySelectorAll('[data-date]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.date === dateSelect?.value)));
+    document.querySelectorAll('[data-time]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.time === timeSelect?.value)));
+    const moreTime = document.getElementById('more-time-select');
+    if (moreTime) moreTime.value = '';
+    if (playerSelect) playerSelect.selectedIndex = 0;
+    updatePlayerCount(1);
+    gettingAround = 'cart';
+    cartButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.cartChoice === 'cart')));
+    setAppointmentStage('round');
+    updateRoundSummary();
     if (range) range.value = '30';
     updateRange();
     results.hidden = true;
