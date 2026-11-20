@@ -9,12 +9,12 @@
  let step=0,view='welcome',editing=false,resultDay='all',courseSort='nearby',courseQuery='';
  const levels=[
  'I’m still learning contact; many shots don’t get airborne yet.',
- 'I usually score 120 or higher over 18 holes; I’m working on direction and distance.',
- 'I usually score 110–119 over 18 holes; keeping the ball in play is my next step.',
- 'I usually score 100–109 over 18 holes; I’m starting to make pars and avoid big numbers.',
- 'I usually score 90–99 over 18 holes; I make pars and hit some dependable shots.',
- 'I usually score 80–89 over 18 holes; I make pars often and recover from missed shots.',
- 'I usually score below 80 over 18 holes; I plan shots around my strengths and often play to a low handicap.'];
+ 'I usually score 120 or higher; I’m learning to control direction and distance.',
+ 'I usually score 110–119; I’m keeping more shots in play.',
+ 'I usually score 100–109; I’m making pars and avoiding big numbers.',
+ 'I usually score 90–99; I’m finding reliable tee shots and a steadier short game.',
+ 'I usually score 80–89; I make regular pars and occasional birdies.',
+ 'I usually score below 80; I plan shots around my strengths and compete.'];
  const skillColors=['#1683c6','#1a9caf','#55a478','#a1a64a','#d4a12e','#ed7028','#d84435'];
  const courses=window.FOURTH_COURSES||[];
  const weekdays=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -78,7 +78,7 @@
  function daySchedules(){return weekdays.map(day=>{const active=state.days.includes(day),value=active?inputTime(state.dayTimes[day]??8):'';return `<div class="week-day" data-selected="${active}"><button type="button" class="week-day-toggle" data-day-toggle="${day}" aria-pressed="${active}" aria-label="${active?'Remove':'Add'} ${day}"><span>${day.slice(0,3)}</span><b aria-hidden="true">${active?'✓':'+'}</b></button><label><span class="visually-hidden">${day} usual start time</span><input type="time" data-day-time="${day}" aria-label="${day} usual start time" min="06:00" max="19:00" step="900" value="${value}" ${active?'':'disabled'}></label></div>`}).join('')}
  function setup(){const screens=[
  ['A little about you','Start with a few details for your playing profile.',`${field('First name','name','autocomplete="given-name" maxlength="40"')}${field('Your city','city','autocomplete="address-level2" maxlength="70"')}<h3>How should we describe you?</h3>${single('gender',['Woman','Man','Nonbinary','Prefer not to say'])}<p class="choice-explanation">Used only for the visibility choices you make.</p>${handicapControl()}<label class="pref-field">A couple of lines about your game<textarea data-input="bio" maxlength="180" placeholder="I like an early round, a steady pace, and a good snack at the turn.">${esc(state.bio)}</textarea></label><p class="pref-footnote">Only your first name is needed.</p>`],
- ['Which feels closest to your usual game?','Use a typical 18-hole score as a guide. Pick the closest; it doesn’t need to be exact.',skillOptions('skill',state.skill)],
+ ['Which feels closest to your usual game?','Use your usual 18-hole score as a guide. Pick the closest; it doesn’t need to be exact.',skillOptions('skill',state.skill)],
  ['What skill levels feel like a good fit?','Choose any. This only shapes the golfers shown in your preview.',skillOptions('playing-level',state.partnerSkills,true)],
  ['Where do you play?','Choose the courses you play. Nearby courses stay together.',coursePicker()],
  ['When can you play?','Set a separate usual start for each day. Times move in 15-minute steps.',`<h3>Choose the days</h3><p class="choice-explanation">Tap a day to add or remove it, then set its usual start.</p><div class="weekly-schedule" role="group" aria-label="Days and usual start times">${daySchedules()}</div><p class="availability-count" id="availability-count" aria-live="polite">${state.days.length?`${state.days.length} ${state.days.length===1?'day':'days'} selected`:'Choose the days you can usually play.'}</p><div class="day-time-settings">${state.days.length?toleranceControl():'<p class="day-time-prompt">Each day gets its own start time.</p>'}</div>`],

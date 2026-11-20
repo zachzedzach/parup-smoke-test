@@ -1,6 +1,6 @@
 ## Seven-level game descriptions — November 20, 2026
 
-Rewrote the numbered golf-game choices so each gives a concrete self-assessment: learning contact, controlling direction and distance, then typical 18-hole score bands from 120+ down to below 80. The helper now frames scores as a guide, not a test. The same descriptions drive the player's self-rating and the separate level filter; color progression and numbering are unchanged. Verification: all 63 onboarding stress checks, JavaScript syntax, and whitespace checks pass. Published revision: pending.
+Rewrote the numbered golf-game choices so each gives a concrete self-assessment: learning contact, controlling direction and distance, then typical 18-hole score bands from 120+ down to below 80, with short descriptions sized for the phone screen. The helper now frames scores as a guide, not a test. The same descriptions drive the player's self-rating and the separate level filter; color progression and numbering are unchanged. Verification: all 63 onboarding stress checks, JavaScript syntax, and whitespace checks pass. Published revision: pending.
 
 ## Handicap control — November 20, 2026
 
