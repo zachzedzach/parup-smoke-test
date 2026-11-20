@@ -1,3 +1,7 @@
+## Playing-partner audience — November 20, 2026
+
+The final preference step now allows selecting women golfers, men golfers, or both; “Everyone” is an exclusive shortcut that clears the two narrower choices. Audience choices are independent, so visitors can include both groups. Example plans follow the selected audience, and clearing all choices leaves the audience unrestricted. The interaction suite passes all 66 checks. Published status: local change only; deployment pending.
+
 ## Profile wording, golf ability scale, and course map — November 20, 2026
 
 The self-rating now asks what a person typically shoots, reassures them that the answers are a changeable guide, and uses short numbered descriptions with clearly separated 18-hole score bands. A cool-blue to warm-coral ramp distinguishes the seven choices while keeping the text dark and readable. Selected golf courses turn their matching Utah map dots green, with a legend for the selected dots. Cart choice is explicitly tied to one planned round; the on-course phrase “Mulligans welcome” is replaced with plain wording. All 66 interaction checks pass; JS syntax and whitespace checks pass. Published phone view confirms all seven choices fit on one screen and a selected Bear Lake marker renders green. Commit `b26d27d` is live; GitHub Pages run [44795242939](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44795242939) succeeded.
