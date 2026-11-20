@@ -80,9 +80,9 @@ The first-run flow now separates a golfer’s self-rating from the seven levels 
 
 # Latest work
 
-## Golf-group headline motion — November 20, 2026
+## Headline voice and motion — November 20, 2026
 
-The right-to-left “golf group” ripple was too subtle to register. It now combines a more visible Allo weight shift with a tiny vertical lift, keeps the glyph anchors fixed, and completes its loop in 4.4 seconds. Reduced-motion users get stable text. Updated the stylesheet cache key to v68. Normal and reduced-motion captures were reviewed on an isolated headline; the homepage was checked at mobile and desktop widths. All 27 interaction checks pass, as do JS syntax and whitespace checks. Published in commit `99893d3`; [GitHub Pages run 44831934890](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44831934890) succeeded.
+Replaced the generic “Find your golf group” headline with “There’s room for one more,” used the same invitation in the app welcome, and clarified the supporting copy. The right-to-left Allo wave animates “for one more.” with a stronger weight shift, a slight lift, and a 4-second cycle; reduced motion leaves it stable. Stylesheet cache is v69; script caches are `allo-wave.js` v6 and `homescreen.js` v70. Mobile and desktop captures confirm the copy fits. All 27 interaction checks, syntax checks, and whitespace checks pass. Motion capture shows the wave; reduced-motion capture remains still. Publish and record the Pages run.
 
 ## Mobile preview takeover and app-ready signup — November 20, 2026
 

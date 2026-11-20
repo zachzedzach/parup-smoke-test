@@ -1,8 +1,8 @@
 # Motion and game descriptions — November 19, 2026
 
-## November 20: make the golf-group ripple visible
+## November 20: headline voice and motion
 
-The phrase’s right-to-left ripple now has a clearer Allo weight shift (570–740 around a 650 resting weight), a 1–2px lift as the crest passes, and a shorter 4.4-second cycle. Glyph anchors remain fixed so the words keep their shape and width. Reduced-motion users see the stable resting style. The effect remains limited to the welcome and marketing headline.
+The homepage and app welcome now invite golfers with “There’s room for one more.” The supporting line makes the audience and next step concrete. The right-to-left wave travels through “for one more.” with a stronger Allo weight shift (520–780 around a 650 resting weight), a 0.05em lift as the crest passes, and a 4-second cycle. Glyph anchors remain fixed so the words keep their shape and width. Reduced-motion users see stable text. The effect remains limited to the welcome and marketing headline.
 
 ## November 20: intentional golf-group wave
 

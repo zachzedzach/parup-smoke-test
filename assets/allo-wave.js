@@ -66,7 +66,7 @@
             svg.style.width = `${widest / 100}em`;
             const last = letters.length - 1;
             const movingLetters = letters.filter((letter, index) => index !== 0 && index !== last && /[\p{L}\p{N}]/u.test(letter.textContent || ''));
-            const rightToLeft = value.toLocaleLowerCase() === 'golf group.';
+            const rightToLeft = value.toLocaleLowerCase().endsWith('one more.');
             movingLetters.forEach((letter, index) => {
               letter.classList.add('wave-letter');
               const progress = index / Math.max(1, movingLetters.length - 1);
