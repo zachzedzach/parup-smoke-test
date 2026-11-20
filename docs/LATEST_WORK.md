@@ -1,6 +1,6 @@
 ## Playing-partner audience — November 20, 2026
 
-The final preference step now allows selecting women golfers, men golfers, or both; “Everyone” is an exclusive shortcut that clears the two narrower choices. Audience choices are independent, so visitors can include both groups. Example plans follow the selected audience, and clearing all choices leaves the audience unrestricted. The interaction suite passes all 66 checks. Published status: local change only; deployment pending.
+The final preference step now allows selecting women golfers, men golfers, or both; “Everyone” is an exclusive shortcut that clears the two narrower choices. Audience choices are independent, so visitors can include both groups. Example plans follow the selected audience, and clearing all choices leaves the audience unrestricted. All 66 interaction checks pass. Commit `c92936e` is live; GitHub Pages run [44796537215](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44796537215) succeeded.
 
 ## Profile wording, golf ability scale, and course map — November 20, 2026
 
