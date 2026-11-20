@@ -2,7 +2,7 @@
 
 ## Headline detail — November 19
 
-The “Find your” welcome heading applies a small optical adjustment to the `F`–`i` pair. The “golf group.” letters now move through a wider weight range on a 4.8-second wave, with the first and last glyph still, fixed line width, and reduced-motion support. Verify on the published installed view after deployment.
+The “Find your” welcome heading applies a small optical adjustment to the `F`–`i` pair. The “golf group.” letters now move through a wider weight range on a 4.8-second wave, with the first and last glyph still, fixed line width, and reduced-motion support. Published as `4bee913` (Pages run `44647606386`, successful); live installed welcome view visually checked after deployment. Syntax and whitespace checks pass. Automated stress suite remains unavailable in this environment because `jsdom` is missing.
 
 ## Latest revision — November 19, 2026
 
