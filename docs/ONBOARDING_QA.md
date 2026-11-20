@@ -2,7 +2,7 @@
 
 ## Latest revision — November 19, 2026
 
-Navigation now uses one 180 ms directional entrance with no delayed start or fading duplicate page. Controls keep direct pressed-state feedback while choices update in place.
+Navigation uses one 180 ms directional entrance with no delayed start or fading duplicate page. Controls keep direct pressed-state feedback while choices update in place. The Allo letter wave is browser-timed per glyph rather than updated from a JavaScript animation-frame loop; its first and last characters stay still, and each line retains its measured width. Reduced-motion settings disable the wave.
 
 The welcome screen now places “golf group.” on a dedicated second line in both the installed view and embedded preview, avoiding device-dependent inline wrapping.
 
@@ -12,7 +12,7 @@ The profile accepts an optional handicap index and carries the selected numbered
 
 All 51 automated stress checks pass. Captured and reviewed browser screenshots of the published phone app at `/?homescreen=1&release=1fdd6c4`: first-run welcome, profile, all seven game choices, Utah course search before/after selection, weekly availability with Friday 4:30 PM and Sunday 10:30 AM, round details, round style, profile summary, results, expanded “Why this round?” explanation, waiting-for-reply state, and accepted example. The selected course kept its original position; selected count and course chip updated in place. Results identify same-time golfers before presenting course, open places, golfer photo and description, and the optional “Tell [name] I’m in” action. Waiting and accepted states say they are examples and that no real golfer is contacted. Setup carries each independent weekday time into the summary. The mobile layout uses ordinary page scrolling and fixed actions; hardware-specific gestures, keyboard behavior, and frame rate still require a physical iPhone.
 
-The full suite covers the six-step setup, seven numbered descriptions, independent weekday starts, area/A–Z search and home-city clustering, stable course selection, plan filters/recovery, save/skip/request/accept flows, booking boundaries, reduced motion, difficult names, responsive width checks, and forward/back direction. The live installed-app welcome was visually checked after the headline line-break change. JavaScript syntax and whitespace checks pass. The jsdom stress suite was unavailable in this check because its test dependency is absent from `/private/tmp/tfc-qa`. Physical-iPhone keyboard, safe-area, gesture, and frame-pacing checks remain hardware-only.
+The full suite covers the six-step setup, seven numbered descriptions, independent weekday starts, area/A–Z search and home-city clustering, stable course selection, plan filters/recovery, save/skip/request/accept flows, booking boundaries, reduced motion, difficult names, responsive width checks, and forward/back direction. The live installed-app welcome, immediate profile progression, selected experience state, and course screen were visually checked. JavaScript syntax and whitespace checks pass. The jsdom stress suite was unavailable in this check because its test dependency is absent from `/private/tmp/tfc-qa`. Physical-iPhone keyboard, safe-area, gesture, and frame-pacing checks remain hardware-only.
 
 
 ## Intended experience

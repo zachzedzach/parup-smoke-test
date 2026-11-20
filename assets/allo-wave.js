@@ -67,31 +67,22 @@
             if (!widest) continue;
             svg.setAttribute('viewBox', `0 0 ${widest} ${108 * lines.length}`);
             svg.style.width = `${widest / 100}em`;
-            state.runs.push({ letters, positions: letters.map((_, index) => index / Math.max(1, letters.length - 1)) });
+            const last = letters.length - 1;
+            letters.forEach((letter, index) => {
+              if (index === 0 || index === last || !/[\p{L}\p{N}]/u.test(letter.textContent || '')) return;
+              letter.classList.add('wave-letter');
+              letter.style.animationDelay = `${-(index / Math.max(1, last)) * 5.8}s`;
+            });
+            state.runs.push({ letters });
           }
-          if (state.media.matches) return;
-          const start = performance.now();
-          const animate = now => {
-            if (generation !== state.generation || state.media.matches) return;
-            if (!document.hidden && root.getBoundingClientRect().bottom > 0 && root.getBoundingClientRect().top < innerHeight) {
-              const time = (now - start) / 1000;
-              for (const run of state.runs) run.letters.forEach((letter, index) => {
-                const end = index === 0 || index === run.letters.length - 1;
-                const phase = 2 * Math.PI * run.positions[index] - time * 2 * Math.PI / 5.8;
-                const weight = end ? 650 : 650 + 120 * Math.sin(phase + .12 * Math.sin(phase));
-                letter.style.fontVariationSettings = `"wght" ${weight.toFixed(2)}, "ROND" 65`;
-              });
-            }
-            state.frame = requestAnimationFrame(animate);
-          };
-          state.frame = requestAnimationFrame(animate);
+          if (state.media.matches) state.runs.forEach(run => run.letters.forEach(letter => letter.classList.remove('wave-letter')));
         };
         if (document.fonts?.load) document.fonts.load('650 100px Allo').then(initialize).catch(() => {});
         else initialize();
       };
       state.media.addEventListener?.('change', () => {
         cancelAnimationFrame(state.frame);
-        if (state.media.matches) state.runs.forEach(run => run.letters.forEach(letter => { letter.style.fontVariationSettings = '"wght" 650, "ROND" 65'; }));
+        if (state.media.matches) state.runs.forEach(run => run.letters.forEach(letter => letter.classList.remove('wave-letter')));
         else state.rebuild();
       });
       active.set(root, state);

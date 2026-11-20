@@ -4,7 +4,7 @@ Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/)
 
 ## Direct touch response and calmer navigation — November 19, 2026
 
-Removed the overlapping outgoing-screen copy, delayed entrances, and post-click animation on controls that were immediately replaced. A page now enters once from the navigation direction over 180 ms; progress follows over the same interval. Button press feedback stays on the live control in CSS, and in-place choice updates remain immediate. Cache versions are bumped. Source and syntax checks pass; browser stress verification and publication are pending.
+Removed the overlapping outgoing-screen copy, delayed entrances, and post-click animation on controls that were immediately replaced. A page now enters once from the navigation direction over 180 ms; progress follows over the same interval. Button press feedback stays on the live control in CSS, and in-place choice updates remain immediate. Replaced per-frame JavaScript writes for the Allo letter wave with browser-timed, phase-offset letter animations; the first and last letters stay still, line width remains fixed, and reduced-motion settings keep the text static. Live browser review confirmed the welcome layout, immediate profile progression, numbered experience selection and course screen. JavaScript syntax and whitespace checks pass. The jsdom stress suite is unavailable because its test dependency is absent from `/private/tmp/tfc-qa`; browser interaction checks covered the visible flow. Physical iPhone frame pacing is not measured. Published in commit `307df20`; Pages run [44645981493](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44645981493) succeeded.
 
 ## Welcome headline line break — November 19, 2026
 

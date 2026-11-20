@@ -121,7 +121,10 @@
 .welcome-living-type{display:inline-block;max-width:100%;vertical-align:baseline;line-height:1;animation:none}
 #preferences-app[data-view=welcome] .welcome-living-type{display:block;width:max-content;max-width:100%}
 .allo-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
-.allo-wave-svg tspan{animation:none;transition:none}
+.allo-wave-svg tspan{animation:none;transition:none;font-variation-settings:"wght" 650,"ROND" 65}
+.allo-wave-svg tspan.wave-letter{animation:allo-letter-wave 5.8s linear infinite}
+@keyframes allo-letter-wave{0%,100%{font-variation-settings:"wght" 650,"ROND" 65}25%{font-variation-settings:"wght" 770,"ROND" 65}50%{font-variation-settings:"wght" 650,"ROND" 65}75%{font-variation-settings:"wght" 530,"ROND" 65}}
+@media(prefers-reduced-motion:reduce){.allo-wave-svg tspan.wave-letter{animation:none!important;font-variation-settings:"wght" 650,"ROND" 65}}
 .round-journey{padding:16px 16px 16px 32px;background:white;border-radius:14px;font-size:14px;line-height:1.8;color:#514958}.booking-next{margin-top:16px;padding:16px;background:#f1f6f3;border-radius:12px}.booking-next b{font-size:14px;color:#286248}.booking-next p{font-size:13px;line-height:1.5}.booking-next>button{min-height:44px;border:1px solid #a7c7b5;background:white;border-radius:10px;padding:10px;color:#286248}.booking-next small{display:block;line-height:1.5;margin-top:12px}.booking-next .pref-primary{font-size:14px}
 
 /* Shared app: one product in the supplied hardware frame and the installed view. */
