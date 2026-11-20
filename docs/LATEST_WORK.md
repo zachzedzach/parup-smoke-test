@@ -82,7 +82,7 @@ The first-run flow now separates a golfer’s self-rating from the seven levels 
 
 ## Example request button copy — November 20, 2026
 
-The request button previously read “Preview asking to play,” which mixed the simulated nature of the demo with the action. The intro now explains that this example sends no real request; the button says “Ask to play,” and the disabled result says “Request previewed.”
+The request button previously read “Preview asking to play,” which mixed the simulated nature of the demo with the action. The intro now explains that this example sends no real request; the button says “Ask to play,” and the disabled result says “Request previewed.” All 27 interaction checks pass, including the updated button and result state. The live JS v71 was fetched and checked. Published in commit `e781423`; [GitHub Pages run 44833702102](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44833702102) succeeded.
 
 ## Headline voice and motion — November 20, 2026
 
