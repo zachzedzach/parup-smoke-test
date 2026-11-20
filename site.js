@@ -26,14 +26,15 @@
   let previewScrollY = 0;
 
   function animatePreview(phone, fromRect, toRect) {
-    if (!phone?.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!phone?.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return Promise.resolve();
     const dx = fromRect.left - toRect.left;
     const dy = fromRect.top - toRect.top;
     const sx = fromRect.width / Math.max(toRect.width, 1);
     const sy = fromRect.height / Math.max(toRect.height, 1);
     const start = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
     const frames = [{ transformOrigin: 'top left', transform: start }, { transformOrigin: 'top left', transform: 'none' }];
-    phone.animate(frames, { duration: 420, easing: 'cubic-bezier(.2,.75,.25,1)' });
+    const animation = phone.animate(frames, { duration: 480, easing: 'cubic-bezier(.23,1,.32,1)' });
+    return animation.finished.catch(() => {});
   }
 
   openPreviewLink?.addEventListener('click', event => {
@@ -47,7 +48,10 @@
     previewStage.append(previewPhone);
     previewDialog.showModal();
     const toRect = previewPhone.getBoundingClientRect();
-    animatePreview(previewPhone, fromRect, toRect);
+    previewDialog.classList.remove('is-taking-over');
+    animatePreview(previewPhone, fromRect, toRect).then(() => {
+      if (previewDialog.open) previewDialog.classList.add('is-taking-over');
+    });
     previewClose?.focus({ preventScroll: true });
   });
 
