@@ -1,5 +1,6 @@
 (() => {
   const active = new WeakMap();
+  const waveDuration = 4.8;
 
   window.startAlloWave = (root, selector) => {
     let state = active.get(root);
@@ -45,9 +46,11 @@
               text.setAttribute('font-family', 'Allo');
               text.setAttribute('font-weight', '650');
               text.setAttribute('style', 'font-variation-settings:"wght" 650,"ROND" 65;white-space:pre');
-              for (const character of Array.from(line)) {
+              const characters = Array.from(line);
+              for (const [index, character] of characters.entries()) {
                 const letter = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
                 letter.textContent = character;
+                if (character === 'i' && characters[index - 1] === 'F' && value.startsWith('Find your')) letter.setAttribute('dx', '-7');
                 text.append(letter);
                 letters.push(letter);
               }
@@ -71,7 +74,7 @@
             letters.forEach((letter, index) => {
               if (index === 0 || index === last || !/[\p{L}\p{N}]/u.test(letter.textContent || '')) return;
               letter.classList.add('wave-letter');
-              letter.style.animationDelay = `${-(index / Math.max(1, last)) * 5.8}s`;
+              letter.style.animationDelay = `${-(index / Math.max(1, last)) * waveDuration}s`;
             });
             state.runs.push({ letters });
           }

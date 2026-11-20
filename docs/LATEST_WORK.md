@@ -1,5 +1,9 @@
 # Latest work
 
+## Headline spacing and Allo wave — November 19, 2026
+
+Tightened the `F`–`i` pair in “Find your” with a small SVG advance adjustment. Increased the interior letters’ weight range and shortened the wave cycle to 4.8 seconds; first and last letters remain still and the measured line width remains fixed. Reduced-motion behavior remains static. Updated cache versions. Verification/deployment status is recorded after publishing below.
+
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
 ## Direct touch response and calmer navigation — November 19, 2026

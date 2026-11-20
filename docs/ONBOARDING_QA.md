@@ -1,5 +1,9 @@
 # Onboarding QA — November 19, 2026
 
+## Headline detail — November 19
+
+The “Find your” welcome heading applies a small optical adjustment to the `F`–`i` pair. The “golf group.” letters now move through a wider weight range on a 4.8-second wave, with the first and last glyph still, fixed line width, and reduced-motion support. Verify on the published installed view after deployment.
+
 ## Latest revision — November 19, 2026
 
 Navigation uses one 180 ms directional entrance with no delayed start or fading duplicate page. Controls keep direct pressed-state feedback while choices update in place. The Allo letter wave is browser-timed per glyph rather than updated from a JavaScript animation-frame loop; its first and last characters stay still, and each line retains its measured width. Reduced-motion settings disable the wave.
