@@ -1,5 +1,9 @@
 # Latest work
 
+## Optional handicap slider — November 19, 2026
+
+Replaced the free-entry handicap field with an opt-in slider. It remains unset unless the golfer chooses to add an index, then shows the value while sliding. It covers plus handicaps through 54, updates without rerendering the screen, and carries the chosen value into profile and completion summaries. Syntax and diff checks pass; the interaction suite is blocked by missing `jsdom`. Release/deployment status will be recorded after publish.
+
 ## City-aware course picker — November 19, 2026
 
 The city entered in profile setup now resolves common forms such as “Provo,” “Provo, UT,” and “Provo, Utah County.” The course picker opens at the matching city or county, ranks exact-city courses first, then groups nearby courses from that county. Search and A–Z changes preserve the visible row. The course list remains its own touch-scroll area. JavaScript syntax checks and direct matching checks pass; the automated interaction suite could not run because `jsdom` is absent. Commit `a2ac58f` is live; [GitHub Pages run 44653586117](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44653586117) succeeded. The live homepage points to JS v42 and CSS v44 and both assets return successfully. Interactive visual confirmation was unavailable because the in-app browser control is unavailable in this session.
