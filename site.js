@@ -17,6 +17,57 @@
     heroCards.forEach(other => other.setAttribute('aria-pressed', String(other === card)));
   }));
 
+  const openPreviewLink = document.querySelector('.open-app-link');
+  const previewDialog = document.getElementById('focused-preview-dialog');
+  const previewStage = previewDialog?.querySelector('.focused-preview-stage');
+  const previewClose = previewDialog?.querySelector('.focused-preview-close');
+  const previewPhone = document.querySelector('.app-preview-stage > .interactive-round');
+  let previewReturnPoint = null;
+  let previewScrollY = 0;
+
+  function animatePreview(phone, fromRect, toRect) {
+    if (!phone?.animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const dx = fromRect.left - toRect.left;
+    const dy = fromRect.top - toRect.top;
+    const sx = fromRect.width / Math.max(toRect.width, 1);
+    const sy = fromRect.height / Math.max(toRect.height, 1);
+    const start = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
+    const frames = [{ transformOrigin: 'top left', transform: start }, { transformOrigin: 'top left', transform: 'none' }];
+    phone.animate(frames, { duration: 420, easing: 'cubic-bezier(.2,.75,.25,1)' });
+  }
+
+  openPreviewLink?.addEventListener('click', event => {
+    const phoneRoute = window.matchMedia('(pointer: coarse)').matches;
+    if (phoneRoute || !previewDialog?.showModal || !previewStage || !previewPhone) return;
+    event.preventDefault();
+    const fromRect = previewPhone.getBoundingClientRect();
+    previewScrollY = window.scrollY;
+    previewReturnPoint = document.createComment('app-preview-return');
+    previewPhone.before(previewReturnPoint);
+    previewStage.append(previewPhone);
+    previewDialog.showModal();
+    const toRect = previewPhone.getBoundingClientRect();
+    animatePreview(previewPhone, fromRect, toRect);
+    previewClose?.focus({ preventScroll: true });
+  });
+
+  function closeFocusedPreview() {
+    if (!previewDialog?.open || !previewPhone || !previewReturnPoint?.parentNode) return;
+    const fromRect = previewPhone.getBoundingClientRect();
+    previewDialog.close();
+    previewReturnPoint.parentNode.insertBefore(previewPhone, previewReturnPoint);
+    previewReturnPoint.remove();
+    previewReturnPoint = null;
+    window.scrollTo(0, previewScrollY);
+    const toRect = previewPhone.getBoundingClientRect();
+    animatePreview(previewPhone, fromRect, toRect);
+    openPreviewLink?.focus({ preventScroll: true });
+  }
+
+  previewClose?.addEventListener('click', closeFocusedPreview);
+  previewDialog?.addEventListener('cancel', event => { event.preventDefault(); closeFocusedPreview(); });
+  previewDialog?.addEventListener('click', event => { if (event.target === previewDialog) closeFocusedPreview(); });
+
   const heroCopy = document.querySelector('.hero-copy');
   if (heroCopy && window.startAlloWave) window.startAlloWave(heroCopy, '.hero-wave-line');
 
