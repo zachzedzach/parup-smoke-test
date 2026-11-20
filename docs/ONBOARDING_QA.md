@@ -10,7 +10,7 @@ The flow now distinguishes self-rating from the levels to show, and repeating we
 
 ## Current copy, score scale, and map selection — November 20
 
-The self-rating step identifies the category as a typical 18-hole score and says the answer is a flexible guide that can be changed. Seven concise numbered options move from 130+ or still learning, through separate score ranges (120–129, 110–119, 100–109, 90–99, 80–89), to below 80. A blue-to-coral color ramp helps distinguish the scale without reducing text contrast. Selecting a course colors its Utah map dot green; removing the course clears that mark. The cart question is explicitly for the planned round, and confusing golf slang was replaced with plain wording. Current verification and publication status will be appended after checks complete.
+The self-rating step identifies the category as a typical 18-hole score and says the answer is a flexible guide that can be changed. Seven concise numbered options move from 130+ or still learning, through separate score ranges (120–129, 110–119, 100–109, 90–99, 80–89), to below 80. A blue-to-coral color ramp helps distinguish the scale without reducing text contrast. Selecting a course colors its Utah map dot green; removing the course clears that mark. The cart question is explicitly for the planned round, and confusing golf slang was replaced with plain wording. All 66 stress checks, syntax checks, and whitespace checks pass. Published phone view confirms all seven choices fit on one screen and the selected Bear Lake marker renders green. Commit `b26d27d` is live; GitHub Pages run `44795242939` succeeded.
 
 ## Weekly availability picker — November 19
 
