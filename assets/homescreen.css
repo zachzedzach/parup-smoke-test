@@ -515,3 +515,41 @@
 #preferences-app[data-view=setup] .step-1 .skill-choices button>div{min-width:0}
 #preferences-app[data-view=setup] .step-1 .skill-choices b{font-size:clamp(12px,3.3vw,14px);line-height:1.16;white-space:normal}
 @media(max-height:700px){#preferences-app[data-view=setup] .preferences-content{padding-top:14px;padding-bottom:12px}#preferences-app[data-view=setup] .step-1 .setup-page h1{font-size:28px;margin:0 0 6px}#preferences-app[data-view=setup] .step-1 .pref-intro{margin-bottom:8px;font-size:13px}#preferences-app[data-view=setup] .step-1 .skill-choices{gap:3px}#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:41px;padding-block:5px}}
+
+/* A quiet color ramp makes the seven game descriptions read as one ordered scale. */
+#preferences-app[data-view=setup] .skill-choices{gap:6px}
+#preferences-app[data-view=setup] .skill-choices button{display:grid;grid-template-columns:30px minmax(0,1fr) 22px;align-items:center;min-height:54px;padding:8px 10px;border:1px solid #e3e4e3;border-left:4px solid var(--skill-color);border-radius:11px;background:linear-gradient(90deg,color-mix(in srgb,var(--skill-color) 12%,white),white 42%);color:#201d29}
+#preferences-app[data-view=setup] .skill-choices button>span:first-child{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--skill-color);color:#fff;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+#preferences-app[data-view=setup] .skill-choices button>span:last-child{width:22px;color:#176b50;font-size:18px;text-align:center}
+#preferences-app[data-view=setup] .skill-choices b{font-size:13px;line-height:1.25;font-weight:550;letter-spacing:-.12px}
+#preferences-app[data-view=setup] .skill-choices [aria-pressed=true]{border-color:var(--skill-color);border-left-width:5px;background:color-mix(in srgb,var(--skill-color) 19%,white)}
+#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:51px;padding-block:6px}
+#preferences-app[data-view=setup] .step-2 .skill-choices button{min-height:51px}
+#preferences-app[data-view=setup] .any-level{display:block;width:100%;min-height:44px;margin-top:8px;border:1px solid #dfe3dc;border-radius:11px;background:#f2f4f1;color:#344b3f}
+#preferences-app[data-view=setup] .any-level[aria-pressed=true]{border-color:#176b50;background:#e4efe9}
+#preferences-app[data-view=setup] .step-0 .handicap-control{border-color:#d8ddd8;border-radius:14px;background:#fff}
+#preferences-app[data-view=setup] .handicap-control .handicap-help{display:block;color:#656d67;font-size:12px;line-height:1.35}
+#preferences-app[data-view=setup] .handicap-range-wrap input{accent-color:#176b50}
+#preferences-app[data-view=round-builder] .preferences-content{padding-bottom:20px}
+#preferences-app[data-view=round-builder] .round-builder{padding-bottom:10px}
+#preferences-app[data-view=round-builder] .pref-field input[type=date],#preferences-app[data-view=round-builder] .pref-field input[type=time],#preferences-app[data-view=round-builder] .pref-field select{min-height:50px;appearance:auto;background:#f2f4f1}
+#preferences-app[data-view=round-builder] .pref-field small{float:right;color:#747b75;font-size:12px;font-weight:400}
+#preferences-app[data-view=round-builder] .pref-chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+#preferences-app[data-view=round-builder] .pref-chips button{min-height:46px;border:1px solid #d8ddd8;border-radius:11px;background:#fff;color:#29332c}
+#preferences-app[data-view=round-builder] .pref-chips [aria-pressed=true]{border-color:#176b50;background:#e5f0e9;color:#174d3a}
+#preferences-app[data-view=round-builder] .choice-explanation,#preferences-app[data-view=round-builder] .preview-boundary{font-size:13px;line-height:1.45;color:#636d65}
+#preferences-app[data-view=round-builder] .preview-boundary{padding:10px 12px;border-radius:10px;background:#f2f4f1}
+#preferences-app[data-view=round-builder] .setup-actions .pref-primary{background:#176b50}
+#preferences-app .planned-round{margin:14px 0;padding:16px;border:1px solid #d7e0d7;border-top:4px solid #176b50;border-radius:14px;background:#fff}
+#preferences-app .planned-round .eyebrow{margin:0 0 6px;color:#176b50;font-size:10px;font-weight:700;letter-spacing:.1em}
+#preferences-app .planned-round h2{margin:0 0 8px;font-size:20px;line-height:1.2}
+#preferences-app .planned-round>p{margin:8px 0;color:#59645b;font-size:14px;line-height:1.4}
+#preferences-app .planned-round .round-visibility{display:block;margin:8px 0;color:#176b50;font-size:13px;font-weight:600;line-height:1.4}
+#preferences-app .planned-round button{min-height:42px;margin:6px 6px 0 0;padding:9px 12px;border:1px solid #d8ddd8;border-radius:10px;background:#f3f5f2;color:#263329}
+#preferences-app .planned-round .round-request-preview{width:100%;border-color:#176b50;background:#e5f0e9;color:#174d3a}
+#preferences-app .planned-round .round-edit{display:block;margin-top:10px;background:transparent;color:#176b50}
+#preferences-app .planned-round .preview-boundary{display:block;margin-top:12px;color:#777f78;font-size:11px;line-height:1.4}
+#preferences-app .join-request{margin:12px 0;padding:12px;border-radius:11px;background:#f1f5ef}
+#preferences-app .join-request p{font-size:13px;line-height:1.4}
+@media(max-width:360px){#preferences-app[data-view=setup] .skill-choices button{grid-template-columns:27px minmax(0,1fr) 18px;padding-inline:7px}#preferences-app[data-view=setup] .skill-choices b{font-size:12px}#preferences-app[data-view=setup] .skill-choices button>span:first-child{width:22px;height:22px;font-size:12px}}
+@media(prefers-reduced-motion:reduce){#preferences-app[data-view=setup] .skill-choices button{transition:none}}

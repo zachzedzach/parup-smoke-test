@@ -1,3 +1,7 @@
+## Seven-step profile and dated round plan — November 19
+
+The flow now distinguishes self-rating from the levels to show, and repeating weekly availability from one dated round. Profile handicap starts at 0 and moves by whole numbers; each selected weekday has its own 15-minute start. The city-based course list and Utah overview stay aligned, and selected rows do not reorder. After setup, “Plan a round” opens a public-by-default plan with its own course, date, start, holes, and cart choice. A sample request can be accepted or declined. The dated plan remains an in-session example; it does not create a real calendar event, publish a listing, contact a golfer, or reserve a tee time. A repeated golfer photo was removed from the seat display. `tests/homescreen-stress.cjs` passes all 61 checks, including separate partner levels, whole-number handicap, course clustering, day-specific 15-minute times, and round request responses. Physical iPhone rendering remains unverified; the headless Firefox screenshot attempt did not produce an image and native picker appearance requires a device.
+
 # Onboarding QA — November 19, 2026
 
 ## Weekly availability picker — November 19

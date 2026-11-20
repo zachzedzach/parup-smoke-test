@@ -4,11 +4,11 @@ The Fourth Club helps golfers find people to play with around their usual course
 
 ## Audience and promise
 
-Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, seven self-selected skill levels, courses, independent weekday start times, flexibility, holes, party size, pace, tees, carts, atmosphere and private partner preferences. People can save, skip, revisit, ask to play and both decide. No swipe or romantic framing.
+Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating and a separate seven-level playing-partner filter, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, encourage a golfer to plan one dated round that can be public. Golfers whose preferences fit may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
 
 ## Current product boundary
 
-A published interest test and interactive frontend preview, not a working reservation or matching service. Example golfers and plans are labeled. Requests and accepted replies are simulations. Course availability, prices and reservations remain on course websites. Onboarding entries stay in the current session; reload begins fresh. No user photo upload. Signup is optional, connected to an existing private Google Sheet through Apps Script; Clarity is configured and app input regions masked. No private credentials in browser assets. GA4 is not configured.
+A published interest test and interactive frontend preview, not a working reservation or matching service. Example golfers, matches and round requests are labeled. A dated round plan stays in the current session; it does not create an event in the device calendar or publish to real golfers. Requests and replies are simulations. Course availability, prices and reservations remain on course websites. Onboarding entries stay in the current session; reload begins fresh. No user photo upload. Signup is optional, connected to an existing private Google Sheet through Apps Script; Clarity is configured and app input regions masked. No private credentials in browser assets. GA4 is not configured.
 
 ## Surfaces
 

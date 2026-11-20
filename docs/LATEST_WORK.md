@@ -1,3 +1,7 @@
+## Seven-step profile and dated round plan — November 19, 2026
+
+The first-run flow now separates a golfer’s self-rating from the seven levels they want to see in others. The profile handicap starts at 0 and uses whole numbers; weekday start times use 15-minute steps. Course rows stay clustered near the entered city and the Utah overview tracks the visible area. Completing the profile leads directly to a dated round plan with its own course, time, holes, cart choice, and public/private setting. A public sample plan can receive an example request that the host accepts or declines. It does not create a device calendar event, publish a real listing, contact golfers, or reserve a tee time. Removed a repeated golfer photo from the group-seat display. All 61 jsdom stress checks, JavaScript syntax checks, and diff checks pass. Browser screenshot capture did not work in this session; a real iPhone review is still needed for native pickers and safe-area behavior. See [ONBOARDING_QA.md](ONBOARDING_QA.md) for the test steps and current limitations.
+
 # Latest work
 
 ## Focused phone preview — November 19, 2026
