@@ -4,7 +4,7 @@ Preserve the chosen identity: exact original pink golf ball under the separate c
 
 ## Modes and presentation
 
-- Homepage: Persuade. Warm cream paper, plum text, a pink headline and forest-green action. One hero statement and one route into the app. The exact golfer photograph remains visible at mobile sizes.
+- Homepage: Persuade. Warm cream paper, plum text, a pink headline and forest-green action. One hero statement and one route into the app. Three distinct golfer photographs form a responsive, touch-responsive stack at mobile sizes.
 - Shared app: Operate. System typography, white/stone surfaces, forest-green actions, inset groups, restrained separators, native input behavior and persistent navigation. Allo only in identity and expressive welcome/completion headings.
 - Welcome: one concise value statement, a clear profile-setup action, and one optional route to an example. Avoid extra intro pages and photo-upload prompts.
 - Setup: six focused steps. Use seven numbered, one-line descriptions for golf experience, with a restrained warm red-to-orange-to-ochre color progression. Include an optional handicap index in the profile, a searchable course list with a compact Utah overview that follows the visible rows, a stable seven-day grid with an individual native time picker per selected day, and restrained selected states. Keep availability in normal page scrolling; do not trap it in an internal wheel or dial.

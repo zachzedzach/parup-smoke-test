@@ -1,12 +1,21 @@
 (() => {
   // The installed preview hides the marketing page, so don't download its hero photo there.
   if (!document.documentElement.classList.contains('homescreen-mode')) {
-    const heroPhoto = document.querySelector('.golf-photo[data-src]');
-    if (heroPhoto) {
-      heroPhoto.src = heroPhoto.dataset.src;
-      heroPhoto.fetchPriority = 'high';
-    }
+    document.querySelectorAll('.hero-photo[data-src]').forEach((photo, index) => {
+      photo.src = photo.dataset.src;
+      if (index === 0) {
+        photo.fetchPriority = 'high';
+        photo.loading = 'eager';
+      } else {
+        photo.loading = 'lazy';
+      }
+    });
   }
+
+  const heroCards = [...document.querySelectorAll('.hero-photo-card')];
+  heroCards.forEach(card => card.addEventListener('click', () => {
+    heroCards.forEach(other => other.setAttribute('aria-pressed', String(other === card)));
+  }));
 
   const heroCopy = document.querySelector('.hero-copy');
   if (heroCopy && window.startAlloWave) window.startAlloWave(heroCopy, '.hero-wave-line');

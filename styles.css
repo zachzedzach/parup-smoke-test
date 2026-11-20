@@ -642,3 +642,22 @@
 .allo-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor}
 .allo-wave-svg text,.allo-wave-svg tspan{fill:currentColor;stroke:none}
 .hero-wave-line{display:inline-block;vertical-align:baseline;line-height:1.03}
+
+/* Three unique course photographs form one touch-responsive hero stack. */
+.hero-visual{height:520px;overflow:visible}
+.hero-photo-stack{position:relative;width:min(100%,560px);height:100%;margin-inline:auto;isolation:isolate}
+.hero-photo-card{position:absolute;display:block;margin:0;padding:7px;overflow:hidden;border:0;border-radius:18px;background:#fff;box-shadow:0 10px 26px #1f35292b,0 2px 5px #1f35291a;appearance:none;cursor:pointer;transform:translate3d(0,0,0);transition:transform 180ms cubic-bezier(.2,.75,.25,1),box-shadow 180ms ease-out;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.hero-photo-card img{display:block;width:100%;height:100%;border-radius:12px;object-fit:cover;transition:transform 220ms ease-out}
+.hero-photo-card--group{z-index:1;left:0;top:13%;width:66%;height:48%}
+.hero-photo-card--golfer{z-index:2;right:0;top:0;width:43%;height:67%}
+.hero-photo-card--swing{z-index:3;left:19%;bottom:0;width:44%;height:61%}
+.hero-photo-card--group img{object-position:center 54%}
+.hero-photo-card--golfer img{object-position:center 50%}
+.hero-photo-card--swing img{object-position:center 34%}
+.hero-photo-card[aria-pressed=true]{z-index:5;transform:translate3d(0,-6px,0) scale(1.025);box-shadow:0 17px 34px #1f35293b,0 3px 7px #1f35291c}
+.hero-photo-card:focus-visible{z-index:6;outline:3px solid #176b50;outline-offset:4px}
+@media(hover:hover) and (pointer:fine){.hero-photo-card:hover{z-index:5;transform:translate3d(0,-4px,0) scale(1.015);box-shadow:0 15px 31px #1f352933,0 3px 7px #1f35291c}.hero-photo-card:hover img{transform:scale(1.035)}}
+.hero-photo-card:active{transform:scale(.985)}
+@media(max-width:700px){.hero-visual{width:100%;height:360px;margin:0}.hero-photo-stack{width:min(100%,460px)}.hero-photo-card--group{left:0;top:13%;width:66%;height:48%}.hero-photo-card--golfer{right:1%;top:0;width:43%;height:67%}.hero-photo-card--swing{left:15%;bottom:0;width:42%;height:70%}}
+@media(max-width:430px){.hero-visual{height:340px}}
+@media(prefers-reduced-motion:reduce){.hero-photo-card,.hero-photo-card img{transition:none}.hero-photo-card[aria-pressed=true],.hero-photo-card:active,.hero-photo-card:hover{transform:none}.hero-photo-card:hover img{transform:none}}

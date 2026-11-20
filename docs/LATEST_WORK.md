@@ -1,5 +1,9 @@
 # Latest work
 
+## Homepage golfer photo stack — November 19, 2026
+
+Replaced the single hero photograph with three distinct golf photos: a group playing, a golfer lining up a shot, and a golfer at the tee. Each appears once in the site markup and comes from a source not used elsewhere in the live page. The cards overlap in a calm editorial stack; tapping or focusing one brings it forward. Hover zoom is limited to pointer devices, pressed state is immediate, and reduced-motion removes transitions. The first photo loads with high priority; the other two are lazy-loaded. Local checks and deployment status pending.
+
 ## Weekly availability picker — November 19, 2026
 
 Replaced the weekday chips and appended time rows with a stable seven-day grid. Each day has its own add/remove control and native time input, disabled until selected, with five-minute precision from 6:00 AM to 7:00 PM. Toggling a day leaves the rest of the grid in place; its last time is retained if reselected. Time flexibility appears only after at least one day is chosen. All 52 stress checks pass, including independent Friday/Saturday/Sunday starts, toggling, precision, summaries, and filtering. Commit `67aa19f` is live; [GitHub Pages run 44658158612](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44658158612) succeeded. Confirmed the live page serves JS v47 and CSS v48 and fetched both assets. Browser automation could not access the tab and Firefox exited before a screenshot; visual appearance of the native picker remains to be checked on a real iPhone.
