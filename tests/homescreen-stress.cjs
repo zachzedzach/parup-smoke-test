@@ -186,12 +186,19 @@ check('profile requires a first name and omits the removed gender choice', () =>
   w.close();
 });
 
-check('handicap entry accepts plus indexes and rejects values above 54.0', () => {
+check('handicap slider starts at zero, supports decimals and plus indexes, and exact entry validates 54.0', () => {
   const w = app(); atStep(w, 0);
-  input(w, '[data-input="handicap"]', '+1.2');
-  assert(!w.document.querySelector('[data-input="handicap"]').hasAttribute('aria-invalid'));
+  const range = w.document.querySelector('[data-handicap-range]'), entry = w.document.querySelector('[data-input="handicap"]');
+  assert(range);
+  assert.equal(range.value, '0');
+  assert.equal(entry.value, '0.0');
+  range.value = '-1.2'; range.dispatchEvent(new w.Event('input', { bubbles: true }));
+  assert.equal(entry.value, '+1.2');
+  assert.equal(w.document.querySelector('[data-handicap-value]').textContent, '+1.2');
+  input(w, '[data-input="handicap"]', '54.0');
+  assert(!entry.hasAttribute('aria-invalid'));
   input(w, '[data-input="handicap"]', '54.1');
-  assert.equal(w.document.querySelector('[data-input="handicap"]').getAttribute('aria-invalid'), 'true');
+  assert.equal(entry.getAttribute('aria-invalid'), 'true');
   assert(w.document.querySelector('.handicap-error').textContent.includes('54.0'));
   w.close();
 });

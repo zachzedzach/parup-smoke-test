@@ -662,3 +662,27 @@
 #preferences-app[data-view=setup] .step-1 .skill-choice-copy small{display:block;margin-top:2px;color:#62685f;font-size:11px;line-height:1.15;font-weight:500}
 #preferences-app[data-view=setup] .step-1 .skill-choices button[aria-pressed=true]{border:2px solid #176b50;background:#e5eedb;box-shadow:none}
 @media(max-height:740px){#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:48px}}
+
+/* Handicap Index: a fine-grained native slider plus exact entry for plus indexes. */
+#preferences-app[data-view=setup] .handicap-control .handicap-range-wrap input[type=range]{
+  min-height:44px;
+  height:44px;
+  margin:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  accent-color:#176b50;
+  touch-action:auto;
+}
+#preferences-app[data-view=setup] .handicap-control .handicap-entry-label{
+  display:block;
+  margin-top:2px;
+  color:#414a43;
+  font-size:13px;
+  font-weight:600;
+}
+#preferences-app[data-view=setup] .handicap-control input[data-input=handicap]{
+  min-height:46px;
+  font:16px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;
+}

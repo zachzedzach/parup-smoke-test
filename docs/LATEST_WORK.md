@@ -1,5 +1,9 @@
 ## Current change — November 20, 2026
 
+Restored a decimal Handicap Index slider on the profile screen, starting at 0.0, with exact text entry alongside it. The slider displays plus indexes with a `+` sign; exact entry retains plus indexes beyond the slider’s +10.0 endpoint, and ordinary indexes remain capped at 54.0. The USGA confirms 54.0 as the maximum issued Handicap Index and documents plus indexes as values better than scratch. Local `npm test` passes all 27 interaction checks, including decimal slider movement and plus-index entry. The UI has not yet been deployed.
+
+## Current change — November 20, 2026
+
 Replaced the obsolete onboarding stress checks with 27 checks for the current six-screen flow, course selection, availability, matching, booking links, and dated-round planning. Added a locked `jsdom` test dependency and made the GitHub Pages deploy job wait for the test job. Dated-round planning now says “Plan a specific round” and clarifies that the usual weekly schedule stays the same. Local `npm test`, JavaScript syntax checks, and `git diff --check` pass.
 
 ## Current change — November 20, 2026
