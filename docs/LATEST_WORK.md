@@ -2,7 +2,7 @@
 
 ## Less jitter in headline and availability motion — November 19, 2026
 
-Fixed each animated glyph to a measured x-position while preserving pair kerning, so changing weight no longer redistributes line spacing. Limited the app wave to its welcome phrase; setup and results headings stay still. The 6.4-second wave uses a periodic 16-point curve from weight 570–730, with both phrase endpoints still. Weekday selection now updates in place instead of replacing the full screen. Syntax and whitespace checks pass. `jsdom` is unavailable and the current in-app browser control is unavailable, so post-publish visual confirmation remains outstanding.
+Fixed each animated glyph to a measured x-position while preserving pair kerning, so changing weight no longer redistributes line spacing. Limited the app wave to its welcome phrase; setup and results headings stay still. The 6.4-second wave uses a periodic 16-point curve from weight 570–730, with both phrase endpoints still. Weekday selection now updates in place instead of replacing the full screen. Syntax and whitespace checks pass. Published in commit `b842186`; [GitHub Pages run 44651728934](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44651728934) succeeded. `jsdom` and the in-app browser control were unavailable and Firefox aborted in headless mode, so post-publish visual confirmation remains outstanding.
 
 ## Headline spacing and Allo wave — November 19, 2026
 

@@ -2,7 +2,7 @@
 
 ## Motion jitter correction — November 19
 
-The wave uses measured, fixed x-coordinates for each glyph, preserving pair kerning instead of constraining the whole line with SVG `textLength`. Only the welcome phrase animates; setup and results headings stay still. Its 6.4-second periodic wave uses 16 samples from weight 570–730, with the first and last glyph stationary. Weekday chips and schedule details update in place rather than rerendering the screen. Reduced-motion remains static. Syntax and whitespace checks pass; the browser automation was unavailable and `jsdom` is missing, so the visual walkthrough remains outstanding.
+The wave uses measured, fixed x-coordinates for each glyph, preserving pair kerning instead of constraining the whole line with SVG `textLength`. Only the welcome phrase animates; setup and results headings stay still. Its 6.4-second periodic wave uses 16 samples from weight 570–730, with the first and last glyph stationary. Weekday chips and schedule details update in place rather than rerendering the screen. Reduced-motion remains static. Syntax and whitespace checks pass. Published in `b842186`; GitHub Pages run `44651728934` succeeded. The browser automation was unavailable and `jsdom` is missing, so the visual walkthrough remains outstanding.
 
 ## Headline detail — November 19
 
