@@ -2,7 +2,7 @@
 
 ## Weekly availability picker — November 19
 
-Replaced the separate day chips and dynamically inserted time rows with a fixed seven-day grid. Each day has a clear add/remove button and a native select that is disabled until that day is chosen. The menu keeps five-minute precision from 6:00 AM through 7:00 PM. Controls stay attached to their day; selecting or removing another day does not rebuild the grid, and prior times return if a day is reselected. The test covers all seven controls, selected-state counts, independent Friday/Saturday/Sunday values, five-minute precision, removal and restoration, and the resulting profile summary. All 52 stress checks pass; syntax and whitespace checks pass. A browser screenshot and physical iPhone picker check are not available in this session.
+Replaced the separate day chips and dynamically inserted time rows with a fixed seven-day grid. Each day has a clear add/remove button and a native time input disabled until selected, with five-minute precision from 6:00 AM through 7:00 PM. Controls stay attached to their day; selecting or removing another day does not rebuild the grid, and prior times return if a day is reselected. The 52-check suite covers all seven controls, selected-state counts, independent Friday/Saturday/Sunday values, precision, removal and restoration, and the resulting profile summary. The deployed page points to JS v47 and CSS v48; the Pages build succeeded and both assets were fetched. Automated browser access and a Firefox screenshot were unavailable, so the native picker’s appearance remains unverified on iPhone hardware.
 
 ## Seven-level colorway and Utah overview — November 19
 
