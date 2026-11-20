@@ -2,6 +2,10 @@
 
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
+## Direct touch response and calmer navigation — November 19, 2026
+
+Removed the overlapping outgoing-screen copy, delayed entrances, and post-click animation on controls that were immediately replaced. A page now enters once from the navigation direction over 180 ms; progress follows over the same interval. Button press feedback stays on the live control in CSS, and in-place choice updates remain immediate. Cache versions are bumped. Source and syntax checks pass; browser stress verification and publication are pending.
+
 ## Welcome headline line break — November 19, 2026
 
 The installed welcome view now forces “golf group.” onto its own line, matching the embedded phone preview regardless of device width and font measurement. The updated stylesheet cache version is live in commit `a6ea4cc`; GitHub Pages run [44645187063](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44645187063) succeeded. The live `/?homescreen=1&release=a6ea4cc` screen was checked: accessibility text exposes “Find your” and “golf group.” as separate heading lines, and the screenshot confirms the intended visual break. JavaScript syntax and whitespace checks pass. The jsdom stress suite could not run because its external dependency is absent from `/private/tmp/tfc-qa`.
