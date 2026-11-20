@@ -328,8 +328,8 @@ check('self-rating can be skipped and preferences say not set', () => {
 check('completed profile leads to clear example groups and capacity copy', () => {
   const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
   assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Groups for your week');
-  assert(w.document.querySelector('.clubhouse-title').textContent.includes('Choose a group to preview asking to play'));
-  assert(w.document.querySelector('.golf-plan-card [data-request]').textContent.includes('Preview asking to play'));
+  assert(w.document.querySelector('.clubhouse-title').textContent.includes('See what happens when you ask to play. This is an example; no real request is sent.'));
+  assert.equal(w.document.querySelector('.golf-plan-card [data-request]').textContent, 'Ask to play');
   assert(w.document.querySelector('.golf-plan-card').textContent.includes('East Bay Golf Course'));
   assert.equal(w.document.querySelector('.group-seats small').textContent, 'Room for you');
   assert(!w.document.body.textContent.includes('Need room for you'));
@@ -366,6 +366,7 @@ check('a mutual yes leads to the selected course booking page', () => {
   const w = app();
   finishSetup(w, { courses: ['Sleepy Ridge Golf Course'], days: ['Saturday'], party: 'Me and 1 other' });
   click(w, '[data-request="jordan"]');
+  assert.equal(w.document.querySelector('[data-request="jordan"]').textContent, 'Request previewed');
   assert(w.document.body.textContent.includes('Waiting for their answer'));
   assert(!w.document.querySelector('.booking-next a'));
   click(w, '[data-reply="jordan"]');
