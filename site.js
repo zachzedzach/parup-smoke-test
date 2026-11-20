@@ -33,7 +33,7 @@
     const sy = fromRect.height / Math.max(toRect.height, 1);
     const start = `translate(${dx}px, ${dy}px) scale(${sx}, ${sy})`;
     const frames = [{ transformOrigin: 'top left', transform: start }, { transformOrigin: 'top left', transform: 'none' }];
-    const animation = phone.animate(frames, { duration: 480, easing: 'cubic-bezier(.23,1,.32,1)' });
+    const animation = phone.animate(frames, { duration: 560, easing: 'cubic-bezier(.2,.7,.2,1)' });
     return animation.finished.catch(() => {});
   }
 

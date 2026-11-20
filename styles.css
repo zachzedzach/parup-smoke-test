@@ -620,9 +620,9 @@
 .focused-preview-dialog[open]{display:grid;place-items:center}
 .focused-preview-dialog::backdrop{background:#17141fce;backdrop-filter:blur(8px);animation:focused-preview-backdrop-in 520ms ease-out both}
 @keyframes focused-preview-backdrop-in{from{opacity:0}to{opacity:1}}
-.focused-preview-stage{display:grid;width:100%;height:100%;place-items:center;padding:2svh 3vw}
-.focused-preview-dialog .interactive-round.phone-preview{width:min(94vw,calc(94svh * 1350 / 2760));max-width:none;height:min(94svh,calc(94vw * 2760 / 1350));aspect-ratio:1350/2760;margin:0;transform-origin:center;transition:transform 340ms cubic-bezier(.77,0,.175,1)}
-.focused-preview-dialog.is-taking-over .interactive-round.phone-preview{transform:scale(1.055)}
+.focused-preview-stage{display:grid;width:100%;height:100%;place-items:center;padding:0}
+.focused-preview-dialog .interactive-round.phone-preview{grid-column:1;grid-row:1;align-self:center;justify-self:center;width:min(100vw,calc(100svh * 1350 / 2760));max-width:none;height:min(100svh,calc(100vw * 2760 / 1350));aspect-ratio:1350/2760;margin:0;transform-origin:center;transition:transform 420ms cubic-bezier(.2,.7,.2,1)}
+.focused-preview-dialog.is-taking-over .interactive-round.phone-preview{transform:scale(1.025)}
 .focused-preview-close{position:fixed;z-index:2;top:max(20px,env(safe-area-inset-top));right:max(20px,env(safe-area-inset-right));display:grid;width:48px;height:48px;place-items:center;border:1px solid #fff6;border-radius:50%;background:#292631;color:#fff;font:400 30px/1 system-ui,sans-serif;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform 140ms ease-out,background-color 140ms ease-out}
 .focused-preview-close:active{transform:scale(.94)}
 .focused-preview-close:focus-visible{outline:3px solid #ffbad2;outline-offset:4px}
