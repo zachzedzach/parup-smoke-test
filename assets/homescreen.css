@@ -490,6 +490,19 @@
 #preferences-app[data-view=setup] .course-wheel-row:active{transform:none}
 #preferences-app[data-view=setup] .course-wheel-row{transform:none!important}
 #preferences-app[data-view=setup] .course-browser .course-wheel{height:min(42dvh,360px);min-height:180px;max-height:360px;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;touch-action:pan-y;-webkit-overflow-scrolling:touch;scroll-snap-type:none;scroll-behavior:auto}
+#preferences-app[data-view=setup] .weekly-schedule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#preferences-app[data-view=setup] .week-day{display:grid;grid-template-rows:34px 40px;gap:5px;min-width:0;padding:7px;border:1px solid #dfe3da;border-radius:12px;background:#fff;transition:background-color 140ms ease-out,border-color 140ms ease-out}
+#preferences-app[data-view=setup] .week-day[data-selected=true]{border-color:#a8c09a;background:#f0f5e9}
+#preferences-app[data-view=setup] .week-day-toggle{display:flex;align-items:center;justify-content:space-between;min-width:0;min-height:34px;padding:0 9px;border:0;border-radius:8px;background:#f2f3ef;color:#384337;font-size:13px;font-weight:650;touch-action:manipulation}
+#preferences-app[data-view=setup] .week-day[data-selected=true] .week-day-toggle{background:#176b50;color:#fff}
+#preferences-app[data-view=setup] .week-day-toggle b{font-size:15px;line-height:1}
+#preferences-app[data-view=setup] .week-day input[type=time]{width:100%;min-width:0;height:40px;padding:0 8px;border:1px solid #dce1d8;border-radius:9px;background:#fff;color:#263329;font:16px/1.2 system-ui,-apple-system,sans-serif;font-variant-numeric:tabular-nums}
+#preferences-app[data-view=setup] .week-day input[type=time]:disabled{border-color:transparent;background:#f5f5f2;color:#858b82;opacity:1}
+#preferences-app[data-view=setup] .availability-count{margin:10px 2px 0;color:#62685f;font-size:13px;line-height:1.35}
+#preferences-app[data-view=setup] .day-time-settings{min-height:0}
+#preferences-app[data-view=setup] .day-time-prompt{margin:6px 2px 0;padding:0;background:transparent;color:#737970;font-size:13px}
+#preferences-app[data-view=setup] .tolerance-control{margin:16px 0 4px;padding:12px;border:1px solid #e0e4dc;border-radius:12px;background:#f6f7f4}
+@media(max-width:360px){#preferences-app[data-view=setup] .weekly-schedule{gap:6px}#preferences-app[data-view=setup] .week-day{padding:6px}#preferences-app[data-view=setup] .week-day-toggle{padding-inline:7px}}
 .handicap-control{margin:18px 0 20px;padding:14px 15px;border:1px solid #dcd7e2;border-radius:14px;background:#fff}.handicap-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:#403a47;font-size:14px;font-weight:600}.handicap-heading small{margin-left:5px;color:#82798b;font-size:12px;font-weight:400}.handicap-heading b{min-width:52px;text-align:right;color:#201d29;font-size:17px;font-variant-numeric:tabular-nums}.handicap-toggle{display:flex;align-items:center;gap:9px;min-height:42px;color:#514a59;font-size:14px;cursor:pointer}.handicap-toggle input{width:18px;height:18px;margin:0;accent-color:#176b50}.handicap-range-wrap{padding:2px 2px 0}.handicap-range-wrap input{display:block;width:100%;height:32px;margin:4px 0 0;accent-color:#176b50;cursor:pointer;touch-action:pan-x}.handicap-range-labels{display:flex;justify-content:space-between;color:#82798b;font-size:11px;font-variant-numeric:tabular-nums}
 #preferences-app[data-view=setup] .course-count{min-height:16px}
 #preferences-app[data-view=setup] .chosen-courses-empty{display:inline-flex;align-items:center;height:36px;padding:0 10px;border:1px dashed #d7ddd4;border-radius:9px;background:#fff;color:#667168}
