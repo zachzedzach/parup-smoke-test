@@ -82,7 +82,7 @@ The first-run flow now separates a golfer’s self-rating from the seven levels 
 
 ## Golf-group headline motion — November 20, 2026
 
-The right-to-left “golf group” ripple was too subtle to register. It now combines a more visible Allo weight shift with a tiny vertical lift, keeps the glyph anchors fixed, and completes its loop in 4.4 seconds. Reduced-motion users get stable text. Updated the stylesheet cache key to v68. Normal and reduced-motion captures were reviewed on an isolated headline; the homepage was checked at mobile and desktop widths. All 27 interaction checks pass, as do JS syntax and whitespace checks. Awaiting Pages deployment.
+The right-to-left “golf group” ripple was too subtle to register. It now combines a more visible Allo weight shift with a tiny vertical lift, keeps the glyph anchors fixed, and completes its loop in 4.4 seconds. Reduced-motion users get stable text. Updated the stylesheet cache key to v68. Normal and reduced-motion captures were reviewed on an isolated headline; the homepage was checked at mobile and desktop widths. All 27 interaction checks pass, as do JS syntax and whitespace checks. Published in commit `99893d3`; [GitHub Pages run 44831934890](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44831934890) succeeded.
 
 ## Mobile preview takeover and app-ready signup — November 20, 2026
 
