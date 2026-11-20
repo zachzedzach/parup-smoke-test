@@ -4,7 +4,7 @@ Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/)
 
 ## Welcome headline line break — November 19, 2026
 
-The installed welcome view now forces “golf group.” onto its own line, matching the embedded phone preview regardless of device width and font measurement. CSS cache version updated. Regression assertion added. Static checks pass; the full jsdom stress suite could not run because its external test dependency is absent from `/private/tmp/tfc-qa`. Live publication and visual confirmation are pending.
+The installed welcome view now forces “golf group.” onto its own line, matching the embedded phone preview regardless of device width and font measurement. The updated stylesheet cache version is live in commit `a6ea4cc`; GitHub Pages run [44645187063](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44645187063) succeeded. The live `/?homescreen=1&release=a6ea4cc` screen was checked: accessibility text exposes “Find your” and “golf group.” as separate heading lines, and the screenshot confirms the intended visual break. JavaScript syntax and whitespace checks pass. The jsdom stress suite could not run because its external dependency is absent from `/private/tmp/tfc-qa`.
 
 ## Published review and copy revision — November 19, 2026
 
