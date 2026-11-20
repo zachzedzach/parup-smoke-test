@@ -2,7 +2,7 @@
 
 ## Optional handicap slider — November 19, 2026
 
-Replaced the free-entry handicap field with an opt-in slider. It remains unset unless the golfer chooses to add an index, then shows the value while sliding. It covers plus handicaps through 54, updates without rerendering the screen, and carries the chosen value into profile and completion summaries. Syntax and diff checks pass; the interaction suite is blocked by missing `jsdom`. Release/deployment status will be recorded after publish.
+Replaced the free-entry handicap field with an opt-in slider. It remains unset unless the golfer chooses to add an index, then shows the value while sliding. It covers plus handicaps through 54, updates without rerendering the screen, and carries the chosen value into profile and completion summaries. Syntax, diff, range, and display-format checks pass; the interaction suite could not run because `jsdom` is absent. Commit `9ef8791` is live; [GitHub Pages run 44654308984](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44654308984) succeeded. Live JS v43 and CSS v45 were confirmed.
 
 ## City-aware course picker — November 19, 2026
 

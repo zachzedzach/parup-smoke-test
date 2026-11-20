@@ -2,7 +2,7 @@
 
 ## Handicap slider — November 19
 
-The optional index is now unset by default. Selecting “I keep a handicap index” reveals a range from plus 10 through 54, in 0.1 increments; its live readout uses golf notation (for example, +2.1). Disabling the option clears it. The selection is included in the profile and completion summaries. The stress suite now covers opt-in, slider changes, plus-index formatting, summary display, and clearing. JavaScript syntax and whitespace checks pass; the jsdom interaction suite could not run because the dependency is absent.
+The optional index is now unset by default. Selecting “I keep a handicap index” reveals a range from plus 10 through 54, in 0.1 increments; its live readout uses golf notation (for example, +2.1). Disabling the option clears it. The selection is included in the profile and completion summaries. The stress suite now covers opt-in, slider changes, plus-index formatting, summary display, and clearing. JavaScript syntax and whitespace checks pass; the jsdom interaction suite could not run because the dependency is absent. Commit `9ef8791` is live; Pages run `44654308984` succeeded, and JS/CSS v43/v45 were confirmed live.
 
 ## City-based course starting point — November 19
 
