@@ -8,6 +8,10 @@ The flow now distinguishes self-rating from the levels to show, and repeating we
 
 # Onboarding QA — November 19, 2026
 
+## Current copy, score scale, and map selection — November 20
+
+The self-rating step identifies the category as a typical 18-hole score and says the answer is a flexible guide that can be changed. Seven concise numbered options move from 130+ or still learning, through separate score ranges (120–129, 110–119, 100–109, 90–99, 80–89), to below 80. A blue-to-coral color ramp helps distinguish the scale without reducing text contrast. Selecting a course colors its Utah map dot green; removing the course clears that mark. The cart question is explicitly for the planned round, and confusing golf slang was replaced with plain wording. Current verification and publication status will be appended after checks complete.
+
 ## Weekly availability picker — November 19
 
 Replaced the separate day chips and dynamically inserted time rows with a fixed seven-day grid. Each day has a clear add/remove button and a native time input disabled until selected, with five-minute precision from 6:00 AM through 7:00 PM. Controls stay attached to their day; selecting or removing another day does not rebuild the grid, and prior times return if a day is reselected. The 52-check suite covers all seven controls, selected-state counts, independent Friday/Saturday/Sunday values, precision, removal and restoration, and the resulting profile summary. The deployed page points to JS v47 and CSS v48; the Pages build succeeded and both assets were fetched. Automated browser access and a Firefox screenshot were unavailable, so the native picker’s appearance remains unverified on iPhone hardware.

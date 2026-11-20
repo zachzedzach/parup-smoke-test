@@ -567,3 +567,26 @@
 #preferences-app .join-request p{font-size:13px;line-height:1.4}
 @media(max-width:360px){#preferences-app[data-view=setup] .skill-choices button{grid-template-columns:27px minmax(0,1fr) 18px;padding-inline:7px}#preferences-app[data-view=setup] .skill-choices b{font-size:12px}#preferences-app[data-view=setup] .skill-choices button>span:first-child{width:22px;height:22px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){#preferences-app[data-view=setup] .skill-choices button{transition:none}}
+
+/* Course choices pair the list state with the same location on the Utah overview. */
+#preferences-app[data-view=setup] .course-count{margin:12px 0 4px;color:#35433b;font-size:13px;font-weight:600}
+#preferences-app[data-view=setup] .course-wheel-row[aria-pressed=true]{background:#e4efe7;color:#1d4d3a}
+#preferences-app[data-view=setup] .course-wheel-row[aria-pressed=true] .course-check{color:#176b50;font-weight:700}
+#preferences-app .course-locator circle.is-visible{fill:#d47a3b;opacity:1;r:1.8}
+#preferences-app .course-locator circle.is-selected{fill:#176b50;opacity:1;r:2.8;stroke:#fff;stroke-width:.7}
+#preferences-app .course-locator .course-map-legend{display:flex;align-items:center;gap:4px;color:#59655d;font-size:9px;line-height:1.2;white-space:nowrap}
+#preferences-app .course-locator .course-map-legend i{width:7px;height:7px;border-radius:50%;background:#176b50;box-shadow:0 0 0 1px #fff;flex:none}
+#preferences-app[data-view=setup] .step-1 .pref-intro{max-width:48ch}
+#preferences-app[data-view=setup] .step-1 .skill-choices b{line-height:1.22}
+#preferences-app[data-view=round-builder] .round-builder h3{margin-top:20px}
+#preferences-app[data-view=round-builder] .round-builder h3:has(+.pref-chips [data-single=roundCart]){margin-top:16px}
+@media(max-width:360px){#preferences-app .course-locator .course-map-legend{font-size:8px}}
+
+/* The numbered score scale moves from cool blue through green to warm coral. */
+#preferences-app[data-view=setup] .step-1 .skill-scale-label{margin:0 0 7px;color:#59655d;font-size:12px;font-weight:650;letter-spacing:.02em}
+#preferences-app[data-view=setup] .step-1 .skill-choices button{position:relative;overflow:hidden;min-height:48px;padding-block:5px}
+#preferences-app[data-view=setup] .step-1 .skill-choices button::before{position:absolute;inset:0 auto 0 0;width:4px;border-radius:10px 0 0 10px;background:var(--skill-color);content:""}
+#preferences-app[data-view=setup] .step-1 .skill-choices button>span:first-child{border:0;background:var(--skill-color);color:#fff}
+#preferences-app[data-view=setup] .step-1 .skill-choices [aria-pressed=true]{box-shadow:inset 0 0 0 1px var(--skill-color)}
+#preferences-app[data-view=setup] .step-1 .skill-choices [aria-pressed=true]::before{width:6px}
+@media(max-height:740px){#preferences-app[data-view=setup] .step-1 .skill-choices{gap:4px}#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:44px;padding-block:4px}}
