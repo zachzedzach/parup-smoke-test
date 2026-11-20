@@ -4,7 +4,7 @@ Static GitHub Pages landing page for The Fourth Club golfer-matching interest te
 
 ## Current shared app — November 19, 2026
 
-The profile city also sets the starting area in the course picker. City names accept common state/county suffixes (for example, “Provo,” “Provo, UT,” and “Provo, Utah County”); exact-city courses appear first, followed by nearby courses in that county. The list opens at the matching area, and its scroll position stays anchored when searching or changing order. A compact Utah overview sits beside the list and highlights the region represented by the visible course rows as the list scrolls.
+The profile city also sets the starting area in the course picker. City names accept common state/county suffixes (for example, “Provo,” “Provo, UT,” and “Provo, Utah County”); exact-city courses appear first, followed by nearby courses in that county. The list opens at the matching area, and its scroll position stays anchored when searching or changing order. A Utah overview sits above the full-width course list and highlights the region represented by visible rows as the list scrolls.
 
 The homepage phone and `/?homescreen=1` run the same app. Read [PRODUCT.md](PRODUCT.md), [DESIGN.md](DESIGN.md), and [docs/LATEST_WORK.md](docs/LATEST_WORK.md) for the current product and handoff. Research and decisions are in [docs/NIGHT_DESIGN_RESEARCH.md](docs/NIGHT_DESIGN_RESEARCH.md).
 
