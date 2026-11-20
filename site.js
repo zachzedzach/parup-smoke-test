@@ -22,6 +22,7 @@
   const previewStage = previewDialog?.querySelector('.focused-preview-stage');
   const previewClose = previewDialog?.querySelector('.focused-preview-close');
   const previewPhone = document.querySelector('.app-preview-stage > .interactive-round');
+  const coarsePointer = window.matchMedia('(pointer: coarse)');
   let previewReturnPoint = null;
   let previewScrollY = 0;
 
@@ -37,28 +38,52 @@
     return animation.finished.catch(() => {});
   }
 
-  openPreviewLink?.addEventListener('click', event => {
-    const phoneRoute = window.matchMedia('(pointer: coarse)').matches;
-    if (phoneRoute || !previewDialog?.showModal || !previewStage || !previewPhone) return;
-    event.preventDefault();
+  function openFocusedPreview({ mobileTakeover = false } = {}) {
+    if (!previewDialog?.showModal || !previewStage || !previewPhone) {
+      if (mobileTakeover) window.location.href = '?homescreen=1';
+      return;
+    }
     const fromRect = previewPhone.getBoundingClientRect();
     previewScrollY = window.scrollY;
     previewReturnPoint = document.createComment('app-preview-return');
     previewPhone.before(previewReturnPoint);
     previewStage.append(previewPhone);
+    previewDialog.classList.toggle('is-mobile-takeover', mobileTakeover);
     previewDialog.showModal();
     const toRect = previewPhone.getBoundingClientRect();
     previewDialog.classList.remove('is-taking-over');
     animatePreview(previewPhone, fromRect, toRect).then(() => {
-      if (previewDialog.open) previewDialog.classList.add('is-taking-over');
+      if (!previewDialog.open) return;
+      previewDialog.classList.add('is-taking-over');
+      if (mobileTakeover) {
+        document.documentElement.classList.add('fullscreen-preview');
+        const appHeader = previewPhone.querySelector('.preferences-header');
+        if (appHeader && !appHeader.querySelector('.app-exit-preview')) {
+          appHeader.insertAdjacentHTML('beforeend', '<button class="app-exit-preview" type="button" data-preview-exit aria-label="Exit full-screen preview">Done</button>');
+        }
+      }
     });
-    previewClose?.focus({ preventScroll: true });
+    if (!mobileTakeover) previewClose?.focus({ preventScroll: true });
+  }
+
+  openPreviewLink?.addEventListener('click', event => {
+    event.preventDefault();
+    openFocusedPreview({ mobileTakeover: coarsePointer.matches });
+  });
+
+  previewPhone?.addEventListener('click', event => {
+    if (!coarsePointer.matches || previewDialog?.open) return;
+    if (event.target.closest('button, input, textarea, select, a, summary, [contenteditable="true"], [role="button"]')) return;
+    openFocusedPreview({ mobileTakeover: true });
   });
 
   function closeFocusedPreview() {
     if (!previewDialog?.open || !previewPhone || !previewReturnPoint?.parentNode) return;
     const fromRect = previewPhone.getBoundingClientRect();
     previewDialog.close();
+    document.documentElement.classList.remove('fullscreen-preview');
+    previewDialog.classList.remove('is-mobile-takeover', 'is-taking-over');
+    previewPhone.querySelector('.app-exit-preview')?.remove();
     previewReturnPoint.parentNode.insertBefore(previewPhone, previewReturnPoint);
     previewReturnPoint.remove();
     previewReturnPoint = null;
@@ -69,6 +94,22 @@
   }
 
   previewClose?.addEventListener('click', closeFocusedPreview);
+  document.addEventListener('click', event => {
+    if (event.target.closest('[data-preview-exit]')) {
+      closeFocusedPreview();
+      return;
+    }
+    const cta = event.target.closest('[data-preview-download]');
+    if (!cta) return;
+    event.preventDefault();
+    sessionStorage.setItem(ctaClickedKey, 'yes');
+    if (sourceField) sourceField.value = 'interactive_preview_get_app';
+    track('roundfolk_preview_get_app_clicked', { placement: cta.dataset.previewPlacement || 'profile_or_results' });
+    if (storeGate && !storeGate.open) {
+      storeGate.showModal();
+      track('roundfolk_store_gate_shown', { source: 'interactive_preview_get_app' });
+    }
+  });
   previewDialog?.addEventListener('cancel', event => { event.preventDefault(); closeFocusedPreview(); });
   previewDialog?.addEventListener('click', event => { if (event.target === previewDialog) closeFocusedPreview(); });
 

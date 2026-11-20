@@ -44,6 +44,10 @@ The first-run flow now separates a golfer’s self-rating from the seven levels 
 
 # Latest work
 
+## Mobile preview takeover and app-ready signup — November 20, 2026
+
+On touch devices, tapping the phone preview or its full-screen link now moves the existing interactive app into a viewport-filling dialog with a continuous zoom from its page position. It keeps its current app state and URL; the mock bezel and simulated phone status strip disappear, and a Done button returns to the page. Taps on app controls remain app actions. Reduced-motion preferences skip the zoom. After completing profile setup or reaching golf plans, visitors can open the existing signup form from a contextual “Email me the link” prompt. Copy says the app is being prepared and the link will arrive later; no store download is claimed. Main CSS/site script cache key is `20261120-mobile-takeover-2`; app script is v63. JavaScript syntax and whitespace checks passed. Local visual/browser verification was unavailable because the sandbox could not bind a local HTTP server; publish and inspect the live phone handoff before treating screenshot QA as complete.
+
 ## Focused phone preview — November 19, 2026
 
 The “Open the full-screen preview” link selects by input: touch devices keep the direct `?homescreen=1` route with no bezel; desktop moves the existing interactive phone into the centered full-screen layer and grows it to the largest size that fits the viewport. The destination explicitly resets the phone to the first grid cell; otherwise its page two-column placement pushed it off-center. The entrance now has a 560ms spatial move followed by a 420ms scale-up, with a dimmed, softened backdrop. Escape, the close button, or the backdrop returns the phone to its page position; reduced-motion skips the movement and scale. The live desktop browser screenshot confirms the phone fills the viewport height and is centered, and closing returns it to the preview section. All 63 stress checks, JavaScript syntax, and `git diff --check` pass. Commit `625a4fb` is live; [GitHub Pages run 44670079360](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44670079360) succeeded.

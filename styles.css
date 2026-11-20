@@ -629,6 +629,31 @@
 @media(hover:hover) and (pointer:fine){.focused-preview-close:hover{transform:scale(1.04);background:#413d49}}
 @media(prefers-reduced-motion:reduce){.focused-preview-dialog::backdrop{animation:none}.focused-preview-close,.focused-preview-dialog .interactive-round.phone-preview{transition:none}.focused-preview-dialog.is-taking-over .interactive-round.phone-preview{transform:none}}
 
+/* On touch screens, the same interactive phone grows into the viewport without a route change. */
+.focused-preview-dialog.is-mobile-takeover[open]{display:block;background:#f8f8fa;overscroll-behavior:contain}
+.focused-preview-dialog.is-mobile-takeover::backdrop{background:#f8f8fa;backdrop-filter:none}
+.focused-preview-dialog.is-mobile-takeover .focused-preview-stage{display:block;width:100%;height:100%;padding:0}
+.focused-preview-dialog.is-mobile-takeover .interactive-round.phone-preview{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;aspect-ratio:auto;padding:0;border:0;border-radius:0;overflow:hidden;background:#f8f8fa;box-shadow:none;filter:none;transform-origin:top left;transition:none}
+.focused-preview-dialog.is-mobile-takeover.is-taking-over .interactive-round.phone-preview{transform:none}
+.focused-preview-dialog.is-mobile-takeover .phone-frame-render,.focused-preview-dialog.is-mobile-takeover .phone-frame-ui>.phone-status,.focused-preview-dialog.is-mobile-takeover .phone-frame-ui>.phone-home-indicator{display:none}
+.focused-preview-dialog.is-mobile-takeover .phone-frame-ui{position:absolute;inset:0;border-radius:0;background:#f8f8fa}
+.focused-preview-dialog.is-mobile-takeover .phone-frame-ui>#embedded-app-mount{flex:1;min-height:0}
+.focused-preview-dialog.is-mobile-takeover .focused-preview-close{display:none}
+.app-exit-preview{display:none;flex:none;min-height:36px;margin-left:auto;padding:6px 13px;border:0;border-radius:18px;background:#f0f3ec;color:#265d47;font:600 14px/1.2 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+html.fullscreen-preview .app-exit-preview{display:inline-flex;align-items:center;justify-content:center}
+html.fullscreen-preview #preferences-app .app-reset{margin-left:0}
+.app-exit-preview:active{background:#e2ecdf;transform:scale(.97)}
+.preview-download-cta{display:none}
+html.fullscreen-preview .preview-download-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;padding:17px;border:1px solid #dce5d6;border-radius:16px;background:#fff8df}
+.preview-download-cta>div{display:grid;gap:5px;min-width:0}
+.preview-download-cta b{font-size:15px;line-height:1.3;color:#263c2b}
+.preview-download-cta small{font-size:13px;line-height:1.4;color:#62685f}
+.preview-download-cta button{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;min-height:44px;padding:10px 14px;border:0;border-radius:12px;background:#176b50;color:white;font:600 14px/1.2 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;touch-action:manipulation}
+.preview-download-cta button svg{width:17px;height:17px}
+.preview-download-cta button:active{background:#12573f;transform:scale(.98)}
+@media(max-width:520px){html.fullscreen-preview .preview-download-cta{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.preview-download-cta button{width:100%}}
+@media(prefers-reduced-motion:reduce){.focused-preview-dialog.is-mobile-takeover .interactive-round.phone-preview,.app-exit-preview,.preview-download-cta button{transition:none;animation:none}}
+
 #embedded-app-mount{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;width:100%}
 .phone-frame-ui>.phone-home-indicator{flex:none;height:5px;margin:0 auto 9px}
 .phone-frame-ui{background:white}
