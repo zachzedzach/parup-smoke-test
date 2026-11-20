@@ -1,5 +1,9 @@
 # Motion and game descriptions — November 19, 2026
 
+## November 20: make the golf-group ripple visible
+
+The phrase’s right-to-left ripple now has a clearer Allo weight shift (570–740 around a 650 resting weight), a 1–2px lift as the crest passes, and a shorter 4.4-second cycle. Glyph anchors remain fixed so the words keep their shape and width. Reduced-motion users see the stable resting style. The effect remains limited to the welcome and marketing headline.
+
 ## November 20: intentional golf-group wave
 
 The “golf group.” phrase now sends its weight peak from right to left. Its first and last characters stay still; only interior letters animate, with spaces and punctuation excluded from the phase sequence. The 6.4-second periodic motion has a restrained 608–692 weight range, fixed measured glyph origins, and reduced-motion support. Cache versions in `index.html` must be advanced when publishing this change. The profile handicap control remains a whole-number range slider, 0–54, starting at 0. Verify the current live asset versions and phone view after publish; automated checks do not establish physical-device frame pacing.

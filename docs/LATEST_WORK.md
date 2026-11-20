@@ -80,6 +80,10 @@ The first-run flow now separates a golfer’s self-rating from the seven levels 
 
 # Latest work
 
+## Golf-group headline motion — November 20, 2026
+
+The right-to-left “golf group” ripple was too subtle to register. It now combines a more visible Allo weight shift with a tiny vertical lift, keeps the glyph anchors fixed, and completes its loop in 4.4 seconds. Reduced-motion users get stable text. Updated the stylesheet cache key to v68. Normal and reduced-motion captures were reviewed on an isolated headline; the homepage was checked at mobile and desktop widths. All 27 interaction checks pass, as do JS syntax and whitespace checks. Awaiting Pages deployment.
+
 ## Mobile preview takeover and app-ready signup — November 20, 2026
 
 On touch devices, tapping the phone preview or its full-screen link moves the existing interactive app into a viewport-filling dialog with a continuous zoom from its page position. It keeps its current app state and URL; the mock bezel and simulated phone status strip disappear, and a Done button returns to the page. Taps on app controls remain app actions. Reduced-motion preferences skip the zoom. After completing profile setup or reaching golf plans, both the expanded preview and direct home-screen route show the existing one-email signup for the eventual download link. Copy says the app is being prepared and the link will arrive later; no store download is claimed. The direct route now uses the same signup visibility rules, with stylesheet cache key `20261120-mobile-takeover-3`. Mobile takeover was published in commit `744b9af`; live desktop zoom and close control were checked, but physical iPhone animation and direct-route signup still need a mobile visual check.
