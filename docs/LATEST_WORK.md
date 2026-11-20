@@ -1,5 +1,9 @@
 # Latest work
 
+## Less jitter in headline and availability motion — November 19, 2026
+
+Fixed each animated glyph to a measured x-position while preserving pair kerning, so changing weight no longer redistributes line spacing. Limited the app wave to its welcome phrase; setup and results headings stay still. The 6.4-second wave uses a periodic 16-point curve from weight 570–730, with both phrase endpoints still. Weekday selection now updates in place instead of replacing the full screen. Syntax and whitespace checks pass. `jsdom` is unavailable and the current in-app browser control is unavailable, so post-publish visual confirmation remains outstanding.
+
 ## Headline spacing and Allo wave — November 19, 2026
 
 Tightened the `F`–`i` pair in “Find your” with a small SVG advance adjustment. Increased the interior letters’ weight range and shortened the wave cycle to 4.8 seconds; first and last letters remain still and the measured line width remains fixed. Reduced-motion behavior remains static. Updated cache versions. Published in commit `4bee913`; Pages run [44647606386](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44647606386) succeeded. Visually checked the live installed welcome screen and confirmed the image, headline layout, and motion load.

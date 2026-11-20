@@ -78,8 +78,7 @@
 .welcome-scene-note{position:absolute;bottom:0;left:50%;translate:-50% 0;white-space:nowrap;background:#fff1aa;color:#514329;padding:10px 14px;border-radius:10px;font-size:12px;font-weight:600;rotate:-2deg;box-shadow:0 3px 8px #34240d0d}
 #preferences-app[data-view=welcome] .welcome-mark{display:none}
 #preferences-app[data-view=welcome] h1{font-family:Allo,-apple-system,sans-serif;font-size:clamp(32px,8.8vw,42px);font-weight:650;letter-spacing:-.045em;line-height:1.04;margin:20px 0 14px;font-variation-settings:'ROND' 65}
-.welcome-living-type{color:#d63869;font-weight:620;animation:welcome-weight 5.8s ease-in-out 400ms infinite}
-@keyframes welcome-weight{0%,100%{font-weight:620}50%{font-weight:690}}
+.welcome-living-type{color:#d63869;font-weight:650}
 .welcome-map{margin:24px 0;gap:18px}
 @media(max-height:740px){.welcome-scene{height:160px;margin-bottom:18px}.welcome-scene-photo{height:134px}.welcome-map{gap:14px;margin:20px 0}}
 @media(prefers-reduced-motion:reduce){.welcome-living-type{animation:none;font-weight:650}}
@@ -99,11 +98,7 @@
 @media(max-height:700px){.story-visual{height:180px;margin-bottom:20px}#preferences-app[data-view=welcome] .pref-intro{min-height:60px;font-size:16px}.availability-dial{width:200px;height:200px}}
 @media(prefers-reduced-motion:reduce){.story-pagination button{transition:none}}
 
-/* A phase offset carries the Allo weight wave through individual letters. */
-.welcome-living-type{animation:none;font-weight:650}
-.wave-letter{font-weight:650;animation:letter-weight-wave 5.8s ease-in-out var(--wave-delay,0s) infinite}
-@keyframes letter-weight-wave{0%,100%{font-weight:610}50%{font-weight:710}}
-@media(prefers-reduced-motion:reduce){.wave-letter{animation:none;font-weight:650}}
+/* Fixed glyph origins let the Allo weight wave change shape without shuffling letters. */
 /* Shared motion character: immediate touch, a soft settle, a clear arrival. */
 .availability-dial{touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;transition:box-shadow 160ms ease-out,border-color 160ms ease-out}.availability-dial.is-dragging{cursor:grabbing;border-color:#f8d6e1;box-shadow:0 0 0 5px #ffeff4,inset 0 0 0 1px #edc5d2}.dial-label{pointer-events:none}.dial-hand{will-change:transform}
 #preferences-app[data-view=ready]{background:#fff}.ready-arrival{max-width:420px;margin:40px auto 20px}.ready-arrival h1{font:700 34px/1.12 -apple-system,sans-serif;letter-spacing:-.6px;margin:16px 0}.ready-plan{padding:22px;background:#f2f2f7;border-radius:18px;display:grid;gap:12px;margin:28px 0}.ready-plan b{font-size:20px;letter-spacing:-.4px}.ready-plan span{font-size:15px;color:#6c6c70;line-height:1.45}.ready-arrival .pref-footnote{font-size:14px;line-height:1.5}.ready-arrival .step-label{font-size:10px;letter-spacing:.1em}
@@ -114,16 +109,16 @@
 #preferences-app[data-view=setup] .pref-chips [data-field=days]{justify-content:center;border:0;border-radius:12px;background:#f2f2f7;padding:12px 4px;min-height:48px;font-size:15px}
 #preferences-app[data-view=setup] .pref-chips [data-field=days]:after{display:none}
 #preferences-app[data-view=setup] .pref-chips [data-field=days][aria-pressed=true]{background:#007aff;color:#fff}
-.day-schedules{display:grid;gap:0;border-radius:12px;background:#f2f2f7;overflow:hidden}.day-schedules label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #ddd;min-width:0}.day-schedules label:last-child{border:0}#preferences-app[data-view=setup] .day-schedules input{width:130px;min-width:0;margin:0;padding:5px;font-size:16px;background:#e5e5eb}
+.day-time-settings{min-height:76px}.day-schedules{display:grid;gap:0;border-radius:12px;background:#f2f2f7;overflow:hidden}.day-schedules label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #ddd;min-width:0}.day-schedules label:last-child{border:0}#preferences-app[data-view=setup] .day-schedules input{width:130px;min-width:0;margin:0;padding:5px;font-size:16px;background:#e5e5eb}
 .golf-plan-card h2{font:600 23px/1.2 -apple-system,sans-serif;overflow-wrap:anywhere}.golf-plan-card .plan-course{font-size:17px;font-weight:600;color:#26212d}.plan-reason{font-size:13px!important;color:#6d6077}.plan-golfer{display:flex;align-items:center;gap:12px;margin:20px 0;min-width:0}.plan-golfer img{width:62px;height:62px;border-radius:12px;object-fit:cover;flex-shrink:0}.plan-golfer>div{min-width:0}.plan-golfer b,.plan-golfer small{display:block;overflow-wrap:anywhere}.plan-golfer small{margin-top:4px}.golf-plan-card{overflow-wrap:anywhere}.golf-plan-card .partner-actions button{min-width:0}.preferences-header b{min-width:0}.preferences-summary small{overflow-wrap:anywhere}
 
-/* Fixed phrase measure; SVG redistributes interior spacing as glyph widths change. */
+/* Per-glyph anchors keep the line width steady as Allo's variable weight shifts. */
 .welcome-living-type{display:inline-block;max-width:100%;vertical-align:baseline;line-height:1;animation:none}
 #preferences-app[data-view=welcome] .welcome-living-type{display:block;width:max-content;max-width:100%}
 .allo-wave-svg{display:block;max-width:100%;height:auto;overflow:visible;fill:currentColor;letter-spacing:0}
 .allo-wave-svg tspan{animation:none;transition:none;font-variation-settings:"wght" 650,"ROND" 65}
-.allo-wave-svg tspan.wave-letter{animation:allo-letter-wave 4.8s linear infinite}
-@keyframes allo-letter-wave{0%,100%{font-variation-settings:"wght" 650,"ROND" 65}25%{font-variation-settings:"wght" 830,"ROND" 65}50%{font-variation-settings:"wght" 650,"ROND" 65}75%{font-variation-settings:"wght" 470,"ROND" 65}}
+.allo-wave-svg tspan.wave-letter{animation:allo-letter-wave 6.4s linear infinite}
+@keyframes allo-letter-wave{0%,100%{font-variation-settings:"wght" 650,"ROND" 65}6.25%{font-variation-settings:"wght" 681,"ROND" 65}12.5%{font-variation-settings:"wght" 706,"ROND" 65}18.75%{font-variation-settings:"wght" 724,"ROND" 65}25%{font-variation-settings:"wght" 730,"ROND" 65}31.25%{font-variation-settings:"wght" 724,"ROND" 65}37.5%{font-variation-settings:"wght" 706,"ROND" 65}43.75%{font-variation-settings:"wght" 681,"ROND" 65}50%{font-variation-settings:"wght" 650,"ROND" 65}56.25%{font-variation-settings:"wght" 619,"ROND" 65}62.5%{font-variation-settings:"wght" 594,"ROND" 65}68.75%{font-variation-settings:"wght" 576,"ROND" 65}75%{font-variation-settings:"wght" 570,"ROND" 65}81.25%{font-variation-settings:"wght" 576,"ROND" 65}87.5%{font-variation-settings:"wght" 594,"ROND" 65}93.75%{font-variation-settings:"wght" 619,"ROND" 65}}
 @media(prefers-reduced-motion:reduce){.allo-wave-svg tspan.wave-letter{animation:none!important;font-variation-settings:"wght" 650,"ROND" 65}}
 .round-journey{padding:16px 16px 16px 32px;background:white;border-radius:14px;font-size:14px;line-height:1.8;color:#514958}.booking-next{margin-top:16px;padding:16px;background:#f1f6f3;border-radius:12px}.booking-next b{font-size:14px;color:#286248}.booking-next p{font-size:13px;line-height:1.5}.booking-next>button{min-height:44px;border:1px solid #a7c7b5;background:white;border-radius:10px;padding:10px;color:#286248}.booking-next small{display:block;line-height:1.5;margin-top:12px}.booking-next .pref-primary{font-size:14px}
 
@@ -339,7 +334,7 @@
 #preferences-app[data-view=setup] .pref-chips:has([data-field=playWith]){grid-template-columns:repeat(3,minmax(0,1fr))}
 
 /* Selection feedback stays local; page chrome never bounces with the content. */
-#preferences-app .skill-choices button,#preferences-app .pref-chips button,#preferences-app .course-wheel-row{transition:background-color 140ms ease-out,color 140ms ease-out}
+#preferences-app .skill-choices button,#preferences-app .pref-chips button,#preferences-app .course-wheel-row{transition:background-color 140ms ease-out,color 140ms ease-out,transform 120ms cubic-bezier(.23,1,.32,1)}
 #preferences-app .skill-choices b{line-height:1.45;font-weight:400!important;letter-spacing:0!important}
 #preferences-app .skill-choices button>span:last-child{flex-shrink:0}
 #preferences-app .pref-primary{transition:transform 100ms ease-out,background-color 140ms ease-out,filter 100ms ease-out}

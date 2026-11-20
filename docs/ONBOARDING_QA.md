@@ -1,5 +1,9 @@
 # Onboarding QA — November 19, 2026
 
+## Motion jitter correction — November 19
+
+The wave uses measured, fixed x-coordinates for each glyph, preserving pair kerning instead of constraining the whole line with SVG `textLength`. Only the welcome phrase animates; setup and results headings stay still. Its 6.4-second periodic wave uses 16 samples from weight 570–730, with the first and last glyph stationary. Weekday chips and schedule details update in place rather than rerendering the screen. Reduced-motion remains static. Syntax and whitespace checks pass; the browser automation was unavailable and `jsdom` is missing, so the visual walkthrough remains outstanding.
+
 ## Headline detail — November 19
 
 The “Find your” welcome heading applies a small optical adjustment to the `F`–`i` pair. The “golf group.” letters now move through a wider weight range on a 4.8-second wave, with the first and last glyph still, fixed line width, and reduced-motion support. Published as `4bee913` (Pages run `44647606386`, successful); live installed welcome view visually checked after deployment. Syntax and whitespace checks pass. Automated stress suite remains unavailable in this environment because `jsdom` is missing.

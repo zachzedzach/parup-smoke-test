@@ -1,6 +1,6 @@
 (() => {
   const active = new WeakMap();
-  const waveDuration = 4.8;
+  const waveDuration = 6.4;
 
   window.startAlloWave = (root, selector) => {
     let state = active.get(root);
@@ -35,10 +35,9 @@
             const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             svg.setAttribute('aria-hidden', 'true');
             svg.setAttribute('class', 'allo-wave-svg');
-            const entries = [];
             const letters = [];
+            let widest = 0;
             lines.forEach((line, lineIndex) => {
-              if (lineIndex) svg.append(document.createTextNode(' '));
               const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
               text.setAttribute('x', '0');
               text.setAttribute('y', String(82 + lineIndex * 108));
@@ -47,26 +46,21 @@
               text.setAttribute('font-weight', '650');
               text.setAttribute('style', 'font-variation-settings:"wght" 650,"ROND" 65;white-space:pre');
               const characters = Array.from(line);
+              let cursor = 0;
               for (const [index, character] of characters.entries()) {
                 const letter = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
                 letter.textContent = character;
-                if (character === 'i' && characters[index - 1] === 'F' && value.startsWith('Find your')) letter.setAttribute('dx', '-7');
+                if (character === 'i' && characters[index - 1] === 'F' && value.startsWith('Find your')) cursor -= 7;
+                letter.setAttribute('x', String(cursor));
                 text.append(letter);
                 letters.push(letter);
+                const previous = characters.slice(0, index).join('');
+                cursor += measure(previous + character) - measure(previous);
               }
               svg.append(text);
-              entries.push({ text, line });
+            widest = Math.max(widest, measure(line) - (value.startsWith('Find your') && line === 'Find your' ? 7 : 0));
             });
             phrase.replaceChildren(svg);
-            let widest = 0;
-            for (const entry of entries) {
-              let width = 0;
-              try { width = entry.text.getComputedTextLength(); } catch {}
-              if (!width) width = measure(entry.line);
-              entry.text.setAttribute('textLength', String(width));
-              entry.text.setAttribute('lengthAdjust', 'spacing');
-              widest = Math.max(widest, width);
-            }
             if (!widest) continue;
             svg.setAttribute('viewBox', `0 0 ${widest} ${108 * lines.length}`);
             svg.style.width = `${widest / 100}em`;
