@@ -2,7 +2,7 @@
 
 ## City-based course starting point — November 19
 
-Entering “Provo,” “Provo, UT,” “Provo Utah,” or “Provo, Utah County” identifies Provo and Utah County. Exact-city courses lead the list, followed by other courses in the county; the picker opens at the matching area. Other Utah city inputs follow the same city/county rule, and a county name can be entered directly. The list uses a bounded touch-scroll area. Search and order changes retain the first visible course when it remains in the results. Node syntax and direct matching checks pass. `tests/homescreen-stress.cjs` was updated, but cannot run here because `jsdom` is not installed.
+Entering “Provo,” “Provo, UT,” “Provo Utah,” or “Provo, Utah County” identifies Provo and Utah County. Exact-city courses lead the list, followed by other courses in the county; the picker opens at the matching area. Other Utah city inputs follow the same city/county rule, and a county name can be entered directly. The list uses a bounded touch-scroll area. Search and order changes retain the first visible course when it remains in the results. Direct matching checks also covered “Provo, Utah, United States” and “Orem, UT.” JavaScript syntax and whitespace checks pass. `tests/homescreen-stress.cjs` was updated, but could not run because `jsdom` is not installed. Commit `a2ac58f` is live; Pages run `44653586117` succeeded. Live assets were confirmed, but interactive visual confirmation was unavailable because the in-app browser control was unavailable in this session.
 
 ## Motion jitter correction — November 19
 
