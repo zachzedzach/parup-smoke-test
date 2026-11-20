@@ -2,7 +2,7 @@
 
 ## Homepage golfer photo stack — November 19, 2026
 
-Replaced the single hero photograph with three distinct golf photos: a group playing, a golfer lining up a shot, and a golfer at the tee. Each appears once in the site markup and comes from a source not used elsewhere in the live page. The cards overlap in a calm editorial stack; tapping or focusing one brings it forward. Hover zoom is limited to pointer devices, pressed state is immediate, and reduced-motion removes transitions. The first photo loads with high priority; the other two are lazy-loaded. Local checks and deployment status pending.
+Replaced the single hero photograph with three distinct golf photos: a group playing, a golfer lining up a shot, and a golfer at the tee. Each appears once in the site markup and comes from a source not used elsewhere in the live page. The cards overlap in a calm editorial stack; tapping or focusing one brings it forward. Hover zoom is limited to pointer devices, pressed state is immediate, and reduced-motion removes transitions. The first photo loads with high priority; the other two are lazy-loaded. All 54 homepage stress checks pass, CSS parses, and `git diff --check` is clean. Commit `7b61606` is live; [GitHub Pages run 44660012723](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44660012723) succeeded, and the live page plus versioned CSS/JS return HTTP 200. Could not capture a browser screenshot this session: the local browsers exited before rendering and the in-app browser controller was unavailable, so visual appearance still needs a real-device glance.
 
 ## Weekly availability picker — November 19, 2026
 
