@@ -2,6 +2,10 @@
 
 Active project: The Fourth Club at [thefourth.club](https://www.thefourth.club/). GitHub source: [zachzedzach/parup-smoke-test](https://github.com/zachzedzach/parup-smoke-test).
 
+## Welcome headline line break — November 19, 2026
+
+The installed welcome view now forces “golf group.” onto its own line, matching the embedded phone preview regardless of device width and font measurement. CSS cache version updated. Regression assertion added. Static checks pass; the full jsdom stress suite could not run because its external test dependency is absent from `/private/tmp/tfc-qa`. Live publication and visual confirmation are pending.
+
 ## Published review and copy revision — November 19, 2026
 
 Applied the remaining phone-screen annotations: shortened the seven numbered game descriptions; kept the sample-photo step and starting tees out; made the results say plainly that the golfers want to play around the same time and that playing together is optional, with both people deciding before a booking; and added the chosen game description and bio to the completion summary. Course selection remains stable in place.

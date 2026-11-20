@@ -2,6 +2,8 @@
 
 ## Latest revision — November 19, 2026
 
+The welcome screen now places “golf group.” on a dedicated second line in both the installed view and embedded preview, avoiding device-dependent inline wrapping.
+
 The profile accepts an optional handicap index and carries the selected numbered game description and short bio into the completion summary. All seven concise descriptions fit in one phone screen, use no rank titles, and retain the experience progression. Results now state that golfers want to play around the visitor’s usual times, that choosing a plan is optional, and that both people decide before anyone books.
 
 ## Latest verification — November 19
