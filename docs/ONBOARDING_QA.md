@@ -1,5 +1,9 @@
 # Onboarding QA — November 19, 2026
 
+## Seven-level colorway and Utah overview — November 19
+
+The seven numbered golf-game descriptions use a warm red, orange, ochre, and brown sequence drawn from the supplied Utah palette references. Each choice receives a light color tint and a stronger selected state, while labels remain dark. The course step includes a compact Utah map beside the bounded list; its area band and highlighted dots follow the rows currently in view. Search, sort, and entering the step repaint the map, and a city entered in profile still places the list near that region. `node --check` passes for the app and stress-test script; `git diff --check` passes. The stress-test script cannot run because `jsdom` is not installed. The Impeccable detector ran; it returned general homepage warnings and advisories. Browser visual confirmation was attempted, but the browser control reports `browser.user is unavailable`.
+
 ## Handicap slider — November 19
 
 The optional index is now unset by default. Selecting “I keep a handicap index” reveals a range from plus 10 through 54, in 0.1 increments; its live readout uses golf notation (for example, +2.1). Disabling the option clears it. The selection is included in the profile and completion summaries. The stress suite now covers opt-in, slider changes, plus-index formatting, summary display, and clearing. JavaScript syntax and whitespace checks pass; the jsdom interaction suite could not run because the dependency is absent. Commit `9ef8791` is live; Pages run `44654308984` succeeded, and JS/CSS v43/v45 were confirmed live.

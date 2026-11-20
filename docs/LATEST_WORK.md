@@ -1,5 +1,9 @@
 # Latest work
 
+## Seven-level colorway and Utah course overview — November 19, 2026
+
+Applied a warm Utah basketball/desert palette to the seven numbered golf-game descriptions, moving from red through orange and ochre to brown while keeping text dark and legible. Restored the Utah course map beside the bounded course list; its shaded latitude area, visible course dots, and county label update as the list scrolls, after a search, and when entering the course step. The city-based starting region and row anchoring remain in place. JS and test-script syntax checks and `git diff --check` pass. The interaction test suite is currently unable to start because `jsdom` is not installed. Impeccable scan completed; its warnings concern existing homepage patterns, not the updated setup controls. Visual review is limited because the in-app browser control is unavailable in this session.
+
 ## Optional handicap slider — November 19, 2026
 
 Replaced the free-entry handicap field with an opt-in slider. It remains unset unless the golfer chooses to add an index, then shows the value while sliding. It covers plus handicaps through 54, updates without rerendering the screen, and carries the chosen value into profile and completion summaries. Syntax, diff, range, and display-format checks pass; the interaction suite could not run because `jsdom` is absent. Commit `9ef8791` is live; [GitHub Pages run 44654308984](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44654308984) succeeded. Live JS v43 and CSS v45 were confirmed.

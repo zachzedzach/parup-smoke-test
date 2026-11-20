@@ -314,13 +314,13 @@
 #preferences-app[data-view=setup] .course-browser .course-wheel-row small{font-size:11px;line-height:1.4}
 .course-locator{flex:0 0 76px;min-width:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;position:relative;color:#5c6952}
 #preferences-app .course-locator svg{width:76px;height:auto;fill:none;stroke:none;overflow:visible}
-#preferences-app .course-locator .utah-outline{fill:#e6ecdd;stroke:#9eaf90;stroke-width:1}
-#preferences-app #course-map-band{fill:#9ab77f;fill-opacity:.28;stroke:none}
-#preferences-app .course-locator circle{fill:#6e8560;opacity:.25;stroke:none}
-#preferences-app .course-locator circle.is-visible{fill:#176b50;opacity:1;r:2}
+#preferences-app .course-locator .utah-outline{fill:#f4e5cf;stroke:#a87a50;stroke-width:1}
+#preferences-app #course-map-band{fill:#f1602c;fill-opacity:.28;stroke:none}
+#preferences-app .course-locator circle{fill:#915018;opacity:.3;stroke:none}
+#preferences-app .course-locator circle.is-visible{fill:#d52429;opacity:1;r:2}
 .course-locator>span{font-size:10px;color:#62685f;line-height:1.2}
 .course-locator>span:first-of-type{order:-1}
-.course-locator>b{font-size:11px;line-height:1.3;text-align:center;overflow-wrap:anywhere;color:#36552a;font-weight:500}
+.course-locator>b{font-size:11px;line-height:1.3;text-align:center;overflow-wrap:anywhere;color:#6c3f18;font-weight:600}
 .course-sort{display:flex;gap:4px;background:#edf0e6;border-radius:10px;padding:4px}
 #preferences-app .course-sort button{flex:1;min-height:44px;padding:8px;border:0;border-radius:8px;background:transparent;color:#5c6952;font-size:14px;font-weight:500}
 #preferences-app .course-sort [aria-pressed=true]{background:white;color:#284b32;box-shadow:0 1px 4px #263b2112}
@@ -417,14 +417,12 @@
 #preferences-app[data-view=setup] .setup-page h3:first-of-type{margin-top:10px}
 #preferences-app[data-view=setup] .step-1 .setup-page,.step-1 .skill-choices{min-width:0}
 #preferences-app[data-view=setup] .skill-choices{display:grid;gap:6px;overflow:visible;background:transparent}
-#preferences-app[data-view=setup] .skill-choices button{grid-template-columns:26px minmax(0,1fr) 18px;gap:8px;min-height:0;padding:10px 12px;border:1px solid #dfe3de;border-radius:12px;background:linear-gradient(90deg,hsl(var(--skill-hue) 64% 94%),#fff 42%)}
-#preferences-app[data-view=setup] .skill-choices button[aria-pressed=true]{border-color:hsl(var(--skill-hue) 48% 62%);background:linear-gradient(90deg,hsl(var(--skill-hue) 64% 88%),#fff 58%)}
-#preferences-app[data-view=setup] .skill-choices button>span:first-child{width:auto;flex:none;padding:0;color:hsl(var(--skill-hue) 62% 38%);font-size:15px;font-weight:700}
+#preferences-app[data-view=setup] .skill-choices button{grid-template-columns:26px minmax(0,1fr) 18px;gap:8px;min-height:0;padding:10px 12px;border:1px solid color-mix(in srgb,var(--skill-color) 48%,white);border-radius:12px;background:color-mix(in srgb,var(--skill-color) 25%,white)}
+#preferences-app[data-view=setup] .skill-choices button[aria-pressed=true]{border-color:color-mix(in srgb,var(--skill-color) 76%,#392319);background:color-mix(in srgb,var(--skill-color) 40%,white)}
+#preferences-app[data-view=setup] .skill-choices button>span:first-child{width:auto;flex:none;padding:0;color:#35251d;font-size:15px;font-weight:700}
 #preferences-app[data-view=setup] .skill-choices b{font-size:14px;line-height:1.3;font-weight:450;letter-spacing:0}
 #preferences-app[data-view=setup] .skill-choices button>span:last-child{width:auto;font-size:17px;color:#176b50}
 #preferences-app[data-view=setup] .course-sort{margin-top:10px}
-#preferences-app[data-view=setup] .course-browser{display:block;min-width:0}
-#preferences-app[data-view=setup] .course-locator{display:none!important}
 #preferences-app[data-view=setup] .course-wheel{height:auto;min-height:0;max-height:none;overflow:visible;border-radius:14px;mask-image:none;scroll-snap-type:none}
 #preferences-app[data-view=setup] .course-wheel-row{min-height:64px;padding:10px 12px;background:#fff}
 #preferences-app[data-view=setup] .course-wheel-row b{font-size:14px;font-weight:550;line-height:1.25}
