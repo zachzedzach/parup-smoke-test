@@ -644,14 +644,14 @@ html.fullscreen-preview .app-exit-preview{display:inline-flex;align-items:center
 html.fullscreen-preview #preferences-app .app-reset{margin-left:0}
 .app-exit-preview:active{background:#e2ecdf;transform:scale(.97)}
 .preview-download-cta{display:none}
-html.fullscreen-preview .preview-download-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;padding:17px;border:1px solid #dce5d6;border-radius:16px;background:#fff8df}
+html.fullscreen-preview .preview-download-cta,html.homescreen-mode .preview-download-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;padding:17px;border:1px solid #dce5d6;border-radius:16px;background:#fff8df}
 .preview-download-cta>div{display:grid;gap:5px;min-width:0}
 .preview-download-cta b{font-size:15px;line-height:1.3;color:#263c2b}
 .preview-download-cta small{font-size:13px;line-height:1.4;color:#62685f}
 .preview-download-cta button{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;min-height:44px;padding:10px 14px;border:0;border-radius:12px;background:#176b50;color:white;font:600 14px/1.2 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;touch-action:manipulation}
 .preview-download-cta button svg{width:17px;height:17px}
 .preview-download-cta button:active{background:#12573f;transform:scale(.98)}
-@media(max-width:520px){html.fullscreen-preview .preview-download-cta{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.preview-download-cta button{width:100%}}
+@media(max-width:520px){html.fullscreen-preview .preview-download-cta,html.homescreen-mode .preview-download-cta{align-items:stretch;flex-direction:column;gap:12px;padding:15px}.preview-download-cta button{width:100%}}
 @media(prefers-reduced-motion:reduce){.focused-preview-dialog.is-mobile-takeover .interactive-round.phone-preview,.app-exit-preview,.preview-download-cta button{transition:none;animation:none}}
 
 #embedded-app-mount{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;width:100%}
