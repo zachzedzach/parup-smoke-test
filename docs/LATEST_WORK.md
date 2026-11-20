@@ -1,6 +1,6 @@
 ## Current change — November 20, 2026
 
-Restored a decimal Handicap Index slider on the profile screen, starting at 0.0, with exact text entry alongside it. The slider displays plus indexes with a `+` sign; exact entry retains plus indexes beyond the slider’s +10.0 endpoint, and ordinary indexes remain capped at 54.0. The USGA confirms 54.0 as the maximum issued Handicap Index and documents plus indexes as values better than scratch. Local `npm test` passes all 27 interaction checks, including decimal slider movement and plus-index entry. The UI has not yet been deployed.
+Restored a decimal Handicap Index slider on the profile screen, starting at 0.0, with exact text entry alongside it. The slider displays plus indexes with a `+` sign; exact entry retains plus indexes beyond the slider’s +10.0 endpoint, and ordinary indexes remain capped at 54.0. The USGA confirms 54.0 as the maximum issued Handicap Index and documents plus indexes as values better than scratch. Local `npm test` and GitHub Actions both pass all 27 interaction checks, including decimal slider movement and plus-index entry. The live page uses homescreen assets v68/v66 to bypass iPhone caches; deployment [44826240510](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44826240510) succeeded.
 
 ## Current change — November 20, 2026
 
