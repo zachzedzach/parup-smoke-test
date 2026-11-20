@@ -1,5 +1,9 @@
 # Onboarding QA — November 19, 2026
 
+## City-based course starting point — November 19
+
+Entering “Provo,” “Provo, UT,” “Provo Utah,” or “Provo, Utah County” identifies Provo and Utah County. Exact-city courses lead the list, followed by other courses in the county; the picker opens at the matching area. Other Utah city inputs follow the same city/county rule, and a county name can be entered directly. The list uses a bounded touch-scroll area. Search and order changes retain the first visible course when it remains in the results. Node syntax and direct matching checks pass. `tests/homescreen-stress.cjs` was updated, but cannot run here because `jsdom` is not installed.
+
 ## Motion jitter correction — November 19
 
 The wave uses measured, fixed x-coordinates for each glyph, preserving pair kerning instead of constraining the whole line with SVG `textLength`. Only the welcome phrase animates; setup and results headings stay still. Its 6.4-second periodic wave uses 16 samples from weight 570–730, with the first and last glyph stationary. Weekday chips and schedule details update in place rather than rerendering the screen. Reduced-motion remains static. Syntax and whitespace checks pass. Published in `b842186`; GitHub Pages run `44651728934` succeeded. The browser automation was unavailable and `jsdom` is missing, so the visual walkthrough remains outstanding.

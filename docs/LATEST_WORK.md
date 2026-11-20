@@ -1,5 +1,9 @@
 # Latest work
 
+## City-aware course picker — November 19, 2026
+
+The city entered in profile setup now resolves common forms such as “Provo,” “Provo, UT,” and “Provo, Utah County.” The course picker opens at the matching city or county, ranks exact-city courses first, then groups nearby courses from that county. Search and A–Z changes preserve the visible row. The course list remains its own touch-scroll area. Node syntax checks and direct matching checks pass; the browser automation dependency is absent, so the full interaction suite could not run. Deployment status is recorded here after publication.
+
 ## Less jitter in headline and availability motion — November 19, 2026
 
 Fixed each animated glyph to a measured x-position while preserving pair kerning, so changing weight no longer redistributes line spacing. Limited the app wave to its welcome phrase; setup and results headings stay still. The 6.4-second wave uses a periodic 16-point curve from weight 570–730, with both phrase endpoints still. Weekday selection now updates in place instead of replacing the full screen. Syntax and whitespace checks pass. Published in commit `b842186`; [GitHub Pages run 44651728934](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44651728934) succeeded. `jsdom` and the in-app browser control were unavailable and Firefox aborted in headless mode, so post-publish visual confirmation remains outstanding.

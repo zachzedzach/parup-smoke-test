@@ -491,6 +491,7 @@
 /* Course checks communicate state without scaling the whole row or moving nearby rows. */
 #preferences-app[data-view=setup] .course-wheel-row:active{transform:none}
 #preferences-app[data-view=setup] .course-wheel-row{transform:none!important}
+#preferences-app[data-view=setup] .course-browser .course-wheel{height:min(42dvh,360px);min-height:180px;max-height:360px;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;touch-action:pan-y;-webkit-overflow-scrolling:touch;scroll-snap-type:none;scroll-behavior:auto}
 #preferences-app[data-view=setup] .course-count{min-height:16px}
 #preferences-app[data-view=setup] .chosen-courses-empty{display:inline-flex;align-items:center;height:36px;padding:0 10px;border:1px dashed #d7ddd4;border-radius:9px;background:#fff;color:#667168}
 /* The experience choices are descriptions, not rank titles, and remain a compact single screen. */
