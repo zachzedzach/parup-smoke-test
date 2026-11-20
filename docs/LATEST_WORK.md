@@ -1,3 +1,7 @@
+## Final preference heading — November 20, 2026
+
+Replaced the vague “What makes a good round?” heading with the direct question “What do you enjoy in a round?” It labels the preference choices without implying there is one right kind of golf day. The live onboarding is seven steps; older screenshots showing “Your kind of round” and six steps do not reflect the current version. Published with the audience multi-select update below.
+
 ## Playing-partner audience — November 20, 2026
 
 The final preference step now allows selecting women golfers, men golfers, or both; “Everyone” is an exclusive shortcut that clears the two narrower choices. Audience choices are independent, so visitors can include both groups. Example plans follow the selected audience, and clearing all choices leaves the audience unrestricted. All 66 interaction checks pass. Commit `c92936e` is live; GitHub Pages run [44796537215](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44796537215) succeeded.
