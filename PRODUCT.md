@@ -4,7 +4,7 @@ The Fourth Club helps golfers find people to play with around their usual course
 
 ## Audience and promise
 
-Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating and a separate seven-level playing-partner filter, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, encourage a golfer to plan one dated round that can be public. Golfers whose preferences fit may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
+Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating and a separate seven-level playing-partner filter, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, show example groups that fit the golfer’s usual schedule. Keep planning one dated round as a secondary action. Golfers whose preferences fit a public round may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
 
 ## Current product boundary
 

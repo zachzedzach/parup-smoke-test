@@ -1,5 +1,13 @@
 ## Current change — November 20, 2026
 
+Reworked onboarding in response to the latest usability review. Setup is six screens; the optional partner-score filter is tucked under the self-rating, while the separate group audience question is labeled distinctly. Replaced the vague bio field label, clarified group size with one-to-four-player choices, and simplified round preferences. Course map now sits above a full-width course list. Availability uses weekday buttons and shows time fields only for chosen days. Profile completion opens example groups directly; planning one dated round is secondary. The round planner is single-column, with optional details collapsed. Handicap uses an optional entry for a standard index, including plus values; non-plus indexes cap at 54.0, and no unsupported lower bound is imposed.
+
+Research: USGA Rules of Handicapping define 54.0 as the maximum Handicap Index and format better-than-scratch indexes with a plus sign. Apple’s onboarding guidance favors brief, optional setup; iOS guidance favors focused tasks and fewer simultaneous controls. Sources: [USGA Rules of Handicapping](https://www.usga.org/content/dam/usga/pdf/2024-revision/2024-Rules-of-Handicapping-USGA.pdf), [Apple Onboarding](https://developer.apple.com/design/human-interface-guidelines/onboarding), [Apple Designing for iOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-ios).
+
+Local verification: JavaScript syntax and whitespace checks pass. The browser cannot open the local file preview under the current URL policy, and `jsdom` is not installed, so the interaction suite and visual phone review remain outstanding. Not yet published.
+
+## Previous change — November 20, 2026
+
 Removed “Nonbinary” from the profile’s gender choices at the owner’s request. “Woman,” “Man,” and “Prefer not to say” remain. Bumped the app script cache version so the published site loads the change.
 
 Clarified the app preview introduction. The old “Your Friday afternoon and Saturday morning can be different” line is now “Choose your usual courses and times. See who wants to play around then.”
