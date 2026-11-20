@@ -65,10 +65,12 @@
             svg.setAttribute('viewBox', `0 0 ${widest} ${108 * lines.length}`);
             svg.style.width = `${widest / 100}em`;
             const last = letters.length - 1;
-            letters.forEach((letter, index) => {
-              if (index === 0 || index === last || !/[\p{L}\p{N}]/u.test(letter.textContent || '')) return;
+            const movingLetters = letters.filter((letter, index) => index !== 0 && index !== last && /[\p{L}\p{N}]/u.test(letter.textContent || ''));
+            const rightToLeft = value.toLocaleLowerCase() === 'golf group.';
+            movingLetters.forEach((letter, index) => {
               letter.classList.add('wave-letter');
-              letter.style.animationDelay = `${-(index / Math.max(1, last)) * waveDuration}s`;
+              const progress = index / Math.max(1, movingLetters.length - 1);
+              letter.style.animationDelay = `${-(rightToLeft ? 1 - progress : progress) * waveDuration}s`;
             });
             state.runs.push({ letters });
           }

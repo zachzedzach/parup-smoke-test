@@ -1,5 +1,9 @@
 # Motion and game descriptions — November 19, 2026
 
+## November 20: intentional golf-group wave
+
+The “golf group.” phrase now sends its weight peak from right to left. Its first and last characters stay still; only interior letters animate, with spaces and punctuation excluded from the phase sequence. The 6.4-second periodic motion has a restrained 608–692 weight range, fixed measured glyph origins, and reduced-motion support. Cache versions in `index.html` must be advanced when publishing this change. The profile handicap control remains a whole-number range slider, 0–54, starting at 0. Verify the current live asset versions and phone view after publish; automated checks do not establish physical-device frame pacing.
+
 ## November 19: Remove motion jitter
 
 The Allo wave now positions each SVG glyph at a fixed x-coordinate measured at its base weight, preserving pair kerning while weights change. The previous full-line `textLength` constraint redistributed spacing as glyph weights changed, which could make letters look as though they were shuffling. The welcome phrase alone receives the wave inside the app; setup and results headings remain still. The 6.4-second cycle uses 16 evenly spaced samples of a periodic curve, so the wave does not reverse abruptly at its loop. `F`–`i` spacing is applied before positioning the `i`. Weekday selection now updates its selected state and schedule block in place instead of rebuilding the whole screen, so the tapped control is not replaced and the welcome wave is not restarted. Reduced-motion behavior remains static.

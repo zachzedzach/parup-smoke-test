@@ -1,3 +1,7 @@
+## Allo wave direction and handicap slider refresh — November 20, 2026
+
+The animated “golf group.” phrase now travels right-to-left, with the first and last characters held still and spaces/punctuation excluded from phase spacing. Weight variation is reduced to a restrained 608–692 range to avoid a jittery, uncertain feel. The profile handicap is a native slider from 0 to 54 in whole-number increments, defaulting to 0. Updated asset versions to clear stale live files. All 66 app stress checks, JavaScript syntax checks, and `git diff --check` pass. Publish and verify the new live asset versions before reporting completion.
+
 ## Final preference heading — November 20, 2026
 
 Replaced the vague “What makes a good round?” heading with the direct question “What do you enjoy in a round?” It labels the preference choices without implying there is one right kind of golf day. The live onboarding is seven steps; older screenshots showing “Your kind of round” and six steps do not reflect the current version. Published with the audience multi-select update below.
