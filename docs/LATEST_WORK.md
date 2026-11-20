@@ -4,7 +4,7 @@ Reworked onboarding in response to the latest usability review. Setup is six scr
 
 Research: USGA Rules of Handicapping define 54.0 as the maximum Handicap Index and format better-than-scratch indexes with a plus sign. Apple’s onboarding guidance favors brief, optional setup; iOS guidance favors focused tasks and fewer simultaneous controls. Sources: [USGA Rules of Handicapping](https://www.usga.org/content/dam/usga/pdf/2024-revision/2024-Rules-of-Handicapping-USGA.pdf), [Apple Onboarding](https://developer.apple.com/design/human-interface-guidelines/onboarding), [Apple Designing for iOS](https://developer.apple.com/design/human-interface-guidelines/designing-for-ios).
 
-Local verification: JavaScript syntax and whitespace checks pass. The browser cannot open the local file preview under the current URL policy, and `jsdom` is not installed, so the interaction suite and visual phone review remain outstanding. Commits `3040f4e`, `6ef4d10`, `2b52e31`, and `58ceec8` are local only. Both push attempts failed because this environment could not resolve `github.com`. Retry the push when DNS/network access is available.
+Local verification: JavaScript syntax and whitespace checks pass. GitHub Pages deployment run [44820751884](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44820751884) succeeded for commit `ba5349a`; a cache-busted live request returned HTTP 200 and confirmed the published app assets are version 66/64. The interaction suite still contains assumptions for the previous onboarding order and needs a focused refresh before it can serve as a full regression check. The mobile takeover flow is covered by an updated expectation. Physical iPhone review remains outstanding.
 
 ## Previous change — November 20, 2026
 
