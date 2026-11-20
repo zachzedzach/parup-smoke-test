@@ -190,7 +190,7 @@
 #preferences-app .dial-slider-label{font-size:12px;margin-bottom:4px}
 #preferences-app #usual-time{accent-color:#176b50;min-height:40px}
 .tolerance-control{display:block;margin:26px 0 4px;padding-top:20px;border-top:1px solid #dedfd9}
-.tolerance-control>span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:14px;color:#51594d}
+.tolerance-control>label>span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:14px;color:#51594d}
 .tolerance-control b{font-weight:600;color:#176b50}
 #preferences-app #time-tolerance{padding:0;min-height:44px;width:100%;accent-color:#176b50;background:transparent}
 .tolerance-control small{font-size:12px;line-height:1.5;color:#62685f}
@@ -508,6 +508,7 @@
 #preferences-app[data-view=setup] .day-time-settings{min-height:0}
 #preferences-app[data-view=setup] .day-time-prompt{margin:6px 2px 0;padding:0;background:transparent;color:#737970;font-size:13px}
 #preferences-app[data-view=setup] .tolerance-control{margin:16px 0 4px;padding:12px;border:1px solid #e0e4dc;border-radius:12px;background:#f6f7f4}
+#preferences-app[data-view=setup] .tolerance-control small{display:block;margin-top:2px;font-size:12px;line-height:1.45}
 @media(max-width:360px){#preferences-app[data-view=setup] .weekly-schedule{gap:6px}#preferences-app[data-view=setup] .week-day{padding:6px}#preferences-app[data-view=setup] .week-day-toggle{padding-inline:7px}}
 .handicap-control{margin:18px 0 20px;padding:14px 15px;border:1px solid #dcd7e2;border-radius:14px;background:#fff}.handicap-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:#403a47;font-size:14px;font-weight:600}.handicap-heading small{margin-left:5px;color:#82798b;font-size:12px;font-weight:400}.handicap-heading output{min-width:52px;text-align:right;color:#201d29;font-size:17px;font-variant-numeric:tabular-nums}.handicap-toggle{display:flex;align-items:center;gap:9px;min-height:42px;color:#514a59;font-size:14px;cursor:pointer}.handicap-toggle input{width:18px;height:18px;margin:0;accent-color:#176b50}.handicap-range-wrap{padding:2px 2px 0}.handicap-range-wrap input{display:block;width:100%;height:32px;margin:4px 0 0;accent-color:#176b50;cursor:pointer;touch-action:pan-x}.handicap-range-labels{display:flex;justify-content:space-between;color:#82798b;font-size:11px;font-variant-numeric:tabular-nums}
 #preferences-app[data-view=setup] .course-count{min-height:16px}
