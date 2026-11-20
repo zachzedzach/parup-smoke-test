@@ -1,5 +1,9 @@
 ## Current change — November 20, 2026
 
+Replaced the obsolete onboarding stress checks with 27 checks for the current six-screen flow, course selection, availability, matching, booking links, and dated-round planning. Added a locked `jsdom` test dependency and made the GitHub Pages deploy job wait for the test job. Dated-round planning now says “Plan a specific round” and clarifies that the usual weekly schedule stays the same. Local `npm test`, JavaScript syntax checks, and `git diff --check` pass.
+
+## Current change — November 20, 2026
+
 The score choices now have seven short cues, no range is selected automatically, and the instruction says the estimate can change later. Selection uses the app’s forest-green state, while score-range colors stay on the numbered markers. The score may be left unset and is shown as “Not set” in preferences. The example group seat label now reads “Room for you” or “Room for your group.”
 
 Verified in a local browser at phone width: score list before and after selection and the group-results card. Targeted jsdom checks confirm no default score, single selection, optional skip, and corrected capacity copy. JavaScript syntax and `git diff --check` pass. Published in commit `274a27e`; GitHub Pages run [44823265778](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44823265778) succeeded. The cache-busted live page references app assets v67/65. The historical stress suite still contains assumptions for an older setup flow; this pass did not treat its partial run as a passing regression check. Impeccable’s changed-file scan flagged inherited landing-page patterns outside these edits. Physical iPhone review remains outstanding.

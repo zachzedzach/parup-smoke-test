@@ -1,0 +1,21 @@
+{
+  "name": "fourth-club-pages",
+  "version": "1.0.0",
+  "description": "The Fourth Club smoke-test site",
+  "scripts": {
+    "test": "node tests/homescreen-stress.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachzedzach/parup-smoke-test.git"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zachzedzach/parup-smoke-test/issues"
+  },
+  "homepage": "https://github.com/zachzedzach/parup-smoke-test#readme",
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}

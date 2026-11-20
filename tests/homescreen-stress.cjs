@@ -1,76 +1,403 @@
-const {JSDOM}=require('jsdom');const fs=require('fs'),assert=require('assert');const dir=require('path').resolve(__dirname,'..')+'/';
-function app(reduce=false){const dom=new JSDOM('<html class="homescreen-mode"><body></body></html>',{runScripts:'outside-only',url:'https://example.test/?homescreen=1'}),w=dom.window;w.matchMedia=()=>({matches:reduce});w.structuredClone=structuredClone;w.requestAnimationFrame=()=>1;w.cancelAnimationFrame=()=>{};w.Element.prototype.getAnimations=()=>[];w.Element.prototype.animate=()=>({finished:Promise.resolve(),cancel(){}});w.eval(fs.readFileSync(dir+'assets/allo-wave.js','utf8'));w.eval(fs.readFileSync(dir+'assets/utah-courses.js','utf8'));w.eval(fs.readFileSync(dir+'assets/course-booking-links.js','utf8'));w.eval(fs.readFileSync(dir+'assets/homescreen.js','utf8'));return w}
-function click(w,sel){const e=w.document.querySelector(sel);assert(e,'Missing '+sel);e.click()}
-function input(w,sel,value){const e=w.document.querySelector(sel);assert(e,'Missing '+sel);e.value=value;e.dispatchEvent(new w.Event('input',{bubbles:true}))}
-function next(w){click(w,'[data-action=next]')}
-function setup(w,name){click(w,'[data-action=begin]');input(w,'[data-input=name]',name);next(w);next(w);next(w);next(w)}
-function site(homeScreen){const dom=new JSDOM(`<html${homeScreen?' class="homescreen-mode"':''}><body><button class="hero-photo-card"><img class="hero-photo" data-src="assets/a.webp"></button><button class="hero-photo-card"><img class="hero-photo" data-src="assets/b.webp"></button><button class="hero-photo-card"><img class="hero-photo" data-src="assets/c.webp"></button></body></html>`,{runScripts:'outside-only',url:`https://example.test/${homeScreen?'?homescreen=1':''}`}),w=dom.window;w.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});w.ROUNDFOLK_CONFIG={};w.eval(fs.readFileSync(dir+'assets/allo-wave.js','utf8'));w.eval(fs.readFileSync(dir+'site.js','utf8'));return w}
-function previewSite(phone=false,reduce=true){const dom=new JSDOM('<html><body><section class="app-preview-stage"><div class="preview-guide"><a class="open-app-link" href="?homescreen=1">Open the full-screen preview</a></div><article class="interactive-round phone-preview"><div id="embedded-app-mount"></div></article></section><dialog id="focused-preview-dialog"><button class="focused-preview-close">×</button><div class="focused-preview-stage"></div></dialog></body></html>',{runScripts:'outside-only',url:'https://example.test/#try-round'}),w=dom.window;w.matchMedia=query=>({matches:query.includes('pointer: coarse')?phone:query.includes('prefers-reduced-motion')?reduce:false});w.__animationCalls=[];w.Element.prototype.animate=function(frames,options){w.__animationCalls.push({frames,options});return{finished:Promise.resolve(),cancel(){}}};w.ROUNDFOLK_CONFIG={};w.HTMLDialogElement.prototype.showModal=function(){this.setAttribute('open','')};w.HTMLDialogElement.prototype.close=function(){this.removeAttribute('open')};w.scrollTo=()=>{};w.eval(fs.readFileSync(dir+'site.js','utf8'));return w}
-let count=0;function check(label,f){f();count++;console.log('PASS '+label)}
-check('homescreen does not request hidden marketing photo cards',()=>{const w=site(true),photos=[...w.document.querySelectorAll('.hero-photo')];assert.equal(photos.length,3);assert(photos.every(photo=>!photo.hasAttribute('src')));assert(photos.every(photo=>photo.dataset.src));w.close()});
-check('marketing page prioritizes the first photo and lazily loads the other cards',()=>{const w=site(false),photos=[...w.document.querySelectorAll('.hero-photo')];assert.equal(photos[0].getAttribute('src'),'assets/a.webp');assert.equal(photos[0].fetchPriority,'high');assert.equal(photos[0].loading,'eager');assert.equal(photos[1].loading,'lazy');assert.equal(photos[2].loading,'lazy');w.close()});
-check('hero photo cards use three unique golfer images that appear once in site markup',()=>{const html=fs.readFileSync(dir+'index.html','utf8'),script=fs.readFileSync(dir+'site.js','utf8'),appScript=fs.readFileSync(dir+'assets/homescreen.js','utf8'),w=new JSDOM(html).window,photos=[...w.document.querySelectorAll('.hero-photo-card img')],sources=photos.map(photo=>photo.dataset.src);assert.equal(photos.length,3);assert.equal(new Set(sources).size,3);assert(photos.every(photo=>photo.closest('button').getAttribute('aria-label')));for(const src of sources){assert.equal((html.match(new RegExp(src,'g'))||[]).length,1);assert(!script.includes(src));assert(!appScript.includes(src))}w.close()});
-check('tapping a hero photo card brings only that photo forward',()=>{const w=site(false),cards=[...w.document.querySelectorAll('.hero-photo-card')];cards[1].click();assert.deepEqual(cards.map(card=>card.getAttribute('aria-pressed')),['false','true','false']);cards[2].click();assert.deepEqual(cards.map(card=>card.getAttribute('aria-pressed')),['false','false','true']);w.close()});
-check('desktop preview opens the same interactive phone centered in a modal and restores it on close',()=>{const w=previewSite(false),link=w.document.querySelector('.open-app-link'),phone=w.document.querySelector('.interactive-round'),dialog=w.document.querySelector('#focused-preview-dialog'),stage=w.document.querySelector('.focused-preview-stage'),event=new w.MouseEvent('click',{bubbles:true,cancelable:true});link.dispatchEvent(event);assert(event.defaultPrevented);assert(dialog.open);assert.equal(phone.parentElement,stage);w.document.querySelector('.focused-preview-close').click();assert(!dialog.open);assert.equal(phone.parentElement,w.document.querySelector('.app-preview-stage'));assert.equal(w.document.activeElement,link);w.close()});
-check('desktop preview grows and returns with one deliberate, eased transform when motion is allowed',()=>{const w=previewSite(false,false),link=w.document.querySelector('.open-app-link');link.dispatchEvent(new w.MouseEvent('click',{bubbles:true,cancelable:true}));assert.equal(w.__animationCalls.length,1);assert.equal(w.__animationCalls[0].options.duration,560);assert.match(w.__animationCalls[0].options.easing,/cubic-bezier/);w.document.querySelector('.focused-preview-close').click();assert.equal(w.__animationCalls.length,2);assert(w.__animationCalls.every(call=>call.frames[0].transform.includes('scale(')));w.close()});
-check('touch phone opens the same full-screen preview with a clear exit',()=>{const w=previewSite(true),link=w.document.querySelector('.open-app-link'),event=new w.MouseEvent('click',{bubbles:true,cancelable:true});link.dispatchEvent(event);assert(event.defaultPrevented);assert(w.document.querySelector('#focused-preview-dialog').open);assert(w.document.querySelector('#focused-preview-dialog').classList.contains('is-mobile-takeover'));w.close()});
-check('focused preview uses a centered full-height zoom with a softened backdrop and reduced-motion support',()=>{const css=fs.readFileSync(dir+'styles.css','utf8'),js=fs.readFileSync(dir+'site.js','utf8');assert.match(css,/width:min\(100vw,calc\(100svh \* 1350 \/ 2760\)\)/);assert.match(css,/grid-column:1;grid-row:1;align-self:center;justify-self:center/);assert.match(css,/\.focused-preview-dialog\.is-taking-over \.interactive-round\.phone-preview\{transform:scale\(1\.025\)\}/);assert.match(css,/transition:transform 420ms cubic-bezier/);assert.match(css,/focused-preview-backdrop-in 520ms/);assert.match(css,/prefers-reduced-motion:reduce\).*focused-preview-close/);assert.match(css,/is-taking-over \.interactive-round\.phone-preview\{transform:none\}/);assert.match(js,/animation\.finished\.catch/);assert.match(js,/previewDialog\.classList\.add\('is-taking-over'\)/)});
-check('empty first name blocks progression',()=>{const w=app();click(w,'[data-action=begin]');next(w);assert(w.document.querySelector('[aria-invalid=true]'));w.close()});
-check('Allo wave keeps glyph origins fixed, flows golf-group right-to-left, and stays restrained',()=>{const w=app();click(w,'[data-action=begin]');const heading=w.document.querySelector('.setup-page h1');assert.equal(heading.textContent,'A little about you');assert(!heading.querySelector('.wave-letter'),'setup headings do not carry the decorative wave');const js=fs.readFileSync(dir+'assets/allo-wave.js','utf8'),css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert(!js.includes('requestAnimationFrame(animate)'));assert.match(js,/letter\.setAttribute\('x', String\(cursor\)\)/);assert.match(js,/measure\(previous \+ character\) - measure\(previous\)/);assert.match(js,/character === 'i'.*characters\[index - 1\] === 'F'.*cursor -= 7/);assert.match(js,/rightToLeft \? 1 - progress : progress/);assert.match(js,/movingLetters = letters\.filter/);assert.match(css,/allo-letter-wave 6\.4s linear infinite/);assert.match(css,/"wght" 692/);assert.match(css,/"wght" 608/);assert.doesNotMatch(css,/"wght" 730|"wght" 570/);assert.match(css,/prefers-reduced-motion:reduce\).*wave-letter/);assert.match(fs.readFileSync(dir+'assets/homescreen.js','utf8'),/startAlloWave\(root,'\.welcome-living-type'\)/);w.close()});
-check('ready screen carries selected day times, skill and description into a clear next step',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');input(w,'[data-input=bio]','I like a relaxed round with a snack at the turn.');next(w);click(w,'[data-skill="2"]');next(w);next(w);next(w);click(w,'[data-day-toggle=Friday]');click(w,'[data-day-toggle=Sunday]');input(w,'[data-day-time=Friday]','16:30');input(w,'[data-day-time=Sunday]','08:00');next(w);next(w);click(w,'[data-value="Just for fun"]');next(w);assert(w.document.body.textContent.includes('Friday 4:30 PM'));assert(w.document.body.textContent.includes('Sunday 8:00 AM'));assert(w.document.querySelector('.ready-skill').textContent.includes('3'));assert(w.document.querySelector('.ready-bio').textContent.includes('snack at the turn'));assert(w.document.body.textContent.includes('similar schedule can ask to join'));assert(w.document.body.textContent.includes('decide together'));assert.equal(w.document.querySelectorAll('.setup-actions .pref-primary').length,1);w.close()});
-check('profile step has no pretend photo upload and keeps the bio',()=>{const w=app();click(w,'[data-action=begin]');assert(!w.document.querySelector('.photo-example'));assert(!w.document.querySelector('[data-action=photo]'));input(w,'[data-input=bio]','I like a walk and an early start.');assert.equal(w.document.querySelector('[data-input=bio]').value,'I like a walk and an early start.');w.close()});
-check('availability presents a stable week grid with each time disabled until its day is chosen',()=>{const w=app();setup(w,'Sam');assert(w.document.body.textContent.includes('Tap a day to add or remove it, then set its usual start.'));assert.equal(w.document.querySelectorAll('.week-day').length,7);assert.equal(w.document.querySelectorAll('[data-day-time]:not(:disabled)').length,0);assert.equal(w.document.querySelectorAll('.week-day input[type=time]:disabled').length,7);assert([...w.document.querySelectorAll('[data-day-time]')].every(el=>el.step==='900'&&el.min==='06:00'&&el.max==='19:00'));w.close()});
-check('weekly time pickers stay attached to each day and preserve choices when toggled off',()=>{const w=app();setup(w,'Sam');assert.equal(w.document.querySelectorAll('[data-day-time]:not(:disabled)').length,0);const original=w.document.querySelector('[data-day-toggle=Friday]');click(w,'[data-day-toggle=Friday]');assert.equal(w.document.querySelector('[data-day-toggle=Friday]'),original);assert.equal(original.getAttribute('aria-pressed'),'true');assert.equal(w.document.querySelector('[data-day-time=Friday]').type,'time');click(w,'[data-day-toggle=Sunday]');assert.equal(w.document.querySelectorAll('[data-day-time]:not(:disabled)').length,2);input(w,'[data-day-time=Friday]','16:30');input(w,'[data-day-time=Sunday]','09:15');assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'16:30');assert.equal(w.document.querySelector('[data-day-time=Sunday]').value,'09:15');click(w,'[data-day-toggle=Friday]');assert(w.document.querySelector('[data-day-time=Friday]').disabled);assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'');assert.equal(w.document.querySelector('[data-day-time=Sunday]').value,'09:15');click(w,'[data-day-toggle=Friday]');assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'16:30');w.close()});
-check('typed name remains single through navigation',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Zach');assert.equal(w.document.querySelector('[data-input=name]').value,'Zach');next(w);click(w,'[data-action=back]');assert.equal(w.document.querySelector('[data-input=name]').value,'Zach');w.close()});
-check('welcome has one clear setup action and one optional example route',()=>{const w=app();assert.equal(w.document.querySelectorAll('.story-pagination').length,0);assert.equal(w.document.querySelectorAll('.welcome-shortcuts').length,0);assert(w.document.querySelector('[data-action=begin]').textContent.includes('Set up my playing profile'));assert(w.document.querySelector('[data-action=sample]').textContent.includes('See an example'));click(w,'[data-action=begin]');assert.equal(w.document.querySelector('.setup-page h1').textContent,'A little about you');w.close()});
-check('welcome headline keeps the animated pink phrase on its own line in every app width',()=>{const w=app();const h=w.document.querySelector('#preferences-app h1');assert.equal(h.childNodes[0].textContent,'Find your ');assert.equal(h.querySelector('.welcome-living-type').textContent,'golf group.');const css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert.match(css,/#preferences-app\[data-view=welcome\] \.welcome-living-type\{display:block;width:max-content;max-width:100%\}/);assert.match(css,/\.welcome-living-type\{display:block/);w.close()});
-check('generic preview header label is removed while setup progress remains',()=>{const w=app();assert(!w.document.querySelector('.preferences-header>span'));assert(w.document.querySelector('.preferences-header .app-reset'));click(w,'[data-action=begin]');assert.equal(w.document.querySelector('.preferences-header>span').textContent,'1 of 7');click(w,'[data-action=back]');assert(!w.document.querySelector('.preferences-header>span'));w.close()});
-for(const name of ['J','Aleksandra Wiśniewska-Kowalczyk','王秀英','نور الهدى عبد الرحمن',"Seán O’Brien-Ó Súilleabháin",'<img src=x onerror=alert(1)>'])check('safe name '+name,()=>{const w=app();setup(w,name);next(w);next(w);next(w);assert(w.document.querySelector('.ready-arrival'));assert(!w.document.querySelector('img[onerror]'));w.close()});
-check('separate Friday Saturday Sunday times survive navigation',()=>{const w=app();setup(w,'Sam');for(const day of ['Friday','Saturday','Sunday'])click(w,`[data-day-toggle=${day}]`);for(const [day,time] of [['Friday','16:30'],['Saturday','07:00'],['Sunday','10:30']])input(w,`[data-day-time=${day}]`,time);next(w);click(w,'[data-action=back]');assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'16:30');assert.equal(w.document.querySelector('[data-day-time=Saturday]').value,'07:00');assert.equal(w.document.querySelector('[data-day-time=Sunday]').value,'10:30');next(w);next(w);next(w);click(w,'[data-action=see-partners]');const text=w.document.body.textContent;assert(text.includes('Friday 4:30 PM')&&text.includes('Saturday 7:00 AM')&&text.includes('Sunday 10:30 AM'));assert(text.includes('Friday · 4:30 PM'));w.close()});
-check('round preferences are plain paired choices and resolve conflicts',()=>{const w=app();setup(w,'Sam');next(w);next(w);assert(w.document.querySelector('.step-6 .pref-intro').textContent.includes('not your skill'));const music=[...w.document.querySelectorAll('.round-style-group')].find(group=>group.querySelector('legend').textContent==='Music');assert(music);click(w,'[data-value="Music is fine"]');click(w,'[data-value="Prefer no music"]');assert.equal(music.querySelector('[data-value="Music is fine"]').getAttribute('aria-pressed'),'false');assert.equal(music.querySelector('[data-value="Prefer no music"]').getAttribute('aria-pressed'),'true');const conversation=[...w.document.querySelectorAll('.round-style-group')].find(group=>group.querySelector('legend').textContent==='Conversation');click(w,'[data-value="Chat between shots"]');click(w,'[data-value="Quiet between shots"]');assert.equal(conversation.querySelector('[data-value="Chat between shots"]').getAttribute('aria-pressed'),'false');click(w,'[data-value="Everyone"]');click(w,'[data-value="Women golfers"]');assert.equal(w.document.querySelector('[data-value="Everyone"]').getAttribute('aria-pressed'),'false');w.close()});
-check('empty schedules produce no fabricated plan',()=>{const w=app();setup(w,'Sam');next(w);next(w);next(w);click(w,'[data-action=see-partners]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,0);w.close()});
-check('save pass recover and duplicate request',()=>{const w=app(true);setup(w,'Sam');click(w,'[data-day-toggle=Saturday]');next(w);next(w);next(w);click(w,'[data-action=see-partners]');click(w,'[data-save=jordan]');click(w,'[data-pass=jordan]');click(w,'[data-view=saved]');assert(w.document.body.textContent.includes('Jordan'));click(w,'[data-request=jordan]');click(w,'[data-request=jordan]');assert.equal(w.document.querySelectorAll('[data-request=jordan]').length,1);assert(w.document.body.textContent.includes('other golfer can accept or decline'));w.close()});
-check('unmatched course query and apostrophe safely rendered',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);input(w,'#course-search','no course with this name');assert(w.document.body.textContent.includes('No courses found'));input(w,'#course-search',"Schneiter's");assert(w.document.querySelector('[data-course]'));w.close()});
-check('course search accepts the full county name shown in each result',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);input(w,'#course-search','Utah County');const rows=[...w.document.querySelectorAll('[data-course]')];assert(rows.length>1);assert(rows.every(row=>row.dataset.county==='Utah'));w.close()});
-check('rapid back forward and reload start clean',()=>{const w=app();setup(w,'Sam');for(let i=0;i<20;i++){click(w,'[data-action=back]');next(w)}assert.equal(w.document.querySelectorAll('.preferences-content').length,1);assert(!w.document.querySelector('.departing-screen'));w.close();const fresh=app();assert(fresh.document.querySelector('[data-action=begin]'));fresh.close()});
-check('accepted plan links to its selected course with suggested start and party size',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);click(w,'[data-skill=2]');next(w);next(w);input(w,'#course-search','Sleepy Ridge');const course=[...w.document.querySelectorAll('[data-course]')].find(row=>row.dataset.course==='Sleepy Ridge Golf Course');assert(course);course.click();next(w);click(w,'[data-day-toggle=Saturday]');next(w);click(w,'[data-single=party][data-value=\"Me and one other\"]');next(w);next(w);click(w,'[data-action=see-partners]');click(w,'[data-request=jordan]');assert(w.document.body.textContent.includes('Waiting for their answer'));assert(!w.document.querySelector('.booking-next a'));click(w,'[data-reply=jordan]');assert(w.document.body.textContent.includes('Both agreed to play'));const booking=w.document.querySelector('.booking-next a');assert(booking.href.includes('foreupsoftware.com/index.php/booking/19396/1726'));assert(w.document.querySelector('.booking-summary').textContent.includes('Sleepy Ridge Golf Course'));assert(w.document.querySelector('.booking-summary').textContent.includes('Saturday'));assert(w.document.querySelector('.booking-summary').textContent.includes('4 golfers'));assert(w.document.body.textContent.includes('not a dated reservation'));assert(!booking.href.includes('uga.org/course-directory'));w.close()});
-check('every listed public or municipal course has a direct booking or phone destination',()=>{const w=app(),courses=w.FOURTH_COURSES.filter(course=>course.access!=='private'),missing=courses.filter(course=>!w.FOURTH_BOOKING_LINKS?.[course.name]?.url);assert.equal(courses.length,94);assert.deepEqual(missing.map(course=>course.name),[]);assert(!courses.some(course=>course.name==='Cascade Fairways'));for(const course of courses){const url=w.FOURTH_BOOKING_LINKS[course.name].url;assert(url.startsWith('https://')||url.startsWith('tel:+'),course.name+' has an invalid destination')}w.close()});
-check('sample shortcut uses real course spelling and three distinct plans',()=>{const w=app();click(w,'[data-action=sample]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,3);const text=w.document.body.textContent;assert(text.includes('Friday · 4:30 PM'));assert(text.includes('Saturday · 8:15 AM'));assert(text.includes('Sunday · 9:45 AM'));assert(text.includes('Fox Hollow Golf Course'));w.close()});
-check('time tolerance filters nearby starts without changing independent days',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-edit-step="4"]');input(w,'#time-tolerance','0');next(w);click(w,'[data-view=home]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,1);click(w,'[data-edit-step="4"]');input(w,'#time-tolerance','60');assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'16:30');assert.equal(w.document.querySelector('[data-day-time=Saturday]').value,'08:00');next(w);click(w,'[data-view=home]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,3);w.close()});
-check('availability uses quarter-hour steps and explains the live matching window',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);next(w);click(w,'[data-day-toggle=Monday]');const time=w.document.querySelector('[data-day-time=Monday]');assert.equal(time.getAttribute('step'),'900');time.value='07:41';time.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(time.value,'07:45');let explanation=w.document.querySelector('#tolerance-explanation');assert(explanation.textContent.includes('Monday at 7:45 AM'));assert(explanation.textContent.includes('matches starts from 7:15 AM to 8:15 AM'));const slider=w.document.querySelector('#time-tolerance');assert.equal(slider.getAttribute('step'),'15');slider.value='15';slider.dispatchEvent(new w.Event('input',{bubbles:true}));explanation=w.document.querySelector('#tolerance-explanation');assert(explanation.textContent.includes('matches starts from 7:30 AM to 8:00 AM'));slider.value='0';slider.dispatchEvent(new w.Event('input',{bubbles:true}));assert(w.document.querySelector('#tolerance-explanation').textContent.includes('matches that start time only'));w.close()});
-check('two-person party hides plans with only one open spot',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="5"]');click(w,'[data-single=party][data-value="Me and one other"]');next(w);click(w,'[data-view=home]');assert(!w.document.querySelector('[data-plan=alex]'));assert(w.document.querySelector('[data-plan=jordan]'));w.close()});
-check('nine-hole preference only returns nine-hole example',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="5"]');click(w,'[data-single=holes][data-value="9 holes"]');next(w);click(w,'[data-view=home]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,1);assert(w.document.querySelector('[data-plan=casey]'));w.close()});
-check('direct section edits save and back returns without replaying onboarding',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="0"]');input(w,'[data-input=name]','New name');next(w);assert(w.document.querySelector('.preference-sections'));assert(w.document.body.textContent.includes('New name'));click(w,'[data-edit-step="2"]');click(w,'[data-action=back]');assert(w.document.querySelector('.preference-sections'));w.close()});
-check('day filters and skipped recovery keep plans accessible',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-filter-day=Saturday]');assert.equal(w.document.querySelectorAll('.golf-plan-card').length,1);assert(w.document.querySelector('[data-plan=alex]'));click(w,'[data-pass=alex]');assert(w.document.querySelector('.empty-partners'));click(w,'[data-view=saved]');click(w,'[data-pass=alex]');click(w,'[data-view=home]');assert(w.document.querySelector('[data-plan=alex]'));w.close()});
-check('course booking appears only after both sample golfers agree and reset clears the session',()=>{const w=app();click(w,'[data-action=sample]');assert(!w.document.querySelector('.booking-next a'));click(w,'[data-save=jordan]');click(w,'[data-request=jordan]');assert(!w.document.querySelector('.booking-next a'));click(w,'[data-reply=jordan]');assert.equal(w.document.querySelector('.booking-next a').href,w.FOURTH_BOOKING_LINKS['Fox Hollow Golf Course'].url);click(w,'[data-action=reset]');assert(w.document.querySelector('[data-action=begin]'));click(w,'[data-action=begin]');assert.equal(w.document.querySelector('[data-input=name]').value,'');w.close()});
-check('private courses excluded and no script or duplicate IDs in shared embedded app',()=>{const html=fs.readFileSync(dir+'index.html','utf8');const d=new JSDOM(html,{runScripts:'outside-only',url:'https://example.test/'}),w=d.window;w.matchMedia=()=>({matches:true});w.structuredClone=structuredClone;w.requestAnimationFrame=()=>1;w.cancelAnimationFrame=()=>{};w.Element.prototype.getAnimations=()=>[];w.eval(fs.readFileSync(dir+'assets/allo-wave.js','utf8'));w.eval(fs.readFileSync(dir+'assets/utah-courses.js','utf8'));w.eval(fs.readFileSync(dir+'assets/course-booking-links.js','utf8'));w.eval(fs.readFileSync(dir+'assets/homescreen.js','utf8'));assert(w.document.querySelector('#embedded-app-mount #preferences-app'));assert.equal(w.document.querySelectorAll('#preferences-app').length,1);assert(!w.document.querySelector('.phone-content'));click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);const rows=[...w.document.querySelectorAll('[data-course]')].map(e=>e.dataset.course);for(const c of w.FOURTH_COURSES.filter(c=>c.access==='private'))assert(!rows.includes(c.name));const ids=[...w.document.querySelectorAll('[id]')].map(e=>e.id);assert.equal(ids.length,new Set(ids).size);w.close()});
-check('playing partner choices allow either or both groups and Everyone resets the filter',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="6"]');click(w,'[data-field=playWith][data-value="Women golfers"]');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Women golfers"]').getAttribute('aria-pressed'),'true');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Everyone"]').getAttribute('aria-pressed'),'false');click(w,'[data-field=playWith][data-value="Men golfers"]');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Women golfers"]').getAttribute('aria-pressed'),'true');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Men golfers"]').getAttribute('aria-pressed'),'true');click(w,'[data-field=playWith][data-value="Women golfers"]');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Men golfers"]').getAttribute('aria-pressed'),'true');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Women golfers"]').getAttribute('aria-pressed'),'false');click(w,'[data-field=playWith][data-value="Everyone"]');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Everyone"]').getAttribute('aria-pressed'),'true');assert.equal(w.document.querySelector('[data-field=playWith][data-value="Men golfers"]').getAttribute('aria-pressed'),'false');click(w,'[data-field=playWith][data-value="Everyone"]');click(w,'[data-field=playWith][data-value="Women golfers"]');const toggle=w.document.querySelector('[data-hide-smokers]');toggle.checked=true;toggle.dispatchEvent(new w.Event('change',{bubbles:true}));next(w);click(w,'[data-view=home]');assert(!w.document.querySelector('[data-plan=jordan]'));assert(w.document.querySelector('[data-plan=alex]'));assert(!w.document.querySelector('[data-plan=casey]'));w.close()});
-check('reduced motion uses no WAAPI transitions during navigation',()=>{const w=app(true);let calls=0;w.Element.prototype.animate=()=>{calls++;return {finished:Promise.resolve(),cancel(){}}};click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="5"]');next(w);click(w,'[data-view=home]');click(w,'[data-request=jordan]');assert.equal(calls,0);w.close()});
-check('weekdays render Monday to Sunday regardless of tap order',()=>{const w=app();setup(w,'Sam');for(const day of ['Friday','Thursday','Sunday','Tuesday'])click(w,`[data-day-toggle=${day}]`);assert.deepEqual([...w.document.querySelectorAll('[data-day-time]:not(:disabled)')].map(e=>e.dataset.dayTime),['Tuesday','Thursday','Friday','Sunday']);w.close()});
-check('quarter-hour time choices keep Friday and Saturday independent',()=>{const w=app();setup(w,'Sam');click(w,'[data-day-toggle=Friday]');click(w,'[data-day-toggle=Saturday]');input(w,'[data-day-time=Friday]','16:05');input(w,'[data-day-time=Saturday]','07:10');assert.equal(w.document.querySelector('[data-day-time=Saturday]').value,'07:15');assert(!w.document.querySelector('.availability-dial'));assert(!w.document.querySelector('#usual-time'));assert.equal(w.document.querySelector('[data-day-time=Friday]').value,'16:00');next(w);next(w);next(w);click(w,'[data-action=see-partners]');assert(w.document.body.textContent.includes('Friday 4:00 PM'));assert(w.document.body.textContent.includes('Saturday 7:15 AM'));assert(w.document.body.textContent.includes('Friday · 4:00 PM'));w.close()});
-check('selecting a course never re-sorts the nearby list',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');input(w,'[data-input=city]','Provo');next(w);next(w);next(w);const before=[...w.document.querySelectorAll('[data-course]')].map(r=>r.dataset.course);click(w,'[data-course="East Bay Golf Course"]');const after=[...w.document.querySelectorAll('[data-course]')].map(r=>r.dataset.course);assert.deepEqual(after,before);assert.equal(w.document.querySelector('[data-course="East Bay Golf Course"]').getAttribute('aria-pressed'),'true');assert(w.document.querySelector('[data-remove-course="East Bay Golf Course"]'));w.close()});
-check('course sort and search update in place without replacing the screen',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);const screen=w.document.querySelector('.preferences-content');screen.scrollTop=120;click(w,'[data-course-sort=name]');assert.strictEqual(w.document.querySelector('.preferences-content'),screen);assert.equal(screen.scrollTop,120);assert.equal(w.document.querySelector('[data-course]').dataset.course,'Bear Lake Golf Course');input(w,'#course-search','Orem');assert.strictEqual(w.document.querySelector('.preferences-content'),screen);assert([...w.document.querySelectorAll('[data-course]')].every(r=>/Orem/.test(r.textContent)));w.close()});
-check('selected course rail keeps a fixed height and gives a useful empty hint',()=>{const css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert.match(css,/\.chosen-courses\{display:flex;flex-wrap:nowrap;align-items:center;gap:6px;height:48px;min-height:48px;max-height:48px/);assert.match(css,/course-wheel-row\{transform:none!important/);const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);next(w);next(w);assert(w.document.querySelector('.chosen-courses-empty').textContent.includes('Tap + beside a course'));const count=w.document.querySelector('.course-count').textContent;click(w,'[data-course]');assert.equal(w.document.querySelectorAll('.chosen-courses button').length,1);assert.equal(w.document.querySelector('.course-count').textContent,'1 selected');assert(w.document.querySelector('.chosen-courses').classList.contains('chosen-courses'));click(w,'[data-remove-course]');assert.equal(w.document.querySelector('.course-count').textContent,count);w.close()});
-check('home city clusters nearby courses before a favorite is selected',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');input(w,'[data-input=city]','Provo');next(w);next(w);next(w);const names=[...w.document.querySelectorAll('[data-course]')].map(row=>row.dataset.course);assert.equal(names[0],'East Bay Golf Course');assert(names.indexOf('Fox Hollow Golf Course')<8);assert(names.indexOf('Thanksgiving Point Golf Course')<12);assert(names.indexOf('Davis Park Golf Course')>20);w.close()});
-check('Provo spellings resolve to Utah County before the course picker opens',()=>{for(const city of ['Provo','Provo, UT','Provo Utah','Provo, Utah County','Provo, Utah, United States','Orem, UT']){const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');input(w,'[data-input=city]',city);next(w);next(w);next(w);assert.equal(w.document.querySelector('[data-course]').dataset.city,city.startsWith('Orem')?'Orem':'Provo',city);assert(w.document.querySelector('.pref-footnote').textContent.includes('Utah County'),city);assert.equal(w.document.querySelector('.course-wheel').getAttribute('aria-label'),'Scrollable list of golf courses');w.close()}});
-check('course sorting uses latitude and alphabetical mode remains available',()=>{const w=app();setup(w,'Sam');click(w,'[data-action=back]');let rows=[...w.document.querySelectorAll('[data-course]')];assert(rows.length>80);assert(w.document.querySelector('.course-locator svg[aria-label*="Map of public golf courses"]'));assert(w.document.querySelectorAll('[data-map-course]').length>50);assert.equal(w.document.querySelector('.course-sort [aria-pressed=true]').textContent,'By area');click(w,'[data-course-sort=name]');rows=[...w.document.querySelectorAll('[data-course]')];const names=rows.map(r=>r.dataset.course);assert.deepEqual(names,[...names].sort((a,b)=>a.localeCompare(b)));input(w,'#course-search','Utah');assert([...w.document.querySelectorAll('[data-course]')].every(r=>r.dataset.county==='Utah'||r.textContent.includes('Utah')));w.close()});
-check('course picker starts at a matching region inside a touch-scrollable list',()=>{const css=fs.readFileSync(dir+'assets/homescreen.css','utf8'),js=fs.readFileSync(dir+'assets/homescreen.js','utf8');assert.match(css,/course-browser \.course-wheel\{height:min\(42dvh,360px\);[^}]*overflow-y:auto;[^}]*overscroll-behavior-y:auto/);assert.match(js,/function focusCourseRegion\(\)/);assert.match(js,/function placeTokens\(value\)/);assert.match(js,/data-city="\$\{esc\(c\.city\)\}"/) });
-check('selected courses can be removed without finding the row again',()=>{const w=app();setup(w,'Sam');click(w,'[data-action=back]');const name=w.document.querySelector('[data-course]').dataset.course;click(w,'[data-course]');assert(w.document.querySelector('[data-remove-course]'));click(w,'[data-remove-course]');assert(!w.document.querySelector('[data-remove-course]'));assert.equal(w.document.querySelector('[data-course]').getAttribute('aria-pressed'),'false');w.close()});
-check('course selection highlights its Utah map dot green and removal clears it',()=>{const w=app();setup(w,'Sam');click(w,'[data-action=back]');const row=w.document.querySelector('[data-course]'),name=row.dataset.course,dot=w.document.querySelector(`[data-map-course="${name}"]`);assert(dot);assert(!dot.classList.contains('is-selected'));row.click();assert(dot.classList.contains('is-selected'));assert(w.document.querySelector('.course-map-legend').textContent.includes('Your picks'));w.document.querySelector(`[data-remove-course="${name}"]`).click();assert(!dot.classList.contains('is-selected'));w.close()});
-check('course list and map explain selection and city-based clustering',()=>{const w=app();setup(w,'Sam');click(w,'[data-action=back]');assert.equal(w.document.querySelector('.pref-field').textContent.includes('Find a course'),true);assert(w.document.querySelector('.pref-intro').textContent.includes('Nearby courses stay together'));assert(w.document.querySelector('.course-locator svg').getAttribute('aria-label').includes('Green dots mark your selected courses'));w.close()});
-check('partner skill filter is distinct from self rating and filters independently',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="2"]');assert.equal(w.document.querySelectorAll('[data-playing-level]').length,7);click(w,'[data-playing-level="1"]');next(w);click(w,'[data-view=home]');assert(!w.document.querySelector('[data-plan=jordan]'));assert(w.document.querySelector('[data-plan=alex]'));w.close()});
-check('pace labels explain the selected option and golf action names the golfer',()=>{const w=app();click(w,'[data-action=sample]');assert(w.document.body.textContent.includes('want to play around the same time as you'));assert(w.document.body.textContent.includes('they decide too, before anyone books'));assert.equal(w.document.querySelector('[data-request=jordan]').textContent,'Tell Jordan I’m in');click(w,'[data-action=edit]');click(w,'[data-edit-step="5"]');assert(!w.document.querySelector('.tee-preference'));assert(!w.document.querySelector('[data-input=years]'));assert(!w.document.querySelector('[data-input=lowest]'));click(w,'[data-single=pace][data-value="Quick round"]');assert(w.document.querySelector('#pace-description').textContent.includes('brisk pace'));next(w);click(w,'[data-view=home]');click(w,'[data-request=jordan]');assert.equal(w.document.querySelector('[data-request=jordan]').textContent,'You told Jordan you’re in');w.close()});
-check('handicap slider starts at zero, uses whole numbers, and carries into the profile summary',()=>{const w=app();click(w,'[data-action=begin]');const range=w.document.querySelector('[data-handicap-range]');assert(range);assert.equal(range.min,'0');assert.equal(range.step,'1');assert.equal(range.value,'0');assert.equal(w.document.querySelector('[data-handicap-value]').textContent,'0');assert(!w.document.querySelector('.handicap-toggle'));assert(!w.document.querySelector('.handicap-toggle input'));assert(w.document.querySelector('.handicap-help').textContent.includes('Whole numbers'));input(w,'[data-input=name]','Sam');input(w,'[data-handicap-range]','4');assert.equal(w.document.querySelector('[data-handicap-value]').textContent,'4');next(w);next(w);next(w);next(w);next(w);next(w);next(w);click(w,'[data-action=see-partners]');click(w,'[data-action=edit]');assert(w.document.body.textContent.includes('Handicap 4'));click(w,'[data-edit-step="0"]');assert.equal(w.document.querySelector('[data-handicap-range]').value,'4');w.close()});
-check('seven numbered ability descriptions are concise, concrete, and reassuring',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);const choices=[...w.document.querySelectorAll('[data-skill]')];assert.equal(choices.length,7);assert(choices.every(el=>el.querySelector('b').textContent.length<95));assert(choices[0].textContent.includes('130+'));for(const score of ['120–129','110–119','100–109','90–99','80–89'])assert(choices.some(el=>el.textContent.includes(score)),score);assert(choices[6].textContent.includes('below 80'));assert(w.document.body.textContent.includes('Tell us how you typically golf.'));assert(w.document.body.textContent.includes('change it any time'));assert(w.document.querySelector('.skill-scale-label').textContent.includes('Typical 18-hole score'));assert.deepEqual(choices.map(el=>el.firstElementChild.textContent),['1','2','3','4','5','6','7']);assert.deepEqual(choices.map(el=>el.style.getPropertyValue('--skill-color')),['#3977C5','#27899D','#258B78','#5C9547','#C29A2D','#D77C35','#CC5365']);assert.equal(choices[0].parentElement.getAttribute('aria-label'),'Your golf ability');const css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert.match(css,/step-1 \.skill-choices button/);assert.match(css,/skill-choices button\{display:grid;grid-template-columns/);w.close()});
-check('seven descriptions avoid titles and retain the chosen level',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');next(w);assert.equal(w.document.querySelector('h1').textContent,'Tell us how you typically golf.');const choices=[...w.document.querySelectorAll('[data-skill]')];assert.equal(choices.length,7);assert(choices.every(el=>el.textContent.trim().length<120));assert(choices.every(el=>el.style.getPropertyValue('--skill-color')));assert.equal(new Set(choices.map(el=>el.style.getPropertyValue('--skill-color'))).size,7);assert.deepEqual(choices.map(el=>el.firstElementChild.textContent),['1','2','3','4','5','6','7']);assert(!/Novice|Beginner|Advanced Amateur|Scratch Golfer|Touring Pro/.test(w.document.body.textContent));click(w,'[data-skill="4"]');next(w);click(w,'[data-action=back]');assert.equal(w.document.querySelector('[data-skill="4"]').getAttribute('aria-pressed'),'true');next(w);assert.equal(w.document.querySelector('h1').textContent,'Which playing levels should we show you?');assert.equal(w.document.querySelector('.skill-choices').getAttribute('aria-label'),'Score ranges you are happy to play with');assert(w.document.querySelector('.pref-intro').textContent.includes('You chose your own usual score'));assert(w.document.querySelector('[data-any-level]').textContent.includes('every playing level'));w.close()});
-check('on-course wording avoids golf slang and cart rental is specific to a planned round',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="5"]');assert(!w.document.querySelector('[data-single=roundCart]'));assert(!w.document.body.textContent.includes('Need a cart'));click(w,'[data-action=next]');click(w,'[data-edit-step="6"]');assert.equal(w.document.querySelectorAll('.round-style-group').length,4);assert(w.document.body.textContent.includes('Friendly competition'));assert(w.document.body.textContent.includes('Ask before giving tips'));assert(!w.document.body.textContent.includes('Mulligan'));assert(!w.document.body.textContent.includes('Casual do-overs'));click(w,'[data-action=next]');click(w,'[data-view=home]');click(w,'[data-action=create-round]');assert(w.document.body.textContent.includes('Need a cart for this round?'));assert.equal(w.document.querySelector('[data-single=roundCart][aria-pressed=true]').dataset.value,'Rent a cart');assert(!w.document.body.textContent.includes('usual cart'));w.close()});
-check('page changes use one short transition and leave the press response on the control',()=>{const w=app(),animated=[];w.Element.prototype.animate=function(frames,options){animated.push({el:this,frames,options});return {finished:Promise.resolve(),cancel(){}}};click(w,'[data-action=begin]');const firstEnter=animated.find(a=>a.el.classList.contains('setup-page'));assert.equal(firstEnter.frames[0].transform,'translateX(12px)');assert.equal(firstEnter.options.duration,180);assert.equal(firstEnter.options.delay||0,0);input(w,'[data-input=name]','Sam');animated.length=0;next(w);const forwardEnter=animated.find(a=>a.el.classList.contains('setup-page')),forwardProgress=animated.find(a=>a.el.parentElement?.classList.contains('setup-progress'));assert.equal(forwardEnter.frames[0].transform,'translateX(12px)');assert.equal(forwardEnter.options.duration,180);assert.equal(forwardEnter.options.delay||0,0);assert(!w.document.querySelector('.departing-screen'));assert.equal(forwardProgress.frames[0].transform,'scaleX(0.5)');assert.equal(forwardProgress.options.duration,180);animated.length=0;click(w,'[data-action=back]');const backEnter=animated.find(a=>a.el.classList.contains('setup-page'));assert.equal(backEnter.frames[0].transform,'translateX(-12px)');assert.equal(backEnter.frames[1].transform,'translateX(0)');assert(!w.document.querySelector('.departing-screen'));const css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert.match(css,/\.preferences-content button:active\{transform:scale\(\.98\)\}/);assert.match(css,/#preferences-app \.pref-primary:active:not\(:disabled\)\{transform:scale\(\.985\)\}/);w.close()});
+const { JSDOM } = require('jsdom');
+const fs = require('node:fs');
+const path = require('node:path');
+const assert = require('node:assert/strict');
 
+const dir = path.resolve(__dirname, '..') + path.sep;
+let passed = 0;
 
-check('sample golfer photos appear once per card rather than repeating in group seats',()=>{const w=app();click(w,'[data-action=sample]');for(const card of w.document.querySelectorAll('.golf-plan-card'))assert.equal(card.querySelectorAll('img').length,1);w.close()});
-check('profile privacy settings clearly separate who sees my rounds from who I see',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=edit]');click(w,'[data-edit-step="0"]');assert(w.document.querySelector('.step-0').textContent.includes('Your gender'));click(w,'[data-single=gender][data-value="Woman"]');next(w);click(w,'[data-edit-step="6"]');assert(w.document.querySelector('.step-6').textContent.includes('Who can see your public rounds?'));click(w,'[data-field=hideFrom][data-value="Men golfers"]');click(w,'[data-field=hideFrom][data-value="People who smoke"]');assert.equal(w.document.querySelector('[data-field=hideFrom][data-value="Men golfers"]').getAttribute('aria-pressed'),'true');next(w);assert(w.document.querySelector('.preference-sections').textContent.includes('Woman'));assert(w.document.querySelector('.preference-sections').textContent.includes('Everyone except men golfers, people who smoke'));click(w,'[data-view=home]');click(w,'[data-action=create-round]');click(w,'[data-action=post-round]');assert(w.document.querySelector('.planned-round').textContent.includes('visible to everyone except men golfers, people who smoke'));click(w,'[data-action=preview-join]');assert(w.document.querySelector('.join-request').textContent.includes('Alex asked to join'));assert(!w.document.querySelector('.join-request').textContent.includes('Jordan'));w.close()});
-check('privacy choice label has separated text and stays clear of the fixed action',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');for(let i=0;i<6;i++)next(w);const label=w.document.querySelector('.privacy-toggle');assert(label.querySelector('input'));assert(label.querySelector('b').textContent.includes('Show me example rounds without smoking'));assert(label.querySelector('small').textContent.includes('only filters the sample rounds shown'));const css=fs.readFileSync(dir+'assets/homescreen.css','utf8');assert.match(css,/\.privacy-toggle\{display:flex;align-items:flex-start;gap:10px/);assert.match(css,/\.privacy-toggle>span\{display:grid;gap:3px/);assert.match(css,/round-style-group\{min-width:0/);w.close()});
-check('first profile completion leads directly into a distinct public round plan',()=>{const w=app();click(w,'[data-action=begin]');input(w,'[data-input=name]','Sam');for(let i=0;i<6;i++)next(w);assert.equal(w.document.querySelector('[data-action=next]').textContent,'See golf plans');next(w);assert(w.document.querySelector('.ready-explainer').textContent.includes('plan one specific round and make it public'));click(w,'[data-action=create-round]');assert(w.document.querySelector('.round-builder').textContent.includes('separate from your usual weekly schedule'));assert.equal(w.document.querySelector('[data-single=roundVisibility][aria-pressed=true]').dataset.value,'Public');const date=w.document.querySelector('[data-round-field=date]');date.value='2026-11-25';date.dispatchEvent(new w.Event('input',{bubbles:true}));const course=w.document.querySelector('[data-round-field=course]');course.value=course.options[1].value;course.dispatchEvent(new w.Event('change',{bubbles:true}));const start=w.document.querySelector('[data-round-field=start]');assert.equal(start.step,'900');start.value='16:07';start.dispatchEvent(new w.Event('input',{bubbles:true}));assert.equal(start.value,'16:00');click(w,'[data-action=post-round]');const card=w.document.querySelector('.planned-round');assert(card);assert(card.textContent.includes('Public'));assert(card.textContent.includes(course.value));assert(card.textContent.includes('Example only'));click(w,'[data-action=preview-join]');assert(w.document.querySelector('.join-request').textContent.includes('Jordan asked to join'));click(w,'[data-join-response=accepted]');assert(w.document.querySelector('.join-result').textContent.includes('Request accepted'));assert(w.document.querySelector('.planned-round').textContent.includes('No event is added'));w.close()});
-check('declining a sample round request leaves the public plan available',()=>{const w=app();click(w,'[data-action=sample]');click(w,'[data-action=create-round]');const course=w.document.querySelector('[data-round-field=course]');course.value=course.options[1].value;course.dispatchEvent(new w.Event('change',{bubbles:true}));click(w,'[data-action=post-round]');click(w,'[data-action=preview-join]');click(w,'[data-join-response=declined]');assert(w.document.querySelector('.join-result').textContent.includes('Request declined'));assert(w.document.querySelector('.planned-round').textContent.includes('Public'));w.close()});
+function app(reducedMotion = false) {
+  const dom = new JSDOM('<html class="homescreen-mode"><body></body></html>', {
+    runScripts: 'outside-only',
+    url: 'https://example.test/?homescreen=1',
+  });
+  const w = dom.window;
+  w.matchMedia = () => ({ matches: reducedMotion, addEventListener() {}, removeEventListener() {} });
+  w.structuredClone = structuredClone;
+  w.requestAnimationFrame = () => 1;
+  w.cancelAnimationFrame = () => {};
+  w.Element.prototype.getAnimations = () => [];
+  w.Element.prototype.animate = () => ({ finished: Promise.resolve(), cancel() {} });
+  for (const file of ['assets/allo-wave.js', 'assets/utah-courses.js', 'assets/course-booking-links.js', 'assets/homescreen.js']) {
+    w.eval(fs.readFileSync(path.join(dir, file), 'utf8'));
+  }
+  return w;
+}
 
-console.log(count+' checks passed');
+function site(homeScreen) {
+  const html = `<html${homeScreen ? ' class="homescreen-mode"' : ''}><body>
+    <button class="hero-photo-card"><img class="hero-photo" data-src="assets/a.webp"></button>
+    <button class="hero-photo-card"><img class="hero-photo" data-src="assets/b.webp"></button>
+    <button class="hero-photo-card"><img class="hero-photo" data-src="assets/c.webp"></button>
+  </body></html>`;
+  const w = new JSDOM(html, { runScripts: 'outside-only', url: `https://example.test/${homeScreen ? '?homescreen=1' : ''}` }).window;
+  // Let resolved preview-animation promises finish before disposing of their document.
+  w.close = () => {};
+  w.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
+  w.ROUNDFOLK_CONFIG = {};
+  w.eval(fs.readFileSync(path.join(dir, 'assets/allo-wave.js'), 'utf8'));
+  w.eval(fs.readFileSync(path.join(dir, 'site.js'), 'utf8'));
+  return w;
+}
+
+function previewSite(phone = false, reduce = true) {
+  const html = '<html><body><section class="app-preview-stage"><div class="preview-guide"><a class="open-app-link" href="?homescreen=1">Open the full-screen preview</a></div><article class="interactive-round phone-preview"><div id="embedded-app-mount"></div></article></section><dialog id="focused-preview-dialog"><button class="focused-preview-close">×</button><div class="focused-preview-stage"></div></dialog></body></html>';
+  const w = new JSDOM(html, { runScripts: 'outside-only', url: 'https://example.test/#try-round' }).window;
+  // Let resolved preview-animation promises finish before disposing of their document.
+  w.close = () => {};
+  w.matchMedia = query => ({ matches: query.includes('pointer: coarse') ? phone : query.includes('prefers-reduced-motion') ? reduce : false });
+  w.__animationCalls = [];
+  w.Element.prototype.animate = function (frames, options) {
+    w.__animationCalls.push({ frames, options });
+    return { finished: Promise.resolve(), cancel() {} };
+  };
+  w.ROUNDFOLK_CONFIG = {};
+  w.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', ''); };
+  w.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open'); };
+  w.scrollTo = () => {};
+  w.eval(fs.readFileSync(path.join(dir, 'site.js'), 'utf8'));
+  return w;
+}
+
+function click(w, selector) {
+  const element = w.document.querySelector(selector);
+  assert(element, `Missing ${selector}`);
+  element.click();
+}
+
+function input(w, selector, value) {
+  const element = w.document.querySelector(selector);
+  assert(element, `Missing ${selector}`);
+  element.value = value;
+  element.dispatchEvent(new w.Event('input', { bubbles: true }));
+}
+
+function next(w) { click(w, '[data-action="next"]'); }
+
+function atStep(w, target, { name = 'Sam', city = 'Provo' } = {}) {
+  click(w, '[data-action="begin"]');
+  input(w, '[data-input="name"]', name);
+  if (city) input(w, '[data-input="city"]', city);
+  for (let step = 0; step < target; step++) next(w);
+}
+
+function finishSetup(w, options = {}) {
+  const {
+    name = 'Sam', city = 'Provo', skill = 2, courses = [], days = ['Saturday'], times = {},
+    party = 'Just me', holes = '18 holes', pace = 'Steady', vibes = [], playWith = [],
+  } = options;
+  atStep(w, 0, { name, city });
+  next(w); // score
+  if (skill !== null) click(w, `[data-skill="${skill}"]`);
+  next(w); // courses
+  for (const course of courses) {
+    const search = w.document.querySelector('#course-search');
+    if (search && !w.document.querySelector(`[data-course="${course}"]`)) input(w, '#course-search', course);
+    click(w, `[data-course="${course}"]`);
+  }
+  next(w); // availability
+  for (const day of days) click(w, `[data-day-toggle="${day}"]`);
+  for (const [day, value] of Object.entries(times)) input(w, `[data-day-time="${day}"]`, value);
+  next(w); // usual round
+  click(w, `[data-single="party"][data-value="${party}"]`);
+  click(w, `[data-single="holes"][data-value="${holes}"]`);
+  click(w, `[data-single="pace"][data-value="${pace}"]`);
+  next(w); // round preferences
+  for (const value of vibes) click(w, `[data-value="${value}"]`);
+  for (const value of playWith) click(w, `[data-value="${value}"]`);
+  next(w); // results
+}
+
+function check(name, fn) {
+  fn();
+  passed++;
+  console.log(`PASS ${name}`);
+}
+
+check('homescreen skips loading marketing photos', () => {
+  const w = site(true), photos = [...w.document.querySelectorAll('.hero-photo')];
+  assert.equal(photos.length, 3);
+  assert(photos.every(photo => !photo.hasAttribute('src') && photo.dataset.src));
+  w.close();
+});
+
+check('marketing loads the first photo eagerly and the rest lazily', () => {
+  const w = site(false), photos = [...w.document.querySelectorAll('.hero-photo')];
+  assert.equal(photos[0].getAttribute('src'), 'assets/a.webp');
+  assert.equal(photos[0].fetchPriority, 'high');
+  assert.equal(photos[0].loading, 'eager');
+  assert(photos.slice(1).every(photo => photo.loading === 'lazy'));
+  w.close();
+});
+
+check('hero photo cards are unique and select only the tapped photo', () => {
+  const html = fs.readFileSync(path.join(dir, 'index.html'), 'utf8');
+  const w = new JSDOM(html).window;
+  const photos = [...w.document.querySelectorAll('.hero-photo-card img')];
+  assert.equal(photos.length, 3);
+  assert.equal(new Set(photos.map(photo => photo.dataset.src)).size, 3);
+  assert(photos.every(photo => photo.closest('button').hasAttribute('aria-label')));
+  w.close();
+  const preview = site(false), cards = [...preview.document.querySelectorAll('.hero-photo-card')];
+  cards[1].click();
+  assert.deepEqual(cards.map(card => card.getAttribute('aria-pressed')), ['false', 'true', 'false']);
+  preview.close();
+});
+
+check('desktop preview opens, animates, closes, and returns the phone', () => {
+  const w = previewSite(false, false), link = w.document.querySelector('.open-app-link');
+  link.dispatchEvent(new w.MouseEvent('click', { bubbles: true, cancelable: true }));
+  const dialog = w.document.querySelector('#focused-preview-dialog'), phone = w.document.querySelector('.interactive-round');
+  assert(dialog.open);
+  assert.equal(phone.parentElement, w.document.querySelector('.focused-preview-stage'));
+  assert.equal(w.__animationCalls[0].options.duration, 560);
+  w.document.querySelector('.focused-preview-close').click();
+  assert(!dialog.open);
+  assert.equal(phone.parentElement, w.document.querySelector('.app-preview-stage'));
+  w.close();
+});
+
+check('touch preview uses the full-screen takeover and has an exit', () => {
+  const w = previewSite(true, true), link = w.document.querySelector('.open-app-link');
+  const event = new w.MouseEvent('click', { bubbles: true, cancelable: true });
+  link.dispatchEvent(event);
+  assert(event.defaultPrevented);
+  const dialog = w.document.querySelector('#focused-preview-dialog');
+  assert(dialog.open && dialog.classList.contains('is-mobile-takeover'));
+  w.close();
+});
+
+check('reduced motion and focused preview styles are supported', () => {
+  const css = fs.readFileSync(path.join(dir, 'styles.css'), 'utf8');
+  assert.match(css, /prefers-reduced-motion:reduce/);
+  assert.match(css, /focused-preview-dialog/);
+  const w = previewSite(false, true);
+  w.document.querySelector('.open-app-link').dispatchEvent(new w.MouseEvent('click', { bubbles: true, cancelable: true }));
+  assert.equal(w.__animationCalls.length, 0);
+  w.close();
+});
+
+check('profile requires a first name and omits the removed gender choice', () => {
+  const w = app();
+  click(w, '[data-action="begin"]'); next(w);
+  assert(w.document.querySelector('[aria-invalid="true"]'));
+  assert(!w.document.body.textContent.includes('Nonbinary'));
+  assert.equal(w.document.querySelectorAll('[data-input="name"]').length, 1);
+  w.close();
+});
+
+check('handicap entry accepts plus indexes and rejects values above 54.0', () => {
+  const w = app(); atStep(w, 0);
+  input(w, '[data-input="handicap"]', '+1.2');
+  assert(!w.document.querySelector('[data-input="handicap"]').hasAttribute('aria-invalid'));
+  input(w, '[data-input="handicap"]', '54.1');
+  assert.equal(w.document.querySelector('[data-input="handicap"]').getAttribute('aria-invalid'), 'true');
+  assert(w.document.querySelector('.handicap-error').textContent.includes('54.0'));
+  w.close();
+});
+
+check('score choices have distinct cues, start unselected, and select one range', () => {
+  const w = app(); atStep(w, 1);
+  const choices = [...w.document.querySelectorAll('[data-skill]')];
+  assert.equal(choices.length, 7);
+  assert(choices.every(choice => choice.getAttribute('aria-pressed') === 'false'));
+  assert(choices.every(choice => choice.querySelector('small')?.textContent));
+  assert(w.document.body.textContent.includes('you can change it later'));
+  click(w, '[data-skill="3"]');
+  assert.equal(choices.filter(choice => choice.getAttribute('aria-pressed') === 'true').length, 1);
+  assert.equal(choices[3].querySelector('small').textContent, 'Starting to score around 100');
+  w.close();
+});
+
+check('partner score filter stays optional and supports any score', () => {
+  const w = app(); atStep(w, 1);
+  const disclosure = w.document.querySelector('.partner-score-filter');
+  assert(disclosure && !disclosure.open);
+  disclosure.open = true;
+  assert.equal(w.document.querySelectorAll('[data-playing-level]').length, 7);
+  click(w, '[data-playing-level="2"]');
+  assert.equal(w.document.querySelector('[data-playing-level="2"]').getAttribute('aria-pressed'), 'true');
+  click(w, '[data-any-level]');
+  assert.equal(w.document.querySelector('[data-any-level]').getAttribute('aria-pressed'), 'true');
+  w.close();
+});
+
+check('course picker starts near the golfer and searches by county', () => {
+  const w = app(); atStep(w, 2, { city: 'Provo, UT' });
+  assert.equal(w.document.querySelector('[data-course]').dataset.course, 'East Bay Golf Course');
+  input(w, '#course-search', 'Utah County');
+  const rows = [...w.document.querySelectorAll('[data-course]')];
+  assert(rows.length > 1);
+  assert(rows.every(row => row.dataset.county === 'Utah'));
+  w.close();
+});
+
+check('course selection turns its map dot green and removal clears it', () => {
+  const w = app(); atStep(w, 2);
+  const name = 'East Bay Golf Course';
+  click(w, `[data-course="${name}"]`);
+  assert(w.document.querySelector(`[data-map-course="${name}"]`).classList.contains('is-selected'));
+  click(w, `[data-remove-course="${name}"]`);
+  assert(!w.document.querySelector(`[data-map-course="${name}"]`).classList.contains('is-selected'));
+  w.close();
+});
+
+check('course sorting retains the search screen and shows A to Z order', () => {
+  const w = app(); atStep(w, 2);
+  click(w, '[data-course-sort="name"]');
+  const names = [...w.document.querySelectorAll('[data-course]')].map(row => row.dataset.course);
+  assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b)));
+  assert.equal(w.document.querySelector('.setup-page h1').textContent, 'Where do you play?');
+  w.close();
+});
+
+check('weekday buttons reveal independent quarter-hour times and preserve them', () => {
+  const w = app(); atStep(w, 3);
+  assert.equal(w.document.querySelectorAll('[data-day-toggle]').length, 7);
+  click(w, '[data-day-toggle="Friday"]');
+  click(w, '[data-day-toggle="Sunday"]');
+  input(w, '[data-day-time="Friday"]', '16:41');
+  input(w, '[data-day-time="Sunday"]', '08:00');
+  assert.equal(w.document.querySelector('[data-day-time="Friday"]').value, '16:45');
+  assert.equal(w.document.querySelector('[data-day-time="Friday"]').step, '900');
+  click(w, '[data-day-toggle="Friday"]');
+  click(w, '[data-day-toggle="Friday"]');
+  assert.equal(w.document.querySelector('[data-day-time="Friday"]').value, '16:45');
+  assert.equal(w.document.querySelector('[data-day-time="Sunday"]').value, '08:00');
+  w.close();
+});
+
+check('matching window explains its range and moves in 15-minute increments', () => {
+  const w = app(); atStep(w, 3);
+  click(w, '[data-day-toggle="Monday"]');
+  const slider = w.document.querySelector('#time-tolerance');
+  assert.equal(slider.step, '15');
+  slider.value = '15';
+  slider.dispatchEvent(new w.Event('input', { bubbles: true }));
+  assert(w.document.querySelector('#tolerance-explanation').textContent.includes('7:45 AM–8:15 AM'));
+  w.close();
+});
+
+check('usual round choices clarify party size, holes, and pace', () => {
+  const w = app(); atStep(w, 4);
+  assert(w.document.body.textContent.includes('How many golfers are already in your group?'));
+  click(w, '[data-single="party"][data-value="Me and 1 other"]');
+  click(w, '[data-single="holes"][data-value="9 holes"]');
+  click(w, '[data-single="pace"][data-value="Quick"]');
+  assert.equal(w.document.querySelector('[data-single="party"][aria-pressed="true"]').dataset.value, 'Me and 1 other');
+  assert.equal(w.document.querySelector('[data-single="holes"][aria-pressed="true"]').dataset.value, '9 holes');
+  assert.equal(w.document.querySelector('[data-single="pace"][aria-pressed="true"]').dataset.value, 'Quick');
+  w.close();
+});
+
+check('round preferences are paired and group choices are separate', () => {
+  const w = app(); atStep(w, 5);
+  click(w, '[data-value="Music is fine"]');
+  click(w, '[data-value="Prefer no music"]');
+  assert.equal(w.document.querySelector('[data-value="Music is fine"]').getAttribute('aria-pressed'), 'false');
+  assert.equal(w.document.querySelector('[data-value="Prefer no music"]').getAttribute('aria-pressed'), 'true');
+  click(w, '[data-value="Women golfers"]');
+  click(w, '[data-value="Men golfers"]');
+  assert.equal(w.document.querySelector('[data-value="Women golfers"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(w.document.querySelector('[data-value="Men golfers"]').getAttribute('aria-pressed'), 'true');
+  w.close();
+});
+
+check('self-rating can be skipped and preferences say not set', () => {
+  const w = app(); finishSetup(w, { skill: null, days: [] });
+  click(w, '[data-action="edit"]');
+  assert(w.document.body.textContent.includes('Usual score: Not set'));
+  w.close();
+});
+
+check('completed profile leads to clear example groups and capacity copy', () => {
+  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Rounds for your week');
+  assert(w.document.querySelector('.golf-plan-card').textContent.includes('East Bay Golf Course'));
+  assert.equal(w.document.querySelector('.group-seats small').textContent, 'Room for you');
+  assert(!w.document.body.textContent.includes('Need room for you'));
+  w.close();
+});
+
+check('two-player preference hides plans without two open spots', () => {
+  const w = app(); finishSetup(w, { courses: ['Fox Hollow Golf Course'], days: ['Friday'], party: 'Me and 1 other' });
+  assert(w.document.querySelector('[data-plan="jordan"]'));
+  assert(!w.document.querySelector('[data-plan="alex"]'));
+  w.close();
+});
+
+check('no usual days produces a useful empty state rather than invented plans', () => {
+  const w = app(); finishSetup(w, { days: [] });
+  assert.equal(w.document.querySelectorAll('.golf-plan-card').length, 0);
+  assert(w.document.querySelector('.empty-partners').textContent.includes('Choose the days you’re usually free'));
+  w.close();
+});
+
+check('save and skip actions can be recovered from Saved', () => {
+  const w = app(); click(w, '[data-action="sample"]');
+  click(w, '[data-save="jordan"]');
+  click(w, '[data-pass="jordan"]');
+  click(w, '[data-view="saved"]');
+  assert(w.document.querySelector('[data-plan="jordan"]'));
+  click(w, '[data-pass="jordan"]');
+  click(w, '[data-view="home"]');
+  assert(w.document.querySelector('[data-plan="jordan"]'));
+  w.close();
+});
+
+check('a mutual yes leads to the selected course booking page', () => {
+  const w = app();
+  finishSetup(w, { courses: ['Sleepy Ridge Golf Course'], days: ['Saturday'], party: 'Me and 1 other' });
+  click(w, '[data-request="jordan"]');
+  assert(w.document.body.textContent.includes('Waiting for their answer'));
+  assert(!w.document.querySelector('.booking-next a'));
+  click(w, '[data-reply="jordan"]');
+  const booking = w.document.querySelector('.booking-next a');
+  assert(booking);
+  assert.equal(booking.href, w.FOURTH_BOOKING_LINKS['Sleepy Ridge Golf Course'].url);
+  assert(w.document.querySelector('.booking-summary').textContent.includes('Sleepy Ridge Golf Course'));
+  assert(w.document.querySelector('.booking-summary').textContent.includes('Saturday'));
+  w.close();
+});
+
+check('every public or municipal course has a direct booking or phone destination', () => {
+  const w = app(), courses = w.FOURTH_COURSES.filter(course => course.access !== 'private');
+  assert.equal(courses.length, 94);
+  for (const course of courses) {
+    const url = w.FOURTH_BOOKING_LINKS[course.name]?.url;
+    assert(url && (url.startsWith('https://') || url.startsWith('tel:+')), `${course.name} needs a booking destination`);
+  }
+  assert(!w.FOURTH_COURSES.some(course => course.access === 'private' && w.document.querySelector(`[data-course="${course.name}"]`)));
+  w.close();
+});
+
+check('specific round planning is separate from usual weekly availability', () => {
+  const w = app(); finishSetup(w, { days: ['Saturday'] });
+  click(w, '[data-action="create-round"]');
+  assert(w.document.querySelector('.round-builder'));
+  assert.equal(w.document.querySelector('.round-builder h1').textContent, 'Plan a specific round');
+  assert(w.document.body.textContent.includes('Your usual playing schedule stays the same.'));
+  assert(w.document.querySelector('[data-round-field="date"]'));
+  assert(w.document.querySelector('[data-round-field="course"]'));
+  assert(w.document.querySelector('[data-round-field="start"]'));
+  w.close();
+});
+
+check('course booking catalog has no duplicate IDs or private course rows', () => {
+  const w = app(); atStep(w, 2);
+  const ids = [...w.document.querySelectorAll('[id]')].map(element => element.id);
+  assert.equal(new Set(ids).size, ids.length);
+  assert(![...w.document.querySelectorAll('[data-course]')].some(row => row.textContent.toLowerCase().includes('private')));
+  w.close();
+});
+
+check('setup progress matches six screens and the app keeps single interactive views', () => {
+  const w = app(); atStep(w, 0);
+  assert.equal(w.document.querySelector('.preferences-header>span').textContent, '1 of 6');
+  assert.equal(w.document.querySelectorAll('.preferences-content').length, 1);
+  next(w);
+  assert.equal(w.document.querySelector('.preferences-header>span').textContent, '2 of 6');
+  w.close();
+});
+
+console.log(`${passed} homescreen checks passed`);
