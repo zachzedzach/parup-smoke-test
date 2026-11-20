@@ -2,6 +2,8 @@
 
 Clarified the app preview introduction. The old “Your Friday afternoon and Saturday morning can be different” line is now “Choose your usual courses and times. See who wants to play around then.”
 
+GitHub Pages failed three deployments because the deploy step could not find the uploaded Pages artifact. Added a short wait after upload to allow its metadata to become available; the updated deploy must succeed before calling the copy live.
+
 ## Clear playing levels and round preferences — November 20, 2026
 
 Reworked the final onboarding choices into four paired, plain-language preferences: conversation, competition, music, and tips. Each topic makes clear what the choice describes, and selecting one option in a pair clears its opposite. The old golf slang is gone. The level filter directly follows the self-rating and now explicitly says it filters score ranges the golfer is happy to play with. Tightened all seven numbered descriptions to one clear 18-hole score band plus a practical cue; the restrained color progression is carried by a light tile tint and number, without the extra side stripe. The experience remains skippable and the choices can be changed later. All 68 app interaction checks, JavaScript syntax checks, and whitespace checks pass. Impeccable’s scan reports pre-existing page-level findings outside this onboarding change.
