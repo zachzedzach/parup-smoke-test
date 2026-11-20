@@ -2,7 +2,7 @@
 
 Clarified the app preview introduction. The old “Your Friday afternoon and Saturday morning can be different” line is now “Choose your usual courses and times. See who wants to play around then.”
 
-GitHub Pages failed three deployments because the deploy step could not find the uploaded Pages artifact. Added a short wait after upload to allow its metadata to become available; the updated deploy must succeed before calling the copy live.
+GitHub Pages failed three deployments because the deploy step could not find the uploaded Pages artifact. Added a short wait after upload to allow its metadata to become available. Commit `e3bef2d` deployed successfully in run [44813961058](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44813961058); a cache-busted live page check confirmed the revised line.
 
 ## Clear playing levels and round preferences — November 20, 2026
 
