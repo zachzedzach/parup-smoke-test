@@ -497,12 +497,12 @@
 #preferences-app[data-view=setup] .course-wheel-row{transform:none!important}
 #preferences-app[data-view=setup] .course-browser .course-wheel{height:min(42dvh,360px);min-height:180px;max-height:360px;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:auto;touch-action:pan-y;-webkit-overflow-scrolling:touch;scroll-snap-type:none;scroll-behavior:auto}
 #preferences-app[data-view=setup] .weekly-schedule{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-#preferences-app[data-view=setup] .week-day{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);grid-template-rows:42px;align-items:center;gap:6px;min-width:0;padding:6px;border:1px solid #dfe3da;border-radius:12px;background:#fff;transition:background-color 140ms ease-out,border-color 140ms ease-out}
+#preferences-app[data-view=setup] .week-day{display:grid;grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr);grid-template-rows:42px;align-items:center;gap:6px;min-width:0;padding:6px;border:1px solid #dfe3da;border-radius:12px;background:#fff;transition:background-color 140ms ease-out,border-color 140ms ease-out}
 #preferences-app[data-view=setup] .week-day[data-selected=true]{border-color:#a8c09a;background:#f0f5e9}
 #preferences-app[data-view=setup] .week-day-toggle{display:flex;align-items:center;justify-content:space-between;min-width:0;min-height:42px;padding:0 7px;border:0;border-radius:8px;background:#f2f3ef;color:#384337;font-size:13px;font-weight:650;touch-action:manipulation}
 #preferences-app[data-view=setup] .week-day[data-selected=true] .week-day-toggle{background:#176b50;color:#fff}
 #preferences-app[data-view=setup] .week-day-toggle b{font-size:15px;line-height:1}
-#preferences-app[data-view=setup] .week-day input[type=time]{width:100%;min-width:0;height:42px;padding:0 5px;border:1px solid #dce1d8;border-radius:9px;background:#fff;color:#263329;font:16px/1.2 system-ui,-apple-system,sans-serif;font-variant-numeric:tabular-nums}
+#preferences-app[data-view=setup] .week-day input[type=time]{width:100%;min-width:0;height:42px;padding:0 2px;border:1px solid #dce1d8;border-radius:9px;background:#fff;color:#263329;font:16px/1.2 system-ui,-apple-system,sans-serif;font-variant-numeric:tabular-nums}
 #preferences-app[data-view=setup] .week-day input[type=time]:disabled{border-color:transparent;background:#f5f5f2;color:#858b82;opacity:1}
 #preferences-app[data-view=setup] .availability-count{margin:10px 2px 0;color:#62685f;font-size:13px;line-height:1.35}
 #preferences-app[data-view=setup] .day-time-settings{min-height:0}

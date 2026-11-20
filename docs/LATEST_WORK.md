@@ -1,6 +1,6 @@
 ## Quarter-hour availability and clear matching windows — November 20, 2026
 
-Kept each weekday’s independent time input constrained to quarter-hour increments and made the match-window slider visibly move in 15-minute steps. The control now says “How flexible is your start?” and shows a live example such as “For Monday at 8:00 AM, rounds from 7:30 AM to 8:30 AM can appear.” Exact-start mode is described separately. Reflowed weekday controls into compact rows so the match-window example is easier to reach on short screens. Added interaction coverage for quarter-hour snapping, slider increments, and live explanation updates. Verification: all 68 stress checks, JS syntax, and `git diff --check` pass. Physical iPhone review remains a device-only check.
+Kept each weekday’s independent start-time picker on 15-minute increments and clarified the separate matching window: the selected start time is shown alongside the range of other starts that can match. The flexibility slider moves in 15-minute steps. Compact weekday rows preserve room for the native time field, while the example copy is shorter so it stays legible above the fixed action button. Updated the live asset version. Stress checks cover quarter-hour snapping, slider increments, and matching examples; visual review on the live phone-sized layout confirmed the example and controls. Physical iPhone review remains a device-only check.
 
 ## Profile visibility and gender controls — November 20, 2026
 
