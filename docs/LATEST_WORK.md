@@ -2,7 +2,7 @@
 
 ## Focused phone preview — November 19, 2026
 
-The “Open the full-screen preview” link now selects the right presentation by input: touch devices keep the direct `?homescreen=1` path with no bezel; mouse/keyboard devices open the existing interactive phone in a centered modal, sized to fit the viewport. The phone grows from its page position, stays interactive, and returns to that position when closed with Escape, the close button, or the backdrop. Reduced-motion skips the expansion animation. Verified desktop open/close restoration and touch routing in the stress suite; all 57 checks, JavaScript syntax, CSS parse, and `git diff --check` pass. Browser screenshot and real iPhone rendering could not be checked in this session.
+The “Open the full-screen preview” link now selects the right presentation by input: touch devices keep the direct `?homescreen=1` path with no bezel; mouse/keyboard devices open the existing interactive phone in a centered modal, sized to fit the viewport. The phone grows from its page position, stays interactive, and returns to that position when closed with Escape, the close button, or the backdrop. Reduced-motion skips the expansion animation. All 58 stress checks, JavaScript syntax, CSS parse, and `git diff --check` pass. Commit `b8656f7` is live; [GitHub Pages run 44661015131](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44661015131) succeeded, and the live HTML and versioned CSS/JS return HTTP 200. Browser screenshots and real iPhone rendering could not be checked in this session because the in-app browser controller was unavailable; interaction and routing were checked in the automated suite.
 
 ## Homepage golfer photo stack — November 19, 2026
 
