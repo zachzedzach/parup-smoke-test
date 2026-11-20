@@ -73,9 +73,10 @@
 
   previewPhone?.addEventListener('click', event => {
     if (!coarsePointer.matches || previewDialog?.open) return;
-    if (event.target.closest('button, input, textarea, select, a, summary, [contenteditable="true"], [role="button"]')) return;
+    event.preventDefault();
+    event.stopPropagation();
     openFocusedPreview({ mobileTakeover: true });
-  });
+  }, { capture: true });
 
   function closeFocusedPreview() {
     if (!previewDialog?.open || !previewPhone || !previewReturnPoint?.parentNode) return;
