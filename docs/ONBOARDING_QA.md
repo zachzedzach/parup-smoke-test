@@ -55,6 +55,10 @@ The full suite covers the six-step setup, seven numbered descriptions, independe
 
 Preferences describe golf, not social interest in a person. Each chosen weekday has its own start time. The dial edits the explicitly chosen weekday. Results lead with day/time/course and explain that the example golfer wants to play that round. Requesting a round means asking to golf; the other golfer can accept or decline. No real golfer is contacted, no reservation is made, and generated example plans are labeled as examples based on preferences.
 
+## Course space, group audience, and results clarity — November 20
+
+Compacted the course finder so its Utah map and controls take less space while the full-width course list gets a taller viewport. Reworded the self-rating as the usual score over 18 holes. Changed the audience control to one native radio choice because Everyone includes both women and men golfers. Results now say what the sample action does and that nothing is actually sent or booked; vertical space around the summary, filters, and cards is reduced. Automated coverage verifies the exclusive radio behavior and clearer results copy.
+
 ## Findings and fixes
 
 - One start time incorrectly represented all weekdays. Added independent time inputs and per-day dial selection; values survive Back/Continue and deselection/reselection.

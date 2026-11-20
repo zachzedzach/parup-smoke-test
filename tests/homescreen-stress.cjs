@@ -205,11 +205,12 @@ check('handicap slider starts at zero, supports decimals and plus indexes, and e
 
 check('score choices have distinct cues, start unselected, and select one range', () => {
   const w = app(); atStep(w, 1);
+  assert.equal(w.document.querySelector('.setup-page h1').textContent, 'What do you usually shoot for 18 holes?');
   const choices = [...w.document.querySelectorAll('[data-skill]')];
   assert.equal(choices.length, 7);
   assert(choices.every(choice => choice.getAttribute('aria-pressed') === 'false'));
   assert(choices.every(choice => choice.querySelector('small')?.textContent));
-  assert(w.document.body.textContent.includes('you can change it later'));
+  assert(w.document.body.textContent.includes('change it later'));
   click(w, '[data-skill="3"]');
   assert.equal(choices.filter(choice => choice.getAttribute('aria-pressed') === 'true').length, 1);
   assert.equal(choices[3].querySelector('small').textContent, 'Starting to score around 100');
@@ -232,6 +233,7 @@ check('partner score filter stays optional and supports any score', () => {
 check('course picker starts near the golfer and searches by county', () => {
   const w = app(); atStep(w, 2, { city: 'Provo, UT' });
   assert.equal(w.document.querySelector('[data-course]').dataset.course, 'East Bay Golf Course');
+  assert.equal(w.document.querySelector('.setup-page>.pref-intro'), null);
   input(w, '#course-search', 'Utah County');
   const rows = [...w.document.querySelectorAll('[data-course]')];
   assert(rows.length > 1);
@@ -297,16 +299,22 @@ check('usual round choices clarify party size, holes, and pace', () => {
   w.close();
 });
 
-check('round preferences are paired and group choices are separate', () => {
+check('round-style choices stay paired and playing audience is one exclusive radio choice', () => {
   const w = app(); atStep(w, 5);
   click(w, '[data-value="Music is fine"]');
   click(w, '[data-value="Prefer no music"]');
   assert.equal(w.document.querySelector('[data-value="Music is fine"]').getAttribute('aria-pressed'), 'false');
   assert.equal(w.document.querySelector('[data-value="Prefer no music"]').getAttribute('aria-pressed'), 'true');
-  click(w, '[data-value="Women golfers"]');
-  click(w, '[data-value="Men golfers"]');
-  assert.equal(w.document.querySelector('[data-value="Women golfers"]').getAttribute('aria-pressed'), 'true');
-  assert.equal(w.document.querySelector('[data-value="Men golfers"]').getAttribute('aria-pressed'), 'true');
+  const everyone = w.document.querySelector('input[name=playWith][value="Everyone"]');
+  const women = w.document.querySelector('input[name=playWith][value="Women golfers"]');
+  const men = w.document.querySelector('input[name=playWith][value="Men golfers"]');
+  assert(everyone.checked);
+  click(w, 'input[name=playWith][value="Women golfers"]');
+  assert(women.checked && !everyone.checked && !men.checked);
+  click(w, 'input[name=playWith][value="Men golfers"]');
+  assert(men.checked && !everyone.checked && !women.checked);
+  click(w, 'input[name=playWith][value="Everyone"]');
+  assert(everyone.checked && !women.checked && !men.checked);
   w.close();
 });
 
@@ -319,7 +327,9 @@ check('self-rating can be skipped and preferences say not set', () => {
 
 check('completed profile leads to clear example groups and capacity copy', () => {
   const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
-  assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Rounds for your week');
+  assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Groups for your week');
+  assert(w.document.querySelector('.clubhouse-title').textContent.includes('Choose a group to preview asking to play'));
+  assert(w.document.querySelector('.golf-plan-card [data-request]').textContent.includes('Preview asking to play'));
   assert(w.document.querySelector('.golf-plan-card').textContent.includes('East Bay Golf Course'));
   assert.equal(w.document.querySelector('.group-seats small').textContent, 'Room for you');
   assert(!w.document.body.textContent.includes('Need room for you'));

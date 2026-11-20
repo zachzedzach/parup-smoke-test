@@ -1,5 +1,9 @@
 ## Current change — November 20, 2026
 
+Clarified the self-rating as the score a golfer usually shoots over 18 holes. The course picker now trims repeated labels and spacing, uses a compact Utah locator, and gives its course list more height and the full row width. Partner audience is a native one-choice radio group, so Everyone cannot be selected with women or men golfers. The results screen now explains the sample action and removes extra space around the schedule, filters, and cards. Bumped the app asset URLs to JS v69/CSS v67. `npm test` passes all 27 interaction checks. Captures at 390×844 were reviewed for the score, course, group-preference, and results screens; a 1440×900 capture checked the welcome layout. Physical iPhone touch behavior was not tested. This supersedes the earlier audience multi-select note below.
+
+## Current change — November 20, 2026
+
 Restored a decimal Handicap Index slider on the profile screen, starting at 0.0, with exact text entry alongside it. The slider displays plus indexes with a `+` sign; exact entry retains plus indexes beyond the slider’s +10.0 endpoint, and ordinary indexes remain capped at 54.0. The USGA confirms 54.0 as the maximum issued Handicap Index and documents plus indexes as values better than scratch. Local `npm test` and GitHub Actions both pass all 27 interaction checks, including decimal slider movement and plus-index entry. The live page uses homescreen assets v68/v66 to bypass iPhone caches; deployment [44826240510](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44826240510) succeeded.
 
 ## Current change — November 20, 2026

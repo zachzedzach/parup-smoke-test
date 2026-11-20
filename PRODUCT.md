@@ -1,6 +1,6 @@
 # The Fourth Club
 
-The Fourth Club helps golfers find people to play with around their usual courses, days, start times and playing preferences. It adds group context and mutual agreement before the ordinary course booking process. It is about playing golf together.
+The Fourth Club helps golfers find people to play with around their usual courses, days, start times and playing preferences. It adds group context and mutual agreement before the ordinary course booking process. It is about playing golf together. In setup, partner audience is one choice—Everyone, women golfers, or men golfers—because Everyone includes both groups.
 
 ## Audience and promise
 
