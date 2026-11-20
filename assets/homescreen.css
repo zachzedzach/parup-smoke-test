@@ -656,3 +656,9 @@
 #preferences-app button,#preferences-app a,#preferences-app summary{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 #preferences-app[data-view=setup] .handicap-control input{font:16px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}
 @media(max-width:380px){#preferences-app .weekly-schedule{gap:3px}#preferences-app .weekday-choice{font-size:11px}#preferences-app .day-time-row input{width:124px}}
+#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:52px}
+#preferences-app[data-view=setup] .step-1 .skill-choice-copy{flex:1;min-width:0}
+#preferences-app[data-view=setup] .step-1 .skill-choice-copy b{display:block;font-size:13px;line-height:1.15}
+#preferences-app[data-view=setup] .step-1 .skill-choice-copy small{display:block;margin-top:2px;color:#62685f;font-size:11px;line-height:1.15;font-weight:500}
+#preferences-app[data-view=setup] .step-1 .skill-choices button[aria-pressed=true]{border:2px solid #176b50;background:#e5eedb;box-shadow:none}
+@media(max-height:740px){#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:48px}}
