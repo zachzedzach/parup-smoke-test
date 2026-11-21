@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Changed the browser and Messages preview titles to “The Fourth Club – Golf match” to test whether the en dash keeps the brand visible in Messages. `og:site_name` remains “The Fourth Club.” Use a fresh URL when checking Messages because link cards may be cached.
+
+## Current change — November 21, 2026
+
 Separated the browser title from the Messages preview title. Browser tabs use “The Fourth Club: Golf match”; Open Graph uses “Golf match” with “The Fourth Club” as the site name, following [Apple’s Messages preview guidance](https://developer.apple.com/documentation/technotes/tn3156-create-rich-previews-for-messages). This lets Messages show the concise page title while the browser keeps the branded title.
 
 ## Current change — November 21, 2026
