@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Changed the post-action button label to “Request sent” so the state reads like a completed request. Existing copy still clarifies that this is an example and contacts no real person. Bumped homescreen JS to v81.
+
+## Current change — November 21, 2026
+
 Expanded public-round visibility choices by default on the final setup screen. Bumped homescreen JS to v80.
 
 ## Current change — November 21, 2026
