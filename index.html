@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="assets/the-fourth-club-icon.png?v=4-clubs-plum-9" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; const desktopBrowser = window.matchMedia('(min-width: 761px) and (pointer: fine)').matches; if (homeScreenQuery && desktopBrowser) {const mainSite = new URL(location.href); mainSite.searchParams.delete('homescreen'); location.replace(mainSite.href);} else if (homeScreenQuery || homeScreenApp) {document.documentElement.classList.add('homescreen-mode'); document.querySelector('meta[name="theme-color"]').setAttribute('content','#ffffff');}</script>
-    <link rel="stylesheet" href="styles.css?v=20261121-preview-redirect-4" />
+    <link rel="stylesheet" href="styles.css?v=20261121-preview-cta-1" />
     <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
     <script defer src="assets/allo-wave.js?v=6"></script>
     <script defer src="site.js?v=20261121-rotating-golf-photos-1"></script>
@@ -57,7 +57,7 @@
           <p>Choose your usual courses and times. See who wants to play around then.</p>
         </div>
         <div class="app-preview-stage">
-          <div class="preview-guide" id="touch-preview-note"><ol><li><b>Choose courses and times</b></li><li><b>See who could join</b><span>See a photo and a few words about their game.</span></li><li><b>Agree before booking</b><span>Both agree, then check a tee time with the course.</span></li></ol><a href="?homescreen=1" class="open-app-link">Open the full-screen preview</a></div>
+          <div class="preview-guide" id="touch-preview-note"><ol><li><b>Choose courses and times</b></li><li><b>See who could join</b><span>See a photo and a few words about their game.</span></li><li><b>Agree before booking</b><span>Both agree, then check a tee time with the course.</span></li></ol><a href="?homescreen=1" class="open-app-link">Open the full-screen preview<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
           <article class="phone-preview interactive-round" aria-label="Interactive The Fourth Club app preview">
             <div class="phone-frame-ui"><div class="phone-status" aria-hidden="true"></div><div id="embedded-app-mount"></div><div class="phone-home-indicator" aria-hidden="true"></div></div>
             <img class="phone-frame-render" src="assets/iphone-17-pro-cosmic-orange-frame.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" />

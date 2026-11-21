@@ -46,7 +46,7 @@ function site(homeScreen, rotationStore = {}) {
 }
 
 function previewSite(phone = false, reduce = true) {
-  const html = '<html><body><section class="app-preview-stage"><div class="preview-guide"><a class="open-app-link" href="?homescreen=1">Open the full-screen preview</a></div><article class="interactive-round phone-preview"><div id="embedded-app-mount"></div></article></section><dialog id="focused-preview-dialog"><button class="focused-preview-close">×</button><div class="focused-preview-stage"></div></dialog></body></html>';
+  const html = '<html><body><section class="app-preview-stage"><div class="preview-guide"><a class="open-app-link" href="?homescreen=1">Open the full-screen preview<svg aria-hidden="true"></svg></a></div><article class="interactive-round phone-preview"><div id="embedded-app-mount"><button class="app-action">Continue in preview</button></div></article></section><dialog id="focused-preview-dialog"><button class="focused-preview-close">×</button><div class="focused-preview-stage"></div></dialog></body></html>';
   const w = new JSDOM(html, { runScripts: 'outside-only', url: 'https://example.test/#try-round' }).window;
   // Let resolved preview-animation promises finish before disposing of their document.
   w.close = () => {};
@@ -181,13 +181,18 @@ check('desktop preview opens, animates, closes, and returns the phone', () => {
   w.close();
 });
 
-check('touch preview uses the full-screen takeover and has an exit', () => {
-  const w = previewSite(true, true), link = w.document.querySelector('.open-app-link');
+check('first tap anywhere on the phone expands it before the app action', () => {
+  const w = previewSite(true, true), appAction = w.document.querySelector('.app-action');
+  let appActionCount = 0;
+  appAction.addEventListener('click', () => appActionCount++);
   const event = new w.MouseEvent('click', { bubbles: true, cancelable: true });
-  link.dispatchEvent(event);
+  appAction.dispatchEvent(event);
   assert(event.defaultPrevented);
   const dialog = w.document.querySelector('#focused-preview-dialog');
   assert(dialog.open && dialog.classList.contains('is-mobile-takeover'));
+  assert.equal(appActionCount, 0, 'the first tap should only open full screen');
+  appAction.dispatchEvent(new w.MouseEvent('click', { bubbles: true, cancelable: true }));
+  assert.equal(appActionCount, 1, 'the next tap should activate the app control');
   w.close();
 });
 
