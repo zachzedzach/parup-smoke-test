@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Choosing a usual 18-hole score now opens the next “Who do you want to play with?” section automatically. Bumped homescreen JS to v85.
+
+## Current change — November 21, 2026
+
 An example play request now gets an automatic reply after 15 seconds. Acceptance updates the four-player seats and briefly celebrates with confetti; the reply button remains available to preview acceptance sooner. Reduced-motion settings skip the confetti. Homescreen assets are JS v84 and CSS v76.
 
 ## Current change — November 21, 2026

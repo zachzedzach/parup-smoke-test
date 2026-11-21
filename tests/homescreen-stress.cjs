@@ -248,14 +248,16 @@ check('score choices have distinct cues, start unselected, and select one range'
   click(w, '[data-skill="3"]');
   assert.equal(choices.filter(choice => choice.getAttribute('aria-pressed') === 'true').length, 1);
   assert.equal(choices[3].querySelector('small').textContent, 'Starting to score around 100');
+  assert.equal(w.document.querySelector('.partner-score-filter').open, true);
   w.close();
 });
 
-check('partner score filter stays optional and supports any score', () => {
+check('partner score filter opens after choosing a score and supports any score', () => {
   const w = app(); atStep(w, 1);
   const disclosure = w.document.querySelector('.partner-score-filter');
   assert(disclosure && !disclosure.open);
-  disclosure.open = true;
+  click(w, '[data-skill="3"]');
+  assert.equal(disclosure.open, true);
   assert.equal(w.document.querySelectorAll('[data-playing-level]').length, 7);
   click(w, '[data-playing-level="2"]');
   assert.equal(w.document.querySelector('[data-playing-level="2"]').getAttribute('aria-pressed'), 'true');
