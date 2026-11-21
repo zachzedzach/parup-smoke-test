@@ -266,14 +266,28 @@ check('partner score filter opens after choosing a score and supports any score'
   w.close();
 });
 
-check('course picker starts in northern Utah and keeps the list north-to-south', () => {
-  const w = app(); atStep(w, 2, { city: 'Provo, UT' });
+check('course picker keeps geographic order and opens near the profile city', () => {
+  const w = app(); atStep(w, 1, { city: 'Provo, UT' });
+  const originalRect = w.HTMLElement.prototype.getBoundingClientRect;
+  Object.defineProperty(w.HTMLElement.prototype, 'clientHeight', { configurable: true, get() { return this.classList?.contains('course-wheel') ? 180 : 0; } });
+  w.HTMLElement.prototype.getBoundingClientRect = function() {
+    if (this.classList?.contains('course-wheel')) return { top: 100, bottom: 280, left: 0, right: 400, width: 400, height: 180 };
+    if (this.matches?.('[data-course]')) {
+      const wheel = this.closest('.course-wheel'), index = [...wheel.querySelectorAll('[data-course]')].indexOf(this), top = 100 + index * 60 - wheel.scrollTop;
+      return { top, bottom: top + 60, left: 0, right: 400, width: 400, height: 60 };
+    }
+    return originalRect.call(this);
+  };
+  next(w);
   const rows = [...w.document.querySelectorAll('[data-course]')];
   assert.equal(rows[0].dataset.course, 'Bear Lake Golf Course');
   assert(rows.every((row, index) => index === 0 || Number(rows[index - 1].dataset.latitude) >= Number(row.dataset.latitude)));
   assert(rows.findIndex(row => row.dataset.course === 'Logan River Golf Course') < rows.findIndex(row => row.dataset.course === 'East Bay Golf Course'));
   assert(rows.findIndex(row => row.dataset.course === 'East Bay Golf Course') < rows.findIndex(row => row.dataset.course === 'Sun River Golf Course'));
-  assert.equal(w.document.querySelector('.course-wheel').scrollTop, 0);
+  const wheel = w.document.querySelector('.course-wheel'), target = rows.find(row => row.dataset.course === 'East Bay Golf Course');
+  assert(wheel.scrollTop > 0);
+  assert(target.getBoundingClientRect().top > wheel.getBoundingClientRect().top);
+  assert(target.getBoundingClientRect().top < wheel.getBoundingClientRect().bottom);
   assert.equal(w.document.querySelector('.setup-page>.pref-intro'), null);
   input(w, '#course-search', 'Utah County');
   const countyRows = [...w.document.querySelectorAll('[data-course]')];
@@ -283,7 +297,7 @@ check('course picker starts in northern Utah and keeps the list north-to-south',
 });
 
 check('course map follows the visible list from northern to southern Utah', () => {
-  const w = app(); atStep(w, 2, { city: 'Provo' });
+  const w = app(); atStep(w, 2, { city: '' });
   const wheel = w.document.querySelector('.course-wheel'), rows = [...wheel.querySelectorAll('[data-course]')];
   wheel.getBoundingClientRect = () => ({ top: 100, bottom: 280, left: 0, right: 400, width: 400, height: 180 });
   rows.forEach((row, index) => { row.getBoundingClientRect = () => { const top = 100 + index * 60 - wheel.scrollTop; return { top, bottom: top + 60, left: 0, right: 400, width: 400, height: 60 }; }; });
