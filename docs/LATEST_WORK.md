@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Expanded public-round visibility choices by default on the final setup screen. Bumped homescreen JS to v80.
+
+## Current change — November 21, 2026
+
 Added “You can change this later” to the usual-round introduction. Bumped homescreen JS to v79.
 
 ## Current change — November 21, 2026
