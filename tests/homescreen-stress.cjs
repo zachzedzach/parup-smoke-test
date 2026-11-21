@@ -367,6 +367,15 @@ check('completed profile leads to clear example groups and capacity copy', () =>
   assert(w.document.querySelector('.golf-plan-card').textContent.includes('East Bay Golf Course'));
   assert.equal(w.document.querySelector('.group-seats small').textContent, 'Room for you');
   assert(!w.document.body.textContent.includes('Need room for you'));
+  const casey = w.document.querySelector('[data-plan="casey"]');
+  assert.equal(casey.querySelectorAll('.group-seats > span').length, 4);
+  assert(casey.querySelector('.seat-golfer img').src.endsWith('pexels-19003912.webp'));
+  assert.equal(casey.querySelector('.group-seats').getAttribute('aria-label'), '1 golfer, 3 open spots');
+  click(w, '[data-request="casey"]');
+  click(w, '[data-reply="casey"]');
+  assert.equal(casey.querySelector('.seat-you').textContent, 'S');
+  assert.equal(casey.querySelector('.group-seats').getAttribute('aria-label'), '2 golfers, 2 open spots');
+  assert.equal(casey.querySelector('.group-seats small').textContent, 'You’re in');
   w.close();
 });
 

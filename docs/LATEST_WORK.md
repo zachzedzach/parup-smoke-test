@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+The four seat indicators now include the listed golfer’s photo, keep the total group at four, and show the current golfer’s initial after an example acceptance. Updated sample availability and added interaction coverage. Homescreen assets are JS v82 and CSS v75.
+
+## Current change — November 21, 2026
+
 Changed the post-action button label to “Request sent” so the state reads like a completed request. Existing copy still clarifies that this is an example and contacts no real person. Updated the matching interaction check and bumped homescreen JS to v81.
 
 ## Current change — November 21, 2026
