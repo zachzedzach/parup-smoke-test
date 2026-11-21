@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Changed the empty bio field’s placeholder to “Enter your bio here.” Bumped the homescreen script cache version to v76.
+
+## Current change — November 21, 2026
+
 Changed the browser and Messages preview titles to “The Fourth Club – Golf match” to test whether the en dash keeps the brand visible in Messages. `og:site_name` remains “The Fourth Club.” Use a fresh URL when checking Messages because link cards may be cached.
 
 ## Current change — November 21, 2026
