@@ -363,6 +363,7 @@ check('weekday buttons reveal independent quarter-hour times and preserve them',
   assert.equal(w.document.querySelectorAll('[data-day-toggle]').length, 7);
   click(w, '[data-day-toggle="Friday"]');
   click(w, '[data-day-toggle="Sunday"]');
+  click(w, '[data-day-toggle="Saturday"]');
   input(w, '[data-day-time="Friday"]', '16:41');
   input(w, '[data-day-time="Sunday"]', '08:00');
   assert.equal(w.document.querySelector('[data-day-time="Friday"]').value, '16:45');
@@ -371,6 +372,11 @@ check('weekday buttons reveal independent quarter-hour times and preserve them',
   click(w, '[data-day-toggle="Friday"]');
   assert.equal(w.document.querySelector('[data-day-time="Friday"]').value, '16:45');
   assert.equal(w.document.querySelector('[data-day-time="Sunday"]').value, '08:00');
+  let pickerOpens = 0;
+  const saturdayInput = w.document.querySelector('[data-day-time="Saturday"]');
+  saturdayInput.showPicker = () => { pickerOpens++; };
+  w.document.querySelector('[data-day-time="Saturday"]').closest('.day-time-row').querySelector('b').click();
+  assert.equal(pickerOpens, 1, 'tapping the day label should open its native time picker');
   w.close();
 });
 

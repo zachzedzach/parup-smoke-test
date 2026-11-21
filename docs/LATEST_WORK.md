@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Tapping anywhere in a selected weekday’s time row opens that row’s native time picker, including taps on the day label or surrounding row. The time field still opens its own picker normally. Regression check verifies the row tap calls the native picker. Homescreen JS v91.
+
+## Current change — November 21, 2026
+
 After a usual score is selected, the app opens “Who do you want to play with?” and scrolls the phone’s own content so that section is visible above the fixed Continue button. A layout-backed check covers the embedded phone viewport. Homescreen JS v90.
 
 ## Current change — November 21, 2026
