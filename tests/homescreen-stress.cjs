@@ -400,7 +400,7 @@ check('a mutual yes leads to the selected course booking page', () => {
   const w = app();
   finishSetup(w, { courses: ['Sleepy Ridge Golf Course'], days: ['Saturday'], party: 'Me and 1 other' });
   click(w, '[data-request="jordan"]');
-  assert.equal(w.document.querySelector('[data-request="jordan"]').textContent, 'Request previewed');
+  assert.equal(w.document.querySelector('[data-request="jordan"]').textContent, 'Request sent');
   assert(w.document.body.textContent.includes('Waiting for their answer'));
   assert(!w.document.querySelector('.booking-next a'));
   click(w, '[data-reply="jordan"]');

@@ -1,6 +1,6 @@
 ## Current change — November 21, 2026
 
-Changed the post-action button label to “Request sent” so the state reads like a completed request. Existing copy still clarifies that this is an example and contacts no real person. Bumped homescreen JS to v81.
+Changed the post-action button label to “Request sent” so the state reads like a completed request. Existing copy still clarifies that this is an example and contacts no real person. Updated the matching interaction check and bumped homescreen JS to v81.
 
 ## Current change — November 21, 2026
 
