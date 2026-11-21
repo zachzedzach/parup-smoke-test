@@ -217,7 +217,9 @@ check('reduced motion and focused preview styles are supported', () => {
 
 check('profile requires a first name and omits the removed gender choice', () => {
   const w = app();
-  click(w, '[data-action="begin"]'); next(w);
+  click(w, '[data-action="begin"]');
+  assert(w.document.querySelector('.step-0 h3').textContent.includes("I'm a:"));
+  next(w);
   assert(w.document.querySelector('[aria-invalid="true"]'));
   assert(!w.document.body.textContent.includes('Nonbinary'));
   assert.equal(w.document.querySelectorAll('[data-input="name"]').length, 1);
