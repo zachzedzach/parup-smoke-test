@@ -38,27 +38,10 @@
  function refreshPartnerSummary(){const summary=root.querySelector('.partner-preferences>summary small');if(summary)summary.textContent=partnerSummary()}
  function partnerAudienceChoices(){return `<fieldset class="audience-choices partner-audience"><legend>Golfer group</legend>${['Everyone','Women golfers','Men golfers'].map(value=>`<label><input type="radio" name="playWith" data-value="${value}" value="${value}" ${state.playWith.includes(value)?'checked':''}><span>${value}</span></label>`).join('')}</fieldset>`}
  function partnerPreferences(){return `<details class="partner-score-filter partner-preferences"><summary><span>Who do you want to play with?</span><small>${esc(partnerSummary())}</small>${icon('chevron')}</summary><div class="partner-preferences-content">${partnerAudienceChoices()}<div class="partner-score-options"><h3>Preferred 18-hole scores</h3><p>Choose one or more, or leave all unselected to see any score.</p>${skillOptions('playing-level',state.partnerSkills,true)}</div></div></details>`}
- function placeTokens(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\b\d{5}(?:-\d{4})?\b/g,' ').toLocaleLowerCase().replace(/\bsaint\b/g,'st').replace(/[^a-z0-9]+/g,' ').trim().split(/\s+/).filter(Boolean)}
- function placeSuffixAllowed(tokens){return tokens.every(token=>['ut','utah','county','usa','united','states'].includes(token))}
- function courseRegion(){
-  const available=courses.filter(c=>c.access!=='private'),query=placeTokens(state.city);
-  if(!query.length)return {cities:[],counties:[]};
-  const cityMatches=available.filter(c=>{const name=placeTokens(c.city);return name.length<=query.length&&name.every((token,index)=>token===query[index])&&placeSuffixAllowed(query.slice(name.length))});
-  if(cityMatches.length)return {cities:[...new Set(cityMatches.map(c=>c.city))],counties:[...new Set(cityMatches.map(c=>c.county))]};
-  const countyMatches=available.filter(c=>{const name=placeTokens(c.county);if(!name.length||name.length>query.length)return false;return name.every((token,index)=>token===query[index])&&placeSuffixAllowed(query.slice(name.length))});
-  return {cities:[],counties:[...new Set(countyMatches.map(c=>c.county))]};
- }
  function visibleCourses(q=courseQuery){
   const available=courses.filter(c=>c.access!=='private');
-  const region=courseRegion();
-  const counties=new Set(region.counties);
-  return available.filter(c=>`${c.name} ${c.city} ${c.county} ${c.county} County`.toLocaleLowerCase().includes(q.trim().toLocaleLowerCase())).sort(courseSort==='nearby'?(a,b)=>{
-   const exactCity=region.cities.length>0,cityRank=exactCity?(region.cities.includes(a.city)?0:1)-(region.cities.includes(b.city)?0:1):0;if(cityRank)return cityRank;
-   const countyRank=(counties.has(a.county)?0:1)-(counties.has(b.county)?0:1);if(countyRank)return countyRank;
-   return b.latitude-a.latitude||a.name.localeCompare(b.name);
-  }:(a,b)=>a.name.localeCompare(b.name));
+  return available.filter(c=>`${c.name} ${c.city} ${c.county} ${c.county} County`.toLocaleLowerCase().includes(q.trim().toLocaleLowerCase())).sort(courseSort==='nearby'?(a,b)=>b.latitude-a.latitude||a.name.localeCompare(b.name):(a,b)=>a.name.localeCompare(b.name));
  }
- function focusCourseRegion(){const wheel=root.querySelector('.course-wheel'),region=courseRegion();if(!wheel||(!region.cities.length&&!region.counties.length))return;const rows=[...wheel.querySelectorAll('[data-course]')],target=rows.find(row=>region.cities.includes(row.dataset.city))||rows.find(row=>region.counties.includes(row.dataset.county));if(!target)return;wheel.scrollTop+=target.getBoundingClientRect().top-wheel.getBoundingClientRect().top}
  function courseRows(q=courseQuery){return visibleCourses(q).map(c=>`<button type="button" class="course-wheel-row" data-course="${esc(c.name)}" data-city="${esc(c.city)}" data-latitude="${c.latitude}" data-county="${esc(c.county)}" aria-pressed="${state.courses.includes(c.name)}"><span><b>${esc(c.name)}</b><small>${esc(c.city)} · ${esc(c.county)} County</small><small>${c.access==='public'?'Public / municipal':'Public access'}</small></span><span class="course-check">${state.courses.includes(c.name)?'✓':'+'}</span></button>`).join('')||'<p>No courses found. Try a course, city or county.</p>'}
  const mapX=longitude=>8+(longitude+114.1)/5.2*84;
  const mapY=latitude=>8+(42.1-latitude)/5.2*116;
@@ -127,7 +110,7 @@
   initHeadlineWave();
   const content=root.querySelector('.preferences-content');
   content.scrollTop=changed?0:oldScroll;
-  if(changed&&view==='setup'&&step===2){focusCourseRegion();paintCourseMap()}
+  if(changed&&view==='setup'&&step===2)paintCourseMap()
   if(changed&&!reduced.matches){
    const page=view==='setup'?content.querySelector('.setup-page'):content;
    if(page)settle(page,[{opacity:0,transform:`translateX(${direction*12}px)`},{opacity:1,transform:'translateX(0)'}],{duration:motion.navigate,fill:'backwards'});

@@ -266,14 +266,37 @@ check('partner score filter opens after choosing a score and supports any score'
   w.close();
 });
 
-check('course picker starts near the golfer and searches by county', () => {
+check('course picker starts in northern Utah and keeps the list north-to-south', () => {
   const w = app(); atStep(w, 2, { city: 'Provo, UT' });
-  assert.equal(w.document.querySelector('[data-course]').dataset.course, 'East Bay Golf Course');
+  const rows = [...w.document.querySelectorAll('[data-course]')];
+  assert.equal(rows[0].dataset.course, 'Bear Lake Golf Course');
+  assert(rows.every((row, index) => index === 0 || Number(rows[index - 1].dataset.latitude) >= Number(row.dataset.latitude)));
+  assert(rows.findIndex(row => row.dataset.course === 'Logan River Golf Course') < rows.findIndex(row => row.dataset.course === 'East Bay Golf Course'));
+  assert(rows.findIndex(row => row.dataset.course === 'East Bay Golf Course') < rows.findIndex(row => row.dataset.course === 'Sun River Golf Course'));
+  assert.equal(w.document.querySelector('.course-wheel').scrollTop, 0);
   assert.equal(w.document.querySelector('.setup-page>.pref-intro'), null);
   input(w, '#course-search', 'Utah County');
-  const rows = [...w.document.querySelectorAll('[data-course]')];
-  assert(rows.length > 1);
-  assert(rows.every(row => row.dataset.county === 'Utah'));
+  const countyRows = [...w.document.querySelectorAll('[data-course]')];
+  assert(countyRows.length > 1);
+  assert(countyRows.every(row => row.dataset.county === 'Utah'));
+  w.close();
+});
+
+check('course map follows the visible list from northern to southern Utah', () => {
+  const w = app(); atStep(w, 2, { city: 'Provo' });
+  const wheel = w.document.querySelector('.course-wheel'), rows = [...wheel.querySelectorAll('[data-course]')];
+  wheel.getBoundingClientRect = () => ({ top: 100, bottom: 280, left: 0, right: 400, width: 400, height: 180 });
+  rows.forEach((row, index) => { row.getBoundingClientRect = () => { const top = 100 + index * 60 - wheel.scrollTop; return { top, bottom: top + 60, left: 0, right: 400, width: 400, height: 60 }; }; });
+  const scroll = amount => { wheel.scrollTop = amount; wheel.dispatchEvent(new w.Event('scroll', { bubbles: true })); };
+  scroll(0);
+  const northY = Number(w.document.querySelector('#course-map-band').getAttribute('y'));
+  assert.equal(w.document.querySelector('#course-map-area').textContent, rows[1].dataset.county + ' County');
+  assert.equal(w.document.querySelectorAll('.course-locator .is-visible').length, 3);
+  scroll((rows.length - 3) * 60);
+  const southY = Number(w.document.querySelector('#course-map-band').getAttribute('y'));
+  assert.equal(w.document.querySelector('#course-map-area').textContent, 'Washington County');
+  assert(southY > northY);
+  assert.equal(w.document.querySelectorAll('.course-locator .is-visible').length, 3);
   w.close();
 });
 

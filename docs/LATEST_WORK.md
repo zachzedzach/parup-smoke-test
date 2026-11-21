@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Restored a reliable north-to-south course order and stopped jumping the list to the profile city. The map now tracks the visible northern or southern rows as the list scrolls. Added checks for the order, initial scroll position, and map movement. Homescreen JS v86.
+
+## Current change — November 21, 2026
+
 Choosing a usual 18-hole score now opens the next “Who do you want to play with?” section automatically. Bumped homescreen JS to v85.
 
 ## Current change — November 21, 2026
