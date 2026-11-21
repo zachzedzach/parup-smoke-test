@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Separated the browser title from the Messages preview title. Browser tabs use “The Fourth Club: Golf match”; Open Graph uses “Golf match” with “The Fourth Club” as the site name, following [Apple’s Messages preview guidance](https://developer.apple.com/documentation/technotes/tn3156-create-rich-previews-for-messages). This lets Messages show the concise page title while the browser keeps the branded title.
+
+## Current change — November 21, 2026
+
 Updated the browser title and Open Graph title to “The Fourth Club: Golf match,” replacing “Better than random.” Published in commit `da92b8d`; GitHub Pages run [44944546195](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44944546195) passed. The live page now serves the new title. Previously generated share cards may continue showing their cached title.
 
 ## Current change — November 21, 2026
