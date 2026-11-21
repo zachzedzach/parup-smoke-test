@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Updated the browser title and Open Graph title to “The Fourth Club: Golf match,” replacing “Better than random.” Published in commit `da92b8d`; GitHub Pages run [44944546195](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44944546195) passed. The live page now serves the new title. Previously generated share cards may continue showing their cached title.
+
+## Current change — November 21, 2026
+
 Restyled “Open the full-screen preview” as a green button with an arrow. On touch devices, the first tap anywhere on the preview phone opens it full screen without activating the tapped in-app control; the next tap works normally. Regression coverage now checks a nested app button, and a 390×844 page capture confirms the CTA treatment. The Canvas report screenshot says the Interest Tests Report is due Saturday, Nov. 21 at 11:59 p.m.; it calls for Wow Factor and $100 first, then a Wizard of Oz test with at least three people outside friends and family, observing behavior against a pass bar set before testing. Field plan: share the phone view with three participants. All 27 checks pass. Commit `8213910` is live; GitHub Pages run [44938408428](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44938408428) succeeded, and the live page serves the updated CTA stylesheet.
 
 ## Current change — November 21, 2026
