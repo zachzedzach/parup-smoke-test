@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Moved the Utah locator beside the course search at the top of the course picker. The course list stays full width, with less vertical space spent on the map. Bumped app assets to homescreen JS v78 and CSS v74.
+
+## Current change — November 21, 2026
+
 Changed nearby course ordering to keep city and county matches together, then sort each group north to south so the map’s visible-area band follows the list consistently. Bumped the homescreen script cache version to v77.
 
 ## Current change — November 21, 2026

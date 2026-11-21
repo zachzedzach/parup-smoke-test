@@ -715,8 +715,14 @@
 
 
 /* Keep the Utah locator recognizable beside the full-width course directory. */
-#preferences-app[data-view=setup] .step-2 .course-locator{grid-template-columns:68px minmax(0,1fr);gap:0 12px;padding:6px 10px}
-#preferences-app[data-view=setup] .step-2 .course-locator svg{width:62px;height:87px}
+#preferences-app[data-view=setup] .step-2 .course-picker-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(126px,.8fr);align-items:stretch;gap:8px}
+#preferences-app[data-view=setup] .step-2 .course-picker-top>.pref-field{min-width:0;margin:6px 0}
+#preferences-app[data-view=setup] .step-2 .course-picker-top .course-locator{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:2px 6px;min-width:0;margin:6px 0;padding:6px;border-radius:10px}
+#preferences-app[data-view=setup] .step-2 .course-picker-top .course-locator svg{grid-column:1;grid-row:1/4;width:78px;height:109px}
+#preferences-app[data-view=setup] .step-2 .course-picker-top .course-locator>span{display:none}
+#preferences-app[data-view=setup] .step-2 .course-picker-top .course-locator b{grid-column:2;grid-row:1/3;font-size:11px}
+#preferences-app[data-view=setup] .step-2 .course-picker-top .course-map-legend{grid-column:2;grid-row:3;justify-self:start;white-space:normal}
+#preferences-app[data-view=setup] .step-2 .course-browser{display:block}
 
 /* Make optional partner and visibility controls read as disclosures. */
 #preferences-app[data-view=setup] .partner-preferences>summary,#preferences-app[data-view=setup] .visibility-settings>summary{display:grid;grid-template-columns:minmax(0,1fr) 18px;align-items:center;gap:3px 10px;min-height:48px;list-style:none;cursor:pointer}
