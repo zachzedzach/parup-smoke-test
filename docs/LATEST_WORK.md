@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Combined smoker matching and public-round visibility into one “Smoking” checkbox. It filters smoker profiles from suggested groups and excludes smokers from the golfer’s public rounds. Added an interaction check for both effects. Homescreen JS v88.
+
+## Current change — November 21, 2026
+
 Kept the complete course directory in north-to-south order while opening partway down at the golfer’s profile city. Added a layout-backed check that verifies nearby courses enter view without changing their geographic order. Homescreen JS v87.
 
 ## Current change — November 21, 2026

@@ -395,6 +395,34 @@ check('round-style choices stay paired and playing audience is one exclusive rad
   w.close(); partners.close();
 });
 
+check('one Smoking checkbox filters smoker matches and hides public rounds from smokers', () => {
+  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  assert(w.document.querySelector('[data-plan="casey"]'));
+  click(w, '[data-action="edit"]');
+  click(w, '[data-edit-step="5"]');
+  const smoking = w.document.querySelector('[data-hide-smokers]');
+  assert.equal(w.document.querySelectorAll('[data-field="hideFrom"]').length, 2);
+  assert(![...w.document.querySelectorAll('[data-field="hideFrom"]')].some(button => button.dataset.value === 'People who smoke'));
+  assert.equal(smoking.closest('label').querySelector('b').textContent, 'Smoking');
+  smoking.checked = true;
+  smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
+  next(w);
+  assert(w.document.body.textContent.includes('Public rounds: Everyone except people who smoke'));
+  click(w, '[data-view="home"]');
+  assert(!w.document.querySelector('[data-plan="casey"]'));
+  click(w, '[data-action="edit"]');
+  click(w, '[data-edit-step="5"]');
+  const turnedOff = w.document.querySelector('[data-hide-smokers]');
+  assert(turnedOff.checked);
+  turnedOff.checked = false;
+  turnedOff.dispatchEvent(new w.Event('change', { bubbles: true }));
+  next(w);
+  assert(w.document.body.textContent.includes('Public rounds: Everyone ·'));
+  click(w, '[data-view="home"]');
+  assert(w.document.querySelector('[data-plan="casey"]'));
+  w.close();
+});
+
 check('self-rating can be skipped and preferences say not set', () => {
   const w = app(); finishSetup(w, { skill: null, days: [] });
   click(w, '[data-action="edit"]');
