@@ -442,13 +442,14 @@ check('Smoking includes smoker matches and hides public rounds from golfers who 
   assert(smoking.closest('label').textContent.includes('Include golfers who smoke in matches'));
   smoking.checked = true;
   smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
-  assert(w.document.querySelector('.visibility-settings>summary small').textContent.includes('golfers who avoid smoking'));
+  assert.equal(w.document.querySelector('.visibility-settings>summary small').textContent, 'Anyone comfortable with smoking');
+  assert(smoking.closest('label').textContent.includes('public rounds are visible to golfers comfortable with smoking'));
   next(w);
   click(w, '[data-view="home"]');
   assert(w.document.querySelector('[data-plan="casey"]'));
   click(w, '[data-action="create-round"]');
   click(w, '[data-action="post-round"]');
-  assert(w.document.body.textContent.includes('visible to everyone except golfers who avoid smoking'));
+  assert(w.document.body.textContent.includes('visible to anyone comfortable with smoking'));
   click(w, '[data-action="preview-join"]');
   assert(w.document.body.textContent.includes('Alex asked to join · example'));
   assert(!w.document.body.textContent.includes('Jordan asked to join · example'));

@@ -1,6 +1,6 @@
 ## Current change — November 21, 2026
 
-Corrected the “Smoking” option: when selected, smoker profiles are included in example matches, and public rounds are hidden from sample golfers marked as preferring smoke-free play. Women’s and men’s visibility controls now each fill half the row instead of leaving a third column empty. The dynamic visibility summary sits below its heading so longer text does not squeeze the heading into a narrow column. Added checks for match inclusion, round visibility, and layout. Homescreen JS v92, CSS v77. This supersedes the earlier v88 behavior note below.
+Corrected the “Smoking” option: when selected, profiles that smoke are included in example matches, and public rounds are described positively as visible to golfers comfortable with smoking. Women’s and men’s visibility controls now each fill half the row instead of leaving a third column empty. The dynamic visibility summary sits below its heading so longer text does not squeeze the heading into a narrow column. Added checks for match inclusion, round visibility, and layout. Homescreen JS v93, CSS v77. This supersedes the earlier v88 behavior note below.
 
 ## Current change — November 21, 2026
 

@@ -6,7 +6,7 @@ The Fourth Club helps golfers find people to play with around their usual course
 
 Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating, a single “Who do you want to play with?” control that combines golfer group and optional score range, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, show example groups that fit the golfer’s usual schedule. Keep planning one dated round as a secondary action. Golfers whose preferences fit a public round may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
 
-In round preferences, the “Smoking” option includes golfers who smoke in example matches when selected. In that mode, public rounds are not shown to golfers marked as preferring smoke-free play.
+In round preferences, the “Smoking” option includes golfers who smoke in example matches when selected. In that mode, public rounds are visible to golfers comfortable with smoking.
 
 ## Current product boundary
 
