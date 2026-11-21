@@ -373,9 +373,10 @@ check('completed profile leads to clear example groups and capacity copy', () =>
   assert.equal(casey.querySelector('.group-seats').getAttribute('aria-label'), '1 golfer, 3 open spots');
   click(w, '[data-request="casey"]');
   click(w, '[data-reply="casey"]');
-  assert.equal(casey.querySelector('.seat-you').textContent, 'S');
-  assert.equal(casey.querySelector('.group-seats').getAttribute('aria-label'), '2 golfers, 2 open spots');
-  assert.equal(casey.querySelector('.group-seats small').textContent, 'You’re in');
+  const acceptedCasey = w.document.querySelector('[data-plan="casey"]');
+  assert.equal(acceptedCasey.querySelector('.seat-you').textContent, 'S');
+  assert.equal(acceptedCasey.querySelector('.group-seats').getAttribute('aria-label'), '2 golfers, 2 open spots');
+  assert.equal(acceptedCasey.querySelector('.group-seats small').textContent, 'You’re in');
   w.close();
 });
 
