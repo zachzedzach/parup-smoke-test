@@ -69,7 +69,7 @@ window.FOURTH_BOOKING_LINKS = {
   "Wasatch Mountain State Park Golf Course - Mountain Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17068","provider":"TeeItUp"},
   "Wolf Creek Golf Course": {"url":"https://wolfcreekutah.com/","provider":"Course website","note":"Open the course website and choose tee times."},
   "Canyon Hills Park Golf Course": {"url":"https://app.membersports.com/tee-times/15379/18889/0/0/0","provider":"MemberSports"},
-  "Sleepy Ridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19396/1726","provider":"foreUP"},
+  "Sleepy Ridge Golf Course": {"url":"https://www.sleepyridgegolf.com/course","provider":"Sleepy Ridge Golf Course website","label":"Open Sleepy Ridge tee-time booking","note":"Choose Schedule Your Tee Time on the official course page."},
   "Moab Golf Course": {"url":"https://moabgolfcourse.com/book-a-tee-time/","provider":"Course booking information","label":"Open Moab booking details","note":"Reservations are by phone: 435-259-6488."},
   "Oquirrh Hills Golf Course": {"url":"https://golf.tooelecity.gov/","provider":"Course website","label":"Open Oquirrh Hills tee times","note":"Choose Tee Times on the course website."},
   "Black Desert Resort Golf Course": {"url":"https://book.onagilysys.com/onecart/golf/courses/2434/black-desert","provider":"Black Desert booking system"},

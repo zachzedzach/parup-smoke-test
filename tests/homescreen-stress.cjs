@@ -575,7 +575,9 @@ check('a mutual yes leads to the selected course booking page', () => {
   assert(![...w.__timers.values()].some(timer => timer.delay === 15000));
   const booking = w.document.querySelector('.booking-next a');
   assert(booking);
-  assert.equal(booking.href, w.FOURTH_BOOKING_LINKS['Sleepy Ridge Golf Course'].url);
+  assert.equal(booking.href, 'https://www.sleepyridgegolf.com/course');
+  assert.equal(booking.textContent.trim(), 'Open Sleepy Ridge tee-time booking');
+  assert(w.document.querySelector('.booking-next').textContent.includes('Schedule Your Tee Time'));
   assert(w.document.querySelector('.booking-summary').textContent.includes('Sleepy Ridge Golf Course'));
   assert(w.document.querySelector('.booking-summary').textContent.includes('Saturday'));
   w.close();

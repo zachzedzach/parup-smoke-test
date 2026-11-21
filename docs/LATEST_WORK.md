@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Changed the Sleepy Ridge result link from the foreUP deep link to the course’s official [course page](https://www.sleepyridgegolf.com/course), because the reported deep link landed incorrectly. The button now says “Open Sleepy Ridge tee-time booking,” with a note to choose Schedule Your Tee Time. Updated the booking-catalog cache version and pinned the destination in the regression check. All 36 app checks pass.
+
+## Previous change — November 21, 2026
+
 Removed the explanatory paragraph from the pending example-reply state. The request card still shows its pending status and the control to preview an accepted reply; the 15-second automatic sample response is unchanged. Updated homescreen JS to v95 and added assertions that the removed copy does not return. All 36 app checks pass.
 
 ## Previous change — November 21, 2026
