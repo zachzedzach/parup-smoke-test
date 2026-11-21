@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+The first profile screen’s name, city, and bio fields now have a tinted fill and a clear green-gray outline against the white page. Focus adds a stronger green ring. Updated the homescreen stylesheet cache version. `npm test` passes all 27 checks; a 390×844 render confirms the field edges read clearly. Physical iPhone review is not available in this environment. Deployment pending.
+
+## Current change — November 21, 2026
+
 The marketing hero now cycles through the existing golf photos on each visit, and the iPhone welcome screen uses the same visit’s lead photo. A device-local counter chooses a new three-photo set on the next load; only those three are requested, and installed-app mode still skips marketing-photo downloads. Updated the image descriptions to match the rotating content and bumped site/app script cache versions. All 27 interaction checks, syntax checks, and whitespace checks pass. Commit `30db23d` is live; GitHub Pages run [44937204144](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44937204144) succeeded.
 
 ## Current annotation pass — November 21, 2026

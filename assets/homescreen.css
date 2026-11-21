@@ -737,3 +737,10 @@
 #preferences-app .empty-partners h2{margin:0 0 8px}
 #preferences-app .empty-partners p{margin:0 0 14px}
 @media(prefers-reduced-motion:reduce){#preferences-app[data-view=setup] .partner-preferences>summary>svg,#preferences-app[data-view=setup] .visibility-settings>summary>svg{transition:none}}
+
+/* Give profile text fields a clear edge against the white setup surface. */
+#preferences-app[data-view=setup] .step-0 .pref-field{color:#394c3e;font-weight:500}
+#preferences-app[data-view=setup] .step-0 .pref-field input,
+#preferences-app[data-view=setup] .step-0 .pref-field textarea{border:1px solid #879488;border-radius:11px;background:#f5f7f3;color:#20241f}
+#preferences-app[data-view=setup] .step-0 .pref-field input:focus-visible,
+#preferences-app[data-view=setup] .step-0 .pref-field textarea:focus-visible{border-color:#176b50;outline:3px solid #a3c8ae;outline-offset:2px}
