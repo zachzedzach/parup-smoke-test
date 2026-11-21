@@ -50,13 +50,10 @@
  function visibleCourses(q=courseQuery){
   const available=courses.filter(c=>c.access!=='private');
   const region=courseRegion();
-  const local=region.cities.length?available.filter(c=>region.cities.includes(c.city)):region.counties.length?available.filter(c=>region.counties.includes(c.county)):[];
-  const anchorGroup=local;
-  const anchor=anchorGroup.length?anchorGroup.reduce((m,c)=>({latitude:m.latitude+c.latitude/anchorGroup.length,longitude:m.longitude+c.longitude/anchorGroup.length}),{latitude:0,longitude:0}):null;
-  const counties=new Set(anchorGroup.map(c=>c.county));
+  const counties=new Set(region.counties);
   return available.filter(c=>`${c.name} ${c.city} ${c.county} ${c.county} County`.toLocaleLowerCase().includes(q.trim().toLocaleLowerCase())).sort(courseSort==='nearby'?(a,b)=>{
    const exactCity=region.cities.length>0,cityRank=exactCity?(region.cities.includes(a.city)?0:1)-(region.cities.includes(b.city)?0:1):0;if(cityRank)return cityRank;
-   if(anchor){const ca=counties.has(a.county)?0:1,cb=counties.has(b.county)?0:1;if(ca!==cb)return ca-cb;const da=(a.latitude-anchor.latitude)**2+(a.longitude-anchor.longitude)**2,db=(b.latitude-anchor.latitude)**2+(b.longitude-anchor.longitude)**2;if(Math.abs(da-db)>.000001)return da-db;}
+   const countyRank=(counties.has(a.county)?0:1)-(counties.has(b.county)?0:1);if(countyRank)return countyRank;
    return b.latitude-a.latitude||a.name.localeCompare(b.name);
   }:(a,b)=>a.name.localeCompare(b.name));
  }

@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Changed nearby course ordering to keep city and county matches together, then sort each group north to south so the map’s visible-area band follows the list consistently. Bumped the homescreen script cache version to v77.
+
+## Current change — November 21, 2026
+
 Enlarged the Utah course locator in the course picker to 62×87px so it reads clearly beside the full-width list. Bumped the homescreen stylesheet cache version to v73.
 
 ## Current change — November 21, 2026
