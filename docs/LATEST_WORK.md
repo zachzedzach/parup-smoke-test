@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Removed “Not this round” from the example listings. Visitors can ask to play or save a plan; ignoring a listing no longer requires a separate action. Saved plans remain in the Saved tab. Bumped homescreen JS to v83.
+
+## Current change — November 21, 2026
+
 The four seat indicators now include the listed golfer’s photo, keep the total group at four, and show the current golfer’s initial after an example acceptance. Updated sample availability and added interaction coverage. Homescreen assets are JS v82 and CSS v75.
 
 ## Current change — November 21, 2026

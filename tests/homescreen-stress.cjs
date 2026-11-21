@@ -394,15 +394,14 @@ check('no usual days produces a useful empty state rather than invented plans', 
   w.close();
 });
 
-check('save and skip actions can be recovered from Saved', () => {
+check('saved plans stay available without hiding the listing', () => {
   const w = app(); click(w, '[data-action="sample"]');
   click(w, '[data-save="jordan"]');
-  click(w, '[data-pass="jordan"]');
   click(w, '[data-view="saved"]');
   assert(w.document.querySelector('[data-plan="jordan"]'));
-  click(w, '[data-pass="jordan"]');
   click(w, '[data-view="home"]');
   assert(w.document.querySelector('[data-plan="jordan"]'));
+  assert(!w.document.querySelector('[data-pass]'));
   w.close();
 });
 
