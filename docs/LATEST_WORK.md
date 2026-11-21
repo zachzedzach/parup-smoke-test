@@ -1,6 +1,6 @@
 ## Current change — November 21, 2026
 
-The first profile screen’s name, city, and bio fields now have a tinted fill and a clear green-gray outline against the white page. Focus adds a stronger green ring. Updated the homescreen stylesheet cache version. `npm test` passes all 27 checks; a 390×844 render confirms the field edges read clearly. Physical iPhone review is not available in this environment. Deployment pending.
+The first profile screen’s name, city, and bio fields now have a tinted fill and a clear green-gray outline against the white page. Focus adds a stronger green ring. Updated the homescreen stylesheet cache version. `npm test` passes all 27 checks; a 390×844 render confirms the field edges read clearly. The live page serves homescreen CSS v72. Physical iPhone review is not available in this environment. Commit `1483832` is live; GitHub Pages run [44937763742](https://github.com/zachzedzach/parup-smoke-test/actions/runs/44937763742) succeeded.
 
 ## Current change — November 21, 2026
 
