@@ -506,6 +506,37 @@ check('completed profile leads to clear example groups and capacity copy', () =>
   w.close();
 });
 
+check('app screens show a back arrow separate from reset and return to the prior view', () => {
+  const w = app(); finishSetup(w);
+  const homeBack = w.document.querySelector('[data-action=app-back]');
+  assert(homeBack, 'rounds screen should show a back arrow');
+  assert.equal(homeBack.getAttribute('aria-label'), 'Back');
+  assert(w.document.querySelector('[data-action=reset]'), 'reset remains a separate control');
+  click(w, '[data-action=app-back]');
+  assert.equal(w.document.querySelector('.setup-page').className, 'setup-page step-5');
+  assert.equal(w.document.querySelector('[data-action=app-back]'), null);
+  assert(w.document.querySelector('[data-action=back]'));
+
+  click(w, '[data-action=back]');
+  assert.equal(w.document.querySelector('.preference-sections') !== null, true);
+  assert(w.document.querySelector('[data-action=app-back]'), 'preferences should show a back arrow');
+  click(w, '[data-action=app-back]');
+  assert.equal(w.document.querySelector('.clubhouse-title h1').textContent, 'Groups for your week');
+
+  click(w, '[data-view=saved]');
+  assert(w.document.querySelector('[data-action=app-back]'), 'saved rounds should show a back arrow');
+  click(w, '[data-action=app-back]');
+  assert.equal(w.document.querySelector('.clubhouse-title h1').textContent, 'Groups for your week');
+  w.close();
+});
+
+check('sample rounds back arrow returns to the welcome screen', () => {
+  const w = app(); click(w, '[data-action=sample]');
+  click(w, '[data-action=app-back]');
+  assert.equal(w.document.querySelector('.welcome-copy h1').textContent, 'There’s room for one more.');
+  w.close();
+});
+
 check('two-player preference hides plans without two open spots', () => {
   const w = app(); finishSetup(w, { courses: ['Fox Hollow Golf Course'], days: ['Friday'], party: 'Me and 1 other' });
   assert(w.document.querySelector('[data-plan="jordan"]'));

@@ -45,6 +45,9 @@
 .homescreen-mode body>#preferences-app[data-view=setup]{background:#fff}
 /* Standard iOS navigation and multiple-selection rows. */
 #preferences-app[data-view=setup] .ios-nav-back{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;margin-left:-12px;border:0;background:transparent;color:#007aff;font:300 42px/1 -apple-system,BlinkMacSystemFont,sans-serif}
+#preferences-app .ios-nav-back{display:grid;place-items:center;flex:none;width:36px;height:44px;padding:0;margin-left:-10px;border:0;border-radius:10px;background:transparent;color:#176b50;font:300 38px/1 -apple-system,BlinkMacSystemFont,sans-serif}
+#preferences-app .ios-nav-back:active{background:#edf3ed}
+#preferences-app .ios-nav-back:focus-visible{outline:3px solid #176b50;outline-offset:1px}
 #preferences-app[data-view=setup] .preferences-header{gap:8px}
 #preferences-app[data-view=setup] .preferences-header img{width:24px;height:24px}
 #preferences-app[data-view=setup] .preferences-header>span{font-variant-numeric:tabular-nums}

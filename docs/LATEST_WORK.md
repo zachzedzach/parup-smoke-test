@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Added a dedicated Back arrow to the Rounds, Saved, and Preferences app screens, separate from the reset control. Back from Rounds returns to the last profile step when setup was completed, or to Welcome for the example-only route. Saved and Preferences return to Rounds. Setup and round planning keep their existing back behavior. Updated homescreen assets to JS v94/CSS v78. All 36 app checks pass, including navigation and keeping reset separate. A visual browser capture was unavailable because the local Playwright installation has no browser executable.
+
+## Previous change — November 21, 2026
+
 Corrected the “Smoking” option: when selected, profiles that smoke are included in example matches, and public rounds are described positively as visible to golfers comfortable with smoking. Women’s and men’s visibility controls now each fill half the row instead of leaving a third column empty. The dynamic visibility summary sits below its heading so longer text does not squeeze the heading into a narrow column. Added checks for match inclusion, round visibility, and layout. Homescreen JS v93, CSS v77. This supersedes the earlier v88 behavior note below.
 
 ## Current change — November 21, 2026
