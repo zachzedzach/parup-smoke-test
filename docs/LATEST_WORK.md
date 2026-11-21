@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Added “You can change this later” to the usual-round introduction. Bumped homescreen JS to v79.
+
+## Current change — November 21, 2026
+
 Moved the Utah locator beside the course search at the top of the course picker. The course list stays full width, with less vertical space spent on the map. Bumped app assets to homescreen JS v78 and CSS v74.
 
 ## Current change — November 21, 2026
