@@ -240,7 +240,10 @@
 #preferences-app .partner-actions button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:#f3f5ef;color:#4b5d40;font:500 12px -apple-system,sans-serif;border-radius:10px}
 
 #preferences-app .partner-actions [aria-pressed=true]{background:#fce4ed;color:#9c3155}
-#preferences-app .booking-next{margin-top:16px;background:#eef4e9;border-radius:12px;padding:16px}
+#preferences-app .booking-next{position:relative;overflow:hidden;margin-top:16px;background:#eef4e9;border-radius:12px;padding:16px}
+#preferences-app .acceptance-confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+#preferences-app .acceptance-confetti i{position:absolute;top:46%;left:50%;width:7px;height:10px;border-radius:2px;background:var(--confetti-color);animation:acceptance-confetti-pop 1050ms cubic-bezier(.16,.8,.3,1) forwards}
+@keyframes acceptance-confetti-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.4) rotate(0)}12%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(.75) rotate(var(--spin))}}
 #preferences-app .booking-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0;padding:12px;background:#fff;border:1px solid #dce6dc;border-radius:10px}
 #preferences-app .booking-summary span:first-child{grid-column:1/-1}
 #preferences-app .booking-summary span{display:grid;align-content:start;gap:5px;min-width:0}
@@ -744,6 +747,7 @@
 #preferences-app .empty-partners h2{margin:0 0 8px}
 #preferences-app .empty-partners p{margin:0 0 14px}
 @media(prefers-reduced-motion:reduce){#preferences-app[data-view=setup] .partner-preferences>summary>svg,#preferences-app[data-view=setup] .visibility-settings>summary>svg{transition:none}}
+@media(prefers-reduced-motion:reduce){#preferences-app .acceptance-confetti{display:none}}
 
 /* Give profile text fields a clear edge against the white setup surface. */
 #preferences-app[data-view=setup] .step-0 .pref-field{color:#394c3e;font-weight:500}

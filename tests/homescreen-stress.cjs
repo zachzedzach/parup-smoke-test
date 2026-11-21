@@ -12,6 +12,10 @@ function app(reducedMotion = false, heroImage) {
     url: 'https://example.test/?homescreen=1',
   });
   const w = dom.window;
+  w.__timers = new Map();
+  let timerId = 0;
+  w.setTimeout = (fn, delay) => { const id = ++timerId; w.__timers.set(id, { fn, delay }); return id; };
+  w.clearTimeout = id => w.__timers.delete(id);
   if (heroImage) w.FOURTH_CLUB_HERO_IMAGE = heroImage;
   w.matchMedia = () => ({ matches: reducedMotion, addEventListener() {}, removeEventListener() {} });
   w.structuredClone = structuredClone;
@@ -411,13 +415,30 @@ check('a mutual yes leads to the selected course booking page', () => {
   click(w, '[data-request="jordan"]');
   assert.equal(w.document.querySelector('[data-request="jordan"]').textContent, 'Request sent');
   assert(w.document.body.textContent.includes('Waiting for their answer'));
+  assert([...w.__timers.values()].some(timer => timer.delay === 15000));
   assert(!w.document.querySelector('.booking-next a'));
   click(w, '[data-reply="jordan"]');
+  assert(![...w.__timers.values()].some(timer => timer.delay === 15000));
   const booking = w.document.querySelector('.booking-next a');
   assert(booking);
   assert.equal(booking.href, w.FOURTH_BOOKING_LINKS['Sleepy Ridge Golf Course'].url);
   assert(w.document.querySelector('.booking-summary').textContent.includes('Sleepy Ridge Golf Course'));
   assert(w.document.querySelector('.booking-summary').textContent.includes('Saturday'));
+  w.close();
+});
+
+check('example request is accepted after 15 seconds with a short celebration', () => {
+  const w = app();
+  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  click(w, '[data-request="casey"]');
+  const pending = [...w.__timers.entries()].find(([, timer]) => timer.delay === 15000);
+  assert(pending);
+  w.__timers.delete(pending[0]);
+  pending[1].fn();
+  const card = w.document.querySelector('[data-plan="casey"]');
+  assert(card.textContent.includes('Both agreed to play · example'));
+  assert(card.querySelector('.seat-you'));
+  assert(card.querySelector('.acceptance-confetti'));
   w.close();
 });
 

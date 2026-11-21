@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+An example play request now gets an automatic reply after 15 seconds. Acceptance updates the four-player seats and briefly celebrates with confetti; the reply button remains available to preview acceptance sooner. Reduced-motion settings skip the confetti. Homescreen assets are JS v84 and CSS v76.
+
+## Current change — November 21, 2026
+
 Removed “Not this round” from the example listings. Visitors can ask to play or save a plan; ignoring a listing no longer requires a separate action. Saved plans remain in the Saved tab. Bumped homescreen JS to v83.
 
 ## Current change — November 21, 2026
