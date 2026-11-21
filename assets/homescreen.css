@@ -506,7 +506,7 @@
 #preferences-app[data-view=setup] .tolerance-control{margin:16px 0 4px;padding:12px;border:1px solid #e0e4dc;border-radius:12px;background:#f6f7f4}
 #preferences-app[data-view=setup] .tolerance-control small{display:block;margin-top:2px;font-size:12px;line-height:1.45}
 @media(max-width:360px){#preferences-app[data-view=setup] .weekly-schedule{gap:6px}#preferences-app[data-view=setup] .week-day{padding:6px}#preferences-app[data-view=setup] .week-day-toggle{padding-inline:7px}}
-.handicap-control{margin:18px 0 20px;padding:14px 15px;border:1px solid #dcd7e2;border-radius:14px;background:#fff}.handicap-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:#403a47;font-size:14px;font-weight:600}.handicap-heading small{margin-left:5px;color:#82798b;font-size:12px;font-weight:400}.handicap-heading output{min-width:52px;text-align:right;color:#201d29;font-size:17px;font-variant-numeric:tabular-nums}.handicap-toggle{display:flex;align-items:center;gap:9px;min-height:42px;color:#514a59;font-size:14px;cursor:pointer}.handicap-toggle input{width:18px;height:18px;margin:0;accent-color:#176b50}.handicap-range-wrap{padding:2px 2px 0}.handicap-range-wrap input{display:block;width:100%;height:32px;margin:4px 0 0;accent-color:#176b50;cursor:pointer;touch-action:pan-x}.handicap-range-labels{display:flex;justify-content:space-between;color:#82798b;font-size:11px;font-variant-numeric:tabular-nums}
+.handicap-control{margin:18px 0 20px;padding:14px 15px;border:1px solid #dcd7e2;border-radius:14px;background:#fff}.handicap-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;color:#403a47;font-size:14px;font-weight:600}.handicap-heading small{margin-left:auto;color:#82798b;font-size:12px;font-weight:400}.handicap-control input[type=text]{display:block;width:100%;min-height:46px;padding:10px 12px;border:1px solid #d8ddd8;border-radius:10px;background:#fff;color:#201d29;font:16px/1.4 -apple-system,BlinkMacSystemFont,sans-serif}
 #preferences-app[data-view=setup] .course-count{min-height:16px}
 #preferences-app[data-view=setup] .chosen-courses-empty{display:inline-flex;align-items:center;height:36px;padding:0 10px;border:1px dashed #d7ddd4;border-radius:9px;background:#fff;color:#667168}
 /* The experience choices are descriptions, not rank titles, and remain a compact single screen. */
@@ -540,7 +540,6 @@
 #preferences-app[data-view=setup] .any-level[aria-pressed=true]{border-color:#176b50;background:#e4efe9}
 #preferences-app[data-view=setup] .step-0 .handicap-control{border-color:#d8ddd8;border-radius:14px;background:#fff}
 #preferences-app[data-view=setup] .handicap-control .handicap-help{display:block;color:#656d67;font-size:12px;line-height:1.35}
-#preferences-app[data-view=setup] .handicap-range-wrap input{accent-color:#176b50}
 #preferences-app[data-view=round-builder] .preferences-content{padding-bottom:20px}
 #preferences-app[data-view=round-builder] .round-builder{padding-bottom:10px}
 #preferences-app[data-view=round-builder] .pref-field input[type=date],#preferences-app[data-view=round-builder] .pref-field input[type=time],#preferences-app[data-view=round-builder] .pref-field select{min-height:50px;appearance:auto;background:#f2f4f1}
@@ -659,25 +658,7 @@
 #preferences-app[data-view=setup] .step-1 .skill-choices button[aria-pressed=true]{border:2px solid #176b50;background:#e5eedb;box-shadow:none}
 @media(max-height:740px){#preferences-app[data-view=setup] .step-1 .skill-choices button{min-height:48px}}
 
-/* Handicap Index: a fine-grained native slider plus exact entry for plus indexes. */
-#preferences-app[data-view=setup] .handicap-control .handicap-range-wrap input[type=range]{
-  min-height:44px;
-  height:44px;
-  margin:0;
-  padding:0;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  accent-color:#176b50;
-  touch-action:auto;
-}
-#preferences-app[data-view=setup] .handicap-control .handicap-entry-label{
-  display:block;
-  margin-top:2px;
-  color:#414a43;
-  font-size:13px;
-  font-weight:600;
-}
+/* The optional handicap uses a whole-number text field. */
 #preferences-app[data-view=setup] .handicap-control input[data-input=handicap]{
   min-height:46px;
   font:16px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;

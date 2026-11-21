@@ -186,20 +186,21 @@ check('profile requires a first name and omits the removed gender choice', () =>
   w.close();
 });
 
-check('handicap slider starts at zero, supports decimals and plus indexes, and exact entry validates 54.0', () => {
+check('handicap is a whole-number text field that accepts plus indexes', () => {
   const w = app(); atStep(w, 0);
-  const range = w.document.querySelector('[data-handicap-range]'), entry = w.document.querySelector('[data-input="handicap"]');
-  assert(range);
-  assert.equal(range.value, '0');
-  assert.equal(entry.value, '0.0');
-  range.value = '-1.2'; range.dispatchEvent(new w.Event('input', { bubbles: true }));
-  assert.equal(entry.value, '+1.2');
-  assert.equal(w.document.querySelector('[data-handicap-value]').textContent, '+1.2');
-  input(w, '[data-input="handicap"]', '54.0');
+  const entry = w.document.querySelector('[data-input="handicap"]');
+  assert.equal(w.document.querySelector('[data-handicap-range]'), null);
+  assert.equal(entry.type, 'text');
+  assert.equal(entry.value, '0');
+  input(w, '[data-input="handicap"]', '18');
   assert(!entry.hasAttribute('aria-invalid'));
-  input(w, '[data-input="handicap"]', '54.1');
+  input(w, '[data-input="handicap"]', '+2');
+  assert(!entry.hasAttribute('aria-invalid'));
+  input(w, '[data-input="handicap"]', '18.4');
   assert.equal(entry.getAttribute('aria-invalid'), 'true');
-  assert(w.document.querySelector('.handicap-error').textContent.includes('54.0'));
+  assert(w.document.querySelector('.handicap-error').textContent.includes('whole number'));
+  input(w, '[data-input="handicap"]', '55');
+  assert.equal(entry.getAttribute('aria-invalid'), 'true');
   w.close();
 });
 
