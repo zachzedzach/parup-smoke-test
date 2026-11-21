@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Enlarged the Utah course locator in the course picker to 62×87px so it reads clearly beside the full-width list. Bumped the homescreen stylesheet cache version to v73.
+
+## Current change — November 21, 2026
+
 Changed the empty bio field’s placeholder to “Enter your bio here.” Bumped the homescreen script cache version to v76.
 
 ## Current change — November 21, 2026
