@@ -568,6 +568,7 @@ check('a mutual yes leads to the selected course booking page', () => {
   click(w, '[data-request="jordan"]');
   assert.equal(w.document.querySelector('[data-request="jordan"]').textContent, 'Request sent');
   assert(w.document.body.textContent.includes('Waiting for their answer'));
+  assert(!w.document.querySelector('.booking-next p'), 'waiting state should not show the removed explanatory copy');
   assert([...w.__timers.values()].some(timer => timer.delay === 15000));
   assert(!w.document.querySelector('.booking-next a'));
   click(w, '[data-reply="jordan"]');
@@ -593,6 +594,7 @@ check('asking to play simulates the request and opens the launch email signup', 
   click(w, '[data-request="casey"]');
   assert.equal(w.document.querySelector('[data-request="casey"]').textContent, 'Request sent');
   assert(w.document.body.textContent.includes('Waiting for their answer'));
+  assert(!w.document.querySelector('.booking-next p'), 'waiting state should not show the removed explanatory copy');
   assert.equal(gate.open, true);
   assert.equal(w.document.querySelector('#signup-source').value, 'interactive_preview_get_app');
   w.close();

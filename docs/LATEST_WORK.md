@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Removed the explanatory paragraph from the pending example-reply state. The request card still shows its pending status and the control to preview an accepted reply; the 15-second automatic sample response is unchanged. Updated homescreen JS to v95 and added assertions that the removed copy does not return. All 36 app checks pass.
+
+## Previous change — November 21, 2026
+
 Added a dedicated Back arrow to the Rounds, Saved, and Preferences app screens, separate from the reset control. Back from Rounds returns to the last profile step when setup was completed, or to Welcome for the example-only route. Saved and Preferences return to Rounds. Setup and round planning keep their existing back behavior. Updated homescreen assets to JS v94/CSS v78. All 36 app checks pass, including navigation and keeping reset separate. A visual browser capture was unavailable because the local Playwright installation has no browser executable.
 
 ## Previous change — November 21, 2026
