@@ -93,7 +93,7 @@ function atStep(w, target, { name = 'Sam', city = 'Provo' } = {}) {
 function finishSetup(w, options = {}) {
   const {
     name = 'Sam', city = 'Provo', skill = 2, courses = [], days = ['Saturday'], times = {},
-    party = 'Just me', holes = '18 holes', pace = 'Steady', vibes = [], playWith = [],
+    party = 'Just me', holes = '18 holes', pace = 'Steady', vibes = [], playWith = [], smoking = false,
   } = options;
   atStep(w, 0, { name, city });
   next(w); // score
@@ -114,6 +114,11 @@ function finishSetup(w, options = {}) {
   next(w); // round preferences
   for (const value of vibes) click(w, `[data-value="${value}"]`);
   for (const value of playWith) click(w, `[data-value="${value}"]`);
+  if (smoking) {
+    const control = w.document.querySelector('[data-smoking]');
+    control.checked = true;
+    control.dispatchEvent(new w.Event('change', { bubbles: true }));
+  }
   next(w); // results
 }
 
@@ -426,31 +431,49 @@ check('round-style choices stay paired and playing audience is one exclusive rad
   w.close(); partners.close();
 });
 
-check('one Smoking checkbox filters smoker matches and hides public rounds from smokers', () => {
+check('Smoking includes smoker matches and hides public rounds from golfers who avoid smoking', () => {
   const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
-  assert(w.document.querySelector('[data-plan="casey"]'));
-  click(w, '[data-action="edit"]');
-  click(w, '[data-edit-step="5"]');
-  const smoking = w.document.querySelector('[data-hide-smokers]');
-  assert.equal(w.document.querySelectorAll('[data-field="hideFrom"]').length, 2);
-  assert(![...w.document.querySelectorAll('[data-field="hideFrom"]')].some(button => button.dataset.value === 'People who smoke'));
-  assert.equal(smoking.closest('label').querySelector('b').textContent, 'Smoking');
-  smoking.checked = true;
-  smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
-  next(w);
-  assert(w.document.body.textContent.includes('Public rounds: Everyone except people who smoke'));
-  click(w, '[data-view="home"]');
   assert(!w.document.querySelector('[data-plan="casey"]'));
   click(w, '[data-action="edit"]');
   click(w, '[data-edit-step="5"]');
-  const turnedOff = w.document.querySelector('[data-hide-smokers]');
-  assert(turnedOff.checked);
-  turnedOff.checked = false;
-  turnedOff.dispatchEvent(new w.Event('change', { bubbles: true }));
+  const smoking = w.document.querySelector('[data-smoking]');
+  assert.equal(w.document.querySelectorAll('[data-field="hideFrom"]').length, 2);
+  assert.equal(smoking.closest('label').querySelector('b').textContent, 'Smoking');
+  assert(smoking.closest('label').textContent.includes('Include golfers who smoke in matches'));
+  smoking.checked = true;
+  smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
+  assert(w.document.querySelector('.visibility-settings>summary small').textContent.includes('golfers who avoid smoking'));
   next(w);
-  assert(w.document.body.textContent.includes('Public rounds: Everyone ·'));
   click(w, '[data-view="home"]');
   assert(w.document.querySelector('[data-plan="casey"]'));
+  click(w, '[data-action="create-round"]');
+  click(w, '[data-action="post-round"]');
+  assert(w.document.body.textContent.includes('visible to everyone except golfers who avoid smoking'));
+  click(w, '[data-action="preview-join"]');
+  assert(w.document.body.textContent.includes('Alex asked to join · example'));
+  assert(!w.document.body.textContent.includes('Jordan asked to join · example'));
+  w.close();
+});
+
+check('Women and Men round-visibility choices use two equal columns', () => {
+  const stylesheet = fs.readFileSync(path.join(dir, 'assets/homescreen.css'), 'utf8');
+  assert.match(stylesheet, /\.step-5 \.visibility-settings>\.pref-chips\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(stylesheet, /\.visibility-settings>summary\{grid-template-columns:minmax\(0,1fr\) 18px;grid-template-rows:auto auto\}/);
+});
+
+check('turning Smoking off restores smoke-free visibility and hides smoker matches', () => {
+  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  click(w, '[data-action="edit"]');
+  click(w, '[data-edit-step="5"]');
+  const smoking = w.document.querySelector('[data-smoking]');
+  smoking.checked = true;
+  smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
+  smoking.checked = false;
+  smoking.dispatchEvent(new w.Event('change', { bubbles: true }));
+  next(w);
+  assert(w.document.body.textContent.includes('Everyone'));
+  click(w, '[data-view="home"]');
+  assert(!w.document.querySelector('[data-plan="casey"]'));
   w.close();
 });
 
@@ -462,7 +485,7 @@ check('self-rating can be skipped and preferences say not set', () => {
 });
 
 check('completed profile leads to clear example groups and capacity copy', () => {
-  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'], smoking: true });
   assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Groups for your week');
   assert(w.document.querySelector('.clubhouse-title').textContent.includes('These examples use your usual courses and times. They’re sample golfers; no real requests are sent.'));
   assert.equal(w.document.querySelector('.golf-plan-card [data-request]').textContent, 'Ask to play');
@@ -527,7 +550,7 @@ check('a mutual yes leads to the selected course booking page', () => {
 
 check('asking to play simulates the request and opens the launch email signup', () => {
   const w = app();
-  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'], smoking: true });
   const gate = w.document.createElement('dialog');
   gate.id = 'store-gate';
   gate.innerHTML = '<input id="signup-source">';
@@ -545,7 +568,7 @@ check('asking to play simulates the request and opens the launch email signup', 
 
 check('example request is accepted after 15 seconds with a short celebration', () => {
   const w = app();
-  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'], smoking: true });
   click(w, '[data-request="casey"]');
   const pending = [...w.__timers.entries()].find(([, timer]) => timer.delay === 15000);
   assert(pending);
