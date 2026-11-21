@@ -494,6 +494,24 @@ check('a mutual yes leads to the selected course booking page', () => {
   w.close();
 });
 
+check('asking to play simulates the request and opens the launch email signup', () => {
+  const w = app();
+  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
+  const gate = w.document.createElement('dialog');
+  gate.id = 'store-gate';
+  gate.innerHTML = '<input id="signup-source">';
+  w.document.body.append(gate);
+  w.HTMLDialogElement.prototype.showModal = function() { this.setAttribute('open', ''); };
+  w.ROUNDFOLK_CONFIG = {};
+  w.eval(fs.readFileSync(path.join(dir, 'site.js'), 'utf8'));
+  click(w, '[data-request="casey"]');
+  assert.equal(w.document.querySelector('[data-request="casey"]').textContent, 'Request sent');
+  assert(w.document.body.textContent.includes('Waiting for their answer'));
+  assert.equal(gate.open, true);
+  assert.equal(w.document.querySelector('#signup-source').value, 'interactive_preview_get_app');
+  w.close();
+});
+
 check('example request is accepted after 15 seconds with a short celebration', () => {
   const w = app();
   finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });

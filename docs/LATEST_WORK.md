@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+Tapping “Ask to play” now preserves the sample request transition and opens the existing launch email signup popup, creating an in-app path from engagement to signup. Added a test covering request state, popup, and attribution. Homescreen JS v89.
+
+## Current change — November 21, 2026
+
 Combined smoker matching and public-round visibility into one “Smoking” checkbox. It filters smoker profiles from suggested groups and excludes smokers from the golfer’s public rounds. Added an interaction check for both effects. Homescreen JS v88.
 
 ## Current change — November 21, 2026
