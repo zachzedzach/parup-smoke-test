@@ -1,3 +1,7 @@
+## Current annotation pass — November 21, 2026
+
+Worked through the eight browser annotations: the profile asks “Write a line or two about yourself”; golfer group and score preferences share one “Who do you want to play with?” disclosure below the self-rating; the Utah locator is larger; availability and usual group-size prompts use direct language; public-round visibility has a visible optional label and chevron; sample rounds use the selected days, time window, holes and course, with a clear explanation when no sample profile fits; and the launch signup says the app is not in the stores yet and offers one launch email. Desktop visits to `/?homescreen=1` return to the main site, while phone-size and installed-app views keep the full-screen preview. Updated product docs and cache versions (site CSS, app JS v74, app CSS v71). `npm test` passes all 27 interaction checks; JavaScript syntax and whitespace checks pass. 390px screenshot shows the full-screen app, and 1440px screenshot shows the main site. Physical phone behavior was not tested. Pages deployment is pending.
+
 ## Current change — November 21, 2026
 
 Changed the profile bio prompt to “Write a line or two about yourself:” so it plainly asks for a short introduction. Bumped the app script cache version to v73.

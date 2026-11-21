@@ -290,7 +290,7 @@ check('matching window explains its range and moves in 15-minute increments', ()
 
 check('usual round choices clarify party size, holes, and pace', () => {
   const w = app(); atStep(w, 4);
-  assert(w.document.body.textContent.includes('How many golfers are already in your group?'));
+  assert(w.document.body.textContent.includes('How many golfers do you usually bring with you?'));
   click(w, '[data-single="party"][data-value="Me and 1 other"]');
   click(w, '[data-single="holes"][data-value="9 holes"]');
   click(w, '[data-single="pace"][data-value="Quick"]');
@@ -306,17 +306,21 @@ check('round-style choices stay paired and playing audience is one exclusive rad
   click(w, '[data-value="Prefer no music"]');
   assert.equal(w.document.querySelector('[data-value="Music is fine"]').getAttribute('aria-pressed'), 'false');
   assert.equal(w.document.querySelector('[data-value="Prefer no music"]').getAttribute('aria-pressed'), 'true');
-  const everyone = w.document.querySelector('input[name=playWith][value="Everyone"]');
-  const women = w.document.querySelector('input[name=playWith][value="Women golfers"]');
-  const men = w.document.querySelector('input[name=playWith][value="Men golfers"]');
+  const partners = app(); atStep(partners, 1);
+  const disclosure = partners.document.querySelector('.partner-preferences');
+  assert(disclosure && !disclosure.open);
+  disclosure.open = true;
+  const everyone = partners.document.querySelector('input[name=playWith][value="Everyone"]');
+  const women = partners.document.querySelector('input[name=playWith][value="Women golfers"]');
+  const men = partners.document.querySelector('input[name=playWith][value="Men golfers"]');
   assert(everyone.checked);
-  click(w, 'input[name=playWith][value="Women golfers"]');
+  click(partners, 'input[name=playWith][value="Women golfers"]');
   assert(women.checked && !everyone.checked && !men.checked);
-  click(w, 'input[name=playWith][value="Men golfers"]');
+  click(partners, 'input[name=playWith][value="Men golfers"]');
   assert(men.checked && !everyone.checked && !women.checked);
-  click(w, 'input[name=playWith][value="Everyone"]');
+  click(partners, 'input[name=playWith][value="Everyone"]');
   assert(everyone.checked && !women.checked && !men.checked);
-  w.close();
+  w.close(); partners.close();
 });
 
 check('self-rating can be skipped and preferences say not set', () => {
@@ -329,7 +333,7 @@ check('self-rating can be skipped and preferences say not set', () => {
 check('completed profile leads to clear example groups and capacity copy', () => {
   const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Friday'] });
   assert.equal(w.document.querySelector('.preferences-content h1').textContent, 'Groups for your week');
-  assert(w.document.querySelector('.clubhouse-title').textContent.includes('See what happens when you ask to play. This is an example; no real request is sent.'));
+  assert(w.document.querySelector('.clubhouse-title').textContent.includes('These examples use your usual courses and times. They’re sample golfers; no real requests are sent.'));
   assert.equal(w.document.querySelector('.golf-plan-card [data-request]').textContent, 'Ask to play');
   assert(w.document.querySelector('.golf-plan-card').textContent.includes('East Bay Golf Course'));
   assert.equal(w.document.querySelector('.group-seats small').textContent, 'Room for you');
@@ -347,7 +351,7 @@ check('two-player preference hides plans without two open spots', () => {
 check('no usual days produces a useful empty state rather than invented plans', () => {
   const w = app(); finishSetup(w, { days: [] });
   assert.equal(w.document.querySelectorAll('.golf-plan-card').length, 0);
-  assert(w.document.querySelector('.empty-partners').textContent.includes('Choose the days you’re usually free'));
+  assert(w.document.querySelector('.empty-partners').textContent.includes('Choose the days you usually play'));
   w.close();
 });
 

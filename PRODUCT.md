@@ -4,7 +4,7 @@ The Fourth Club helps golfers find people to play with around their usual course
 
 ## Audience and promise
 
-Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating and a separate seven-level playing-partner filter, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, show example groups that fit the golfer’s usual schedule. Keep planning one dated round as a secondary action. Golfers whose preferences fit a public round may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
+Golfers across experience levels, including women seeking other women to play with, beginners and people joining with a friend. Show profile photos and descriptions, a seven-level self-rating, a single “Who do you want to play with?” control that combines golfer group and optional score range, handicap, courses, independent weekday start times, flexibility, holes, party size, pace, cart choice, atmosphere and private partner preferences. After setup, show example groups that fit the golfer’s usual schedule. Keep planning one dated round as a secondary action. Golfers whose preferences fit a public round may ask to join; the host can accept or decline before booking. No swipe or romantic framing.
 
 ## Current product boundary
 
@@ -12,7 +12,7 @@ A published interest test and interactive frontend preview, not a working reserv
 
 ## Surfaces
 
-Homepage persuades through one promise and the actual working app. Supplied iPhone PSD artwork frames the shared embedded app. `/?homescreen=1` and installed web-app mode show the same UI full-screen without fake hardware/status bars. Both use assets/homescreen.js and .css. site.js owns signup and site analytics only.
+Homepage persuades through one promise and the actual working app. Supplied iPhone PSD artwork frames the shared embedded app. `/?homescreen=1` and installed web-app mode show the same UI full-screen without fake hardware/status bars on touch devices; desktop visits to that query return to the main site. Both use assets/homescreen.js and .css. site.js owns signup and site analytics only.
 
 ## Source and scope
 

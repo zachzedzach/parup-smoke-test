@@ -699,3 +699,10 @@ html.fullscreen-preview .preview-download-cta,html.homescreen-mode .preview-down
 @media(max-width:700px){.hero-visual{width:100%;height:360px;margin:0}.hero-photo-stack{width:min(100%,460px)}.hero-photo-card--group{left:0;top:13%;width:66%;height:48%}.hero-photo-card--golfer{right:1%;top:0;width:43%;height:67%}.hero-photo-card--swing{left:15%;bottom:0;width:42%;height:70%}}
 @media(max-width:430px){.hero-visual{height:340px}}
 @media(prefers-reduced-motion:reduce){.hero-photo-card,.hero-photo-card img{transition:none}.hero-photo-card[aria-pressed=true],.hero-photo-card:active,.hero-photo-card:hover{transform:none}.hero-photo-card:hover img{transform:none}}
+
+
+/* Treat the launch note as a next step, not a store badge or faux download. */
+html.fullscreen-preview .preview-download-cta,html.homescreen-mode .preview-download-cta{align-items:flex-start;flex-direction:column;gap:10px;margin:18px 0 12px;padding:14px 0 0;border:0;border-top:1px solid #d7dfd4;border-radius:0;background:transparent}
+.preview-download-cta b{font-size:15px}
+.preview-download-cta small{max-width:48ch}
+.preview-download-cta button{width:100%;min-height:46px}
