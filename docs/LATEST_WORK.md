@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+After a usual score is selected, the app opens “Who do you want to play with?” and scrolls the phone’s own content so that section is visible above the fixed Continue button. A layout-backed check covers the embedded phone viewport. Homescreen JS v90.
+
+## Current change — November 21, 2026
+
 Tapping “Ask to play” now preserves the sample request transition and opens the existing launch email signup popup, creating an in-app path from engagement to signup. Added a test covering request state, popup, and attribution. Homescreen JS v89.
 
 ## Current change — November 21, 2026

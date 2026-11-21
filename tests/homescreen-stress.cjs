@@ -252,6 +252,31 @@ check('score choices have distinct cues, start unselected, and select one range'
   w.close();
 });
 
+check('choosing a usual score scrolls partner choices into the visible phone area', () => {
+  const w = app(); atStep(w, 1);
+  const content = w.document.querySelector('.preferences-content');
+  const originalRect = w.HTMLElement.prototype.getBoundingClientRect;
+  Object.defineProperty(w.HTMLElement.prototype, 'clientHeight', { configurable: true, get() { return this === content ? 640 : 0; } });
+  Object.defineProperty(w.HTMLElement.prototype, 'scrollHeight', { configurable: true, get() { return this === content ? 1400 : 0; } });
+  w.HTMLElement.prototype.getBoundingClientRect = function() {
+    if (this === content) return { top: 200, bottom: 840, left: 0, right: 400, width: 400, height: 640 };
+    if (this.classList?.contains('setup-actions')) return { top: 840, bottom: 920, left: 0, right: 400, width: 400, height: 80 };
+    if (this.matches?.('.partner-score-filter > summary')) {
+      const top = 960 - content.scrollTop;
+      return { top, bottom: top + 48, left: 0, right: 400, width: 400, height: 48 };
+    }
+    return originalRect.call(this);
+  };
+  click(w, '[data-skill="3"]');
+  const summary = w.document.querySelector('.partner-score-filter > summary');
+  const summaryRect = summary.getBoundingClientRect();
+  assert(w.document.querySelector('.partner-score-filter').open);
+  assert(content.scrollTop > 0, 'the phone content itself should scroll');
+  assert(summaryRect.top >= 200 && summaryRect.top < 240, 'the partner question should move near the top of the visible content');
+  assert(summaryRect.bottom < 840, 'the partner question should sit above the fixed Continue button');
+  w.close();
+});
+
 check('partner score filter opens after choosing a score and supports any score', () => {
   const w = app(); atStep(w, 1);
   const disclosure = w.document.querySelector('.partner-score-filter');
