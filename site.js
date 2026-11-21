@@ -1,7 +1,38 @@
 (() => {
+  const heroPhotos = [
+    'assets/pexels-golf/pexels-5044298.webp',
+    'assets/pexels-golf/pexels-23697954.webp',
+    'assets/pexels-golf/pexels-35320710.webp',
+    'assets/pexels-golf/pexels-20739659.webp',
+    'assets/pexels-golf/pexels-5644644.webp',
+    'assets/pexels-golf/pexels-1409004.webp',
+    'assets/pexels-golf/pexels-13181047.webp',
+    'assets/pexels-golf/pexels-9366573.webp',
+    'assets/pexels-golf/pexels-19003911.webp',
+    'assets/pexels-golf/pexels-18637322.webp',
+    'assets/pexels-golf/pexels-17768939.webp',
+    'assets/pexels-golf/pexels-9366512.webp',
+    'assets/pexels-golf/pexels-9366561.webp',
+    'assets/pexels-golf/pexels-9366517.webp',
+    'assets/pexels-golf/pexels-9207390.webp',
+    'assets/pexels-golf/pexels-40558711.webp',
+    'assets/pexels-golf/pexels-6542471.webp',
+    'assets/pexels-golf/pexels-19003912.webp',
+  ];
+  const photoRotationKey = 'fourth-club-photo-rotation';
+  let photoStart = Math.floor(Math.random() * heroPhotos.length);
+  try {
+    const savedStart = Number.parseInt(localStorage.getItem(photoRotationKey) || '0', 10);
+    photoStart = Number.isFinite(savedStart) && savedStart >= 0 ? savedStart % heroPhotos.length : 0;
+    localStorage.setItem(photoRotationKey, String((photoStart + 3) % heroPhotos.length));
+  } catch {}
+  const visitPhotos = Array.from({ length: heroPhotos.length }, (_, index) => heroPhotos[(photoStart + index) % heroPhotos.length]);
+  window.FOURTH_CLUB_HERO_IMAGE = visitPhotos[0];
+
   // The installed preview hides the marketing page, so don't download its hero photo there.
   if (!document.documentElement.classList.contains('homescreen-mode')) {
     document.querySelectorAll('.hero-photo[data-src]').forEach((photo, index) => {
+      photo.dataset.src = visitPhotos[index];
       photo.src = photo.dataset.src;
       if (index === 0) {
         photo.fetchPriority = 'high';

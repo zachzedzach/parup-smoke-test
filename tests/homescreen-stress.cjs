@@ -6,12 +6,13 @@ const assert = require('node:assert/strict');
 const dir = path.resolve(__dirname, '..') + path.sep;
 let passed = 0;
 
-function app(reducedMotion = false) {
+function app(reducedMotion = false, heroImage) {
   const dom = new JSDOM('<html class="homescreen-mode"><body></body></html>', {
     runScripts: 'outside-only',
     url: 'https://example.test/?homescreen=1',
   });
   const w = dom.window;
+  if (heroImage) w.FOURTH_CLUB_HERO_IMAGE = heroImage;
   w.matchMedia = () => ({ matches: reducedMotion, addEventListener() {}, removeEventListener() {} });
   w.structuredClone = structuredClone;
   w.requestAnimationFrame = () => 1;
@@ -24,7 +25,7 @@ function app(reducedMotion = false) {
   return w;
 }
 
-function site(homeScreen) {
+function site(homeScreen, rotationStore = {}) {
   const html = `<html${homeScreen ? ' class="homescreen-mode"' : ''}><body>
     <button class="hero-photo-card"><img class="hero-photo" data-src="assets/a.webp"></button>
     <button class="hero-photo-card"><img class="hero-photo" data-src="assets/b.webp"></button>
@@ -34,6 +35,10 @@ function site(homeScreen) {
   // Let resolved preview-animation promises finish before disposing of their document.
   w.close = () => {};
   w.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
+  Object.defineProperty(w, 'localStorage', { value: {
+    getItem: key => Object.hasOwn(rotationStore, key) ? rotationStore[key] : null,
+    setItem: (key, value) => { rotationStore[key] = String(value); },
+  } });
   w.ROUNDFOLK_CONFIG = {};
   w.eval(fs.readFileSync(path.join(dir, 'assets/allo-wave.js'), 'utf8'));
   w.eval(fs.readFileSync(path.join(dir, 'site.js'), 'utf8'));
@@ -121,13 +126,32 @@ check('homescreen skips loading marketing photos', () => {
   w.close();
 });
 
-check('marketing loads the first photo eagerly and the rest lazily', () => {
-  const w = site(false), photos = [...w.document.querySelectorAll('.hero-photo')];
-  assert.equal(photos[0].getAttribute('src'), 'assets/a.webp');
-  assert.equal(photos[0].fetchPriority, 'high');
-  assert.equal(photos[0].loading, 'eager');
-  assert(photos.slice(1).every(photo => photo.loading === 'lazy'));
-  w.close();
+check('marketing rotates its photos on each visit and loads them efficiently', () => {
+  const sourceText = fs.readFileSync(path.join(dir, 'site.js'), 'utf8');
+  const photoLibrary = [...sourceText.matchAll(/'((?:assets\/pexels-golf\/)[^']+\.webp)'/g)].map(match => match[1]);
+  assert.equal(photoLibrary.length, 18);
+  assert.equal(new Set(photoLibrary).size, photoLibrary.length);
+  for (const src of photoLibrary) assert(fs.existsSync(path.join(dir, src)));
+  const rotationStore = {};
+  const first = site(false, rotationStore), firstPhotos = [...first.document.querySelectorAll('.hero-photo')];
+  const firstSet = firstPhotos.map(photo => photo.getAttribute('src'));
+  assert.equal(firstPhotos[0].getAttribute('src'), first.FOURTH_CLUB_HERO_IMAGE);
+  assert.equal(new Set(firstSet).size, 3);
+  assert(firstSet.every(src => src.startsWith('assets/pexels-golf/')));
+  assert.equal(firstPhotos[0].fetchPriority, 'high');
+  assert.equal(firstPhotos[0].loading, 'eager');
+  assert(firstPhotos.slice(1).every(photo => photo.loading === 'lazy'));
+  const second = site(false, rotationStore), secondPhotos = [...second.document.querySelectorAll('.hero-photo')];
+  const secondSet = secondPhotos.map(photo => photo.getAttribute('src'));
+  assert.notEqual(second.FOURTH_CLUB_HERO_IMAGE, first.FOURTH_CLUB_HERO_IMAGE);
+  assert.equal(new Set(secondSet).size, 3);
+  assert(secondSet.every(src => !firstSet.includes(src)));
+  for (const src of [...firstSet, ...secondSet]) assert(fs.existsSync(path.join(dir, src)));
+  const phone = app(false, first.FOURTH_CLUB_HERO_IMAGE);
+  assert.equal(phone.document.querySelector('.story-visual img').getAttribute('src'), first.FOURTH_CLUB_HERO_IMAGE);
+  phone.close();
+  first.close();
+  second.close();
 });
 
 check('hero photo cards are unique and select only the tapped photo', () => {
