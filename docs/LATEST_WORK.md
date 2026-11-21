@@ -1,5 +1,9 @@
 ## Current change — November 21, 2026
 
+After a sample round is accepted, the card now has one simple “Visit course website” link to that course’s or operator’s homepage. Removed vendor booking deep links, phone-call buttons, and booking-specific instructions. East Bay uses Provo’s official homepage because its former golf-domain address is parked. Refreshed the course website directory and cache versions (course links v4, app JS v96). Updated README and product notes to describe the homepage behavior. All 37 app checks pass, including homepage-only destinations for every public or municipal course and the East Bay link.
+
+## Current change — November 21, 2026
+
 Changed the Sleepy Ridge result link from the foreUP deep link to the course’s official [course page](https://www.sleepyridgegolf.com/course), because the reported deep link landed incorrectly. The button now says “Open Sleepy Ridge tee-time booking,” with a note to choose Schedule Your Tee Time. Updated the booking-catalog cache version and pinned the destination in the regression check. All 36 app checks pass.
 
 ## Previous change — November 21, 2026

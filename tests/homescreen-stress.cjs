@@ -562,7 +562,7 @@ check('saved plans stay available without hiding the listing', () => {
   w.close();
 });
 
-check('a mutual yes leads to the selected course booking page', () => {
+check('a mutual yes links to the selected course homepage', () => {
   const w = app();
   finishSetup(w, { courses: ['Sleepy Ridge Golf Course'], days: ['Saturday'], party: 'Me and 1 other' });
   click(w, '[data-request="jordan"]');
@@ -575,11 +575,23 @@ check('a mutual yes leads to the selected course booking page', () => {
   assert(![...w.__timers.values()].some(timer => timer.delay === 15000));
   const booking = w.document.querySelector('.booking-next a');
   assert(booking);
-  assert.equal(booking.href, 'https://www.sleepyridgegolf.com/course');
-  assert.equal(booking.textContent.trim(), 'Open Sleepy Ridge tee-time booking');
-  assert(w.document.querySelector('.booking-next').textContent.includes('Schedule Your Tee Time'));
+  assert.equal(booking.href, 'https://www.sleepyridgegolf.com/');
+  assert.equal(booking.textContent.trim(), 'Visit course website');
+  assert(w.document.querySelector('.booking-next').textContent.includes('Visit the course website for details.'));
   assert(w.document.querySelector('.booking-summary').textContent.includes('Sleepy Ridge Golf Course'));
   assert(w.document.querySelector('.booking-summary').textContent.includes('Saturday'));
+  w.close();
+});
+
+check('East Bay links to Provo’s official homepage instead of calling the course', () => {
+  const w = app();
+  finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Saturday'], smoking: true });
+  click(w, '[data-request="casey"]');
+  click(w, '[data-reply="casey"]');
+  const link = w.document.querySelector('.booking-next a');
+  assert.equal(link.href, 'https://www.provo.gov/');
+  assert.equal(link.textContent.trim(), 'Visit course website');
+  assert(!link.href.startsWith('tel:'));
   w.close();
 });
 
@@ -617,12 +629,17 @@ check('example request is accepted after 15 seconds with a short celebration', (
   w.close();
 });
 
-check('every public or municipal course has a direct booking or phone destination', () => {
+check('every public or municipal course links to a website homepage', () => {
   const w = app(), courses = w.FOURTH_COURSES.filter(course => course.access !== 'private');
   assert.equal(courses.length, 94);
   for (const course of courses) {
     const url = w.FOURTH_BOOKING_LINKS[course.name]?.url;
-    assert(url && (url.startsWith('https://') || url.startsWith('tel:+')), `${course.name} needs a booking destination`);
+    assert(url && url.startsWith('https://'), `${course.name} needs a website homepage`);
+    const destination = new URL(url);
+    assert.equal(destination.pathname, '/', `${course.name} link should go to the homepage`);
+    assert.equal(destination.search, '', `${course.name} homepage should not have a booking query`);
+    assert.equal(destination.hash, '', `${course.name} homepage should not have a booking fragment`);
+    assert(!/(foreupsoftware|chronogolf|membersports|golfrev|teeitup|tenfore|quick18|golfscape|golfpay|agilysys)/i.test(destination.hostname), `${course.name} should link to its own or operator website`);
   }
   assert(!w.FOURTH_COURSES.some(course => course.access === 'private' && w.document.querySelector(`[data-course="${course.name}"]`)));
   w.close();

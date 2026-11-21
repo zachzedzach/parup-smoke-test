@@ -1,106 +1,312 @@
-// Course-specific booking destinations checked against the course or booking provider.
+// Course and operating-organization homepages for the sample round links.
 window.FOURTH_BOOKING_LINKS = {
-  "Bonneville Golf Course": {"url":"https://www.chronogolf.com/club/bonneville-golf-course","provider":"Chronogolf"},
-  "Birch Creek Golf Course": {"url":"https://www.golfrev.com/go/tee_times/?courseid=3719&htc=370&r=1","provider":"GolfRev"},
-  "Bear Lake Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/18905","provider":"foreUP"},
-  "Eaglewood Golf Course": {"url":"https://app.membersports.com/tee-times/15391/18901/0","provider":"MemberSports"},
-  "Valley View Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/19501","provider":"foreUP"},
-  "Bountiful Ridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/18950","provider":"foreUP"},
-  "Canyons Golf Course": {"url":"https://canyons.quick18.com/teetimes/searchmatrix","provider":"Quick18"},
-  "Cedar Hills Golf Course": {"url":"https://app.membersports.com/tee-times/15381/18891/0/0/0","provider":"MemberSports"},
-  "Cedar Ridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19680","provider":"foreUP"},
-  "Davis Park Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19500/1757","provider":"foreUP"},
-  "Dinaland Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19506/1826","provider":"foreUP"},
-  "Dixie Red Hills Golf Course": {"url":"https://www.sgcityutah.gov/activity/golf/dixie_red_hills/index.php","provider":"St. George city course page","label":"Open Dixie Red Hills booking page","note":"Use the course’s Book a Tee Time link."},
-  "Crane Field Golf Course": {"url":"https://www.cranefieldgolf.com/foreup/","provider":"Course booking instructions","label":"Open Crane Field booking steps","note":"Use “Online Tee Times” to choose your date, time, players, holes and cart."},
-  "Fox Hollow Golf Course": {"url":"https://app.membersports.com/tee-times/15396/18907/0/0/0","provider":"MemberSports"},
-  "Forest Dale Golf Course": {"url":"https://www.chronogolf.com/club/forest-dale-golf-course","provider":"Chronogolf"},
-  "El Monte Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/19197","provider":"foreUP"},
-  "Fore Lakes Golf Course": {"url":"https://app.membersports.com/tee-times/15394/18905/0/0/0","provider":"MemberSports"},
-  "Glen Eagle Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/20940/6276","provider":"foreUP"},
-  "Gladstan Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/18922","provider":"foreUP"},
-  "Glendale Golf Course": {"url":"https://www.chronogolf.com/club/glendale-golf-course","provider":"Chronogolf"},
-  "Green Spring Golf Course": {"url":"https://app.membersports.com/book-tee-time/15402/18913","provider":"MemberSports"},
-  "Green River Golf Course": {"url":"https://green-river-golf-course.book.teeitup.com/","provider":"TeeItUp"},
-  "Hobble Creek Golf Course": {"url":"https://app.membersports.com/tee-times/15404/18918/0/0/0","provider":"MemberSports"},
-  "Lakeside Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/20040","provider":"foreUP"},
-  "Meadowbrook Golf Course": {"url":"https://www.chronogolf.com/club/meadow-brook-slco","provider":"Chronogolf"},
-  "Meadow Brook Golf Course": {"url":"https://www.chronogolf.com/club/meadow-brook-slco","provider":"Chronogolf"},
-  "Millsite Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/21605/8326","provider":"foreUP"},
-  "Mt. Ogden Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/19196","provider":"foreUP"},
-  "Mick Riley Golf Course": {"url":"https://www.chronogolf.com/club/mick-riley-slco","provider":"Chronogolf"},
-  "Mountain Dell Golf Course": {"url":"https://www.chronogolf.com/club/mountain-dell-golf-club","provider":"Chronogolf"},
-  "Mountain View Golf Course": {"url":"https://www.chronogolf.com/club/mountain-view-slco","provider":"Chronogolf"},
-  "Mulligans South Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/21630/8401","provider":"foreUP"},
-  "Murray Parkway Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/6263/244","provider":"foreUP"},
-  "Palisade State Park": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=6847","provider":"TeeItUp"},
-  "Palisade Golf Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=6847","provider":"TeeItUp"},
-  "Nibley Park Golf Course": {"url":"https://www.chronogolf.com/club/nibley-park-golf-course","provider":"Chronogolf"},
-  "Old Mill Golf Course": {"url":"https://www.chronogolf.com/club/old-mill-slco","provider":"Chronogolf"},
-  "Park City Golf Course": {"url":"https://app.membersports.com/book-tee-time/15426/18944","provider":"MemberSports"},
-  "River Oaks Golf Course": {"url":"https://www.chronogolf.com/club/river-oaks-golf-course-utah","provider":"Chronogolf"},
-  "Riverbend Golf Course": {"url":"https://www.chronogolf.com/club/riverbend-slco","provider":"Chronogolf"},
-  "Rose Park Golf Course": {"url":"https://www.chronogolf.com/club/rose-park-golf-course","provider":"Chronogolf"},
-  "Roosevelt Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/6285","provider":"foreUP"},
-  "Sand Hollow Resort Golf Course": {"url":"https://www.chronogolf.com/club/sand-hollow-resort","provider":"Chronogolf"},
-  "Sky Mountain Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/22750","provider":"foreUP"},
-  "Soldier Hollow Golf Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17073","provider":"TeeItUp"},
-  "Soldier Hollow Golf Course - Gold Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17073","provider":"TeeItUp"},
-  "Soldier Hollow Golf Course - Silver Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17074","provider":"TeeItUp"},
-  "South Mountain Golf Course": {"url":"https://www.chronogolf.com/club/south-mountain-slco","provider":"Chronogolf"},
-  "Stonebridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/22130","provider":"foreUP"},
-  "Sun Hills Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/18895/578","provider":"foreUP"},
-  "Sun River Golf Course": {"url":"https://app.membersports.com/book-tee-time/15452/18977","provider":"MemberSports"},
-  "Sunset View Golf Course": {"url":"https://app.membersports.com/book-tee-time/16773/20538","provider":"MemberSports"},
-  "The Barn Golf Course": {"url":"https://golfpay.co/course/the-barn-golf-club-ogden-ut-84414","provider":"Golfpay"},
-  "The Ridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/22131","provider":"foreUP"},
-  "Southgate Golf Course": {"url":"https://www.sgcityutah.gov/activity/golf/southgate_golf_course/index.php","provider":"St. George city course page","label":"Open Southgate booking page","note":"Use the course’s Book a Tee Time link."},
-  "Saint George Golf Course": {"url":"https://www.sgcityutah.gov/activity/golf/st._george_golf_club/index.php","provider":"St. George city course page","label":"Open St. George Golf Club booking page","note":"Use the course’s Book a Tee Time link."},
-  "Sunbrook Golf Course": {"url":"https://www.sgcityutah.gov/activity/golf/sunbrook_golf_course/index.php","provider":"St. George city course page","label":"Open Sunbrook booking page","note":"Use the course’s Book a Tee Time link."},
-  "Thanksgiving Point Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19645/2034","provider":"foreUP"},
-  "Talons Cove Golf Course": {"url":"https://app.membersports.com/tee-times/15455/18982/0/0/0","provider":"MemberSports"},
-  "The Ledges Golf Course": {"url":"https://www.chronogolf.com/club/the-ledges-golf-club","provider":"Chronogolf"},
-  "The Ranches Golf Course": {"url":"https://fox.tenfore.golf/theranches","provider":"TenFore"},
-  "The Oaks at Spanish Fork": {"url":"https://foreupsoftware.com/index.php/booking/21698/8633","provider":"foreUP"},
-  "Spanish Oaks Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/21698/8633","provider":"foreUP"},
-  "Timpanogos Golf Club": {"url":"https://foreupsoftware.com/index.php/booking/6279/49","provider":"foreUP"},
-  "Wasatch Mountain State Park": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17067","provider":"TeeItUp"},
-  "Wasatch Mountain State Park Golf Course - Lake Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17067","provider":"TeeItUp"},
-  "Wasatch Mountain State Park Golf Course - Mountain Course": {"url":"https://aspira-management-company.book-v2.teeitup.golf/?course=17068","provider":"TeeItUp"},
-  "Wolf Creek Golf Course": {"url":"https://wolfcreekutah.com/","provider":"Course website","note":"Open the course website and choose tee times."},
-  "Canyon Hills Park Golf Course": {"url":"https://app.membersports.com/tee-times/15379/18889/0/0/0","provider":"MemberSports"},
-  "Sleepy Ridge Golf Course": {"url":"https://www.sleepyridgegolf.com/course","provider":"Sleepy Ridge Golf Course website","label":"Open Sleepy Ridge tee-time booking","note":"Choose Schedule Your Tee Time on the official course page."},
-  "Moab Golf Course": {"url":"https://moabgolfcourse.com/book-a-tee-time/","provider":"Course booking information","label":"Open Moab booking details","note":"Reservations are by phone: 435-259-6488."},
-  "Oquirrh Hills Golf Course": {"url":"https://golf.tooelecity.gov/","provider":"Course website","label":"Open Oquirrh Hills tee times","note":"Choose Tee Times on the course website."},
-  "Black Desert Resort Golf Course": {"url":"https://book.onagilysys.com/onecart/golf/courses/2434/black-desert","provider":"Black Desert booking system"},
-  "Canyon Breeze Golf Course": {"url":"tel:+14354382601","provider":"Phone booking","label":"Call Canyon Breeze to book","note":"Call the pro shop at (435) 438-2601 to choose a date and start time."},
-  "Carbon Country Club": {"url":"https://foreupsoftware.com/index.php/booking/22113/9906","provider":"foreUP"},
-  "Central Valley Golf Course": {"url":"tel:+18019736271","provider":"Phone booking","label":"Call Central Valley to book","note":"Call the course at (801) 973-6271 to confirm public access and choose a date and start time."},
-  "Cherokee Springs Golf Course": {"url":"tel:+14356190391","provider":"Phone booking","label":"Call Cherokee Springs to book","note":"Call (435) 619-0391 to confirm current golf access and choose a date and start time."},
-  "Copper Rock Golf Course": {"url":"https://golfscape.com/st-george-golf-courses/copper-rock-golf-course","provider":"Copper Rock tee-time booking"},
-  "Coral Canyon Golf Course": {"url":"https://fox.tenfore.golf/coralcanyon","provider":"TenFore"},
-  "Cove View Golf Course": {"url":"tel:+14358969987","provider":"Phone booking","label":"Call Cove View to book","note":"Call the pro shop at (435) 896-9987 to choose a date and start time."},
-  "Dugway Golf Course": {"url":"https://dugway.armymwr.com/programs/dugway-golf-course","provider":"Dugway MWR","label":"Check Dugway course access","note":"This course is on an installation. Confirm access eligibility with Dugway before planning a round."},
-  "Eagle Lake Golf Course": {"url":"https://eaglelake-golf.com/","provider":"Eagle Lake Golf Course","label":"Open Eagle Lake booking details","note":"Check the course’s calendar or call (801) 825-3467 to confirm a date and start time."},
-  "Eagle Mountain Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/19943/3033","provider":"foreUP"},
-  "East Bay Golf Course": {"url":"tel:+18018527529","provider":"Phone booking","label":"Call East Bay to book","note":"Call the course at (801) 852-7529 to choose a date and start time."},
-  "Glenmoor Golf Course": {"url":"https://golfglenmoor.com/tee-times/","provider":"Glenmoor Golf Club tee times"},
-  "Homestead Golf Club": {"url":"tel:+14356545588","provider":"Phone booking","label":"Call Homestead to book","note":"Call the pro shop at (435) 654-5588 to choose a date and start time."},
-  "Logan River Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/index/19035","provider":"foreUP"},
-  "Mulligans North Golf Course": {"url":"https://mulligansgolf.com/ogden/","provider":"Mulligans Golf booking information","label":"Open Mulligans North tee times","note":"Choose Ogden / North to continue to this course’s tee times."},
-  "Overlake Golf Course": {"url":"https://overlakegolfclub.com/tee-times/","provider":"Overlake Golf Club tee times"},
-  "Paradise Golf Resort": {"url":"tel:+14357434439","provider":"Phone booking","label":"Call Paradise Golf to book","note":"Call the course at (435) 743-4439 to choose a date and start time."},
-  "Remuda Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/6238/44#/teetimes","provider":"foreUP"},
-  "Round Valley Golf Course": {"url":"https://golfroundvalley.com/tee-times/","provider":"Course website","label":"Open Round Valley tee times","note":"Choose Tee Times on the course website."},
-  "Schneiter's Bluff Golf Course": {"url":"https://schneitersbluff.com/tee-times/","provider":"Course website","label":"Open Schneiter’s Bluff tee times","note":"Choose Tee Times on the course website."},
-  "Schneiter's Pebblebrook": {"url":"https://schneiterspebblebrook.com/tee-times/","provider":"Course website","label":"Open Schneiter’s Pebblebrook tee times","note":"Choose Tee Times on the course website. Online tee times may be seasonal."},
-  "Schneiter's Riverside": {"url":"https://schneitersriverside.com/tee-times/","provider":"Course website","label":"Open Schneiter’s Riverside tee times","note":"Choose Tee Times on the course website."},
-  "Sherwood Hills": {"url":"https://sherwoodhills.com/golf/","provider":"Course website","label":"Open Sherwood Hills golf details","note":"Check the course website for current public tee-time access."},
-  "Skyline Mountain Resort": {"url":"https://skylinemountainresort.com/golfcourse/","provider":"Skyline Mountain tee times","label":"Open Skyline Mountain tee times","note":"Use Book Your Tee Time on the course website."},
-  "Skyway Golf Course": {"url":"tel:+14352575706","provider":"Phone booking","label":"Call Skyway to book","note":"Call the pro shop at (435) 257-5706 to choose a date and start time."},
-  "Stansbury Park Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/6315/51","provider":"foreUP"},
-  "The Hideout Golf Course": {"url":"https://www.hideoutgolf.com/","provider":"The Hideout Golf Club","label":"Open The Hideout booking page","note":"Choose tee-time booking on the course website."},
-  "The Outlaw Golf Club": {"url":"https://theoutlawgolfclub.com/","provider":"The Outlaw Golf Club","label":"Open The Outlaw booking page","note":"Choose tee-time booking on the course website."},
-  "Thunderbird Golf Course": {"url":"tel:+14356483777","provider":"Phone booking","label":"Call Thunderbird to book","note":"Call the pro shop to confirm public access, date and start time."},
-  "West Ridge Golf Course": {"url":"https://foreupsoftware.com/index.php/booking/22131","provider":"foreUP"}
+  "Bonneville Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "Birch Creek Golf Course": {
+    "url": "https://www.smithfieldcity.org/"
+  },
+  "Bear Lake Golf Course": {
+    "url": "https://www.bearlakegolfcourse.com/"
+  },
+  "Eaglewood Golf Course": {
+    "url": "https://eaglewoodgolf.com/"
+  },
+  "Valley View Golf Course": {
+    "url": "https://www.laytoncity.org/"
+  },
+  "Bountiful Ridge Golf Course": {
+    "url": "https://bountifulridgegolf.com/"
+  },
+  "Canyons Golf Course": {
+    "url": "https://www.parkcitymountain.com/"
+  },
+  "Cedar Hills Golf Course": {
+    "url": "https://www.cedarhillsgolfutah.com/"
+  },
+  "Cedar Ridge Golf Course": {
+    "url": "https://www.cedarcity.org/"
+  },
+  "Davis Park Golf Course": {
+    "url": "https://www.davisparkutah.com/"
+  },
+  "Dinaland Golf Course": {
+    "url": "https://www.dinalandgolf.com/"
+  },
+  "Dixie Red Hills Golf Course": {
+    "url": "https://www.sgcityutah.gov/"
+  },
+  "Crane Field Golf Course": {
+    "url": "https://www.cranefieldgolf.com/"
+  },
+  "Fox Hollow Golf Course": {
+    "url": "https://foxhollowutah.com/"
+  },
+  "Forest Dale Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "El Monte Golf Course": {
+    "url": "https://www.ogdencity.com/"
+  },
+  "Fore Lakes Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Glen Eagle Golf Course": {
+    "url": "https://golfgleneagle.com/"
+  },
+  "Gladstan Golf Course": {
+    "url": "https://gladstan.com/"
+  },
+  "Glendale Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "Green Spring Golf Course": {
+    "url": "https://washingtonutah.org/"
+  },
+  "Green River Golf Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Hobble Creek Golf Course": {
+    "url": "https://www.springvilleutah.gov/"
+  },
+  "Lakeside Golf Course": {
+    "url": "https://www.westbountifulutah.gov/"
+  },
+  "Meadowbrook Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Meadow Brook Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Millsite Golf Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Mt. Ogden Golf Course": {
+    "url": "https://www.ogdencity.com/"
+  },
+  "Mick Riley Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Mountain Dell Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "Mountain View Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Mulligans South Golf Course": {
+    "url": "https://www.sjc.utah.gov/"
+  },
+  "Murray Parkway Golf Course": {
+    "url": "https://www.murray.utah.gov/"
+  },
+  "Palisade State Park": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Palisade Golf Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Nibley Park Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "Old Mill Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Park City Golf Course": {
+    "url": "https://www.parkcity.org/"
+  },
+  "River Oaks Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Riverbend Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Rose Park Golf Course": {
+    "url": "https://slc-golf.com/"
+  },
+  "Roosevelt Golf Course": {
+    "url": "https://www.rooseveltcity.com/"
+  },
+  "Sand Hollow Resort Golf Course": {
+    "url": "https://sandhollowresort.com/"
+  },
+  "Sky Mountain Golf Course": {
+    "url": "https://www.cityofhurricane.com/"
+  },
+  "Soldier Hollow Golf Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Soldier Hollow Golf Course - Gold Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Soldier Hollow Golf Course - Silver Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "South Mountain Golf Course": {
+    "url": "https://www.saltlakecounty.gov/"
+  },
+  "Stonebridge Golf Course": {
+    "url": "https://www.golfstonebridgeutah.com/"
+  },
+  "Sun Hills Golf Course": {
+    "url": "https://www.laytoncity.org/"
+  },
+  "Sun River Golf Course": {
+    "url": "https://www.sunrivergolf.com/"
+  },
+  "Sunset View Golf Course": {
+    "url": "https://www.delta.utah.gov/"
+  },
+  "The Barn Golf Course": {
+    "url": "https://thebarngolfclub.com/"
+  },
+  "The Ridge Golf Course": {
+    "url": "https://www.golftheridgegc.com/"
+  },
+  "Southgate Golf Course": {
+    "url": "https://www.sgcityutah.gov/"
+  },
+  "Saint George Golf Course": {
+    "url": "https://www.sgcityutah.gov/"
+  },
+  "Sunbrook Golf Course": {
+    "url": "https://www.sgcityutah.gov/"
+  },
+  "Thanksgiving Point Golf Course": {
+    "url": "https://thanksgivingpoint.org/"
+  },
+  "Talons Cove Golf Course": {
+    "url": "https://www.talonscove.com/"
+  },
+  "The Ledges Golf Course": {
+    "url": "https://www.ledges.com/"
+  },
+  "The Ranches Golf Course": {
+    "url": "https://theranchesgolfclub.com/"
+  },
+  "The Oaks at Spanish Fork": {
+    "url": "https://www.spanishfork.gov/"
+  },
+  "Spanish Oaks Golf Course": {
+    "url": "https://www.spanishfork.gov/"
+  },
+  "Timpanogos Golf Club": {
+    "url": "https://www.timpanogosgolf.com/"
+  },
+  "Wasatch Mountain State Park": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Wasatch Mountain State Park Golf Course - Lake Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Wasatch Mountain State Park Golf Course - Mountain Course": {
+    "url": "https://stateparks.utah.gov/"
+  },
+  "Wolf Creek Golf Course": {
+    "url": "https://wolfcreekresort.com/"
+  },
+  "Canyon Hills Park Golf Course": {
+    "url": "https://www.nephi.utah.gov/"
+  },
+  "Sleepy Ridge Golf Course": {
+    "url": "https://www.sleepyridgegolf.com/"
+  },
+  "Moab Golf Course": {
+    "url": "https://moabgolfcourse.com/"
+  },
+  "Oquirrh Hills Golf Course": {
+    "url": "https://golf.tooelecity.gov/"
+  },
+  "Black Desert Resort Golf Course": {
+    "url": "https://blackdesertresort.com/"
+  },
+  "Canyon Breeze Golf Course": {
+    "url": "https://www.beaverutah.net/"
+  },
+  "Carbon Country Club": {
+    "url": "https://www.carboncountryclub.com/"
+  },
+  "Central Valley Golf Course": {
+    "url": "https://www.wvc-ut.gov/"
+  },
+  "Cherokee Springs Golf Course": {
+    "url": "https://www.garfield.utah.gov/"
+  },
+  "Copper Rock Golf Course": {
+    "url": "https://copperrock.com/"
+  },
+  "Coral Canyon Golf Course": {
+    "url": "https://coralcanyongolf.com/"
+  },
+  "Cove View Golf Course": {
+    "url": "https://coveviewgolf.com/"
+  },
+  "Dugway Golf Course": {
+    "url": "https://dugway.armymwr.com/"
+  },
+  "Eagle Lake Golf Course": {
+    "url": "https://eaglelake-golf.com/"
+  },
+  "Eagle Mountain Golf Course": {
+    "url": "https://www.brighamcity.utah.gov/"
+  },
+  "East Bay Golf Course": {
+    "url": "https://www.provo.gov/"
+  },
+  "Glenmoor Golf Course": {
+    "url": "https://golfglenmoor.com/"
+  },
+  "Homestead Golf Club": {
+    "url": "https://www.homesteadresort.com/"
+  },
+  "Logan River Golf Course": {
+    "url": "https://www.loganutah.gov/"
+  },
+  "Mulligans North Golf Course": {
+    "url": "https://www.toadsfunzone.com/"
+  },
+  "Overlake Golf Course": {
+    "url": "https://overlakegolfclub.com/"
+  },
+  "Paradise Golf Resort": {
+    "url": "https://www.fillmorecity.org/"
+  },
+  "Remuda Golf Course": {
+    "url": "https://www.remudagolf.com/"
+  },
+  "Round Valley Golf Course": {
+    "url": "https://golfroundvalley.com/"
+  },
+  "Schneiter's Bluff Golf Course": {
+    "url": "https://schneitersgolf.com/"
+  },
+  "Schneiter's Pebblebrook": {
+    "url": "https://schneitersgolf.com/"
+  },
+  "Schneiter's Riverside": {
+    "url": "https://schneitersgolf.com/"
+  },
+  "Sherwood Hills": {
+    "url": "https://sherwoodhills.com/"
+  },
+  "Skyline Mountain Resort": {
+    "url": "https://skylinemountainresort.com/"
+  },
+  "Skyway Golf Course": {
+    "url": "https://www.tremontoncity.com/"
+  },
+  "Stansbury Park Golf Course": {
+    "url": "https://stansburypark.gov/"
+  },
+  "The Hideout Golf Course": {
+    "url": "https://www.hideoutgolf.com/"
+  },
+  "The Outlaw Golf Club": {
+    "url": "https://theoutlawgolfclub.com/"
+  },
+  "Thunderbird Golf Course": {
+    "url": "https://www.kane.utah.gov/"
+  },
+  "West Ridge Golf Course": {
+    "url": "https://www.wvc-ut.gov/"
+  }
 };

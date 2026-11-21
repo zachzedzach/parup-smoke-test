@@ -14,7 +14,7 @@ The mobile-first app uses six profile screens: basic details and an optional Han
 
 Finishing setup leads directly to example golf groups. A specific dated round planner remains available from the results screen. The round has its own course, date, 15-minute start, holes, cart choice and public/private setting, distinct from usual weekly availability. A public sample round can show an example request, which the host can accept or decline. Once the group agrees, the course’s booking site handles the tee time. This encourages planning a real-world round in the product concept, while the published preview itself remains a simulation.
 
-The in-page results, profiles, mutual choice, waiting, and tee times are examples. They are not live course inventory, real golfers, actual notifications, saved profiles, calendar events, or reservations. External course links are real public booking destinations or a course directory; availability is checked and booking is completed there. Keep that boundary clear in the UI and in future copy.
+The in-page results, profiles, mutual choice, waiting, and tee times are examples. They are not live course inventory, real golfers, actual notifications, saved profiles, calendar events, or reservations. External course links go to the course or operating organization’s homepage. Visitors can find current details there; the prototype does not check availability or complete a booking. Keep that boundary clear in the UI and in future copy.
 
 ## Partner prototype contributions
 
