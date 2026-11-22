@@ -42,29 +42,47 @@ revoke all on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;
 
 -- ---------------------------------------------------------------------------
--- Real connection requests (e.g. players tapping "Connect with Rosanna").
--- Players must be signed in. Their first name and account email are stored so
--- the golfer can reach out. Players can only create and see their OWN requests;
--- the golfer reads them in Supabase: Table Editor -> connection_requests.
+-- Messages between featured real golfers (e.g. Rosanna) and players.
+-- One conversation per (golfer, player). A player can only read and write their
+-- own conversation; the golfer's account can read and reply to all of hers.
+-- Players' emails are never stored here: only the first name they typed.
 -- ---------------------------------------------------------------------------
-create table if not exists public.connection_requests (
-  id          bigint generated always as identity primary key,
-  to_golfer   text not null,
-  from_user   uuid not null default auth.uid() references auth.users (id) on delete cascade,
-  from_name   text not null default '' check (char_length(from_name) <= 60),
-  from_email  text not null,
-  created_at  timestamptz not null default now(),
-  unique (to_golfer, from_user)
+create table if not exists public.featured_golfers (
+  id       text primary key,                 -- e.g. 'rosanna'
+  user_id  uuid unique references auth.users (id) on delete set null
 );
+alter table public.featured_golfers enable row level security;
+revoke all on public.featured_golfers from anon;
+grant select on public.featured_golfers to authenticated;
+drop policy if exists "signed-in players can see featured golfers" on public.featured_golfers;
+create policy "signed-in players can see featured golfers" on public.featured_golfers for select to authenticated using (true);
+insert into public.featured_golfers (id) values ('rosanna') on conflict (id) do nothing;
 
-alter table public.connection_requests enable row level security;
-revoke all on public.connection_requests from anon;
-grant select, insert, delete on public.connection_requests to authenticated;
+create table if not exists public.messages (
+  id           bigint generated always as identity primary key,
+  golfer       text not null references public.featured_golfers (id) on delete cascade,
+  player       uuid not null references auth.users (id) on delete cascade,
+  player_name  text not null default '' check (char_length(player_name) <= 60),
+  sender       uuid not null default auth.uid() references auth.users (id) on delete cascade,
+  body         text not null check (char_length(btrim(body)) between 1 and 1000),
+  created_at   timestamptz not null default now()
+);
+create index if not exists messages_thread on public.messages (golfer, player, created_at);
 
-drop policy if exists "send own request"   on public.connection_requests;
-drop policy if exists "see own requests"   on public.connection_requests;
-drop policy if exists "cancel own request" on public.connection_requests;
-create policy "send own request" on public.connection_requests for insert to authenticated
-  with check (from_user = auth.uid() and from_email = (auth.jwt() ->> 'email') and to_golfer in ('rosanna'));
-create policy "see own requests"   on public.connection_requests for select to authenticated using (from_user = auth.uid());
-create policy "cancel own request" on public.connection_requests for delete to authenticated using (from_user = auth.uid());
+alter table public.messages enable row level security;
+revoke all on public.messages from anon;
+grant select, insert on public.messages to authenticated;
+
+create or replace function public.owns_golfer(g text)
+returns boolean language sql stable security definer set search_path = '' as $$
+  select exists (select 1 from public.featured_golfers f where f.id = g and f.user_id = auth.uid());
+$$;
+revoke all on function public.owns_golfer(text) from public, anon;
+grant execute on function public.owns_golfer(text) to authenticated;
+
+drop policy if exists "read own conversation" on public.messages;
+drop policy if exists "write own conversation" on public.messages;
+create policy "read own conversation" on public.messages for select to authenticated
+  using (player = auth.uid() or public.owns_golfer(golfer));
+create policy "write own conversation" on public.messages for insert to authenticated
+  with check (sender = auth.uid() and (player = auth.uid() or public.owns_golfer(golfer)));

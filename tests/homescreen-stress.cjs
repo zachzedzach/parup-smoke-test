@@ -683,8 +683,8 @@ check('setup ends on example golfer profiles that fit and can be connected with'
   const first = w.document.querySelector('.golfer-card');
   assert.equal(first.dataset.golfer, 'rosanna', 'Rosanna is always the first suggested golfer');
   assert(first.textContent.includes('Rosanna Murray') && first.textContent.includes('Real golfer'));
-  assert(first.querySelector('[data-connect-real]'), 'Rosanna can be selected to connect');
-  assert(first.textContent.includes('will see your first name and email'), 'players are told what Rosanna sees');
+  assert(first.querySelector('[data-msg-start]'), 'players can message Rosanna');
+  assert(first.textContent.includes('will see your first name and your messages') && !first.textContent.includes('email'), 'players are told what Rosanna sees');
   let cards = [...w.document.querySelectorAll('.golfer-card:not(.is-real)')];
   assert(cards.length >= 4, 'shows several example golfers');
   assert(!w.document.querySelector('[data-golfer="g-marcus"]'), 'golfers who smoke are hidden unless smoking is allowed');
