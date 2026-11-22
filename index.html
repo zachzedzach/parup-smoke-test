@@ -20,13 +20,14 @@
     <link rel="manifest" href="manifest.webmanifest" />
     <script>const homeScreenQuery = new URLSearchParams(location.search).get('homescreen') === '1'; const homeScreenApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true; const desktopBrowser = window.matchMedia('(min-width: 761px) and (pointer: fine)').matches; if (homeScreenQuery && desktopBrowser) {const mainSite = new URL(location.href); mainSite.searchParams.delete('homescreen'); location.replace(mainSite.href);} else if (homeScreenQuery || homeScreenApp) {document.documentElement.classList.add('homescreen-mode'); document.querySelector('meta[name="theme-color"]').setAttribute('content','#ffffff');}</script>
     <link rel="stylesheet" href="styles.css?v=20261121-preview-cta-1" />
-    <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx"};</script>
+    <script>window.ROUNDFOLK_CONFIG = {signupEndpoint: "https://script.google.com/macros/s/AKfycby7quWkhnUAJnJDmQbFf33dpvyzOOA3hXtw12kF8GESqXJePoZgXYjzuu_o6s-jux-5/exec", googleAnalyticsId: "", clarityProjectId: "zdm3rkdrtx", supabaseUrl: "https://tizfwtfdzryauifsqxxq.supabase.co", supabaseKey: "sb_publishable_Uj5qlntFLM83TMb8KP2nPw_9vik7pW_"};</script>
     <script defer src="assets/allo-wave.js?v=6"></script>
     <script defer src="site.js?v=20261121-rotating-golf-photos-1"></script>
     <script defer src="assets/utah-courses.js?v=2"></script>
     <script defer src="assets/course-booking-links.js?v=4"></script>
-    <script defer src="assets/homescreen.js?v=97"></script>
-    <link rel="stylesheet" href="assets/homescreen.css?v=78" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script defer src="assets/homescreen.js?v=98"></script>
+    <link rel="stylesheet" href="assets/homescreen.css?v=79" />
   </head>
   <body>
     <header class="site-header">
