@@ -119,7 +119,8 @@ function finishSetup(w, options = {}) {
     control.checked = true;
     control.dispatchEvent(new w.Event('change', { bubbles: true }));
   }
-  next(w); // results
+  next(w); // results: setup ends on example golfer profiles
+  if (!options.stayOnGolfers) click(w, '[data-view="home"]');
 }
 
 function check(name, fn) {
@@ -673,6 +674,32 @@ check('setup progress matches six screens and the app keeps single interactive v
   assert.equal(w.document.querySelectorAll('.preferences-content').length, 1);
   next(w);
   assert.equal(w.document.querySelector('.preferences-header>span').textContent, '2 of 6');
+  w.close();
+});
+
+check('setup ends on example golfer profiles that fit and can be connected with', () => {
+  const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Saturday'], stayOnGolfers: true });
+  assert.equal(w.document.querySelector('.clubhouse-title h1').textContent, 'Golfers for you');
+  let cards = [...w.document.querySelectorAll('.golfer-card')];
+  assert(cards.length >= 4, 'shows several example golfers');
+  assert(!w.document.querySelector('[data-golfer="g-marcus"]'), 'golfers who smoke are hidden unless smoking is allowed');
+  click(w, '[data-action="edit"]');
+  click(w, '[data-edit-step="1"]');
+  w.document.querySelector('.partner-preferences').open = true;
+  click(w, 'input[name=playWith][value="Women golfers"]');
+  next(w); // done editing, back to Preferences
+  click(w, '[data-view="golfers"]');
+  cards = [...w.document.querySelectorAll('.golfer-card')];
+  assert(cards.length >= 2 && cards.every(card => ['g-maya', 'g-sofia', 'g-priya'].includes(card.dataset.golfer)), 'only women golfers when the player chose women');
+  assert(cards[0].textContent.includes('Plays East Bay Golf Course'), 'shows shared course');
+  assert(w.document.querySelector('[data-golfer="g-maya"]').textContent.includes('Free Saturday'), 'shows shared day');
+  assert.equal(w.document.querySelector('button[data-view="golfers"]').getAttribute('aria-current'), 'page');
+  click(w, '[data-connect="g-maya"]');
+  assert(w.document.querySelector('[data-golfer="g-maya"] .golfer-pending').textContent.includes('Request sent'));
+  for (const [id, t] of [...w.__timers]) if (t.delay === 4000) { w.__timers.delete(id); t.fn(); }
+  assert(w.document.querySelector('[data-golfer="g-maya"] .golfer-connected').textContent.includes('You and Maya are connected'));
+  click(w, '[data-golfer="g-maya"] [data-action="create-round"]');
+  assert(w.document.querySelector('.round-builder'), 'connected golfer leads to planning a round');
   w.close();
 });
 

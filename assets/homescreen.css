@@ -772,3 +772,22 @@
 #preferences-app .auth-links button,#preferences-app .auth-entry{border:0;background:transparent;color:#176b50;min-height:38px;font-size:14px;font-weight:600}
 #preferences-app .auth-links button[data-auth=later]{color:#6c6c70;font-weight:400}
 #preferences-app .auth-loading{text-align:center;padding:40px 0}
+/* Example golfer profiles (Golfers tab) */
+#preferences-app .golfer-card{overflow:hidden;border-radius:16px;background:#fff;box-shadow:0 4px 20px #263b2110;margin:14px 0 20px}
+#preferences-app .golfer-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%}
+#preferences-app .golfer-body{display:grid;gap:10px;padding:14px 16px 16px}
+#preferences-app .golfer-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#preferences-app .golfer-head h2{margin:0;font-size:22px}
+#preferences-app .golfer-example{font-size:12px;font-weight:600;color:#6c6c70;background:#f1efe8;border-radius:999px;padding:3px 10px}
+#preferences-app .golfer-meta{margin:0;color:#4d544c;font-size:14px}
+#preferences-app .golfer-bio{margin:0;font-size:15px;line-height:1.45;color:#20241f}
+#preferences-app .golfer-reasons{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+#preferences-app .golfer-reasons li{font-size:13px;font-weight:600;color:#176b50;background:#e5f1e9;border-radius:999px;padding:4px 10px}
+#preferences-app .golfer-reasons li::before{content:"✓ "}
+#preferences-app .golfer-facts{display:grid;gap:6px;margin:0}
+#preferences-app .golfer-facts div{display:grid;grid-template-columns:110px 1fr;gap:8px;font-size:14px}
+#preferences-app .golfer-facts dt{color:#6c6c70}
+#preferences-app .golfer-facts dd{margin:0;color:#20241f}
+#preferences-app .golfer-connect,#preferences-app .golfer-connected button{min-height:46px;border:0;border-radius:12px;background:#176b50;color:#fff;font:inherit;font-weight:600}
+#preferences-app .golfer-pending{margin:0;padding:12px;border-radius:12px;background:#f5f7f3;color:#4d544c;font-size:14px;text-align:center}
+#preferences-app .golfer-connected{display:grid;gap:8px;padding:12px;border-radius:12px;background:#e5f1e9;color:#176b50}
