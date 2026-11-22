@@ -680,7 +680,12 @@ check('setup progress matches six screens and the app keeps single interactive v
 check('setup ends on example golfer profiles that fit and can be connected with', () => {
   const w = app(); finishSetup(w, { courses: ['East Bay Golf Course'], days: ['Saturday'], stayOnGolfers: true });
   assert.equal(w.document.querySelector('.clubhouse-title h1').textContent, 'Golfers for you');
-  let cards = [...w.document.querySelectorAll('.golfer-card')];
+  const first = w.document.querySelector('.golfer-card');
+  assert.equal(first.dataset.golfer, 'rosanna', 'Rosanna is always the first suggested golfer');
+  assert(first.textContent.includes('Rosanna Murray') && first.textContent.includes('Real golfer'));
+  assert(first.querySelector('[data-connect-real]'), 'Rosanna can be selected to connect');
+  assert(first.textContent.includes('will see your first name and email'), 'players are told what Rosanna sees');
+  let cards = [...w.document.querySelectorAll('.golfer-card:not(.is-real)')];
   assert(cards.length >= 4, 'shows several example golfers');
   assert(!w.document.querySelector('[data-golfer="g-marcus"]'), 'golfers who smoke are hidden unless smoking is allowed');
   click(w, '[data-action="edit"]');
@@ -689,7 +694,8 @@ check('setup ends on example golfer profiles that fit and can be connected with'
   click(w, 'input[name=playWith][value="Women golfers"]');
   next(w); // done editing, back to Preferences
   click(w, '[data-view="golfers"]');
-  cards = [...w.document.querySelectorAll('.golfer-card')];
+  cards = [...w.document.querySelectorAll('.golfer-card:not(.is-real)')];
+  assert.equal(w.document.querySelector('.golfer-card').dataset.golfer, 'rosanna', 'Rosanna still shows when filtering to women');
   assert(cards.length >= 2 && cards.every(card => ['g-maya', 'g-sofia', 'g-priya'].includes(card.dataset.golfer)), 'only women golfers when the player chose women');
   assert(cards[0].textContent.includes('Plays East Bay Golf Course'), 'shows shared course');
   assert(w.document.querySelector('[data-golfer="g-maya"]').textContent.includes('Free Saturday'), 'shows shared day');
